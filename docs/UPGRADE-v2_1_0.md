@@ -1,15 +1,15 @@
 # Battersea Library v2.1.0 - Upgrade Checklist
 
-## ✅ Quick Upgrade Steps
+## âœ… Quick Upgrade Steps
 
-### 1. Update Core Files ⚠️ **REQUIRED**
+### 1. Update Core Files âš ï¸ **REQUIRED**
 
 Replace these files in your project:
 
 ```
-✓ battersea-library.css (updated - new CSS variables)
-✓ battersea-library.less (updated - new styles)
-✓ battersea-tooltip.js (v2.0.0 → v2.0.1)
+âœ“ battersea-library.css (updated - new CSS variables)
+âœ“ battersea-library.less (updated - new styles)
+âœ“ battersea-tooltip.js (v2.0.0 â†’ v2.0.1)
 ```
 
 ### 2. Add New Component (Optional)
@@ -17,7 +17,7 @@ Replace these files in your project:
 If you want to use SmoothScroll:
 
 ```
-✓ battersea-smoothscroll.js (new file)
+âœ“ battersea-smoothscroll.js (new file)
 ```
 
 ### 3. Update HTML Script Tags
@@ -55,22 +55,22 @@ Add to your HTML:
 
 ---
 
-## 🔍 What Changed?
+## ðŸ” What Changed?
 
 ### Breaking Changes
 **NONE** - This is 100% backward compatible!
 
 ### New Features
-- ✨ SmoothScroll component with dynamic header detection
-- 📝 Tooltip custom class support (`data-tooltip-class`)
-- 🎨 New CSS variables for scroll navigation
+- âœ¨ SmoothScroll component with dynamic header detection
+- ðŸ“ Tooltip custom class support (`data-tooltip-class`)
+- ðŸŽ¨ New CSS variables for scroll navigation
 
 ### Bug Fixes
 - None (this is a feature release)
 
 ---
 
-## 📋 File Inventory
+## ðŸ“‹ File Inventory
 
 ### What's in the v2.1.0 Release
 
@@ -105,7 +105,7 @@ Add to your HTML:
 
 ---
 
-## 🧪 Testing Checklist
+## ðŸ§ª Testing Checklist
 
 After upgrading, verify:
 
@@ -120,7 +120,7 @@ After upgrading, verify:
 
 ---
 
-## 💡 Pro Tips
+## ðŸ’¡ Pro Tips
 
 ### Custom Tooltip Styling
 
@@ -175,7 +175,7 @@ Override CSS variables in your stylesheet:
 
 ---
 
-## 🆘 Troubleshooting
+## ðŸ†˜ Troubleshooting
 
 ### Issue: Tooltips not showing after upgrade
 **Solution:** Clear browser cache, ensure `battersea-tooltip.js` v2.0.1 is loaded
@@ -197,7 +197,7 @@ Override CSS variables in your stylesheet:
 
 ---
 
-## 📞 Support
+## ðŸ“ž Support
 
 - **Documentation:** See README.md for full API reference
 - **Examples:** Check demo files for implementation examples
@@ -205,7 +205,7 @@ Override CSS variables in your stylesheet:
 
 ---
 
-## ✨ What's Next?
+## âœ¨ What's Next?
 
 Consider these planned features for v2.2.0:
 - Header component with scroll-shrink
@@ -215,4 +215,4 @@ Consider these planned features for v2.2.0:
 
 ---
 
-**Happy Upgrading! 🎉**
+**Happy Upgrading! ðŸŽ‰**

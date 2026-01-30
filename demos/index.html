@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battersea Library - Component Showcase</title>
+  <meta name="description" content="Battersea Library - A lightweight, modular JavaScript component library">
+  
+  <link rel="stylesheet" href="../src/css/battersea-library-min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .btn-primary {
+      background: white;
+      color: #667eea;
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    nav {
+      background: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 0 1rem;
+    }
+    
+    nav a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover {
+      color: #764ba2;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      color: #667eea;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .component-card {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .component-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .component-card h3 {
+      color: #667eea;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    
+    .component-card p {
+      color: #666;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    
+    .component-card .badge {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .features {
+      background: white;
+      padding: 3rem 2rem;
+      margin: 3rem 0;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .feature {
+      text-align: center;
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .feature h3 {
+      color: #667eea;
+      margin-bottom: 0.5rem;
+    }
+    
+    footer {
+      background: #2d2d2d;
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    footer a {
+      color: #667eea;
+      text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      nav ul {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>🎨 Battersea Library</h1>
+    <p>A lightweight, modular JavaScript component library built with vanilla JavaScript. No dependencies. No frameworks. Just pure, performant components.</p>
+    <div class="hero-buttons">
+      <a href="https://github.com/idahodesign/battersea-library" class="btn btn-primary" target="_blank">
+        View on GitHub
+      </a>
+      <a href="#components" class="btn btn-secondary">
+        Browse Components
+      </a>
+    </div>
+  </div>
+  
+  <!-- Navigation Placeholder -->
+  <div id="nav-placeholder"></div>
+  
+  <!-- Features Section -->
+  <div class="features">
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>No dependencies. Pure vanilla JavaScript for maximum performance.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">♿</div>
+        <h3>Accessible</h3>
+        <p>Built with accessibility in mind. ARIA labels, keyboard navigation, screen reader support.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>Responsive</h3>
+        <p>Mobile-first design. Works beautifully on all devices and screen sizes.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎨</div>
+        <h3>Customisable</h3>
+        <p>CSS variables and data attributes make theming and configuration simple.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Components Section -->
+  <div class="container" id="components">
+    <h2 class="section-title">Component Library</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 3rem;">
+      15 production-ready components. Click any card to view the live demo.
+    </p>
+    
+    <div class="components-grid">
+      <a href="accordion.html" class="component-card">
+        <h3>Accordion</h3>
+        <p>Collapsible content sections with smooth animations and keyboard support.</p>
+        <span class="badge">Interactive</span>
+      </a>
+      
+      <a href="animation.html" class="component-card">
+        <h3>Animation</h3>
+        <p>Scroll-triggered animations with parent-child cascading effects.</p>
+        <span class="badge">Scroll-based</span>
+      </a>
+      
+      <a href="counter.html" class="component-card">
+        <h3>Counter</h3>
+        <p>Animated number counting when scrolled into view.</p>
+        <span class="badge">Animated</span>
+      </a>
+      
+      <a href="flipbox.html" class="component-card">
+        <h3>Flipbox</h3>
+        <p>3D flip card animations on hover or click.</p>
+        <span class="badge">3D Transform</span>
+      </a>
+      
+      <a href="header.html" class="component-card">
+        <h3>Header</h3>
+        <p>Adaptive navigation with scroll-shrink and logo swapping.</p>
+        <span class="badge">New v2.2</span>
+      </a>
+      
+      <a href="multislider.html" class="component-card">
+        <h3>Multi Slider</h3>
+        <p>Multi-item carousel with responsive breakpoints and infinite loop.</p>
+        <span class="badge">Carousel</span>
+      </a>
+      
+      <a href="nestedprogress.html" class="component-card">
+        <h3>Nested Progress</h3>
+        <p>Multi-layer circular progress visualisation with colour legend.</p>
+        <span class="badge">Data Viz</span>
+      </a>
+      
+      <a href="parallax.html" class="component-card">
+        <h3>Parallax</h3>
+        <p>Smooth parallax scrolling background effects.</p>
+        <span class="badge">Scroll Effect</span>
+      </a>
+      
+      <a href="popup.html" class="component-card">
+        <h3>Popup/Modal</h3>
+        <p>Overlay dialogs with backdrop and ESC/click-outside to close.</p>
+        <span class="badge">Overlay</span>
+      </a>
+      
+      <a href="progressbar.html" class="component-card">
+        <h3>Progress Bar</h3>
+        <p>Horizontal and circular progress indicators with animations.</p>
+        <span class="badge">Indicator</span>
+      </a>
+      
+      <a href="slider.html" class="component-card">
+        <h3>Slider</h3>
+        <p>Full-featured carousel with true infinite loop and autoplay.</p>
+        <span class="badge">Carousel</span>
+      </a>
+      
+      <a href="smoothscroll.html" class="component-card">
+        <h3>Smooth Scroll</h3>
+        <p>Scroll-to-section navigation with dynamic header detection.</p>
+        <span class="badge">Navigation</span>
+      </a>
+      
+      <a href="tabs.html" class="component-card">
+        <h3>Tabs</h3>
+        <p>Tabbed content interface with smooth transitions.</p>
+        <span class="badge">Content</span>
+      </a>
+      
+      <a href="tooltip.html" class="component-card">
+        <h3>Tooltip</h3>
+        <p>Accessible tooltips with 4 positioning options.</p>
+        <span class="badge">Helper</span>
+      </a>
+      
+      <a href="demo-menu-includes.html" class="component-card">
+        <h3>Horizontal Nav</h3>
+        <p>Multi-level dropdown navigation with flyouts and accordions.</p>
+        <span class="badge">New v2.2</span>
+      </a>
+    </div>
+  </div>
+  
+  <!-- Include Footer -->
+  <script src="../includes/footer.html"></script>
+  
+  <!-- Navigation Loader -->
+  <script>
+    function loadIncludes() {
+      fetch('../includes/nav.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('nav-placeholder').innerHTML = html;
+          document.querySelector('nav a[href="index.html"]')?.classList.add('active');
+        })
+        .catch(err => console.error('Error loading navigation:', err));
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadIncludes);
+    } else {
+      loadIncludes();
+    }
+  </script>
+  
+  <footer>
+    <p>&copy; 2024 Battersea Library. MIT License.</p>
+    <p style="margin-top: 0.5rem; opacity: 0.8;">
+      <a href="https://github.com/idahodesign/battersea-library" target="_blank">View on GitHub</a>
+    </p>
+  </footer>
+</body>
+</html>

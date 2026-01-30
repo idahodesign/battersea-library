@@ -11,8 +11,8 @@
  *     <div data-multislider-item>Item 2</div>
  *     <div data-multislider-item>Item 3</div>
  *   </div>
- *   <button data-multislider-prev>‹</button>
- *   <button data-multislider-next>›</button>
+ *   <button data-multislider-prev>â€¹</button>
+ *   <button data-multislider-next>â€º</button>
  * </div>
  * 
  * Dependencies: battersea-utils.js, battersea-core.js

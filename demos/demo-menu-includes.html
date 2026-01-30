@@ -165,7 +165,7 @@
 
   <!-- Pre-Header -->
   <div class="battersea-header-pre">
-    📞 Support: 1-800-BATTERSEA | 📧 info@battersea.com
+    ðŸ“ž Support: 1-800-BATTERSEA | ðŸ“§ info@battersea.com
   </div>
 
   <!-- Header with Navigation Placeholder -->
@@ -197,19 +197,19 @@
   <!-- Page Content -->
   <div class="content">
     <div class="hero">
-      <h1>🎯 Menu Include Pattern</h1>
+      <h1>ðŸŽ¯ Menu Include Pattern</h1>
       <p>Separate navigation HTML files for easy management</p>
     </div>
     
     <div class="section">
-      <h2>✨ How It Works</h2>
+      <h2>âœ¨ How It Works</h2>
       
       <p>The navigation menu is loaded from an external HTML file, making it easy to:</p>
       <ul style="margin: 20px 0 20px 30px; line-height: 1.8;">
-        <li>✅ Reuse the same menu across multiple pages</li>
-        <li>✅ Update the menu in one place</li>
-        <li>✅ Keep your page HTML clean and maintainable</li>
-        <li>✅ Switch between different menu structures easily</li>
+        <li>âœ… Reuse the same menu across multiple pages</li>
+        <li>âœ… Update the menu in one place</li>
+        <li>âœ… Keep your page HTML clean and maintainable</li>
+        <li>âœ… Switch between different menu structures easily</li>
       </ul>
       
       <h3 style="margin-top: 30px;">Available Menu Files:</h3>
@@ -220,7 +220,7 @@
     </div>
     
     <div class="section">
-      <h2>📝 HTML Structure</h2>
+      <h2>ðŸ“ HTML Structure</h2>
       
       <pre><code>&lt;!-- Your page header --&gt;
 &lt;header class="battersea-header" data-header&gt;
@@ -243,7 +243,7 @@
     </div>
     
     <div class="section">
-      <h2>🔧 JavaScript Loader</h2>
+      <h2>ðŸ”§ JavaScript Loader</h2>
       
       <pre><code>&lt;script&gt;
 // Simple menu loader function
@@ -264,13 +264,13 @@ async function loadMenu(menuFile) {
 
 // Load menu before Battersea initialization
 loadMenu('nav-menu-full.html').then(() => {
-  console.log('✅ Menu loaded successfully!');
+  console.log('âœ… Menu loaded successfully!');
 });
 &lt;/script&gt;</code></pre>
     </div>
     
     <div class="section">
-      <h2>🎨 Switching Menus</h2>
+      <h2>ðŸŽ¨ Switching Menus</h2>
       
       <p>You can easily switch between different menu structures:</p>
       
@@ -291,7 +291,7 @@ loadMenu('nav-menu-full.html').then(() => {
     </div>
     
     <div class="section" style="min-height: 800px;">
-      <h2>📜 Scroll Test Area</h2>
+      <h2>ðŸ“œ Scroll Test Area</h2>
       <p>Scroll down to test the header shrink animation!</p>
       <ul style="margin: 20px 0 20px 30px; line-height: 1.8;">
         <li>At 120px: Header shrinks smoothly</li>
@@ -300,7 +300,7 @@ loadMenu('nav-menu-full.html').then(() => {
       </ul>
       
       <div style="height: 600px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; font-size: 24px; margin-top: 40px;">
-        Keep scrolling! ⬇️
+        Keep scrolling! â¬‡ï¸
       </div>
     </div>
   </div>
@@ -327,7 +327,7 @@ loadMenu('nav-menu-full.html').then(() => {
           Battersea.init();
         }
         
-        console.log(`✅ Menu loaded: ${menuFile}`);
+        console.log(`âœ… Menu loaded: ${menuFile}`);
         return true;
       } catch (error) {
         console.error('Failed to load menu:', error);
@@ -351,15 +351,15 @@ loadMenu('nav-menu-full.html').then(() => {
       const success = await loadMenu(menuFile);
       
       if (success) {
-        statusEl.textContent = `✅ ${menuFile.replace('.html', '')}`;
+        statusEl.textContent = `âœ… ${menuFile.replace('.html', '')}`;
       } else {
-        statusEl.textContent = '❌ Load failed';
+        statusEl.textContent = 'âŒ Load failed';
       }
     }
     
     // Load initial menu
     loadMenu('/includes/nav-menu-full.html').then(() => {
-      document.getElementById('status').textContent = '✅ Full menu loaded';
+      document.getElementById('status').textContent = 'âœ… Full menu loaded';
     });
     
     // Scroll tracking
@@ -379,11 +379,11 @@ loadMenu('nav-menu-full.html').then(() => {
     
     // Header events
     document.getElementById('mainHeader').addEventListener('battersea:headerShrink', () => {
-      console.log('🎯 Header shrunk smoothly');
+      console.log('ðŸŽ¯ Header shrunk smoothly');
     });
     
     document.getElementById('mainHeader').addEventListener('battersea:headerExpand', () => {
-      console.log('🎯 Header expanded smoothly');
+      console.log('ðŸŽ¯ Header expanded smoothly');
     });
   </script>
 

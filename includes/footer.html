@@ -1,0 +1,63 @@
+  <!-- Battersea Library JavaScript -->
+  <script src="../src/js/battersea-utils.js"></script>
+  <script src="../src/js/battersea-core.js"></script>
+  <script src="../src/js/battersea-tooltip.js"></script>
+  <script src="../src/js/battersea-slider.js"></script>
+  <script src="../src/js/battersea-tabs.js"></script>
+  <script src="../src/js/battersea-accordion.js"></script>
+  <script src="../src/js/battersea-popup.js"></script>
+  <script src="../src/js/battersea-animation.js"></script>
+  <script src="../src/js/battersea-counter.js"></script>
+  <script src="../src/js/battersea-progressbar.js"></script>
+  <script src="../src/js/battersea-nestedprogress.js"></script>
+  <script src="../src/js/battersea-multislider.js"></script>
+  <script src="../src/js/battersea-parallax.js"></script>
+  <script src="../src/js/battersea-flipbox.js"></script>
+  <script src="../src/js/battersea-smoothscroll.js"></script>
+  <script src="../src/js/battersea-header.js"></script>
+  <script src="../src/js/battersea-horizontalnav.js"></script>
+  
+  <!-- Include Loader Script -->
+  <script>
+    // Simple include loader for header and navigation
+    function loadIncludes() {
+      // Load navigation
+      fetch('../includes/nav.html')
+        .then(response => response.text())
+        .then(html => {
+          const navPlaceholder = document.getElementById('nav-placeholder');
+          if (navPlaceholder) {
+            navPlaceholder.innerHTML = html;
+            
+            // Set active link based on current page
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('nav a').forEach(link => {
+              if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+              }
+            });
+          }
+        })
+        .catch(err => console.error('Error loading navigation:', err));
+    }
+    
+    // Load includes when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadIncludes);
+    } else {
+      loadIncludes();
+    }
+  </script>
+
+  <footer style="background: #2d2d2d; color: white; padding: 2rem 0; margin-top: 4rem; text-align: center;">
+    <div class="container">
+      <p>&copy; 2024 Battersea Library. MIT License.</p>
+      <p style="margin-top: 0.5rem; opacity: 0.8;">
+        <a href="https://github.com/idahodesign/battersea-library" target="_blank" style="color: #667eea; text-decoration: none;">
+          View on GitHub
+        </a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

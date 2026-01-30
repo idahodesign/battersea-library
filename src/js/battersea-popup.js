@@ -6,7 +6,7 @@
  * <button data-popup-trigger="popup1">Open Popup</button>
  * 
  * <div data-popup="popup1">
- *   <div data-popup-close>×</div>
+ *   <div data-popup-close>Ã—</div>
  *   <h2>Popup Title</h2>
  *   <p>Popup content goes here</p>
  * </div>

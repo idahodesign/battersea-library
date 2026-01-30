@@ -3,21 +3,21 @@
 **Release Date:** January 28, 2026  
 **Status:** Production Ready
 
-## 🎉 What's New
+## ðŸŽ‰ What's New
 
 ### New Component: SmoothScroll
 
 A powerful scroll-to-section navigation component with visual dots and intelligent header detection.
 
 **Key Features:**
-- ✨ Visual navigation dots positioned on page side (left or right)
-- 🎯 **Dynamic Header Detection** - Automatically adjusts to headers that change size
-- 🔄 Real-time target recalculation during scroll animation
-- 📍 Section detection using IntersectionObserver
-- 💨 Cubic ease-out for smooth, natural deceleration
-- ⌨️ Full keyboard accessibility (Tab, Enter, Arrow keys)
-- 📱 Responsive (auto-hides on mobile by default)
-- 🎨 Highly customizable via CSS variables
+- âœ¨ Visual navigation dots positioned on page side (left or right)
+- ðŸŽ¯ **Dynamic Header Detection** - Automatically adjusts to headers that change size
+- ðŸ”„ Real-time target recalculation during scroll animation
+- ðŸ“ Section detection using IntersectionObserver
+- ðŸ’¨ Cubic ease-out for smooth, natural deceleration
+- âŒ¨ï¸ Full keyboard accessibility (Tab, Enter, Arrow keys)
+- ðŸ“± Responsive (auto-hides on mobile by default)
+- ðŸŽ¨ Highly customizable via CSS variables
 
 **Technical Highlights:**
 - Uses `getComputedStyle()` to read CSS target values (handles transitions)
@@ -28,9 +28,9 @@ A powerful scroll-to-section navigation component with visual dots and intellige
 
 ---
 
-## 🔧 Component Updates
+## ðŸ”§ Component Updates
 
-### Tooltip Component (v2.0.0 → v2.0.1)
+### Tooltip Component (v2.0.0 â†’ v2.0.1)
 - Added `data-tooltip-class` attribute for custom styling
 - Allows SmoothScroll to apply custom classes to its tooltips
 - Maintains backward compatibility
@@ -44,7 +44,7 @@ A powerful scroll-to-section navigation component with visual dots and intellige
 
 ---
 
-## 📦 Complete Component List (13 Total)
+## ðŸ“¦ Complete Component List (13 Total)
 
 1. **Tooltips** (v2.0.1) - Hover/focus tooltips with 4 positions + custom classes
 2. **Slider** (v2.0.5) - Carousel with true infinite loop
@@ -58,11 +58,11 @@ A powerful scroll-to-section navigation component with visual dots and intellige
 10. **MultiSlider** (v2.0.7) - Multi-item carousel with infinite loop
 11. **Parallax** (v2.0.0) - Parallax scrolling backgrounds
 12. **Flipbox** (v2.0.0) - 3D flip animations
-13. **SmoothScroll** (v2.1.0) ⭐ **NEW**
+13. **SmoothScroll** (v2.1.0) â­ **NEW**
 
 ---
 
-## 🎨 CSS Updates
+## ðŸŽ¨ CSS Updates
 
 ### New CSS Variables
 
@@ -86,7 +86,7 @@ A powerful scroll-to-section navigation component with visual dots and intellige
 
 ---
 
-## 📚 Usage Example
+## ðŸ“š Usage Example
 
 ### Basic Implementation
 
@@ -111,15 +111,15 @@ A powerful scroll-to-section navigation component with visual dots and intellige
   </div>
 
   <!-- Sections (can be ANY element) -->
-  <section data-scroll-section data-scroll-title="🏠 Home">
+  <section data-scroll-section data-scroll-title="ðŸ  Home">
     <h1>Welcome</h1>
   </section>
 
-  <div data-scroll-section data-scroll-title="⚙️ Features">
+  <div data-scroll-section data-scroll-title="âš™ï¸ Features">
     <h2>Our Features</h2>
   </div>
 
-  <article data-scroll-section data-scroll-title="📞 Contact">
+  <article data-scroll-section data-scroll-title="ðŸ“ž Contact">
     <h2>Get in Touch</h2>
   </article>
 
@@ -166,12 +166,12 @@ A powerful scroll-to-section navigation component with visual dots and intellige
 
 ---
 
-## 🔍 Technical Deep Dive
+## ðŸ” Technical Deep Dive
 
 ### How Dynamic Header Detection Works
 
 **The Challenge:**
-Headers often shrink during scroll (e.g., 120px → 60px). Traditional fixed offset calculations break when headers change size.
+Headers often shrink during scroll (e.g., 120px â†’ 60px). Traditional fixed offset calculations break when headers change size.
 
 **The Solution:**
 
@@ -209,7 +209,7 @@ return t < 0.5
 
 ---
 
-## 📊 File Changes
+## ðŸ“Š File Changes
 
 ### New Files
 - `battersea-smoothscroll.js` (14.7 KB)
@@ -217,7 +217,7 @@ return t < 0.5
 - `demo-smoothscroll-dynamic.html` (12 KB)
 
 ### Modified Files
-- `battersea-tooltip.js` (v2.0.0 → v2.0.1)
+- `battersea-tooltip.js` (v2.0.0 â†’ v2.0.1)
 - `battersea-library.less` (+180 lines)
 - `battersea-library.css` (+180 lines)
 - `README.md` (+80 lines)
@@ -229,29 +229,29 @@ return t < 0.5
 
 ---
 
-## 🧪 Testing
+## ðŸ§ª Testing
 
 ### Browser Compatibility
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
+- âœ… Chrome 90+
+- âœ… Firefox 88+
+- âœ… Safari 14+
+- âœ… Edge 90+
 
 ### Features Tested
-- ✅ Dynamic header detection (shrinking/growing headers)
-- ✅ Real-time scroll target recalculation
-- ✅ Keyboard navigation (Tab, Enter, Arrow keys)
-- ✅ Touch/mobile support
-- ✅ Multiple instances on same page
-- ✅ Integration with other components
-- ✅ Custom CSS variables
-- ✅ Event dispatching
-- ✅ Responsive behavior
-- ✅ Accessibility (ARIA labels, focus indicators)
+- âœ… Dynamic header detection (shrinking/growing headers)
+- âœ… Real-time scroll target recalculation
+- âœ… Keyboard navigation (Tab, Enter, Arrow keys)
+- âœ… Touch/mobile support
+- âœ… Multiple instances on same page
+- âœ… Integration with other components
+- âœ… Custom CSS variables
+- âœ… Event dispatching
+- âœ… Responsive behavior
+- âœ… Accessibility (ARIA labels, focus indicators)
 
 ---
 
-## 🚀 Migration Guide
+## ðŸš€ Migration Guide
 
 ### From v2.0.0 to v2.1.0
 
@@ -291,7 +291,7 @@ If you want custom tooltip classes:
 
 ---
 
-## 🎯 Next Steps
+## ðŸŽ¯ Next Steps
 
 ### Planned for v2.2.0
 1. **Header Component** - Adaptive navigation with scroll-shrink
@@ -309,18 +309,18 @@ If you want custom tooltip classes:
 
 ---
 
-## 📄 License
+## ðŸ“„ License
 
 MIT License - Free to use in personal and commercial projects
 
 ---
 
-## 🙏 Acknowledgments
+## ðŸ™ Acknowledgments
 
-Built with ❤️ using vanilla JavaScript and modern web standards.
+Built with â¤ï¸ using vanilla JavaScript and modern web standards.
 
 Special thanks to all contributors and users of Battersea Library.
 
 ---
 
-**Happy Building! 🚀**
+**Happy Building! ðŸš€**

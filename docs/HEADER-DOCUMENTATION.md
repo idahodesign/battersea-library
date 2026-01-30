@@ -144,8 +144,8 @@ The header automatically dispatches `battersea:headerResize` events that the Smo
 ```
 
 The SmoothScroll component recalculates scroll positions when:
-- Header shrinks → Adjusts scroll targets
-- Header expands → Recalculates positions
+- Header shrinks â†’ Adjusts scroll targets
+- Header expands â†’ Recalculates positions
 - Provides pixel-perfect alignment
 
 ### Responsive Behavior
@@ -153,7 +153,7 @@ The SmoothScroll component recalculates scroll positions when:
 **Breakpoints:**
 - Mobile: < 768px
 - Tablet: 768px - 1023px
-- Desktop: ≥ 1024px
+- Desktop: â‰¥ 1024px
 
 **Mobile Adaptations:**
 - Logo swaps to mobile version (if specified)
@@ -357,11 +357,11 @@ All navigation components will integrate seamlessly with the header structure.
 ## Version History
 
 ### v2.2.0 (Latest)
-- ✨ **NEW:** Header component with shrink-on-scroll
-- ✨ **NEW:** Pre-header bar support
-- ✨ **NEW:** Mobile logo swapping
-- ✨ **NEW:** Two layout modes (right-align, center-stack)
-- ✨ **NEW:** Integration with SmoothScroll via events
-- 🔧 Updated CSS with header styles
-- 📚 Added comprehensive header documentation
-- 🎨 New demo page: `demo-header.html`
+- âœ¨ **NEW:** Header component with shrink-on-scroll
+- âœ¨ **NEW:** Pre-header bar support
+- âœ¨ **NEW:** Mobile logo swapping
+- âœ¨ **NEW:** Two layout modes (right-align, center-stack)
+- âœ¨ **NEW:** Integration with SmoothScroll via events
+- ðŸ”§ Updated CSS with header styles
+- ðŸ“š Added comprehensive header documentation
+- ðŸŽ¨ New demo page: `demo-header.html`
