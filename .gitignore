@@ -32,3 +32,4 @@ build/
 # Environment files
 .env
 .env.local
+config.codekit3
