@@ -9,6 +9,14 @@
   ],
   "creatorBuild" : "34434",
   "files" : {
+    "\/.gitignore" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.gitignore",
+      "oF" : 0
+    },
     "\/demos\/battersea-library.less" : {
       "aP" : 0,
       "bl" : 0,
@@ -359,25 +367,6 @@
       "oA" : 0,
       "oAP" : "\/files\/battersea-library.js.old",
       "oF" : 0
-    },
-    "\/files\/battersea-library.less.old" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/files\/battersea-library.less.old",
-      "oF" : 0
-    },
-    "\/files\/battersea-multislider.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-multislider.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
     },
     "\/files\/battersea-nestedprogress.js" : {
       "bF" : 0,
@@ -785,17 +774,6 @@
       "sI" : 0,
       "sU" : 0
     },
-    "\/src\/css\/battersea-smoothscroll.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/src\/js\/battersea-smoothscroll.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
     "\/src\/css\/battersea-tabs.less" : {
       "aP" : 0,
       "bl" : 0,
@@ -944,18 +922,6 @@
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
-    },
-    "\/src\/js\/battersea-library-min.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-library-min-min.css",
-      "oF" : 0,
-      "pg" : 0
     },
     "\/src\/js\/battersea-multislider.js" : {
       "bF" : 0,
