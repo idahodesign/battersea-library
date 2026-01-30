@@ -17,86 +17,12 @@
       "oAP" : "\/.gitignore",
       "oF" : 0
     },
-    "\/demos\/battersea-library.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/demos\/battersea-library.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/demos\/demo-clean-full.html" : {
+    "\/demos\/accordion.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/demos\/demo-clean-full.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-header-debug.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-header-debug.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-header-layouts.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-header-layouts.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-header-nav-integration.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-header-nav-integration.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-header-smooth-integration.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-header-smooth-integration.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-header.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-header.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-horizontalnav-simple.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-horizontalnav-simple.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-horizontalnav.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-horizontalnav.html",
+      "oAP" : "\/demos\/accordion.html",
       "oF" : 0
     },
     "\/demos\/demo-menu-includes.html" : {
@@ -107,14 +33,6 @@
       "oAP" : "\/demos\/demo-menu-includes.html",
       "oF" : 0
     },
-    "\/demos\/demo-sliders.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-sliders.html",
-      "oF" : 0
-    },
     "\/demos\/demo-smoothscroll-dynamic.html" : {
       "cB" : 0,
       "ft" : 8192,
@@ -123,60 +41,12 @@
       "oAP" : "\/demos\/demo-smoothscroll-dynamic.html",
       "oF" : 0
     },
-    "\/demos\/demo-smoothscroll.html" : {
+    "\/demos\/index.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/demos\/demo-smoothscroll.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-test-tabs-slider.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-test-tabs-slider.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-v3.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-v3.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-v4.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-v4.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-v5.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-v5.html",
-      "oF" : 0
-    },
-    "\/demos\/demo-V6.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/demos\/demo-V6.html",
-      "oF" : 0
-    },
-    "\/docs\/HEADER-DOCUMENTATION.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/docs\/HEADER-DOCUMENTATION.html",
+      "oAP" : "\/demos\/index.html",
       "oF" : 0
     },
     "\/docs\/HEADER-DOCUMENTATION.md" : {
@@ -198,15 +68,7 @@
       "rFN" : 0,
       "uCM" : 0
     },
-    "\/docs\/project component prompts.txt" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/docs\/project component prompts.txt",
-      "oF" : 0
-    },
-    "\/docs\/PROJECT_INSTRUCTIONS.md" : {
+    "\/docs\/RELEASE-v2_1_0.md" : {
       "cB" : 0,
       "cS" : 0,
       "eF" : 1,
@@ -216,7 +78,7 @@
       "ft" : 4096,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/docs\/PROJECT_INSTRUCTIONS.html",
+      "oAP" : "\/docs\/RELEASE-v2_1_0.html",
       "oF" : 0,
       "oFM" : 0,
       "oS" : 0,
@@ -225,15 +87,7 @@
       "rFN" : 0,
       "uCM" : 0
     },
-    "\/docs\/README.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/docs\/README.html",
-      "oF" : 0
-    },
-    "\/docs\/README.md" : {
+    "\/docs\/UPGRADE-v2_1_0.md" : {
       "cB" : 0,
       "cS" : 0,
       "eF" : 1,
@@ -243,7 +97,7 @@
       "ft" : 4096,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/docs\/README.html",
+      "oAP" : "\/docs\/UPGRADE-v2_1_0.html",
       "oF" : 0,
       "oFM" : 0,
       "oS" : 0,
@@ -252,220 +106,21 @@
       "rFN" : 0,
       "uCM" : 0
     },
-    "\/docs\/UPGRADE-v2.1.0.md" : {
-      "cB" : 0,
-      "cS" : 0,
-      "eF" : 1,
-      "eL" : 1,
-      "ema" : 1,
-      "eSQ" : 1,
-      "ft" : 4096,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/docs\/UPGRADE-v2.1.0.html",
-      "oF" : 0,
-      "oFM" : 0,
-      "oS" : 0,
-      "pHT" : 0,
-      "pME" : 1,
-      "rFN" : 0,
-      "uCM" : 0
-    },
-    "\/files\/battersea-accordion.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-accordion.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-animation.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-animation.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-core.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-core.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-counter.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-counter.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-flipbox.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-flipbox.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-header.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-header.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-horizontalnav.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-horizontalnav.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-library.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/files\/battersea-library-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
-    "\/files\/battersea-library.js.old" : {
+    "\/includes\/footer.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/files\/battersea-library.js.old",
+      "oAP" : "\/includes\/footer.html",
       "oF" : 0
     },
-    "\/files\/battersea-nestedprogress.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
+    "\/includes\/header.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-nestedprogress.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-parallax.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-parallax.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-popup.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-popup.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-progressbar.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-progressbar.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-slider.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-slider.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-smoothscroll.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-smoothscroll.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-tabs.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-tabs.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-tooltip.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-tooltip.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/files\/battersea-utils.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/src\/js\/battersea-utils.js",
-      "oF" : 2,
-      "sC" : 3,
-      "tS" : 0
+      "oAP" : "\/includes\/header.html",
+      "oF" : 0
     },
     "\/includes\/nav-menu-full.html" : {
       "cB" : 0,
@@ -483,6 +138,14 @@
       "oAP" : "\/includes\/nav-menu-simple.html",
       "oF" : 0
     },
+    "\/includes\/nav.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/includes\/nav.html",
+      "oF" : 0
+    },
     "\/LICENSE" : {
       "cB" : 0,
       "ft" : 8192,
@@ -491,7 +154,7 @@
       "oAP" : "\/LICENSE",
       "oF" : 0
     },
-    "\/RELEASE-v2.1.0.md" : {
+    "\/NEXT-STEPS.md" : {
       "cB" : 0,
       "cS" : 0,
       "eF" : 1,
@@ -501,7 +164,45 @@
       "ft" : 4096,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/RELEASE-v2.1.0.html",
+      "oAP" : "\/NEXT-STEPS.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/README.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/README.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/REORGANIZATION-SUMMARY.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/REORGANIZATION-SUMMARY.html",
       "oF" : 0,
       "oFM" : 0,
       "oS" : 0,
@@ -600,7 +301,7 @@
       "sI" : 0,
       "sU" : 0
     },
-    "\/src\/css\/battersea-library.css" : {
+    "\/src\/css\/battersea-library-min.css" : {
       "aP" : 1,
       "bl" : 0,
       "ci" : 0,
@@ -608,7 +309,7 @@
       "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/src\/css\/battersea-library-min.css",
+      "oAP" : "\/src\/css\/battersea-library-min-min.css",
       "oF" : 0,
       "pg" : 0
     },
@@ -621,9 +322,9 @@
       "iI" : 0,
       "ma" : 0,
       "mS" : 0,
-      "oA" : 0,
+      "oA" : 1,
       "oAP" : "\/src\/css\/battersea-library.css",
-      "oF" : 1,
+      "oF" : 0,
       "oS" : 0,
       "pg" : 0,
       "rwU" : 0,
