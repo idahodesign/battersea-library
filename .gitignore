@@ -2,7 +2,6 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-config.codekit3
 Structure-*
 ._*
 
@@ -32,4 +31,7 @@ build/
 # Environment files
 .env
 .env.local
+
+# CodeKit
 config.codekit3
+*.codekit3
