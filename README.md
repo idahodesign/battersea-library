@@ -1,702 +1,609 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head>
-	<meta charset="utf-8"/>
-</head>
-<body>
+# Battersea Library
 
-<h1 id="battersealibrary">Battersea Library</h1>
+**Version:** 2.1.0  
+**License:** MIT  
+**Author:** Claude & User
 
-<p><strong>Version:</strong> 2.1.0<br />
-<strong>License:</strong> MIT<br />
-<strong>Author:</strong> Claude &amp; User</p>
+A lightweight, modular JavaScript component library with no dependencies. Built with vanilla JavaScript, CSS (LESS), and a focus on accessibility, performance, and ease of use.
 
-<p>A lightweight, modular JavaScript component library with no dependencies. Built with vanilla JavaScript, CSS (LESS), and a focus on accessibility, performance, and ease of use.</p>
+---
 
-<hr />
+## ðŸ“¦ What's Included
 
-<h2 id="ðŸ“¦whatsincluded">ðŸ“¦ What&#8217;s Included</h2>
+Battersea Library provides 13 fully-featured, production-ready components:
 
-<p>Battersea Library provides 13 fully-featured, production-ready components:</p>
+1. **Tooltips** - Hover/focus tooltips with 4 positions
+2. **Slider** - Image/content carousel with infinite loop
+3. **Tabs** - Tabbed content interface
+4. **Accordion** - Collapsible content sections
+5. **Popup/Modal** - Overlay dialogs
+6. **Animation** - Scroll-triggered animations with cascading children
+7. **Counter** - Animated number counting on scroll
+8. **ProgressBar** - Horizontal and circular progress indicators
+9. **NestedProgress** - Multi-layer circular progress visualization
+10. **MultiSlider** - Multi-item carousel with infinite loop
+11. **Parallax** - Parallax scrolling backgrounds
+12. **Flipbox** - 3D flip card animations
+13. **SmoothScroll** - Scroll-to-section navigation with dynamic header support ⭐ NEW
 
-<ol>
-<li><strong>Tooltips</strong> - Hover/focus tooltips with 4 positions</li>
-<li><strong>Slider</strong> - Image/content carousel with infinite loop</li>
-<li><strong>Tabs</strong> - Tabbed content interface</li>
-<li><strong>Accordion</strong> - Collapsible content sections</li>
-<li><strong>Popup/Modal</strong> - Overlay dialogs</li>
-<li><strong>Animation</strong> - Scroll-triggered animations with cascading children</li>
-<li><strong>Counter</strong> - Animated number counting on scroll</li>
-<li><strong>ProgressBar</strong> - Horizontal and circular progress indicators</li>
-<li><strong>NestedProgress</strong> - Multi-layer circular progress visualization</li>
-<li><strong>MultiSlider</strong> - Multi-item carousel with infinite loop</li>
-<li><strong>Parallax</strong> - Parallax scrolling backgrounds</li>
-<li><strong>Flipbox</strong> - 3D flip card animations</li>
-<li><strong>SmoothScroll</strong> - Scroll-to-section navigation with dynamic header support ⭐ NEW</li>
-</ol>
+---
 
-<hr />
+## ðŸš€ Quick Start
 
-<h2 id="ðŸš€quickstart">ðŸš€ Quick Start</h2>
+### Installation
 
-<h3 id="installation">Installation</h3>
+Download the library files and include them in your HTML:
 
-<p>Download the library files and include them in your HTML:</p>
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="battersea-library.css">
 
-<pre><code class="html">&lt;!-- CSS --&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;battersea-library.css&quot;&gt;
+<!-- JavaScript (in order) -->
+<script src="battersea-utils.js"></script>
+<script src="battersea-core.js"></script>
 
-&lt;!-- JavaScript (in order) --&gt;
-&lt;script src=&quot;battersea-utils.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;battersea-core.js&quot;&gt;&lt;/script&gt;
+<!-- Include only the components you need -->
+<script src="battersea-slider.js"></script>
+<script src="battersea-tooltip.js"></script>
+<!-- ... other components ... -->
+```
 
-&lt;!-- Include only the components you need --&gt;
-&lt;script src=&quot;battersea-slider.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;battersea-tooltip.js&quot;&gt;&lt;/script&gt;
-&lt;!-- ... other components ... --&gt;
-</code></pre>
+### Basic Usage
 
-<h3 id="basicusage">Basic Usage</h3>
+```html
+<!-- Simple Slider -->
+<div data-slider data-slider-autoplay="true" data-slider-interval="3000">
+  <div data-slider-track>
+    <div data-slider-item>Slide 1</div>
+    <div data-slider-item>Slide 2</div>
+    <div data-slider-item>Slide 3</div>
+  </div>
+  <button data-slider-prev>‹</button>
+  <button data-slider-next>›</button>
+  <div data-slider-dots></div>
+</div>
 
-<pre><code class="html">&lt;!-- Simple Slider --&gt;
-&lt;div data-slider data-slider-autoplay=&quot;true&quot; data-slider-interval=&quot;3000&quot;&gt;
-  &lt;div data-slider-track&gt;
-    &lt;div data-slider-item&gt;Slide 1&lt;/div&gt;
-    &lt;div data-slider-item&gt;Slide 2&lt;/div&gt;
-    &lt;div data-slider-item&gt;Slide 3&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;button data-slider-prev&gt;‹&lt;/button&gt;
-  &lt;button data-slider-next&gt;›&lt;/button&gt;
-  &lt;div data-slider-dots&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Tooltip --&gt;
-&lt;button data-tooltip=&quot;Hello World!&quot; data-tooltip-position=&quot;top&quot;&gt;
+<!-- Tooltip -->
+<button data-tooltip="Hello World!" data-tooltip-position="top">
   Hover me
-&lt;/button&gt;
+</button>
 
-&lt;!-- SmoothScroll --&gt;
-&lt;div data-smoothscroll data-smoothscroll-header-selector=&quot;#header&quot;&gt;&lt;/div&gt;
-&lt;section data-scroll-section data-scroll-title=&quot;Home&quot;&gt;Content&lt;/section&gt;
-&lt;section data-scroll-section data-scroll-title=&quot;About&quot;&gt;Content&lt;/section&gt;
+<!-- SmoothScroll -->
+<div data-smoothscroll data-smoothscroll-header-selector="#header"></div>
+<section data-scroll-section data-scroll-title="Home">Content</section>
+<section data-scroll-section data-scroll-title="About">Content</section>
 
-&lt;!-- Animation --&gt;
-&lt;div data-animate=&quot;fade-up&quot; class=&quot;delay-3&quot;&gt;
-  &lt;h2&gt;Animated Heading&lt;/h2&gt;
-  &lt;p&gt;This will fade up with a delay&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
+<!-- Animation -->
+<div data-animate="fade-up" class="delay-3">
+  <h2>Animated Heading</h2>
+  <p>This will fade up with a delay</p>
+</div>
+```
 
-<p>The library auto-initializes on page load. No JavaScript code required!</p>
+The library auto-initializes on page load. No JavaScript code required!
 
-<hr />
+---
 
-<h2 id="ðŸ“šcomponentdocumentation">ðŸ“š Component Documentation</h2>
+## ðŸ“š Component Documentation
 
-<h3 id="1.tooltips">1. Tooltips</h3>
+### 1. Tooltips
 
-<p>Accessible tooltips that appear on hover or focus.</p>
+Accessible tooltips that appear on hover or focus.
 
-<p><strong>HTML:</strong></p>
-
-<pre><code class="html">&lt;button data-tooltip=&quot;Tooltip text&quot; data-tooltip-position=&quot;top&quot;&gt;
+**HTML:**
+```html
+<button data-tooltip="Tooltip text" data-tooltip-position="top">
   Hover me
-&lt;/button&gt;
-</code></pre>
+</button>
+```
 
-<p><strong>Attributes:</strong></p>
+**Attributes:**
+- `data-tooltip` - Tooltip text (required)
+- `data-tooltip-position` - Position: `top`, `right`, `bottom`, `left` (default: `top`)
 
-<ul>
-<li><code>data-tooltip</code> - Tooltip text (required)</li>
-<li><code>data-tooltip-position</code> - Position: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> (default: <code>top</code>)</li>
-</ul>
+**Features:**
+- Keyboard accessible
+- ARIA labels
+- Smooth fade-in/out
+- Auto-positioning
 
-<p><strong>Features:</strong></p>
+---
 
-<ul>
-<li>Keyboard accessible</li>
-<li>ARIA labels</li>
-<li>Smooth fade-in/out</li>
-<li>Auto-positioning</li>
-</ul>
+### 2. Slider
 
-<hr />
+Full-featured image/content carousel with true infinite loop.
 
-<h3 id="2.slider">2. Slider</h3>
+**HTML:**
+```html
+<div data-slider 
+     data-slider-autoplay="true" 
+     data-slider-interval="5000"
+     data-slider-transition="slide"
+     data-slider-dots="true"
+     data-slider-arrows="true"
+     tabindex="0">
+  <div data-slider-track>
+    <div data-slider-item>Slide 1</div>
+    <div data-slider-item>Slide 2</div>
+    <div data-slider-item>Slide 3</div>
+  </div>
+  <button data-slider-prev aria-label="Previous">â€¹</button>
+  <button data-slider-next aria-label="Next">â€º</button>
+  <div data-slider-dots></div>
+</div>
+```
 
-<p>Full-featured image/content carousel with true infinite loop.</p>
+**Attributes:**
+- `data-slider-autoplay` - Enable autoplay: `true`/`false` (default: `false`)
+- `data-slider-interval` - Autoplay interval in ms (default: `5000`)
+- `data-slider-transition` - Transition type: `slide`/`fade` (default: `slide`)
+- `data-slider-dots` - Show navigation dots: `true`/`false` (default: `true`)
+- `data-slider-arrows` - Show arrow buttons: `true`/`false` (default: `true`)
 
-<p><strong>HTML:</strong></p>
+**Features:**
+- âœ¨ **True infinite loop** (slide transition only)
+- Clone-based seamless sliding
+- Keyboard navigation (â† â†’)
+- Touch/swipe support
+- Autoplay with pause on hover
+- Responsive
+- Accessible (ARIA labels, keyboard control)
 
-<pre><code class="html">&lt;div data-slider 
-     data-slider-autoplay=&quot;true&quot; 
-     data-slider-interval=&quot;5000&quot;
-     data-slider-transition=&quot;slide&quot;
-     data-slider-dots=&quot;true&quot;
-     data-slider-arrows=&quot;true&quot;
-     tabindex=&quot;0&quot;&gt;
-  &lt;div data-slider-track&gt;
-    &lt;div data-slider-item&gt;Slide 1&lt;/div&gt;
-    &lt;div data-slider-item&gt;Slide 2&lt;/div&gt;
-    &lt;div data-slider-item&gt;Slide 3&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;button data-slider-prev aria-label=&quot;Previous&quot;&gt;â€¹&lt;/button&gt;
-  &lt;button data-slider-next aria-label=&quot;Next&quot;&gt;â€º&lt;/button&gt;
-  &lt;div data-slider-dots&gt;&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p><strong>Attributes:</strong></p>
-
-<ul>
-<li><code>data-slider-autoplay</code> - Enable autoplay: <code>true</code>/<code>false</code> (default: <code>false</code>)</li>
-<li><code>data-slider-interval</code> - Autoplay interval in ms (default: <code>5000</code>)</li>
-<li><code>data-slider-transition</code> - Transition type: <code>slide</code>/<code>fade</code> (default: <code>slide</code>)</li>
-<li><code>data-slider-dots</code> - Show navigation dots: <code>true</code>/<code>false</code> (default: <code>true</code>)</li>
-<li><code>data-slider-arrows</code> - Show arrow buttons: <code>true</code>/<code>false</code> (default: <code>true</code>)</li>
-</ul>
-
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>âœ¨ <strong>True infinite loop</strong> (slide transition only)</li>
-<li>Clone-based seamless sliding</li>
-<li>Keyboard navigation (â† â†’)</li>
-<li>Touch/swipe support</li>
-<li>Autoplay with pause on hover</li>
-<li>Responsive</li>
-<li>Accessible (ARIA labels, keyboard control)</li>
-</ul>
-
-<p><strong>Events:</strong></p>
-
-<pre><code class="javascript">slider.addEventListener('battersea:slideChange', (e) =&gt; {
+**Events:**
+```javascript
+slider.addEventListener('battersea:slideChange', (e) => {
   console.log('Current slide:', e.detail.index);
 });
-</code></pre>
+```
 
-<hr />
+---
 
-<h3 id="3.tabs">3. Tabs</h3>
+### 3. Tabs
 
-<p>Tabbed content interface with smooth transitions.</p>
+Tabbed content interface with smooth transitions.
 
-<p><strong>HTML:</strong></p>
-
-<pre><code class="html">&lt;div data-tabs&gt;
-  &lt;div data-tabs-nav&gt;
-    &lt;button data-tab-trigger=&quot;tab1&quot; class=&quot;active&quot;&gt;Tab 1&lt;/button&gt;
-    &lt;button data-tab-trigger=&quot;tab2&quot;&gt;Tab 2&lt;/button&gt;
-    &lt;button data-tab-trigger=&quot;tab3&quot;&gt;Tab 3&lt;/button&gt;
-  &lt;/div&gt;
+**HTML:**
+```html
+<div data-tabs>
+  <div data-tabs-nav>
+    <button data-tab-trigger="tab1" class="active">Tab 1</button>
+    <button data-tab-trigger="tab2">Tab 2</button>
+    <button data-tab-trigger="tab3">Tab 3</button>
+  </div>
   
-  &lt;div data-tab-content=&quot;tab1&quot; class=&quot;active&quot;&gt;
+  <div data-tab-content="tab1" class="active">
     Content for Tab 1
-  &lt;/div&gt;
-  &lt;div data-tab-content=&quot;tab2&quot;&gt;
+  </div>
+  <div data-tab-content="tab2">
     Content for Tab 2
-  &lt;/div&gt;
-  &lt;div data-tab-content=&quot;tab3&quot;&gt;
+  </div>
+  <div data-tab-content="tab3">
     Content for Tab 3
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+  </div>
+</div>
+```
 
-<p><strong>Features:</strong></p>
+**Features:**
+- Smooth content switching
+- Active state management
+- Keyboard accessible
+- Simple markup
 
-<ul>
-<li>Smooth content switching</li>
-<li>Active state management</li>
-<li>Keyboard accessible</li>
-<li>Simple markup</li>
-</ul>
+---
 
-<hr />
+### 4. Accordion
 
-<h3 id="4.accordion">4. Accordion</h3>
+Collapsible content sections with smooth animations.
 
-<p>Collapsible content sections with smooth animations.</p>
-
-<p><strong>HTML:</strong></p>
-
-<pre><code class="html">&lt;div data-accordion data-accordion-multiple=&quot;false&quot;&gt;
-  &lt;div data-accordion-item class=&quot;active&quot;&gt;
-    &lt;div data-accordion-header&gt;Section 1&lt;/div&gt;
-    &lt;div data-accordion-content&gt;
-      &lt;div&gt;Content for section 1&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+**HTML:**
+```html
+<div data-accordion data-accordion-multiple="false">
+  <div data-accordion-item class="active">
+    <div data-accordion-header>Section 1</div>
+    <div data-accordion-content>
+      <div>Content for section 1</div>
+    </div>
+  </div>
   
-  &lt;div data-accordion-item&gt;
-    &lt;div data-accordion-header&gt;Section 2&lt;/div&gt;
-    &lt;div data-accordion-content&gt;
-      &lt;div&gt;Content for section 2&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+  <div data-accordion-item>
+    <div data-accordion-header>Section 2</div>
+    <div data-accordion-content>
+      <div>Content for section 2</div>
+    </div>
+  </div>
+</div>
+```
 
-<p><strong>Attributes:</strong></p>
+**Attributes:**
+- `data-accordion-multiple` - Allow multiple sections open: `true`/`false` (default: `false`)
 
-<ul>
-<li><code>data-accordion-multiple</code> - Allow multiple sections open: <code>true</code>/<code>false</code> (default: <code>false</code>)</li>
-</ul>
+**Features:**
+- Smooth max-height transitions
+- No snapping or jerky animations
+- Multiple or single-open modes
+- Works with dynamic content
 
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>Smooth max-height transitions</li>
-<li>No snapping or jerky animations</li>
-<li>Multiple or single-open modes</li>
-<li>Works with dynamic content</li>
-</ul>
-
-<p><strong>Events:</strong></p>
-
-<pre><code class="javascript">accordion.addEventListener('battersea:accordionToggle', (e) =&gt; {
+**Events:**
+```javascript
+accordion.addEventListener('battersea:accordionToggle', (e) => {
   console.log('Section toggled:', e.detail.isOpen);
 });
-</code></pre>
+```
 
-<hr />
+---
 
-<h3 id="5.popupmodal">5. Popup/Modal</h3>
+### 5. Popup/Modal
 
-<p>Overlay dialogs with backdrop and ESC/click-outside to close.</p>
+Overlay dialogs with backdrop and ESC/click-outside to close.
 
-<p><strong>HTML:</strong></p>
+**HTML:**
+```html
+<button data-popup-trigger="myPopup">Open Popup</button>
 
-<pre><code class="html">&lt;button data-popup-trigger=&quot;myPopup&quot;&gt;Open Popup&lt;/button&gt;
+<div data-popup="myPopup">
+  <div data-popup-content>
+    <button data-popup-close>&times;</button>
+    <h2>Popup Title</h2>
+    <p>Popup content goes here</p>
+  </div>
+</div>
+```
 
-&lt;div data-popup=&quot;myPopup&quot;&gt;
-  &lt;div data-popup-content&gt;
-    &lt;button data-popup-close&gt;&amp;times;&lt;/button&gt;
-    &lt;h2&gt;Popup Title&lt;/h2&gt;
-    &lt;p&gt;Popup content goes here&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+**Features:**
+- Click outside to close
+- ESC key to close
+- Backdrop overlay
+- Focus trap
+- Smooth fade-in/out
 
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>Click outside to close</li>
-<li>ESC key to close</li>
-<li>Backdrop overlay</li>
-<li>Focus trap</li>
-<li>Smooth fade-in/out</li>
-</ul>
-
-<p><strong>Events:</strong></p>
-
-<pre><code class="javascript">popup.addEventListener('battersea:popupOpen', () =&gt; {
+**Events:**
+```javascript
+popup.addEventListener('battersea:popupOpen', () => {
   console.log('Popup opened');
 });
 
-popup.addEventListener('battersea:popupClose', () =&gt; {
+popup.addEventListener('battersea:popupClose', () => {
   console.log('Popup closed');
 });
-</code></pre>
+```
 
-<hr />
+---
 
-<h3 id="6.animation">6. Animation</h3>
+### 6. Animation
 
-<p>Scroll-triggered animations with parent-child cascading.</p>
+Scroll-triggered animations with parent-child cascading.
 
-<p><strong>HTML:</strong></p>
-
-<pre><code class="html">&lt;!-- Basic animation --&gt;
-&lt;div data-animate=&quot;fade-up&quot;&gt;
+**HTML:**
+```html
+<!-- Basic animation -->
+<div data-animate="fade-up">
   Content fades up when scrolled into view
-&lt;/div&gt;
+</div>
 
-&lt;!-- With custom delay --&gt;
-&lt;div data-animate=&quot;fade-in&quot; class=&quot;delay-5&quot;&gt;
+<!-- With custom delay -->
+<div data-animate="fade-in" class="delay-5">
   Fades in with 1.0s total delay (0.5s base + 0.5s custom)
-&lt;/div&gt;
+</div>
 
-&lt;!-- Parent with children --&gt;
-&lt;div data-animate=&quot;fade-up&quot;&gt;
-  &lt;h2&gt;Parent animates first&lt;/h2&gt;
-  &lt;p&gt;Child 1 - waits 0.3s after parent&lt;/p&gt;
-  &lt;p&gt;Child 2 - appears 0.1s after child 1&lt;/p&gt;
-  &lt;p&gt;Child 3 - appears 0.1s after child 2&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
+<!-- Parent with children -->
+<div data-animate="fade-up">
+  <h2>Parent animates first</h2>
+  <p>Child 1 - waits 0.3s after parent</p>
+  <p>Child 2 - appears 0.1s after child 1</p>
+  <p>Child 3 - appears 0.1s after child 2</p>
+</div>
+```
 
-<p><strong>Available Animations:</strong></p>
+**Available Animations:**
+- `fade-in` - Fade in
+- `fade-up` - Slide up + fade
+- `fade-down` - Slide down + fade
+- `fade-left` - Slide from right + fade
+- `fade-right` - Slide from left + fade
 
-<ul>
-<li><code>fade-in</code> - Fade in</li>
-<li><code>fade-up</code> - Slide up + fade</li>
-<li><code>fade-down</code> - Slide down + fade</li>
-<li><code>fade-left</code> - Slide from right + fade</li>
-<li><code>fade-right</code> - Slide from left + fade</li>
-</ul>
+**Delay Classes:**
+- `delay-1` through `delay-10` 
+- Each unit = 100ms (e.g., `delay-5` = 500ms additional delay)
 
-<p><strong>Delay Classes:</strong></p>
+**Animation Timing:**
+1. Element enters viewport
+2. Wait 0.5s (base delay)
+3. Element animates
+4. Children wait 0.3s after parent completes
+5. Each child staggers by 0.1s
 
-<ul>
-<li><code>delay-1</code> through <code>delay-10</code></li>
-<li>Each unit = 100ms (e.g., <code>delay-5</code> = 500ms additional delay)</li>
-</ul>
+**Features:**
+- IntersectionObserver for performance
+- One-time animation (doesn't re-trigger)
+- Supports grandchildren
+- Custom delay classes
+- No double-animation or flicker
 
-<p><strong>Animation Timing:</strong></p>
+---
 
-<ol>
-<li>Element enters viewport</li>
-<li>Wait 0.5s (base delay)</li>
-<li>Element animates</li>
-<li>Children wait 0.3s after parent completes</li>
-<li>Each child staggers by 0.1s</li>
-</ol>
+### 7. Counter
 
-<p><strong>Features:</strong></p>
+Animated number counting when scrolled into view.
 
-<ul>
-<li>IntersectionObserver for performance</li>
-<li>One-time animation (doesn&#8217;t re-trigger)</li>
-<li>Supports grandchildren</li>
-<li>Custom delay classes</li>
-<li>No double-animation or flicker</li>
-</ul>
+**HTML:**
+```html
+<div data-counter 
+     data-counter-start="0" 
+     data-counter-end="1000" 
+     data-counter-duration="2000"
+     data-counter-suffix=" users">
+</div>
+```
 
-<hr />
+**Attributes:**
+- `data-counter-start` - Starting number (default: `0`)
+- `data-counter-end` - Ending number (required)
+- `data-counter-duration` - Animation duration in ms (default: `2000`)
+- `data-counter-prefix` - Text before number (e.g., `$`)
+- `data-counter-suffix` - Text after number (e.g., ` users`)
+- `data-counter-decimals` - Decimal places (default: `0`)
 
-<h3 id="7.counter">7. Counter</h3>
+**Features:**
+- Smooth easing animation
+- Decimal support
+- Prefix/suffix support
+- Triggers on scroll into view
 
-<p>Animated number counting when scrolled into view.</p>
+---
 
-<p><strong>HTML:</strong></p>
+### 8. ProgressBar
 
-<pre><code class="html">&lt;div data-counter 
-     data-counter-start=&quot;0&quot; 
-     data-counter-end=&quot;1000&quot; 
-     data-counter-duration=&quot;2000&quot;
-     data-counter-suffix=&quot; users&quot;&gt;
-&lt;/div&gt;
-</code></pre>
+Horizontal and circular progress indicators.
 
-<p><strong>Attributes:</strong></p>
+**HTML:**
+```html
+<!-- Horizontal -->
+<div data-progress 
+     data-progress-value="75" 
+     data-progress-type="horizontal"
+     data-progress-label="Loading...">
+</div>
 
-<ul>
-<li><code>data-counter-start</code> - Starting number (default: <code>0</code>)</li>
-<li><code>data-counter-end</code> - Ending number (required)</li>
-<li><code>data-counter-duration</code> - Animation duration in ms (default: <code>2000</code>)</li>
-<li><code>data-counter-prefix</code> - Text before number (e.g., <code>$</code>)</li>
-<li><code>data-counter-suffix</code> - Text after number (e.g., <code>users</code>)</li>
-<li><code>data-counter-decimals</code> - Decimal places (default: <code>0</code>)</li>
-</ul>
+<!-- Circular -->
+<div data-progress 
+     data-progress-value="60" 
+     data-progress-type="circular"
+     data-progress-size="150">
+</div>
+```
 
-<p><strong>Features:</strong></p>
+**Attributes:**
+- `data-progress-value` - Progress value 0-100 (required)
+- `data-progress-type` - Type: `horizontal`/`circular` (default: `horizontal`)
+- `data-progress-size` - Size in pixels for circular (default: `120`)
+- `data-progress-label` - Optional label text
 
-<ul>
-<li>Smooth easing animation</li>
-<li>Decimal support</li>
-<li>Prefix/suffix support</li>
-<li>Triggers on scroll into view</li>
-</ul>
+**Features:**
+- Responsive circular progress
+- Smooth animations
+- Customizable colors via CSS variables
+- Auto-sizing to parent container
 
-<hr />
+---
 
-<h3 id="8.progressbar">8. ProgressBar</h3>
+### 9. NestedProgress
 
-<p>Horizontal and circular progress indicators.</p>
+Multi-layer circular progress visualization.
 
-<p><strong>HTML:</strong></p>
-
-<pre><code class="html">&lt;!-- Horizontal --&gt;
-&lt;div data-progress 
-     data-progress-value=&quot;75&quot; 
-     data-progress-type=&quot;horizontal&quot;
-     data-progress-label=&quot;Loading...&quot;&gt;
-&lt;/div&gt;
-
-&lt;!-- Circular --&gt;
-&lt;div data-progress 
-     data-progress-value=&quot;60&quot; 
-     data-progress-type=&quot;circular&quot;
-     data-progress-size=&quot;150&quot;&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p><strong>Attributes:</strong></p>
-
-<ul>
-<li><code>data-progress-value</code> - Progress value 0&#8211;100 (required)</li>
-<li><code>data-progress-type</code> - Type: <code>horizontal</code>/<code>circular</code> (default: <code>horizontal</code>)</li>
-<li><code>data-progress-size</code> - Size in pixels for circular (default: <code>120</code>)</li>
-<li><code>data-progress-label</code> - Optional label text</li>
-</ul>
-
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>Responsive circular progress</li>
-<li>Smooth animations</li>
-<li>Customizable colors via CSS variables</li>
-<li>Auto-sizing to parent container</li>
-</ul>
-
-<hr />
-
-<h3 id="9.nestedprogress">9. NestedProgress</h3>
-
-<p>Multi-layer circular progress visualization.</p>
-
-<p><strong>HTML:</strong></p>
-
-<pre><code class="html">&lt;div data-progress-nested
-     data-progress-title=&quot;Skills&quot;
-     data-progress-legend=&quot;true&quot;
+**HTML:**
+```html
+<div data-progress-nested
+     data-progress-title="Skills"
+     data-progress-legend="true"
      data-progress-circles='[
-       {&quot;label&quot;:&quot;HTML&quot;,&quot;value&quot;:90,&quot;color&quot;:&quot;#e34c26&quot;},
-       {&quot;label&quot;:&quot;CSS&quot;,&quot;value&quot;:85,&quot;color&quot;:&quot;#264de4&quot;},
-       {&quot;label&quot;:&quot;JavaScript&quot;,&quot;value&quot;:80,&quot;color&quot;:&quot;#f7df1e&quot;}
-     ]'&gt;
-&lt;/div&gt;
-</code></pre>
+       {"label":"HTML","value":90,"color":"#e34c26"},
+       {"label":"CSS","value":85,"color":"#264de4"},
+       {"label":"JavaScript","value":80,"color":"#f7df1e"}
+     ]'>
+</div>
+```
 
-<p><strong>Attributes:</strong></p>
+**Attributes:**
+- `data-progress-circles` - JSON array of circle data (required)
+- `data-progress-title` - Center title text
+- `data-progress-legend` - Show legend: `true`/`false` (default: `false`)
 
-<ul>
-<li><code>data-progress-circles</code> - JSON array of circle data (required)</li>
-<li><code>data-progress-title</code> - Center title text</li>
-<li><code>data-progress-legend</code> - Show legend: <code>true</code>/<code>false</code> (default: <code>false</code>)</li>
-</ul>
+**Circle Properties:**
+- `label` - Circle label
+- `value` - Progress value 0-100
+- `color` - Hex color code
 
-<p><strong>Circle Properties:</strong></p>
+**Features:**
+- Responsive sizing
+- Optional center title
+- Optional color legend
+- Nested concentric circles
 
-<ul>
-<li><code>label</code> - Circle label</li>
-<li><code>value</code> - Progress value 0&#8211;100</li>
-<li><code>color</code> - Hex color code</li>
-</ul>
+---
 
-<p><strong>Features:</strong></p>
+### 10. MultiSlider
 
-<ul>
-<li>Responsive sizing</li>
-<li>Optional center title</li>
-<li>Optional color legend</li>
-<li>Nested concentric circles</li>
-</ul>
+Multi-item carousel with infinite loop and responsive breakpoints.
 
-<hr />
+**HTML:**
+```html
+<div data-multislider 
+     data-multislider-items="3" 
+     data-multislider-items-md="2" 
+     data-multislider-items-sm="1" 
+     data-multislider-gap="20"
+     data-multislider-autoplay="true"
+     data-multislider-interval="3000">
+  <div data-multislider-track>
+    <div data-multislider-item>Item 1</div>
+    <div data-multislider-item>Item 2</div>
+    <div data-multislider-item>Item 3</div>
+    <div data-multislider-item>Item 4</div>
+    <div data-multislider-item>Item 5</div>
+  </div>
+  <button data-multislider-prev>â€¹</button>
+  <button data-multislider-next>â€º</button>
+</div>
+```
 
-<h3 id="10.multislider">10. MultiSlider</h3>
+**Attributes:**
+- `data-multislider-items` - Items per view on desktop (default: `3`)
+- `data-multislider-items-md` - Items per view on tablet (default: `2`)
+- `data-multislider-items-sm` - Items per view on mobile (default: `1`)
+- `data-multislider-gap` - Gap between items in pixels (default: `20`)
+- `data-multislider-autoplay` - Enable autoplay: `true`/`false` (default: `false`)
+- `data-multislider-interval` - Autoplay interval in ms (default: `5000`)
 
-<p>Multi-item carousel with infinite loop and responsive breakpoints.</p>
+**Breakpoints:**
+- Desktop: â‰¥1024px
+- Tablet: 768px - 1023px  
+- Mobile: <768px
 
-<p><strong>HTML:</strong></p>
+**Features:**
+- âœ¨ **True infinite loop**
+- Clone-based seamless sliding
+- Responsive breakpoints
+- Keyboard navigation
+- Autoplay with pause on hover
+- Smooth transitions in both directions
 
-<pre><code class="html">&lt;div data-multislider 
-     data-multislider-items=&quot;3&quot; 
-     data-multislider-items-md=&quot;2&quot; 
-     data-multislider-items-sm=&quot;1&quot; 
-     data-multislider-gap=&quot;20&quot;
-     data-multislider-autoplay=&quot;true&quot;
-     data-multislider-interval=&quot;3000&quot;&gt;
-  &lt;div data-multislider-track&gt;
-    &lt;div data-multislider-item&gt;Item 1&lt;/div&gt;
-    &lt;div data-multislider-item&gt;Item 2&lt;/div&gt;
-    &lt;div data-multislider-item&gt;Item 3&lt;/div&gt;
-    &lt;div data-multislider-item&gt;Item 4&lt;/div&gt;
-    &lt;div data-multislider-item&gt;Item 5&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;button data-multislider-prev&gt;â€¹&lt;/button&gt;
-  &lt;button data-multislider-next&gt;â€º&lt;/button&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p><strong>Attributes:</strong></p>
-
-<ul>
-<li><code>data-multislider-items</code> - Items per view on desktop (default: <code>3</code>)</li>
-<li><code>data-multislider-items-md</code> - Items per view on tablet (default: <code>2</code>)</li>
-<li><code>data-multislider-items-sm</code> - Items per view on mobile (default: <code>1</code>)</li>
-<li><code>data-multislider-gap</code> - Gap between items in pixels (default: <code>20</code>)</li>
-<li><code>data-multislider-autoplay</code> - Enable autoplay: <code>true</code>/<code>false</code> (default: <code>false</code>)</li>
-<li><code>data-multislider-interval</code> - Autoplay interval in ms (default: <code>5000</code>)</li>
-</ul>
-
-<p><strong>Breakpoints:</strong></p>
-
-<ul>
-<li>Desktop: â‰¥1024px</li>
-<li>Tablet: 768px - 1023px</li>
-<li>Mobile: &lt;768px</li>
-</ul>
-
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>âœ¨ <strong>True infinite loop</strong></li>
-<li>Clone-based seamless sliding</li>
-<li>Responsive breakpoints</li>
-<li>Keyboard navigation</li>
-<li>Autoplay with pause on hover</li>
-<li>Smooth transitions in both directions</li>
-</ul>
-
-<p><strong>Events:</strong></p>
-
-<pre><code class="javascript">multislider.addEventListener('battersea:multisliderChange', (e) =&gt; {
+**Events:**
+```javascript
+multislider.addEventListener('battersea:multisliderChange', (e) => {
   console.log('Current position:', e.detail.index);
 });
-</code></pre>
+```
 
-<hr />
+---
 
-<h3 id="11.parallax">11. Parallax</h3>
+### 11. Parallax
 
-<p>Parallax scrolling background effect.</p>
+Parallax scrolling background effect.
 
-<p><strong>HTML:</strong></p>
+**HTML:**
+```html
+<div data-parallax 
+     data-parallax-speed="0.5" 
+     data-parallax-image="background.jpg">
+  <div class="content">
+    <h1>Content with parallax background</h1>
+  </div>
+</div>
+```
 
-<pre><code class="html">&lt;div data-parallax 
-     data-parallax-speed=&quot;0.5&quot; 
-     data-parallax-image=&quot;background.jpg&quot;&gt;
-  &lt;div class=&quot;content&quot;&gt;
-    &lt;h1&gt;Content with parallax background&lt;/h1&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+**Attributes:**
+- `data-parallax-speed` - Scroll speed multiplier (default: `0.5`)
+- `data-parallax-image` - Background image URL
 
-<p><strong>Attributes:</strong></p>
+**Features:**
+- Smooth scroll effect
+- Adjustable speed
+- Optimized performance
 
-<ul>
-<li><code>data-parallax-speed</code> - Scroll speed multiplier (default: <code>0.5</code>)</li>
-<li><code>data-parallax-image</code> - Background image URL</li>
-</ul>
+---
 
-<p><strong>Features:</strong></p>
+### 12. Flipbox
 
-<ul>
-<li>Smooth scroll effect</li>
-<li>Adjustable speed</li>
-<li>Optimized performance</li>
-</ul>
+3D flip card animations.
 
-<hr />
+**HTML:**
+```html
+<div data-flipbox data-flipbox-trigger="hover">
+  <div data-flipbox-front>
+    <h3>Front Side</h3>
+  </div>
+  <div data-flipbox-back>
+    <h3>Back Side</h3>
+  </div>
+</div>
+```
 
-<h3 id="12.flipbox">12. Flipbox</h3>
+**Attributes:**
+- `data-flipbox-trigger` - Trigger type: `hover`/`click` (default: `hover`)
 
-<p>3D flip card animations.</p>
+**Features:**
+- 3D transform animation
+- Hover or click trigger
+- Smooth rotation
+- Perspective effect
 
-<p><strong>HTML:</strong></p>
+---
 
-<pre><code class="html">&lt;div data-flipbox data-flipbox-trigger=&quot;hover&quot;&gt;
-  &lt;div data-flipbox-front&gt;
-    &lt;h3&gt;Front Side&lt;/h3&gt;
-  &lt;/div&gt;
-  &lt;div data-flipbox-back&gt;
-    &lt;h3&gt;Back Side&lt;/h3&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+### 13. SmoothScroll ⭐ NEW
 
-<p><strong>Attributes:</strong></p>
+Scroll-to-section navigation with visual dots and dynamic header support.
 
-<ul>
-<li><code>data-flipbox-trigger</code> - Trigger type: <code>hover</code>/<code>click</code> (default: <code>hover</code>)</li>
-</ul>
+**HTML:**
+```html
+<!-- Dynamic header detection (recommended) -->
+<div data-smoothscroll 
+     data-smoothscroll-header-selector="#main-header"
+     data-smoothscroll-position="right"
+     data-smoothscroll-duration="1000"
+     data-smoothscroll-easing="ease-out">
+</div>
 
-<p><strong>Features:</strong></p>
+<!-- Sections can be ANY element -->
+<section data-scroll-section data-scroll-title="Home">Content</section>
+<div data-scroll-section data-scroll-title="Features">Content</div>
+<article data-scroll-section data-scroll-title="About">Content</article>
+```
 
-<ul>
-<li>3D transform animation</li>
-<li>Hover or click trigger</li>
-<li>Smooth rotation</li>
-<li>Perspective effect</li>
-</ul>
+**Container Attributes:**
+- `data-smoothscroll-header-selector` - CSS selector for dynamic header (e.g., `#header`)
+- `data-smoothscroll-offset` - Static offset in pixels (default: `0`)
+- `data-smoothscroll-position` - Dot position: `left`/`right` (default: `right`)
+- `data-smoothscroll-duration` - Scroll animation duration in ms (default: `800`)
+- `data-smoothscroll-easing` - Easing function: `linear`, `ease-in`, `ease-out`, `ease-in-out` (default: `ease-out`)
+- `data-smoothscroll-hide-mobile` - Hide navigation on mobile: `true`/`false` (default: `true`)
 
-<hr />
+**Section Attributes:**
+- `data-scroll-section` - Marks element as a section (required)
+- `data-scroll-title` - Section title for tooltip (required)
+- `id` - Section ID (auto-generated if missing)
 
-<h3 id="13.smoothscroll⭐new">13. SmoothScroll ⭐ NEW</h3>
+**Features:**
+- ✨ Visual navigation dots on page side
+- 🎯 Dynamic header offset detection (auto-adjusts to shrinking headers)
+- 🔄 Real-time target recalculation during scroll
+- 📍 Section detection with IntersectionObserver
+- 💨 Cubic ease-out for smooth deceleration
+- ⌨️ Keyboard accessible (Tab, Enter, Arrow keys)
+- 📱 Responsive (auto-hides on mobile by default)
+- 🎨 Customizable via CSS variables
+- 🔊 Custom events: `battersea:scrollSectionChange`
 
-<p>Scroll-to-section navigation with visual dots and dynamic header support.</p>
-
-<p><strong>HTML:</strong></p>
-
-<pre><code class="html">&lt;!-- Dynamic header detection (recommended) --&gt;
-&lt;div data-smoothscroll 
-     data-smoothscroll-header-selector=&quot;#main-header&quot;
-     data-smoothscroll-position=&quot;right&quot;
-     data-smoothscroll-duration=&quot;1000&quot;
-     data-smoothscroll-easing=&quot;ease-out&quot;&gt;
-&lt;/div&gt;
-
-&lt;!-- Sections can be ANY element --&gt;
-&lt;section data-scroll-section data-scroll-title=&quot;Home&quot;&gt;Content&lt;/section&gt;
-&lt;div data-scroll-section data-scroll-title=&quot;Features&quot;&gt;Content&lt;/div&gt;
-&lt;article data-scroll-section data-scroll-title=&quot;About&quot;&gt;Content&lt;/article&gt;
-</code></pre>
-
-<p><strong>Container Attributes:</strong></p>
-
-<ul>
-<li><code>data-smoothscroll-header-selector</code> - CSS selector for dynamic header (e.g., <code>#header</code>)</li>
-<li><code>data-smoothscroll-offset</code> - Static offset in pixels (default: <code>0</code>)</li>
-<li><code>data-smoothscroll-position</code> - Dot position: <code>left</code>/<code>right</code> (default: <code>right</code>)</li>
-<li><code>data-smoothscroll-duration</code> - Scroll animation duration in ms (default: <code>800</code>)</li>
-<li><code>data-smoothscroll-easing</code> - Easing function: <code>linear</code>, <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code> (default: <code>ease-out</code>)</li>
-<li><code>data-smoothscroll-hide-mobile</code> - Hide navigation on mobile: <code>true</code>/<code>false</code> (default: <code>true</code>)</li>
-</ul>
-
-<p><strong>Section Attributes:</strong></p>
-
-<ul>
-<li><code>data-scroll-section</code> - Marks element as a section (required)</li>
-<li><code>data-scroll-title</code> - Section title for tooltip (required)</li>
-<li><code>id</code> - Section ID (auto-generated if missing)</li>
-</ul>
-
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>✨ Visual navigation dots on page side</li>
-<li>🎯 Dynamic header offset detection (auto-adjusts to shrinking headers)</li>
-<li>🔄 Real-time target recalculation during scroll</li>
-<li>📍 Section detection with IntersectionObserver</li>
-<li>💨 Cubic ease-out for smooth deceleration</li>
-<li>⌨️ Keyboard accessible (Tab, Enter, Arrow keys)</li>
-<li>📱 Responsive (auto-hides on mobile by default)</li>
-<li>🎨 Customizable via CSS variables</li>
-<li>🔊 Custom events: <code>battersea:scrollSectionChange</code></li>
-</ul>
-
-<p><strong>Events:</strong></p>
-
-<pre><code class="javascript">document.querySelector('[data-smoothscroll]')
-  .addEventListener('battersea:scrollSectionChange', (e) =&gt; {
+**Events:**
+```javascript
+document.querySelector('[data-smoothscroll]')
+  .addEventListener('battersea:scrollSectionChange', (e) => {
     console.log('Section:', e.detail.section.title);
     console.log('Index:', e.detail.index);
   });
-</code></pre>
+```
 
-<p><strong>CSS Variables:</strong></p>
-
-<pre><code class="css">--battersea-scroll-dot-size: 12px
+**CSS Variables:**
+```css
+--battersea-scroll-dot-size: 12px
 --battersea-scroll-dot-active-size: 16px
 --battersea-scroll-dot-color: rgba(0,0,0,0.3)
 --battersea-scroll-dot-active-color: var(--battersea-primary)
 --battersea-scroll-tooltip-bg: rgba(0,0,0,0.85)
-</code></pre>
+```
 
-<p><strong>Dynamic Header Support:</strong>
-The component automatically detects and adapts to headers that change size (e.g., shrink on scroll). Uses <code>getComputedStyle()</code> to read CSS target values, handles transitions smoothly, and recalculates scroll targets in real-time during animation.</p>
+**Dynamic Header Support:**
+The component automatically detects and adapts to headers that change size (e.g., shrink on scroll). Uses `getComputedStyle()` to read CSS target values, handles transitions smoothly, and recalculates scroll targets in real-time during animation.
 
-<hr />
+---
 
-<h2 id="ðŸŽ¨customization">ðŸŽ¨ Customization</h2>
+## ðŸŽ¨ Customization
 
-<h3 id="cssvariables">CSS Variables</h3>
+### CSS Variables
 
-<p>Customize the library&#8217;s appearance using CSS variables:</p>
+Customize the library's appearance using CSS variables:
 
-<pre><code class="css">:root {
+```css
+:root {
   /* Colors */
   --battersea-primary: #007bff;
   --battersea-secondary: #6c757d;
@@ -720,30 +627,28 @@ The component automatically detects and adapts to headers that change size (e.g.
   --battersea-slider-dot-bg: #ccc;
   --battersea-slider-dot-active: #007bff;
 }
-</code></pre>
+```
 
-<h3 id="compilingless">Compiling LESS</h3>
+### Compiling LESS
 
-<p>The library uses LESS for styling. To customize:</p>
+The library uses LESS for styling. To customize:
 
-<ol>
-<li>Edit <code>battersea-library.less</code></li>
-<li>Compile to CSS:</li>
-</ol>
+1. Edit `battersea-library.less`
+2. Compile to CSS:
+   ```bash
+   lessc battersea-library.less battersea-library.css
+   ```
 
-<pre><code class="```bash">   lessc battersea-library.less battersea-library.css
+---
 
-</code></pre>
+## ðŸ”§ JavaScript API
 
-<hr />
+### Manual Initialization
 
-<h2 id="ðŸ”§javascriptapi">ðŸ”§ JavaScript API</h2>
+By default, components auto-initialize on page load. For dynamic content:
 
-<h3 id="manualinitialization">Manual Initialization</h3>
-
-<p>By default, components auto-initialize on page load. For dynamic content:</p>
-
-<pre><code class="javascript">// Re-initialize all components
+```javascript
+// Re-initialize all components
 Battersea.init();
 
 // Initialize specific component
@@ -754,60 +659,57 @@ const sliderInstance = Battersea.getInstance(element, 'slider');
 
 // Destroy component
 sliderInstance.destroy();
-</code></pre>
+```
 
-<h3 id="customevents">Custom Events</h3>
+### Custom Events
 
-<p>All components dispatch custom events:</p>
+All components dispatch custom events:
 
-<pre><code class="javascript">// Slider
-element.addEventListener('battersea:slideChange', (e) =&gt; {
+```javascript
+// Slider
+element.addEventListener('battersea:slideChange', (e) => {
   console.log(e.detail.index, e.detail.slide);
 });
 
 // Accordion
-element.addEventListener('battersea:accordionToggle', (e) =&gt; {
+element.addEventListener('battersea:accordionToggle', (e) => {
   console.log(e.detail.item, e.detail.isOpen);
 });
 
 // Popup
-element.addEventListener('battersea:popupOpen', () =&gt; {});
-element.addEventListener('battersea:popupClose', () =&gt; {});
+element.addEventListener('battersea:popupOpen', () => {});
+element.addEventListener('battersea:popupClose', () => {});
 
 // MultiSlider
-element.addEventListener('battersea:multisliderChange', (e) =&gt; {
+element.addEventListener('battersea:multisliderChange', (e) => {
   console.log(e.detail.index);
 });
-</code></pre>
+```
 
-<hr />
+---
 
-<h2 id="ðŸ“±browsersupport">ðŸ“± Browser Support</h2>
+## ðŸ“± Browser Support
 
-<ul>
-<li>Chrome 90+</li>
-<li>Firefox 88+</li>
-<li>Safari 14+</li>
-<li>Edge 90+</li>
-</ul>
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
 
-<p><strong>Required Features:</strong></p>
+**Required Features:**
+- ES6 Classes
+- CSS Custom Properties
+- IntersectionObserver
+- CSS Transforms
+- TransitionEnd events
 
-<ul>
-<li>ES6 Classes</li>
-<li>CSS Custom Properties</li>
-<li>IntersectionObserver</li>
-<li>CSS Transforms</li>
-<li>TransitionEnd events</li>
-</ul>
+---
 
-<hr />
+## ðŸ—ï¸ Architecture
 
-<h2 id="ðŸ—ï¸architecture">ðŸ—ï¸ Architecture</h2>
+### File Structure
 
-<h3 id="filestructure">File Structure</h3>
-
-<pre><code>battersea-library/
+```
+battersea-library/
 â”œâ”€â”€ battersea-utils.js          # Utility functions
 â”œâ”€â”€ battersea-core.js           # Core initialization system
 â”œâ”€â”€ battersea-tooltip.js        # Tooltip component
@@ -825,13 +727,14 @@ element.addEventListener('battersea:multisliderChange', (e) =&gt; {
 â”œâ”€â”€ battersea-library.less      # LESS styles
 â”œâ”€â”€ battersea-library.css       # Compiled CSS
 â””â”€â”€ README.md                   # This file
-</code></pre>
+```
 
-<h3 id="componentstructure">Component Structure</h3>
+### Component Structure
 
-<p>Each component follows this pattern:</p>
+Each component follows this pattern:
 
-<pre><code class="javascript">class ComponentName {
+```javascript
+class ComponentName {
   constructor(el) {
     this.el = el;
     this.events = [];
@@ -845,164 +748,143 @@ element.addEventListener('battersea:multisliderChange', (e) =&gt; {
   
   destroy() {
     // Clean up events
-    this.events.forEach(cleanup =&gt; cleanup());
+    this.events.forEach(cleanup => cleanup());
   }
 }
 
 // Register with core
 Battersea.register('component-name', ComponentName, '[data-component]');
-</code></pre>
+```
 
-<hr />
+---
 
-<h2 id="ðŸš¦performance">ðŸš¦ Performance</h2>
+## ðŸš¦ Performance
 
-<h3 id="bestpractices">Best Practices</h3>
+### Best Practices
 
-<ol>
-<li><strong>Load only what you need</strong>: Include only component files you&#8217;re using</li>
-<li><strong>Lazy load</strong>: For large sites, consider lazy-loading component JS</li>
-<li><strong>Optimize images</strong>: Use appropriate image sizes for sliders</li>
-<li><strong>Minimize animations</strong>: Limit the number of simultaneously animating elements</li>
-<li><strong>Debouncing</strong>: Resize/scroll events are automatically debounced</li>
-</ol>
+1. **Load only what you need**: Include only component files you're using
+2. **Lazy load**: For large sites, consider lazy-loading component JS
+3. **Optimize images**: Use appropriate image sizes for sliders
+4. **Minimize animations**: Limit the number of simultaneously animating elements
+5. **Debouncing**: Resize/scroll events are automatically debounced
 
-<h3 id="optimizationfeatures">Optimization Features</h3>
+### Optimization Features
 
-<ul>
-<li>IntersectionObserver for scroll-triggered components</li>
-<li>CSS transforms for hardware acceleration</li>
-<li>Debounced resize handlers</li>
-<li>Event delegation where possible</li>
-<li>Minimal DOM manipulation</li>
-</ul>
+- IntersectionObserver for scroll-triggered components
+- CSS transforms for hardware acceleration
+- Debounced resize handlers
+- Event delegation where possible
+- Minimal DOM manipulation
 
-<hr />
+---
 
-<h2 id="â™¿accessibility">â™¿ Accessibility</h2>
+## â™¿ Accessibility
 
-<p>All components are built with accessibility in mind:</p>
+All components are built with accessibility in mind:
 
-<ul>
-<li><strong>Keyboard Navigation</strong>: All interactive components support keyboard controls</li>
-<li><strong>ARIA Labels</strong>: Proper ARIA attributes throughout</li>
-<li><strong>Focus Management</strong>: Visible focus indicators, focus trapping in modals</li>
-<li><strong>Screen Readers</strong>: Semantic HTML and ARIA roles</li>
-<li><strong>Reduced Motion</strong>: Respects <code>prefers-reduced-motion</code></li>
-<li><strong>Color Contrast</strong>: WCAG AA compliant default colors</li>
-</ul>
+- **Keyboard Navigation**: All interactive components support keyboard controls
+- **ARIA Labels**: Proper ARIA attributes throughout
+- **Focus Management**: Visible focus indicators, focus trapping in modals
+- **Screen Readers**: Semantic HTML and ARIA roles
+- **Reduced Motion**: Respects `prefers-reduced-motion`
+- **Color Contrast**: WCAG AA compliant default colors
 
-<hr />
+---
 
-<h2 id="ðŸ›troubleshooting">ðŸ› Troubleshooting</h2>
+## ðŸ› Troubleshooting
 
-<h3 id="componentsnotinitializing">Components not initializing</h3>
+### Components not initializing
 
-<p><strong>Problem</strong>: Components don&#8217;t work after page load.</p>
+**Problem**: Components don't work after page load.
 
-<p><strong>Solution</strong>: Ensure scripts are loaded in order:</p>
+**Solution**: Ensure scripts are loaded in order:
+```html
+<script src="battersea-utils.js"></script>
+<script src="battersea-core.js"></script>
+<script src="battersea-[component].js"></script>
+```
 
-<pre><code class="html">&lt;script src=&quot;battersea-utils.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;battersea-core.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;battersea-[component].js&quot;&gt;&lt;/script&gt;
-</code></pre>
+### Slider not sliding smoothly
 
-<h3 id="slidernotslidingsmoothly">Slider not sliding smoothly</h3>
+**Problem**: Slider jumps or doesn't loop smoothly.
 
-<p><strong>Problem</strong>: Slider jumps or doesn&#8217;t loop smoothly.</p>
+**Solution**: 
+- Ensure you're using `data-slider-transition="slide"` for infinite loop
+- Check that `data-slider-track` wraps all slides
+- Verify slides have `data-slider-item` attribute
 
-<p><strong>Solution</strong>:</p>
+### Animations triggering multiple times
 
-<ul>
-<li>Ensure you&#8217;re using <code>data-slider-transition=&quot;slide&quot;</code> for infinite loop</li>
-<li>Check that <code>data-slider-track</code> wraps all slides</li>
-<li>Verify slides have <code>data-slider-item</code> attribute</li>
-</ul>
+**Problem**: Animations play more than once.
 
-<h3 id="animationstriggeringmultipletimes">Animations triggering multiple times</h3>
+**Solution**: 
+- Don't manually call animation methods
+- Ensure only one instance of battersea-animation.js is loaded
+- Check console for errors
 
-<p><strong>Problem</strong>: Animations play more than once.</p>
+### MultiSlider items wrong size
 
-<p><strong>Solution</strong>:</p>
+**Problem**: Items not sized correctly.
 
-<ul>
-<li>Don&#8217;t manually call animation methods</li>
-<li>Ensure only one instance of battersea-animation.js is loaded</li>
-<li>Check console for errors</li>
-</ul>
+**Solution**:
+- Ensure parent has a defined width
+- Check that gap value accounts for container width
+- Verify responsive breakpoints match your CSS
 
-<h3 id="multislideritemswrongsize">MultiSlider items wrong size</h3>
+---
 
-<p><strong>Problem</strong>: Items not sized correctly.</p>
+## ðŸ“„ License
 
-<p><strong>Solution</strong>:</p>
+MIT License
 
-<ul>
-<li>Ensure parent has a defined width</li>
-<li>Check that gap value accounts for container width</li>
-<li>Verify responsive breakpoints match your CSS</li>
-</ul>
+Copyright (c) 2024
 
-<hr />
-
-<h2 id="ðŸ“„license">ðŸ“„ License</h2>
-
-<p>MIT License</p>
-
-<p>Copyright (c) 2024</p>
-
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &#8220;Software&#8221;), to deal
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
+furnished to do so, subject to the following conditions:
 
-<p>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-<p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</p>
+SOFTWARE.
 
-<hr />
+---
 
-<h2 id="ðŸ¤contributing">ðŸ¤ Contributing</h2>
+## ðŸ¤ Contributing
 
-<p>Contributions are welcome! Please feel free to submit issues and pull requests.</p>
+Contributions are welcome! Please feel free to submit issues and pull requests.
 
-<h3 id="development">Development</h3>
+### Development
 
-<ol>
-<li>Clone the repository</li>
-<li>Make your changes</li>
-<li>Test thoroughly across browsers</li>
-<li>Compile LESS to CSS</li>
-<li>Submit a pull request</li>
-</ol>
+1. Clone the repository
+2. Make your changes
+3. Test thoroughly across browsers
+4. Compile LESS to CSS
+5. Submit a pull request
 
-<hr />
+---
 
-<h2 id="ðŸ“žsupport">ðŸ“ž Support</h2>
+## ðŸ“ž Support
 
-<p>For bug reports and feature requests, please open an issue on the repository.</p>
+For bug reports and feature requests, please open an issue on the repository.
 
-<hr />
+---
 
-<h2 id="ðŸŽ‰acknowledgments">ðŸŽ‰ Acknowledgments</h2>
+## ðŸŽ‰ Acknowledgments
 
-<p>Built with â¤ï¸ using vanilla JavaScript and modern web standards.</p>
+Built with â¤ï¸ using vanilla JavaScript and modern web standards.
 
-<p>Special thanks to all contributors and users of Battersea Library.</p>
+Special thanks to all contributors and users of Battersea Library.
 
-<hr />
+---
 
-<p><strong>Happy Building! ðŸš€</strong></p>
-
-</body>
-</html>
-
+**Happy Building! ðŸš€**
