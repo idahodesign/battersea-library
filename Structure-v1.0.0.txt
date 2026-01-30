@@ -1,0 +1,29 @@
+battersea-library/
+├── src/
+│   ├── js/
+│   │   ├── battersea-utils.js
+│   │   ├── battersea-core.js
+│   │   ├── battersea-accordion.js
+│   │   └── ... (all component files)
+│   ├── css/
+│   │   ├── battersea-library.less
+│   │   └── battersea-library.css
+├── includes/
+│   ├── header.html
+│   ├── footer.html
+│   ├── nav.html
+│   └── meta.html
+├── demos/
+│   ├── index.html (homepage with component showcase)
+│   ├── accordion.html
+│   ├── slider.html
+│   ├── tabs.html
+│   └── ... (one demo page per component)
+├── assets/ (optional)
+│   ├── images/
+│   └── fonts/
+├── docs/
+├── README.md
+├── LICENSE
+├── .gitignore
+└── CHANGELOG.md

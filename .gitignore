@@ -2,7 +2,6 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-Structure-*
 ._*
 
 # Thumbnails
@@ -27,6 +26,10 @@ build/
 # Temporary files
 *.tmp
 *.log
+*.tar.gz
+*.zip
+*.rar
+*.7z
 
 # Environment files
 .env
