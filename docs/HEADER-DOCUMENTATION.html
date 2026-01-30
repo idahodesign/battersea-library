@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="battersealibrary-headercomponentdocumentation">Battersea Library - Header Component Documentation</h1>
+
+<h2 id="addedtoreadme.mdv2.2.0">Added to README.md (v2.2.0)</h2>
+
+<hr />
+
+<h2 id="13.header">13. Header</h2>
+
+<p><strong>New in v2.2.0</strong> - Adaptive header with shrink-on-scroll, pre-header bar, and logo swapping.</p>
+
+<h3 id="features">Features</h3>
+
+<ul>
+<li><strong>Sticky positioning</strong> - Fixed to top of page while scrolling</li>
+<li><strong>Shrink animation</strong> - Smoothly reduces height on scroll (desktop/tablet only)</li>
+<li><strong>Pre-header bar</strong> - Optional secondary content area above header</li>
+<li><strong>Logo swapping</strong> - Switch logos for mobile devices</li>
+<li><strong>Two layout modes</strong> - Right-align or center-stack</li>
+<li><strong>Mobile optimized</strong> - No shrinking on mobile devices</li>
+<li><strong>Auto-height calculation</strong> - Header height from logo or manual override</li>
+<li><strong>Event dispatching</strong> - Integration with SmoothScroll and other components</li>
+</ul>
+
+<h3 id="htmlstructure">HTML Structure</h3>
+
+<pre><code class="html">&lt;!-- Pre-Header Bar (optional) --&gt;
+&lt;div class=&quot;battersea-header-pre&quot; 
+     data-pre-mobile=&quot;show&quot;
+     data-pre-tablet=&quot;show&quot; 
+     data-pre-desktop=&quot;show&quot;
+     data-pre-height=&quot;40&quot;&gt;
+  &lt;!-- Secondary menu, contact info, alerts, etc. --&gt;
+  &lt;div&gt;Call us: (555) 123-4567&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Main Header --&gt;
+&lt;header class=&quot;battersea-header&quot; 
+        data-header
+        data-sticky=&quot;true&quot;
+        data-shrink=&quot;true&quot;
+        data-shrink-offset=&quot;100&quot;
+        data-shrink-height=&quot;60&quot;
+        data-layout=&quot;right-align&quot;
+        data-logo-mobile=&quot;logo-mobile.svg&quot;
+        data-transition-speed=&quot;0.3&quot;&gt;
+  
+  &lt;!-- Branding Area --&gt;
+  &lt;div class=&quot;battersea-header__brand&quot;&gt;
+    &lt;a href=&quot;/&quot;&gt;
+      &lt;img src=&quot;logo.svg&quot; alt=&quot;Site Logo&quot; class=&quot;battersea-header__logo&quot;&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- Navigation Placeholder (for future nav components) --&gt;
+  &lt;nav class=&quot;battersea-header__nav&quot;&gt;
+    &lt;!-- Navigation component will be inserted here --&gt;
+  &lt;/nav&gt;
+  
+&lt;/header&gt;
+</code></pre>
+
+<h3 id="mainheaderattributes">Main Header Attributes</h3>
+
+<table>
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+	<th> Attribute </th>
+	<th> Type </th>
+	<th> Default </th>
+	<th> Description </th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td> <code>data-header</code> </td>
+	<td> - </td>
+	<td> required </td>
+	<td> Initialize component </td>
+</tr>
+<tr>
+	<td> <code>data-sticky</code> </td>
+	<td> boolean </td>
+	<td> false </td>
+	<td> Fix header to top on scroll </td>
+</tr>
+<tr>
+	<td> <code>data-shrink</code> </td>
+	<td> boolean </td>
+	<td> false </td>
+	<td> Enable shrink animation (requires sticky) </td>
+</tr>
+<tr>
+	<td> <code>data-shrink-offset</code> </td>
+	<td> number </td>
+	<td> 100 </td>
+	<td> Scroll distance (px) before shrinking </td>
+</tr>
+<tr>
+	<td> <code>data-shrink-height</code> </td>
+	<td> number </td>
+	<td> 60 </td>
+	<td> Target height (px) when shrunk </td>
+</tr>
+<tr>
+	<td> <code>data-layout</code> </td>
+	<td> string </td>
+	<td> right-align </td>
+	<td> Layout mode: <code>right-align</code> or <code>center-stack</code> </td>
+</tr>
+<tr>
+	<td> <code>data-logo-mobile</code> </td>
+	<td> string </td>
+	<td> null </td>
+	<td> Path to mobile logo image </td>
+</tr>
+<tr>
+	<td> <code>data-transition-speed</code> </td>
+	<td> number </td>
+	<td> 0.3 </td>
+	<td> Animation duration in seconds </td>
+</tr>
+<tr>
+	<td> <code>data-header-height</code> </td>
+	<td> number </td>
+	<td> 0 </td>
+	<td> Manual height override (0 = auto) </td>
+</tr>
+<tr>
+	<td> <code>data-mobile-logo-height</code> </td>
+	<td> number </td>
+	<td> 0 </td>
+	<td> Mobile logo height (0 = auto) </td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="pre-headerattributes">Pre-Header Attributes</h3>
+
+<table>
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+	<th> Attribute </th>
+	<th> Type </th>
+	<th> Default </th>
+	<th> Description </th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td> <code>data-pre-mobile</code> </td>
+	<td> string </td>
+	<td> show </td>
+	<td> Display on mobile: <code>show</code> or <code>hide</code> </td>
+</tr>
+<tr>
+	<td> <code>data-pre-tablet</code> </td>
+	<td> string </td>
+	<td> show </td>
+	<td> Display on tablet: <code>show</code> or <code>hide</code> </td>
+</tr>
+<tr>
+	<td> <code>data-pre-desktop</code> </td>
+	<td> string </td>
+	<td> show </td>
+	<td> Display on desktop: <code>show</code> or <code>hide</code> </td>
+</tr>
+<tr>
+	<td> <code>data-pre-height</code> </td>
+	<td> number </td>
+	<td> 40 </td>
+	<td> Fixed height in pixels </td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="layoutmodes">Layout Modes</h3>
+
+<p><strong>Right-Align (default)</strong></p>
+
+<pre><code>[Logo/Brand]                    [Nav Menu Items]
+</code></pre>
+
+<ul>
+<li>Logo on left, navigation on right</li>
+<li>Horizontal flex layout</li>
+<li>Best for traditional websites</li>
+</ul>
+
+<p><strong>Center-Stack</strong></p>
+
+<pre><code>           [Logo/Brand]
+        [Nav Menu Items]
+</code></pre>
+
+<ul>
+<li>Logo centered on top</li>
+<li>Navigation centered below</li>
+<li>Best for landing pages</li>
+</ul>
+
+<h3 id="customevents">Custom Events</h3>
+
+<p>The header dispatches four custom events:</p>
+
+<pre><code class="javascript">const header = document.querySelector('[data-header]');
+
+// Header became sticky (dispatched on init if sticky=true)
+header.addEventListener('battersea:headerSticky', (e) =&gt; {
+  console.log('Height:', e.detail.height);
+});
+
+// Header shrunk on scroll
+header.addEventListener('battersea:headerShrink', (e) =&gt; {
+  console.log('Shrunk to:', e.detail.shrunkHeight);
+});
+
+// Header expanded (scrolled back up)
+header.addEventListener('battersea:headerExpand', (e) =&gt; {
+  console.log('Expanded to:', e.detail.height);
+});
+
+// Header height changed (for scroll offset calculations)
+header.addEventListener('battersea:headerResize', (e) =&gt; {
+  console.log('New height:', e.detail.height);
+  console.log('Is shrunk:', e.detail.isShrunk);
+  console.log('Is sticky:', e.detail.isSticky);
+});
+</code></pre>
+
+<h3 id="integrationwithsmoothscroll">Integration with SmoothScroll</h3>
+
+<p>The header automatically dispatches <code>battersea:headerResize</code> events that the SmoothScroll component can listen to for dynamic offset calculation:</p>
+
+<pre><code class="javascript">// SmoothScroll will automatically detect the header
+&lt;div data-smoothscroll 
+     data-header-selector=&quot;[data-header]&quot;
+     data-offset-mode=&quot;dynamic&quot;&gt;
+  &lt;!-- Sections --&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>The SmoothScroll component recalculates scroll positions when:</p>
+
+<ul>
+<li>Header shrinks → Adjusts scroll targets</li>
+<li>Header expands → Recalculates positions</li>
+<li>Provides pixel-perfect alignment</li>
+</ul>
+
+<h3 id="responsivebehavior">Responsive Behavior</h3>
+
+<p><strong>Breakpoints:</strong></p>
+
+<ul>
+<li>Mobile: &lt; 768px</li>
+<li>Tablet: 768px - 1023px</li>
+<li>Desktop: ≥ 1024px</li>
+</ul>
+
+<p><strong>Mobile Adaptations:</strong></p>
+
+<ul>
+<li>Logo swaps to mobile version (if specified)</li>
+<li>Pre-header visibility controlled per device</li>
+<li>Shrink animation disabled (keeps full height)</li>
+<li>Different padding values</li>
+</ul>
+
+<p><strong>Logo Swapping:</strong></p>
+
+<ul>
+<li>Fade + scale transition effect</li>
+<li>Triggered at 768px breakpoint</li>
+<li>Automatic height recalculation</li>
+<li>Smooth animation (configurable speed)</li>
+</ul>
+
+<h3 id="cssvariables">CSS Variables</h3>
+
+<p>Customize the header appearance with CSS variables:</p>
+
+<pre><code class="css">:root {
+  --battersea-header-bg: #ffffff;
+  --battersea-header-text: #333;
+  --battersea-header-border: #e0e0e0;
+  --battersea-header-transition: 0.3s;
+  --battersea-header-z-index: 1000;
+  --battersea-pre-header-bg: #f5f5f5;
+  --battersea-pre-header-text: #666;
+}
+</code></pre>
+
+<h3 id="cssclasses">CSS Classes</h3>
+
+<p><strong>State Classes (automatically applied):</strong></p>
+
+<ul>
+<li><code>.battersea-header--sticky</code> - Header is fixed to top</li>
+<li><code>.battersea-header--shrunk</code> - Header is in shrunk state</li>
+<li><code>.battersea-header--shrink-enabled</code> - Shrink animation enabled</li>
+<li><code>.battersea-header--right-align</code> - Right-align layout mode</li>
+<li><code>.battersea-header--center-stack</code> - Center-stack layout mode</li>
+</ul>
+
+<p><strong>Element Classes:</strong></p>
+
+<ul>
+<li><code>.battersea-header__brand</code> - Logo/branding container</li>
+<li><code>.battersea-header__logo</code> - Logo image element</li>
+<li><code>.battersea-header__nav</code> - Navigation container (placeholder)</li>
+</ul>
+
+<p><strong>Pre-Header Classes:</strong></p>
+
+<ul>
+<li><code>.battersea-header-pre</code> - Pre-header container</li>
+<li><code>.battersea-header-pre--hidden</code> - Pre-header hidden (on scroll)</li>
+<li><code>.battersea-header-pre--hidden-mobile</code> - Hidden on mobile</li>
+<li><code>.battersea-header-pre--hidden-tablet</code> - Hidden on tablet</li>
+<li><code>.battersea-header-pre--hidden-desktop</code> - Hidden on desktop</li>
+</ul>
+
+<h3 id="technicaldetails">Technical Details</h3>
+
+<p><strong>Shrink Animation:</strong></p>
+
+<ul>
+<li>Uses <code>requestAnimationFrame</code> for smooth scroll detection</li>
+<li>GPU-accelerated transforms for logo scaling</li>
+<li>Disabled on mobile devices (maintains full height)</li>
+<li>Configurable offset and target height</li>
+<li>Smooth transitions with customizable speed</li>
+</ul>
+
+<p><strong>Pre-Header Behavior:</strong></p>
+
+<ul>
+<li>Slides up (translateY -100%) when scrolled past 10px</li>
+<li>Opacity fade for smooth visual effect</li>
+<li>Does not affect main header positioning</li>
+<li>Independently configurable per device</li>
+<li><strong>Header positioning:</strong> When sticky, the header initially positions itself below the pre-header (top: pre-header height). When the pre-header slides up on scroll, the header smoothly transitions to top: 0, preventing any overlap.</li>
+</ul>
+
+<p><strong>Height Calculation:</strong></p>
+
+<ul>
+<li>Auto-calculated from logo dimensions + padding</li>
+<li>Manual override available via <code>data-header-height</code></li>
+<li>Dispatches events on height changes</li>
+<li>Real-time updates on logo swap</li>
+</ul>
+
+<p><strong>Logo Scaling:</strong></p>
+
+<ul>
+<li>Proportional to height reduction</li>
+<li>Minimum scale: 0.7 (prevents too-small logos)</li>
+<li>Transform origin: left center (right-align) or center (center-stack)</li>
+<li>Smooth fade + scale transition</li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<p><strong>Basic Sticky Header:</strong></p>
+
+<pre><code class="html">&lt;header class=&quot;battersea-header&quot; 
+        data-header
+        data-sticky=&quot;true&quot;&gt;
+  &lt;div class=&quot;battersea-header__brand&quot;&gt;
+    &lt;img src=&quot;logo.svg&quot; class=&quot;battersea-header__logo&quot; alt=&quot;Logo&quot;&gt;
+  &lt;/div&gt;
+  &lt;nav class=&quot;battersea-header__nav&quot;&gt;&lt;/nav&gt;
+&lt;/header&gt;
+</code></pre>
+
+<p><strong>Full Featured Header:</strong></p>
+
+<pre><code class="html">&lt;!-- Pre-header --&gt;
+&lt;div class=&quot;battersea-header-pre&quot; 
+     data-pre-height=&quot;50&quot;
+     data-pre-mobile=&quot;hide&quot;&gt;
+  &lt;div&gt;Free shipping on orders over $50!&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Main header --&gt;
+&lt;header class=&quot;battersea-header&quot; 
+        data-header
+        data-sticky=&quot;true&quot;
+        data-shrink=&quot;true&quot;
+        data-shrink-offset=&quot;150&quot;
+        data-shrink-height=&quot;70&quot;
+        data-layout=&quot;center-stack&quot;
+        data-logo-mobile=&quot;logo-mobile.svg&quot;
+        data-transition-speed=&quot;0.4&quot;&gt;
+  
+  &lt;div class=&quot;battersea-header__brand&quot;&gt;
+    &lt;a href=&quot;/&quot;&gt;
+      &lt;img src=&quot;logo-desktop.svg&quot; 
+           class=&quot;battersea-header__logo&quot; 
+           alt=&quot;Company Logo&quot;
+           style=&quot;height: 60px;&quot;&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  
+  &lt;nav class=&quot;battersea-header__nav&quot;&gt;
+    &lt;!-- Navigation component --&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+</code></pre>
+
+<p><strong>Get Current Height Programmatically:</strong></p>
+
+<pre><code class="javascript">const header = document.querySelector('[data-header]');
+const instance = Battersea.getInstance(header);
+
+// Get current height
+const height = instance.getHeight();
+console.log('Header height:', height);
+
+// Listen for changes
+header.addEventListener('battersea:headerResize', (e) =&gt; {
+  console.log('New height:', e.detail.height);
+});
+</code></pre>
+
+<h3 id="browsersupport">Browser Support</h3>
+
+<ul>
+<li>Chrome 90+</li>
+<li>Firefox 88+</li>
+<li>Safari 14+</li>
+<li>Edge 90+</li>
+</ul>
+
+<h3 id="performance">Performance</h3>
+
+<ul>
+<li>Uses <code>requestAnimationFrame</code> for scroll detection</li>
+<li>GPU-accelerated CSS transforms</li>
+<li>Debounced resize handlers</li>
+<li>Minimal DOM manipulation</li>
+<li>No layout thrashing</li>
+</ul>
+
+<h3 id="accessibility">Accessibility</h3>
+
+<ul>
+<li>Semantic HTML5 <code>&lt;header&gt;</code> element</li>
+<li>Proper heading hierarchy (user-controlled)</li>
+<li>Keyboard navigation support (in nav components)</li>
+<li>Focus indicators (in nav components)</li>
+<li>ARIA labels where appropriate</li>
+</ul>
+
+<h3 id="futurenavigationcomponents">Future Navigation Components</h3>
+
+<p>The header provides an empty <code>.battersea-header__nav</code> container ready for these upcoming navigation components:</p>
+
+<ol>
+<li><strong>HorizontalNav</strong> - Multi-level dropdown menus</li>
+<li><strong>VerticalNav</strong> - Slide-in drawer (left/right)</li>
+<li><strong>OverlayNav</strong> - Full-screen menu with backdrop</li>
+<li><strong>MobileNav</strong> - Hamburger menu with animations</li>
+</ol>
+
+<p>All navigation components will integrate seamlessly with the header structure.</p>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p><strong>Header not shrinking:</strong></p>
+
+<ul>
+<li>Ensure <code>data-sticky=&quot;true&quot;</code> is set (shrink requires sticky)</li>
+<li>Check if you&#8217;re on desktop/tablet (shrink disabled on mobile)</li>
+<li>Verify scroll position exceeds <code>data-shrink-offset</code> value</li>
+</ul>
+
+<p><strong>Pre-header not hiding:</strong></p>
+
+<ul>
+<li>Pre-header hides after scrolling 10px</li>
+<li>Check device visibility settings (<code>data-pre-mobile</code>, etc.)</li>
+<li>Verify CSS is loaded correctly</li>
+</ul>
+
+<p><strong>Logo not swapping:</strong></p>
+
+<ul>
+<li>Provide valid path in <code>data-logo-mobile</code></li>
+<li>Check browser console for image load errors</li>
+<li>Breakpoint is 768px (resize window to test)</li>
+</ul>
+
+<p><strong>Height calculation incorrect:</strong></p>
+
+<ul>
+<li>Ensure logo has loaded before initialization</li>
+<li>Use <code>data-header-height</code> for manual override</li>
+<li>Check CSS padding/margin on header element</li>
+</ul>
+
+<hr />
+
+<h2 id="versionhistory">Version History</h2>
+
+<h3 id="v2.2.0latest">v2.2.0 (Latest)</h3>
+
+<ul>
+<li>✨ <strong>NEW:</strong> Header component with shrink-on-scroll</li>
+<li>✨ <strong>NEW:</strong> Pre-header bar support</li>
+<li>✨ <strong>NEW:</strong> Mobile logo swapping</li>
+<li>✨ <strong>NEW:</strong> Two layout modes (right-align, center-stack)</li>
+<li>✨ <strong>NEW:</strong> Integration with SmoothScroll via events</li>
+<li>🔧 Updated CSS with header styles</li>
+<li>📚 Added comprehensive header documentation</li>
+<li>🎨 New demo page: <code>demo-header.html</code></li>
+</ul>
+
+</body>
+</html>
+

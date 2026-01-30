@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header + Nav - Include Pattern Demo</title>
+  
+  <link rel="stylesheet" href="/src/css/battersea-library.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+    }
+    
+    :root {
+      --battersea-primary: #667eea;
+      --battersea-hnav-hover-bg: #f0f7ff;
+      --battersea-hnav-hover-text: #667eea;
+      --battersea-hnav-active-bg: #667eea;
+      --battersea-hnav-active-text: #fff;
+    }
+    
+    .battersea-header-pre {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      font-size: 14px;
+      padding: 8px 20px;
+      text-align: center;
+    }
+    
+    .battersea-header {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .battersea-header__container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .battersea-header__brand {
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .battersea-header__brand a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .battersea-header__logo {
+      height: 40px;
+      width: auto;
+    }
+    
+    .logo-text {
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Shrunk state adjustments */
+    .battersea-header--shrunk .battersea-header__logo {
+      height: 30px;
+    }
+    
+    .battersea-header--shrunk .battersea-header__brand {
+      padding: 12px 0;
+    }
+    
+    .battersea-header--shrunk .logo-text {
+      font-size: 22px;
+    }
+    
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 80px 40px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .section {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .section h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    
+    .section pre {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    
+    .section code {
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+    
+    .status {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      font-size: 13px;
+      z-index: 50;
+    }
+    
+    .status strong {
+      display: block;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Status Indicator -->
+  <div class="status">
+    <strong>Header Status:</strong>
+    <div id="status">Loading...</div>
+    <div id="scroll">Scroll: 0px</div>
+  </div>
+
+  <!-- Pre-Header -->
+  <div class="battersea-header-pre">
+    📞 Support: 1-800-BATTERSEA | 📧 info@battersea.com
+  </div>
+
+  <!-- Header with Navigation Placeholder -->
+  <header class="battersea-header" 
+          data-header
+          data-sticky="true"
+          data-shrink="true"
+          data-shrink-offset="100"
+          data-shrink-height="60"
+          id="mainHeader">
+    
+    <div class="battersea-header__container">
+      <div class="battersea-header__brand">
+        <a href="#home">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23667eea'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" 
+               alt="Logo" 
+               class="battersea-header__logo">
+          <div class="logo-text">Battersea</div>
+        </a>
+      </div>
+      
+      <!-- Navigation - Loaded from external file -->
+      <nav class="battersea-header__nav" id="navContainer">
+        <!-- Menu will be loaded here -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="content">
+    <div class="hero">
+      <h1>🎯 Menu Include Pattern</h1>
+      <p>Separate navigation HTML files for easy management</p>
+    </div>
+    
+    <div class="section">
+      <h2>✨ How It Works</h2>
+      
+      <p>The navigation menu is loaded from an external HTML file, making it easy to:</p>
+      <ul style="margin: 20px 0 20px 30px; line-height: 1.8;">
+        <li>✅ Reuse the same menu across multiple pages</li>
+        <li>✅ Update the menu in one place</li>
+        <li>✅ Keep your page HTML clean and maintainable</li>
+        <li>✅ Switch between different menu structures easily</li>
+      </ul>
+      
+      <h3 style="margin-top: 30px;">Available Menu Files:</h3>
+      <ul style="margin: 15px 0 15px 30px;">
+        <li><code>nav-menu-simple.html</code> - 2-level menu (Home, Products, Company, etc.)</li>
+        <li><code>nav-menu-full.html</code> - 4-level menu with flyouts and accordions</li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>📝 HTML Structure</h2>
+      
+      <pre><code>&lt;!-- Your page header --&gt;
+&lt;header class="battersea-header" data-header&gt;
+  &lt;div class="battersea-header__container"&gt;
+    &lt;div class="battersea-header__brand"&gt;
+      &lt;!-- Logo here --&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Navigation container (no data attributes) --&gt;
+    &lt;nav class="battersea-header__nav" id="navContainer"&gt;
+      &lt;!-- Menu loaded here --&gt;
+      &lt;!-- The loaded menu file includes data-horizontal-nav --&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+      
+      <p style="margin-top: 15px; font-size: 14px; color: #666;">
+        <strong>Note:</strong> The <code>data-horizontal-nav</code> attribute and configuration are in the menu files themselves, not on the container.
+      </p>
+    </div>
+    
+    <div class="section">
+      <h2>🔧 JavaScript Loader</h2>
+      
+      <pre><code>&lt;script&gt;
+// Simple menu loader function
+async function loadMenu(menuFile) {
+  try {
+    const response = await fetch(menuFile);
+    const html = await response.text();
+    document.getElementById('navContainer').innerHTML = html;
+    
+    // Re-initialize Battersea after loading menu
+    if (window.Battersea) {
+      Battersea.init();
+    }
+  } catch (error) {
+    console.error('Failed to load menu:', error);
+  }
+}
+
+// Load menu before Battersea initialization
+loadMenu('nav-menu-full.html').then(() => {
+  console.log('✅ Menu loaded successfully!');
+});
+&lt;/script&gt;</code></pre>
+    </div>
+    
+    <div class="section">
+      <h2>🎨 Switching Menus</h2>
+      
+      <p>You can easily switch between different menu structures:</p>
+      
+      <div style="margin: 20px 0; display: flex; gap: 10px;">
+        <button onclick="switchMenu('nav-menu-simple.html')" 
+                style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px;">
+          Load Simple Menu
+        </button>
+        <button onclick="switchMenu('nav-menu-full.html')" 
+                style="padding: 10px 20px; background: #764ba2; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px;">
+          Load Full Menu
+        </button>
+      </div>
+      
+      <p style="margin-top: 20px; font-size: 14px; color: #666;">
+        <strong>Note:</strong> Click the buttons above to switch between menu types in real-time!
+      </p>
+    </div>
+    
+    <div class="section" style="min-height: 800px;">
+      <h2>📜 Scroll Test Area</h2>
+      <p>Scroll down to test the header shrink animation!</p>
+      <ul style="margin: 20px 0 20px 30px; line-height: 1.8;">
+        <li>At 120px: Header shrinks smoothly</li>
+        <li>At 80px (scrolling up): Header expands smoothly</li>
+        <li>Dead zone (80-120px): No flickering</li>
+      </ul>
+      
+      <div style="height: 600px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; font-size: 24px; margin-top: 40px;">
+        Keep scrolling! ⬇️
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/src/js/battersea-utils.js"></script>
+  <script src="/src/js/battersea-core.js"></script>
+  <script src="/src/js/battersea-header.js"></script>
+  <script src="/src/js/battersea-horizontalnav.js"></script>
+
+  <script>
+    // Menu loader function
+    async function loadMenu(menuFile) {
+      try {
+        const response = await fetch(menuFile);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
+        const html = await response.text();
+        const navContainer = document.getElementById('navContainer');
+        navContainer.innerHTML = html;
+        
+        // Re-initialize Battersea components
+        if (window.Battersea) {
+          Battersea.init();
+        }
+        
+        console.log(`✅ Menu loaded: ${menuFile}`);
+        return true;
+      } catch (error) {
+        console.error('Failed to load menu:', error);
+        // Fallback: create a basic menu
+        document.getElementById('navContainer').innerHTML = `
+          <ul class="battersea-hnav">
+            <li class="battersea-hnav__item">
+              <a href="#" class="battersea-hnav__link">Menu failed to load</a>
+            </li>
+          </ul>
+        `;
+        return false;
+      }
+    }
+    
+    // Switch menu function (for demo buttons)
+    async function switchMenu(menuFile) {
+      const statusEl = document.getElementById('status');
+      statusEl.textContent = `Loading ${menuFile}...`;
+      
+      const success = await loadMenu(menuFile);
+      
+      if (success) {
+        statusEl.textContent = `✅ ${menuFile.replace('.html', '')}`;
+      } else {
+        statusEl.textContent = '❌ Load failed';
+      }
+    }
+    
+    // Load initial menu
+    loadMenu('/includes/nav-menu-full.html').then(() => {
+      document.getElementById('status').textContent = '✅ Full menu loaded';
+    });
+    
+    // Scroll tracking
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      document.getElementById('scroll').textContent = `Scroll: ${Math.round(scrollY)}px`;
+      
+      const header = document.getElementById('mainHeader');
+      const shrunk = header.classList.contains('battersea-header--shrunk');
+      
+      if (shrunk && scrollY < 120) {
+        document.getElementById('status').style.color = 'blue';
+      } else {
+        document.getElementById('status').style.color = '#667eea';
+      }
+    });
+    
+    // Header events
+    document.getElementById('mainHeader').addEventListener('battersea:headerShrink', () => {
+      console.log('🎯 Header shrunk smoothly');
+    });
+    
+    document.getElementById('mainHeader').addEventListener('battersea:headerExpand', () => {
+      console.log('🎯 Header expanded smoothly');
+    });
+  </script>
+
+</body>
+</html>

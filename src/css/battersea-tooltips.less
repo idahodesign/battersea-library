@@ -1,0 +1,80 @@
+/**
+ * Battersea Library - Tooltips Styles Version: 2.0.4
+*/
+.battersea-tooltip {
+  position: fixed;
+  background: var(--battersea-tooltip-bg);
+  color: var(--battersea-tooltip-text);
+  padding: var(--battersea-tooltip-padding);
+  border-radius: var(--battersea-tooltip-radius);
+  font-size: 14px;
+  line-height: 1.4;
+  z-index: 10000;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(0);
+  transition: opacity 0.2s, transform 0.2s;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    border: 5px solid transparent;
+  }
+  
+  &.battersea-tooltip-top {
+    &::after {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--battersea-tooltip-bg);
+    }
+    
+    &.battersea-tooltip-show {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+  }
+  
+  &.battersea-tooltip-bottom {
+    &::after {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-color: var(--battersea-tooltip-bg);
+    }
+    
+    &.battersea-tooltip-show {
+      opacity: 1;
+      transform: translateY(4px);
+    }
+  }
+  
+  &.battersea-tooltip-left {
+    &::after {
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: var(--battersea-tooltip-bg);
+    }
+    
+    &.battersea-tooltip-show {
+      opacity: 1;
+      transform: translateX(-4px);
+    }
+  }
+  
+  &.battersea-tooltip-right {
+    &::after {
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: var(--battersea-tooltip-bg);
+    }
+    
+    &.battersea-tooltip-show {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+  }
+}

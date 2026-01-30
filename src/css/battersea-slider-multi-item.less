@@ -1,0 +1,64 @@
+/**
+ * Battersea Library - Multi Item Slider Styles Version: 2.0.4
+*/
+
+[data-multislider] {
+  position: relative;
+  overflow: hidden;
+  
+  [data-multislider-track] {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  [data-multislider-item] {
+    flex-shrink: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  [data-multislider-prev],
+  [data-multislider-next] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--battersea-slider-arrow-size, 40px);
+    height: var(--battersea-slider-arrow-size, 40px);
+    background: var(--battersea-slider-arrow-bg);
+    color: var(--battersea-slider-arrow-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.3s;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--battersea-primary);
+      outline-offset: 2px;
+    }
+  }
+  
+  [data-multislider-prev] {
+    left: 16px;
+    
+    &::before {
+      content: 'â€¹';
+      font-size: 24px;
+    }
+  }
+  
+  [data-multislider-next] {
+    right: 16px;
+    
+    &::before {
+      content: 'â€º';
+      font-size: 24px;
+    }
+  }
+}

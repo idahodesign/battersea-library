@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battersea Library - Testing v3</title>
+  <link rel="stylesheet" href="/src/css/battersea-library.css">
+  <style>
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f5f5f5;
+    }
+    
+    section {
+      margin: 40px 0;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 15px;
+    }
+    
+    h2 {
+      color: #666;
+      margin-top: 0;
+      border-left: 4px solid #007bff;
+      padding-left: 15px;
+    }
+    
+    h3 {
+      color: #555;
+      margin: 25px 0 15px 0;
+    }
+    
+    .component-info {
+      background: #e7f3ff;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      border-left: 4px solid #007bff;
+      font-size: 14px;
+    }
+    
+    .demo-box {
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      margin: 15px 0;
+      border: 1px solid #e0e0e0;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    
+    /* Accordion */
+    [data-accordion-header] {
+      padding: 15px;
+      background: #f0f0f0;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      position: relative;
+    }
+    
+    [data-accordion-content] {
+      padding: 15px;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    
+    /* Progress containers */
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .progress-item {
+      text-align: center;
+    }
+    
+    .progress-label-below {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #666;
+    }
+    
+    /* Horizontal progress */
+    .progress-list {
+      margin-top: 20px;
+    }
+    
+    .progress-list > div {
+      margin: 15px 0;
+    }
+    
+    /* Nested progress with responsive containers */
+    .nested-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    
+    .nested-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+    }
+    
+    /* MultiSlider */
+    .multislider-item {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    
+    /* Parallax - better visible image */
+    .parallax-container {
+      height: 400px;
+      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200');
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .parallax-content {
+      background: rgba(255,255,255,0.95);
+      padding: 30px 50px;
+      border-radius: 8px;
+      color: #333;
+      font-size: 32px;
+      font-weight: bold;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    
+    /* Animations */
+    .spacer {
+      height: 150px;
+      text-align: center;
+      color: #999;
+      padding-top: 50px;
+    }
+    
+    .anim-demo-box {
+      padding: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .anim-demo-box h3 {
+      margin-top: 0;
+      color: white;
+    }
+    
+    .child-box {
+      padding: 15px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      margin: 10px 0;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 Battersea Library - Testing v3</h1>
+  <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
+    Testing: Accordion smooth animation, Progress bar responsiveness, Nested progress with title/legend, Animation timing fixes
+  </p>
+
+  <!-- ACCORDION -->
+  <section>
+    <h2>Accordion - Smooth Animation Test</h2>
+    <div class="component-info">
+      <strong>Test:</strong> Open and close should be smooth with no jumps or jerks
+    </div>
+    <div data-accordion data-accordion-multiple="false">
+      <div data-accordion-item class="active">
+        <div data-accordion-header>
+          <strong>Section 1 - Click to toggle</strong>
+        </div>
+        <div data-accordion-content>
+          <p>This content should expand and collapse smoothly using max-height transitions.</p>
+          <p>No more jumping to 1/4 height!</p>
+        </div>
+      </div>
+      <div data-accordion-item>
+        <div data-accordion-header>
+          <strong>Section 2 - Longer content</strong>
+        </div>
+        <div data-accordion-content>
+          <p>This section has more content to test the smooth animation with varying heights.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>The animation should feel natural and smooth throughout.</p>
+        </div>
+      </div>
+      <div data-accordion-item>
+        <div data-accordion-header>
+          <strong>Section 3 - Short content</strong>
+        </div>
+        <div data-accordion-content>
+          <p>Brief content here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESS BAR - CIRCULAR RESPONSIVE -->
+  <section>
+    <h2>Progress Bar - Responsive Circular</h2>
+    <div class="component-info">
+      <strong>Test:</strong> Circular progress bars should adapt to their parent container width
+    </div>
+    
+    <h3>Grid Layout (3 columns, auto-fit)</h3>
+    <div class="progress-grid">
+      <div class="progress-item">
+        <div data-progress data-progress-type="circular" data-progress-value="85" data-progress-size="200"></div>
+        <div class="progress-label-below">Skills - 85%</div>
+      </div>
+      <div class="progress-item">
+        <div data-progress data-progress-type="circular" data-progress-value="92" data-progress-size="200"></div>
+        <div class="progress-label-below">Experience - 92%</div>
+      </div>
+      <div class="progress-item">
+        <div data-progress data-progress-type="circular" data-progress-value="78" data-progress-size="200"></div>
+        <div class="progress-label-below">Quality - 78%</div>
+      </div>
+    </div>
+    
+    <h3>Horizontal Progress Bars</h3>
+    <div class="progress-list">
+      <div data-progress data-progress-value="90" data-progress-label="HTML/CSS"></div>
+      <div data-progress data-progress-value="85" data-progress-label="JavaScript"></div>
+      <div data-progress data-progress-value="75" data-progress-label="React"></div>
+    </div>
+  </section>
+
+  <!-- NESTED PROGRESS -->
+  <section>
+    <h2>Nested Progress - Responsive with Title & Legend</h2>
+    <div class="component-info">
+      <strong>Test:</strong> Should adapt to parent width, show title in center, optional legend below
+    </div>
+    
+    <div class="nested-demo-grid">
+      <!-- With Title and Legend -->
+      <div class="nested-container">
+        <h4 style="margin-top:0;">With Title & Legend</h4>
+        <div data-progress-nested 
+             data-progress-title="Skills"
+             data-progress-legend="true"
+             data-progress-circles='[
+               {"label":"HTML","value":90,"color":"#e34c26"},
+               {"label":"CSS","value":85,"color":"#264de4"},
+               {"label":"JavaScript","value":80,"color":"#f0db4f"}
+             ]'>
+        </div>
+      </div>
+      
+      <!-- With Title, No Legend -->
+      <div class="nested-container">
+        <h4 style="margin-top:0;">With Title Only</h4>
+        <div data-progress-nested 
+             data-progress-title="Stack"
+             data-progress-legend="false"
+             data-progress-circles='[
+               {"label":"Frontend","value":88,"color":"#61dafb"},
+               {"label":"Backend","value":75,"color":"#68a063"},
+               {"label":"DevOps","value":65,"color":"#0db7ed"}
+             ]'>
+        </div>
+      </div>
+      
+      <!-- No Title, With Legend -->
+      <div class="nested-container">
+        <h4 style="margin-top:0;">Legend Only</h4>
+        <div data-progress-nested 
+             data-progress-legend="true"
+             data-progress-circles='[
+               {"label":"Design","value":82,"color":"#ff6b6b"},
+               {"label":"Code","value":91,"color":"#4ecdc4"},
+               {"label":"Test","value":79,"color":"#ffe66d"}
+             ]'>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTI-SLIDER -->
+  <section>
+    <h2>Multi-Slider</h2>
+    <div class="component-info">
+      <strong>Status:</strong> Should be working correctly
+    </div>
+    <div data-multislider 
+         data-multislider-items="3" 
+         data-multislider-items-md="2" 
+         data-multislider-items-sm="1" 
+         data-multislider-gap="20" 
+         data-multislider-autoplay="true" 
+         data-multislider-interval="3000">
+      <div data-multislider-track>
+        <div data-multislider-item class="multislider-item">1</div>
+        <div data-multislider-item class="multislider-item">2</div>
+        <div data-multislider-item class="multislider-item">3</div>
+        <div data-multislider-item class="multislider-item">4</div>
+        <div data-multislider-item class="multislider-item">5</div>
+        <div data-multislider-item class="multislider-item">6</div>
+      </div>
+      <button data-multislider-prev>‹</button>
+      <button data-multislider-next>›</button>
+    </div>
+  </section>
+
+  <!-- PARALLAX -->
+  <section>
+    <h2>Parallax - Mountain Landscape</h2>
+    <div class="component-info">
+      <strong>Test:</strong> Scroll up and down - mountain background should move at different speed
+    </div>
+    <div class="parallax-container" data-parallax data-parallax-speed="0.5">
+      <div class="parallax-content">Parallax Effect</div>
+    </div>
+  </section>
+
+  <!-- ANIMATIONS -->
+  <section>
+    <h2>Animations - Timing & Flicker Fix</h2>
+    <div class="component-info">
+      <strong>Test:</strong> Should NOT flicker. Timing: 0.5s delay → animate → children wait 0.3s → animate<br>
+      <strong>Note:</strong> Scroll down to trigger animations
+    </div>
+    
+    <div class="spacer">↓ Scroll down to see animations ↓</div>
+    
+    <div data-animate="fade-in" class="anim-demo-box">
+      <h3>Fade In</h3>
+      <p>Should appear after 0.5s delay, no flicker</p>
+    </div>
+
+    <div data-animate="fade-up" class="anim-demo-box">
+      <h3>Fade Up</h3>
+      <p>Should slide up from bottom after 0.5s delay</p>
+    </div>
+    
+    <div data-animate="fade-down" class="anim-demo-box">
+      <h3>Fade Down</h3>
+      <p>Should drop from top after 0.5s delay</p>
+    </div>
+
+    <div data-animate="fade-left" class="anim-demo-box">
+      <h3>Fade Left</h3>
+      <p>Should slide in from right after 0.5s delay</p>
+    </div>
+
+    <div data-animate="fade-right" class="anim-demo-box">
+      <h3>Fade Right</h3>
+      <p>Should slide in from left after 0.5s delay</p>
+    </div>
+
+    <div data-animate="fade-up" class="delay-5 anim-demo-box">
+      <h3>Fade Up + Custom Delay</h3>
+      <p>Has delay-5 class = 0.5s base + 0.5s custom = 1s total delay</p>
+    </div>
+
+    <div data-animate="fade-up" class="anim-demo-box">
+      <h3>Parent with Children</h3>
+      <p>Parent animates first (0.5s delay)</p>
+      <div class="child-box">Child 1 - Should wait 0.3s after parent finishes</div>
+      <div class="child-box">Child 2 - Should appear 0.1s after Child 1</div>
+      <div class="child-box">Child 3 - Should appear 0.1s after Child 2</div>
+    </div>
+
+    <div data-animate="fade-in" class="anim-demo-box">
+      <h3>Children with Custom Delays</h3>
+      <p>Parent animates first</p>
+      <div class="child-box">Child - Normal (0.3s wait)</div>
+      <div class="child-box delay-3">Child - With delay-3 (0.3s + 0.3s = 0.6s total)</div>
+      <div class="child-box delay-5">Child - With delay-5 (0.3s + 0.5s = 0.8s total)</div>
+    </div>
+  </section>
+
+  <!-- Load Battersea Library -->
+  <script src="/src/js/battersea-utils.js"></script>
+  <script src="/src/js/battersea-core.js"></script>
+  <script src="/src/js/battersea-accordion.js"></script>
+  <script src="/src/js/battersea-animation.js"></script>
+  <script src="/src/js/battersea-progressbar.js"></script>
+  <script src="/src/js/battersea-nestedprogress.js"></script>
+  <script src="/src/js/battersea-multislider.js"></script>
+  <script src="/src/js/battersea-parallax.js"></script>
+
+  <script>
+    console.log('✅ Battersea Library v3 Loaded');
+    console.log('Testing: Accordion smoothness, Progress responsiveness, Nested progress features, Animation timing');
+  </script>
+</body>
+</html>

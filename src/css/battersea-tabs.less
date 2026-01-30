@@ -1,0 +1,43 @@
+/**
+ * Battersea Library - Tab Styles Version: 2.0.4
+*/
+
+[data-tabs-nav] {
+  display: flex;
+  border-bottom: var(--battersea-tab-border-width) solid var(--battersea-border);
+  
+  [data-tab] {
+    padding: var(--battersea-tab-padding);
+    background: transparent;
+    border: none;
+    border-bottom: var(--battersea-tab-border-width) solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: calc(-1 * var(--battersea-tab-border-width));
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    &.active {
+      border-bottom-color: var(--battersea-tab-active-color);
+      color: var(--battersea-tab-active-color);
+      font-weight: 600;
+    }
+  }
+}
+
+[data-tabs-content] {
+  padding-top: 20px;
+  
+  [data-tab-content] {
+    display: none;
+    
+    &.active {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battersea Header + HorizontalNav Integration Demo</title>
+  
+  <!-- Battersea Library - Using LESS compiled CSS -->
+  <link rel="stylesheet" href="src/css/battersea-library.css">
+  
+  <!-- Core JavaScript -->
+  <script src="/src/js/battersea-utils.js"></script>
+  <script src="/src/js/battersea-core.js"></script>
+  <script src="/src/js/battersea-header.js"></script>
+  <script src="/src/js/battersea-horizontalnav.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    
+    /* Custom theme colors for this demo */
+    :root {
+      --battersea-primary: #667eea;
+      --battersea-secondary: #764ba2;
+      --battersea-hnav-bg: #fff;
+      --battersea-hnav-text: #555;
+      --battersea-hnav-hover-bg: #f0f7ff;
+      --battersea-hnav-hover-text: #667eea;
+      --battersea-hnav-active-bg: #667eea;
+      --battersea-hnav-active-text: #fff;
+    }
+    
+    /* Pre-Header Styling */
+    .battersea-header-pre {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      font-size: 14px;
+    }
+    
+    .pre-header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .pre-header-menu {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .pre-header-menu a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .pre-header-menu a:hover {
+      color: #fff;
+    }
+    
+    /* Main Header Styling */
+    .battersea-header {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .battersea-header__container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .battersea-header__brand {
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .battersea-header__brand a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .battersea-header__logo {
+      height: 40px;
+      width: auto;
+      transition: height 0.3s ease;
+    }
+    
+    .logo-text {
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Shrunk header adjustments */
+    .battersea-header--shrunk .battersea-header__logo {
+      height: 30px;
+    }
+    
+    .battersea-header--shrunk .battersea-header__brand {
+      padding: 12px 0;
+    }
+    
+    .battersea-header--shrunk .logo-text {
+      font-size: 22px;
+    }
+    
+    /* Page Content */
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    
+    .hero-section h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .hero-section p {
+      font-size: 20px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .content-section h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+    
+    .content-section h3 {
+      color: #555;
+      margin: 30px 0 15px;
+      font-size: 22px;
+    }
+    
+    .content-section p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    
+    .content-section ul {
+      margin: 15px 0 15px 30px;
+      color: #666;
+    }
+    
+    .content-section li {
+      margin-bottom: 8px;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .feature-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .feature-card h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .feature-card p {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+    }
+    
+    .code-block {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 20px;
+      margin: 20px 0;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #667eea;
+      color: #fff;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    
+    .badge.badge-success {
+      background: #28a745;
+    }
+    
+    .badge.badge-info {
+      background: #17a2b8;
+    }
+    
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      font-size: 13px;
+      z-index: 50;
+    }
+    
+    .scroll-indicator strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #667eea;
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 767px) {
+      .pre-header-content {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+      
+      .pre-header-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      
+      .hero-section h1 {
+        font-size: 32px;
+      }
+      
+      .hero-section p {
+        font-size: 16px;
+      }
+      
+      .scroll-indicator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pre-Header Bar -->
+  <div class="battersea-header-pre" 
+       data-pre-mobile="show"
+       data-pre-tablet="show" 
+       data-pre-desktop="show"
+       data-pre-height="40">
+    <div class="pre-header-content">
+      <span>📞 Support: 1-800-BATTERSEA | 📧 info@battersea.com</span>
+      <ul class="pre-header-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#login">Login</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Adaptive Header with HorizontalNav -->
+  <header class="battersea-header" 
+          data-header
+          data-sticky="true"
+          data-shrink="true"
+          data-shrink-offset="100"
+          data-shrink-height="60"
+          data-layout="right-align"
+          data-transition-speed="0.3"
+          id="main-header">
+    
+    <div class="battersea-header__container">
+      <!-- Brand/Logo -->
+      <div class="battersea-header__brand">
+        <a href="#home">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23667eea'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" 
+               alt="Battersea Logo" 
+               class="battersea-header__logo">
+          <div class="logo-text">Battersea</div>
+        </a>
+      </div>
+      
+      <!-- Horizontal Navigation -->
+      <nav class="battersea-header__nav" 
+           data-horizontal-nav
+           data-nav-hover-delay="200"
+           data-nav-edge-threshold="250"
+           data-nav-mobile-breakpoint="768"
+           data-nav-mobile-mode="overlay">
+        <ul class="battersea-hnav">
+          <!-- Level 1: Home -->
+          <li class="battersea-hnav__item">
+            <a href="#home" class="battersea-hnav__link active">Home</a>
+          </li>
+          
+          <!-- Level 1: Products (with dropdown) -->
+          <li class="battersea-hnav__item battersea-hnav__item--has-dropdown">
+            <a href="#products" class="battersea-hnav__link">Products</a>
+            <!-- Level 2: Dropdown -->
+            <ul class="battersea-hnav__dropdown">
+              <li class="battersea-hnav__dropdown-item battersea-hnav__item--has-flyout">
+                <a href="#software" class="battersea-hnav__dropdown-link">Software</a>
+                <!-- Level 3: Flyout -->
+                <ul class="battersea-hnav__flyout">
+                  <li class="battersea-hnav__flyout-item battersea-hnav__item--has-accordion">
+                    <a href="#desktop" class="battersea-hnav__flyout-link">Desktop Apps</a>
+                    <!-- Level 4: Accordion -->
+                    <ul class="battersea-hnav__accordion">
+                      <li><a href="#productivity">Productivity Suite</a></li>
+                      <li><a href="#creative">Creative Tools</a></li>
+                      <li><a href="#utilities">Utilities</a></li>
+                      <li><a href="#games">Games</a></li>
+                    </ul>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#web" class="battersea-hnav__flyout-link">Web Apps</a>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#mobile" class="battersea-hnav__flyout-link">Mobile Apps</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#hardware" class="battersea-hnav__dropdown-link">Hardware</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item battersea-hnav__item--has-flyout">
+                <a href="#services" class="battersea-hnav__dropdown-link">Cloud Services</a>
+                <ul class="battersea-hnav__flyout">
+                  <li class="battersea-hnav__flyout-item battersea-hnav__item--has-accordion">
+                    <a href="#storage" class="battersea-hnav__flyout-link">Storage</a>
+                    <ul class="battersea-hnav__accordion">
+                      <li><a href="#personal">Personal (100GB)</a></li>
+                      <li><a href="#pro">Pro (1TB)</a></li>
+                      <li><a href="#business">Business (Unlimited)</a></li>
+                    </ul>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#hosting" class="battersea-hnav__flyout-link">Web Hosting</a>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#backup" class="battersea-hnav__flyout-link">Backup Solutions</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- Level 1: Solutions -->
+          <li class="battersea-hnav__item battersea-hnav__item--has-dropdown">
+            <a href="#solutions" class="battersea-hnav__link">Solutions</a>
+            <ul class="battersea-hnav__dropdown">
+              <li class="battersea-hnav__dropdown-item battersea-hnav__item--has-flyout">
+                <a href="#business" class="battersea-hnav__dropdown-link">For Business</a>
+                <ul class="battersea-hnav__flyout">
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#small" class="battersea-hnav__flyout-link">Small Business</a>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#enterprise" class="battersea-hnav__flyout-link">Enterprise</a>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#government" class="battersea-hnav__flyout-link">Government</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#education" class="battersea-hnav__dropdown-link">Education</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#nonprofit" class="battersea-hnav__dropdown-link">Non-Profit</a>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- Level 1: Resources -->
+          <li class="battersea-hnav__item battersea-hnav__item--has-dropdown">
+            <a href="#resources" class="battersea-hnav__link">Resources</a>
+            <ul class="battersea-hnav__dropdown">
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#docs" class="battersea-hnav__dropdown-link">Documentation</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#tutorials" class="battersea-hnav__dropdown-link">Tutorials</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#blog" class="battersea-hnav__dropdown-link">Blog</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#community" class="battersea-hnav__dropdown-link">Community</a>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- Level 1: Pricing -->
+          <li class="battersea-hnav__item">
+            <a href="#pricing" class="battersea-hnav__link">Pricing</a>
+          </li>
+          
+          <!-- Level 1: Contact -->
+          <li class="battersea-hnav__item">
+            <a href="#contact" class="battersea-hnav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator" id="scrollIndicator">
+    <strong>Header Status:</strong>
+    <div id="headerStatus">Normal</div>
+    <div id="scrollPosition">Scroll: 0px</div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="page-content">
+    
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1>🚀 Header + HorizontalNav</h1>
+      <p>A fully integrated, production-ready navigation system with adaptive header and 4-level menus</p>
+    </div>
+    
+    <!-- Features Section -->
+    <div class="content-section">
+      <h2>✨ Integration Features</h2>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>📌 Sticky Header</h4>
+          <p>Stays at top while scrolling</p>
+        </div>
+        <div class="feature-card">
+          <h4>⬇️ Shrink on Scroll</h4>
+          <p>Reduces height after 100px</p>
+        </div>
+        <div class="feature-card">
+          <h4>🎯 Pre-Header Bar</h4>
+          <p>Disappears on scroll</p>
+        </div>
+        <div class="feature-card">
+          <h4>🔄 4-Level Navigation</h4>
+          <p>Main → Dropdown → Flyout → Accordion</p>
+        </div>
+        <div class="feature-card">
+          <h4>🎨 Smooth Animations</h4>
+          <p>Fade, slide, and transform</p>
+        </div>
+        <div class="feature-card">
+          <h4>📱 Fully Responsive</h4>
+          <p>Mobile, tablet, desktop</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Header Component Features -->
+    <div class="content-section">
+      <h2>🎛️ Header Component</h2>
+      
+      <h3>Active Features</h3>
+      <ul>
+        <li><strong>Sticky Positioning:</strong> <span class="badge badge-success">Enabled</span> - Header stays at top</li>
+        <li><strong>Shrink on Scroll:</strong> <span class="badge badge-success">Enabled</span> - Activates at 100px scroll</li>
+        <li><strong>Pre-Header Bar:</strong> <span class="badge badge-info">Visible</span> - Shows contact info</li>
+        <li><strong>Layout:</strong> <span class="badge">right-align</span> - Logo left, nav right</li>
+        <li><strong>Transition Speed:</strong> 0.3s for smooth animations</li>
+      </ul>
+      
+      <h3>Configuration</h3>
+      <div class="code-block">&lt;header class="battersea-header" 
+        data-header
+        data-sticky="true"
+        data-shrink="true"
+        data-shrink-offset="100"
+        data-shrink-height="60"
+        data-layout="right-align"
+        data-transition-speed="0.3"&gt;</div>
+    </div>
+    
+    <!-- Navigation Features -->
+    <div class="content-section">
+      <h2>🧭 HorizontalNav Component</h2>
+      
+      <h3>Navigation Levels</h3>
+      <ul>
+        <li><strong>Level 1:</strong> Main horizontal items (Home, Products, Solutions, etc.)</li>
+        <li><strong>Level 2:</strong> Dropdown panels - Slide UP from below</li>
+        <li><strong>Level 3:</strong> Flyout panels - Slide LEFT or RIGHT based on space</li>
+        <li><strong>Level 4:</strong> Accordion items - Expand within flyouts</li>
+      </ul>
+      
+      <h3>Try These Features</h3>
+      <ul>
+        <li>Hover over <strong>"Products"</strong> to see dropdown slide up</li>
+        <li>Hover over <strong>"Software"</strong> to see flyout on the right</li>
+        <li>Click <strong>"Desktop Apps"</strong> to expand accordion (4th level)</li>
+        <li>Move quickly between items - notice smooth transitions</li>
+        <li>Scroll down past 100px - watch header shrink</li>
+      </ul>
+      
+      <h3>Configuration</h3>
+      <div class="code-block">&lt;nav class="battersea-header__nav" 
+     data-horizontal-nav
+     data-nav-hover-delay="200"
+     data-nav-edge-threshold="250"
+     data-nav-mobile-breakpoint="768"&gt;</div>
+    </div>
+    
+    <!-- Styling Section -->
+    <div class="content-section">
+      <h2>🎨 Styling with LESS</h2>
+      
+      <p>This demo uses the compiled CSS from <code>battersea-library.less</code> which includes:</p>
+      
+      <ul>
+        <li>All component styles (Tooltip, Slider, Tabs, Header, HorizontalNav, etc.)</li>
+        <li>CSS custom properties for easy theming</li>
+        <li>Responsive breakpoints</li>
+        <li>Animation definitions</li>
+        <li>Modular organization</li>
+      </ul>
+      
+      <h3>Custom Theme Variables</h3>
+      <div class="code-block">:root {
+  --battersea-primary: #667eea;
+  --battersea-secondary: #764ba2;
+  --battersea-hnav-hover-bg: #f0f7ff;
+  --battersea-hnav-hover-text: #667eea;
+  --battersea-hnav-active-bg: #667eea;
+}</div>
+    </div>
+    
+    <!-- Technical Details -->
+    <div class="content-section">
+      <h2>⚙️ Technical Implementation</h2>
+      
+      <h3>Component Integration</h3>
+      <p>The header and navigation components work together seamlessly:</p>
+      
+      <ul>
+        <li><strong>Header component</strong> manages scroll behavior, sticky positioning, and shrinking</li>
+        <li><strong>HorizontalNav component</strong> manages menu interactions, animations, and positioning</li>
+        <li>Both components dispatch custom events for coordination</li>
+        <li>Shared CSS variables ensure consistent theming</li>
+      </ul>
+      
+      <h3>Files Required</h3>
+      <ul>
+        <li><code>battersea-utils.js</code> - Utility functions</li>
+        <li><code>battersea-core.js</code> - Component registration</li>
+        <li><code>battersea-header.js</code> - Header component</li>
+        <li><code>battersea-horizontalnav.js</code> - Navigation component</li>
+        <li><code>battersea-library.css</code> - Compiled from LESS</li>
+      </ul>
+      
+      <h3>Browser Compatibility</h3>
+      <ul>
+        <li>✅ Chrome (latest)</li>
+        <li>✅ Firefox (latest)</li>
+        <li>✅ Safari (latest)</li>
+        <li>✅ Edge (latest)</li>
+        <li>✅ Mobile browsers</li>
+      </ul>
+    </div>
+    
+    <!-- Scroll Space -->
+    <div class="content-section" style="min-height: 800px;">
+      <h2>📜 Scroll Test Area</h2>
+      <p>Scroll down to see the header behavior in action!</p>
+      <p>Watch for:</p>
+      <ul>
+        <li>Pre-header disappearing</li>
+        <li>Header becoming sticky</li>
+        <li>Header shrinking at 100px scroll</li>
+        <li>Logo size reducing</li>
+        <li>Smooth transitions</li>
+      </ul>
+      
+      <div style="height: 600px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; font-size: 24px;">
+        Keep scrolling! ⬇️
+      </div>
+    </div>
+    
+  </div>
+
+  <script>
+    // Update scroll indicator
+    let lastScroll = 0;
+    const header = document.getElementById('main-header');
+    const preHeader = document.querySelector('.battersea-header-pre');
+    const indicator = document.getElementById('scrollIndicator');
+    const statusEl = document.getElementById('headerStatus');
+    const positionEl = document.getElementById('scrollPosition');
+    
+    // Debug: Check if elements exist
+    console.log('Header element:', header);
+    console.log('Pre-header element:', preHeader);
+    
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      
+      // Update position
+      positionEl.textContent = `Scroll: ${Math.round(scrollY)}px`;
+      
+      // Update status
+      let status = [];
+      if (scrollY > 0) status.push('Sticky');
+      if (scrollY > 100) status.push('Shrunk');
+      if (scrollY === 0) status.push('Normal');
+      
+      // Debug: Check pre-header class
+      if (preHeader) {
+        const preHidden = preHeader.classList.contains('battersea-header-pre--hidden');
+        if (scrollY > 10 && !preHidden) {
+          console.warn('⚠️ Pre-header should be hidden at scroll:', scrollY);
+        }
+      }
+      
+      // Debug: Check header shrunk class
+      const headerShrunk = header.classList.contains('battersea-header--shrunk');
+      if (scrollY > 100 && !headerShrunk) {
+        console.warn('⚠️ Header should be shrunk at scroll:', scrollY);
+      }
+      
+      statusEl.textContent = status.join(' + ') || 'Normal';
+      
+      lastScroll = scrollY;
+    });
+    
+    // Log header events
+    header.addEventListener('battersea:headerInit', (e) => {
+      console.log('✅ Header initialized', e.detail);
+    });
+    
+    header.addEventListener('battersea:headerShrink', () => {
+      console.log('🎯 Header shrunk');
+    });
+    
+    header.addEventListener('battersea:headerExpand', () => {
+      console.log('🎯 Header expanded');
+    });
+    
+    // Log nav events
+    const nav = document.querySelector('[data-horizontal-nav]');
+    
+    nav.addEventListener('battersea:hnavInit', () => {
+      console.log('✅ HorizontalNav initialized');
+    });
+    
+    // Check initialization after delay
+    setTimeout(() => {
+      const headerInstance = header.getAttribute('data-battersea-instance');
+      console.log('Header instance ID:', headerInstance);
+      
+      if (!headerInstance) {
+        console.error('❌ Header did not initialize!');
+      }
+    }, 500);
+    
+    console.log('🚀 Demo loaded successfully!');
+  </script>
+
+</body>
+</html>

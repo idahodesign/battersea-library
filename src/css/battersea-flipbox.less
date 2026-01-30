@@ -1,0 +1,66 @@
+/**
+ * Battersea Library - Flipbox Styles Version: 2.0.4
+*/
+ 
+[data-flipbox] {
+  perspective: 1000px;
+  cursor: pointer;
+  width: 100%;
+  min-height: 200px;
+  
+  [data-flipbox-front],
+  [data-flipbox-back] {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  [data-flipbox-front] {
+    position: relative;
+    z-index: 2;
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  
+  [data-flipbox-back] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  // Horizontal flip
+  &.battersea-flipbox-horizontal {
+    [data-flipbox-back] {
+      transform: rotateY(180deg);
+    }
+    
+    &.battersea-flipbox-flipped {
+      [data-flipbox-front] {
+        transform: rotateY(180deg);
+      }
+      [data-flipbox-back] {
+        transform: rotateY(0deg);
+      }
+    }
+  }
+  
+  // Vertical flip
+  &.battersea-flipbox-vertical {
+    [data-flipbox-back] {
+      transform: rotateX(180deg);
+    }
+    
+    &.battersea-flipbox-flipped {
+      [data-flipbox-front] {
+        transform: rotateX(180deg);
+      }
+      [data-flipbox-back] {
+        transform: rotateX(0deg);
+      }
+    }
+  }
+}

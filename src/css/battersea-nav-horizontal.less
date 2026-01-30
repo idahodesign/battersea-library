@@ -1,0 +1,348 @@
+/**
+ * Battersea Library - Horizontal Navigation Styles Version: 2.0.4
+*/
+
+// CSS Variables
+:root {
+  --battersea-hnav-bg: #fff;
+  --battersea-hnav-text: #333;
+  --battersea-hnav-hover-bg: #f5f5f5;
+  --battersea-hnav-hover-text: #000;
+  --battersea-hnav-active-bg: var(--battersea-primary);
+  --battersea-hnav-active-text: #fff;
+  --battersea-hnav-dropdown-bg: #fff;
+  --battersea-hnav-dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --battersea-hnav-border: #e0e0e0;
+  --battersea-hnav-padding: 12px 20px;
+  --battersea-hnav-dropdown-width: 220px;
+  --battersea-hnav-flyout-width: 220px;
+  --battersea-hnav-animation-speed: 0.3s;
+  --battersea-hnav-icon-size: 12px;
+}
+
+// Base Navigation Container
+.battersea-hnav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+// Main Navigation Items (Level 1)
+.battersea-hnav__item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.battersea-hnav__link {
+  display: block;
+  padding: var(--battersea-hnav-padding);
+  color: var(--battersea-hnav-text);
+  text-decoration: none;
+  transition: background-color var(--battersea-hnav-animation-speed), 
+              color var(--battersea-hnav-animation-speed);
+  white-space: nowrap;
+  position: relative;
+  
+  &:hover,
+  &:focus {
+    background-color: var(--battersea-hnav-hover-bg);
+    color: var(--battersea-hnav-hover-text);
+    outline: none;
+  }
+  
+  &.active {
+    background-color: var(--battersea-hnav-active-bg);
+    color: var(--battersea-hnav-active-text);
+  }
+}
+
+// Active trail (parent of active item)
+.battersea-hnav__item.active-trail > .battersea-hnav__link {
+  font-weight: 600;
+}
+
+// Items with submenus - add indicator icons
+.battersea-hnav__item--has-dropdown > .battersea-hnav__link::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 8px;
+  vertical-align: middle;
+  border-left: var(--battersea-hnav-icon-size) solid transparent;
+  border-right: var(--battersea-hnav-icon-size) solid transparent;
+  border-top: var(--battersea-hnav-icon-size) solid currentColor;
+  transition: transform var(--battersea-hnav-animation-speed);
+}
+
+.battersea-hnav__item--open > .battersea-hnav__link::after {
+  transform: rotate(180deg);
+}
+
+// Dropdown Menu (Level 2)
+.battersea-hnav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: var(--battersea-hnav-dropdown-width);
+  background: var(--battersea-hnav-dropdown-bg);
+  box-shadow: var(--battersea-hnav-dropdown-shadow);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  z-index: 1000;
+  border-radius: 4px;
+  border: 1px solid var(--battersea-hnav-border);
+  
+  // Initial hidden state
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity var(--battersea-hnav-animation-speed),
+              transform var(--battersea-hnav-animation-speed),
+              visibility 0s var(--battersea-hnav-animation-speed);
+}
+
+// Dropdown visible state - slides UP to meet header
+.battersea-hnav__dropdown--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity var(--battersea-hnav-animation-speed),
+              transform var(--battersea-hnav-animation-speed),
+              visibility 0s 0s;
+}
+
+.battersea-hnav__dropdown-item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.battersea-hnav__dropdown-link {
+  display: block;
+  padding: 10px 20px;
+  color: var(--battersea-hnav-text);
+  text-decoration: none;
+  transition: background-color var(--battersea-hnav-animation-speed),
+              color var(--battersea-hnav-animation-speed);
+  white-space: nowrap;
+  
+  &:hover,
+  &:focus {
+    background-color: var(--battersea-hnav-hover-bg);
+    color: var(--battersea-hnav-hover-text);
+    outline: none;
+  }
+  
+  &.active {
+    background-color: var(--battersea-hnav-active-bg);
+    color: var(--battersea-hnav-active-text);
+  }
+}
+
+// Items with flyouts - add indicator
+.battersea-hnav__item--has-flyout > .battersea-hnav__dropdown-link::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: auto;
+  float: right;
+  border-top: var(--battersea-hnav-icon-size) solid transparent;
+  border-bottom: var(--battersea-hnav-icon-size) solid transparent;
+  border-left: var(--battersea-hnav-icon-size) solid currentColor;
+  transition: transform var(--battersea-hnav-animation-speed);
+}
+
+// Flyout Menu (Level 3)
+.battersea-hnav__flyout {
+  position: absolute;
+  top: 0;
+  min-width: var(--battersea-hnav-flyout-width);
+  background: var(--battersea-hnav-dropdown-bg);
+  box-shadow: var(--battersea-hnav-dropdown-shadow);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  z-index: 1001;
+  border-radius: 4px;
+  border: 1px solid var(--battersea-hnav-border);
+  pointer-events: none;
+  
+  // Initial hidden state
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--battersea-hnav-animation-speed),
+              transform var(--battersea-hnav-animation-speed),
+              visibility 0s var(--battersea-hnav-animation-speed);
+}
+
+// Flyout opens to the RIGHT by default
+.battersea-hnav__flyout--right {
+  left: 100%;
+  margin-left: 4px;
+  transform: translateX(-10px);
+}
+
+.battersea-hnav__flyout--right.battersea-hnav__flyout--visible {
+  transform: translateX(0);
+}
+
+// Flyout opens to the LEFT when near edge
+.battersea-hnav__flyout--left {
+  right: 100%;
+  margin-right: 4px;
+  transform: translateX(10px);
+}
+
+.battersea-hnav__flyout--left.battersea-hnav__flyout--visible {
+  transform: translateX(0);
+}
+
+// Flyout visible state
+.battersea-hnav__flyout--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity var(--battersea-hnav-animation-speed),
+              transform var(--battersea-hnav-animation-speed),
+              visibility 0s 0s;
+}
+
+.battersea-hnav__flyout-item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.battersea-hnav__flyout-link {
+  display: block;
+  padding: 10px 20px;
+  color: var(--battersea-hnav-text);
+  text-decoration: none;
+  transition: background-color var(--battersea-hnav-animation-speed),
+              color var(--battersea-hnav-animation-speed);
+  white-space: nowrap;
+  
+  &:hover,
+  &:focus {
+    background-color: var(--battersea-hnav-hover-bg);
+    color: var(--battersea-hnav-hover-text);
+    outline: none;
+  }
+  
+  &.active {
+    background-color: var(--battersea-hnav-active-bg);
+    color: var(--battersea-hnav-active-text);
+  }
+}
+
+// Items with accordions - add indicator
+.battersea-hnav__item--has-accordion > .battersea-hnav__flyout-link::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: auto;
+  float: right;
+  border-left: var(--battersea-hnav-icon-size) solid transparent;
+  border-right: var(--battersea-hnav-icon-size) solid transparent;
+  border-top: var(--battersea-hnav-icon-size) solid currentColor;
+  transition: transform var(--battersea-hnav-animation-speed);
+}
+
+.battersea-hnav__item--accordion-open > .battersea-hnav__flyout-link::after {
+  transform: rotate(180deg);
+}
+
+// Accordion Menu (Level 4)
+.battersea-hnav__accordion {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--battersea-hnav-animation-speed) ease,
+              opacity var(--battersea-hnav-animation-speed);
+  opacity: 0;
+}
+
+.battersea-hnav__item--accordion-open .battersea-hnav__accordion {
+  opacity: 1;
+}
+
+.battersea-hnav__accordion li {
+  margin: 0;
+  padding: 0;
+}
+
+.battersea-hnav__accordion a {
+  display: block;
+  padding: 8px 20px 8px 40px;
+  color: var(--battersea-hnav-text);
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: background-color var(--battersea-hnav-animation-speed),
+              color var(--battersea-hnav-animation-speed);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--battersea-hnav-hover-bg);
+    color: var(--battersea-hnav-hover-text);
+    outline: none;
+  }
+  
+  &.active {
+    background-color: var(--battersea-hnav-active-bg);
+    color: var(--battersea-hnav-active-text);
+    font-weight: 600;
+  }
+}
+
+// Mobile Mode - Hide horizontal nav
+.battersea-hnav--mobile .battersea-hnav {
+  display: none;
+}
+
+// Responsive Adjustments
+@media (max-width: 1023px) {
+  .battersea-hnav__link {
+    padding: 10px 16px;
+  }
+  
+  .battersea-hnav__dropdown,
+  .battersea-hnav__flyout {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  // Mobile will use overlay mode - nav hidden by default
+  .battersea-hnav-initialized .battersea-hnav {
+    display: none;
+  }
+}
+
+// Accessibility - Focus States
+.battersea-hnav__link:focus-visible,
+.battersea-hnav__dropdown-link:focus-visible,
+.battersea-hnav__flyout-link:focus-visible,
+.battersea-hnav__accordion a:focus-visible {
+  outline: 2px solid var(--battersea-primary);
+  outline-offset: 2px;
+}
+
+// Print Styles
+@media print {
+  .battersea-hnav__dropdown,
+  .battersea-hnav__flyout,
+  .battersea-hnav__accordion {
+    position: static !important;
+    display: none !important;
+  }
+}

@@ -1,0 +1,47 @@
+/**
+ * Battersea Library - Progress Bar Styles Version: 2.0.4
+*/
+
+.battersea-progress {
+  margin: 10px 0;
+}
+
+.battersea-progress-bar {
+  width: 100%;
+  height: var(--battersea-progress-height);
+  background: var(--battersea-progress-bg);
+  border-radius: var(--battersea-progress-radius);
+  overflow: hidden;
+}
+
+.battersea-progress-fill {
+  height: 100%;
+  background: var(--battersea-progress-fill);
+  border-radius: var(--battersea-progress-radius);
+  transition: width 0.3s ease;
+}
+
+.battersea-progress-label {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--battersea-text);
+}
+
+.battersea-progress-circular {
+  position: relative;
+  display: inline-block;
+  
+  svg {
+    display: block;
+  }
+  
+  .battersea-progress-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+}

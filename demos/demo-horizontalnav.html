@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battersea HorizontalNav Demo</title>
+  
+  <!-- Battersea Library -->
+  <link rel="stylesheet" href="/src/css/battersea-library.css">
+  <script src="/src/js/battersea-utils.js"></script>
+  <script src="/src/js/battersea-core.js"></script>
+  <script src="/src/js/battersea-horizontalnav.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    
+    /* Demo Header */
+    .demo-header {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .demo-header__container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    
+    .demo-header__brand {
+      padding: 16px 0;
+    }
+    
+    .demo-header__brand h1 {
+      font-size: 24px;
+      color: #667eea;
+      margin: 0;
+    }
+    
+    /* Content Area */
+    .demo-content {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .demo-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .demo-card h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    
+    .demo-card h3 {
+      color: #555;
+      margin: 30px 0 15px;
+      font-size: 20px;
+    }
+    
+    .demo-card p {
+      margin-bottom: 15px;
+      color: #666;
+      line-height: 1.8;
+    }
+    
+    .demo-card ul {
+      margin: 15px 0 15px 30px;
+      color: #666;
+    }
+    
+    .demo-card li {
+      margin-bottom: 8px;
+    }
+    
+    .demo-card code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: #d63384;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .feature-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .feature-box h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    
+    .feature-box p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      margin: 0;
+    }
+    
+    .event-log {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 20px;
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .event-log h4 {
+      margin-bottom: 15px;
+      color: #495057;
+    }
+    
+    .event-log-entry {
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      background: #fff;
+      border-left: 3px solid #667eea;
+      border-radius: 3px;
+      font-size: 13px;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .event-log-entry .timestamp {
+      color: #6c757d;
+      margin-right: 10px;
+    }
+    
+    .event-log-entry .event-name {
+      color: #667eea;
+      font-weight: bold;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #667eea;
+      color: #fff;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    
+    .badge.badge-success {
+      background: #28a745;
+    }
+    
+    .badge.badge-warning {
+      background: #ffc107;
+      color: #333;
+    }
+    
+    .badge.badge-info {
+      background: #17a2b8;
+    }
+    
+    /* Customize nav colors for demo */
+    :root {
+      --battersea-hnav-bg: #fff;
+      --battersea-hnav-text: #333;
+      --battersea-hnav-hover-bg: #f0f0ff;
+      --battersea-hnav-hover-text: #667eea;
+      --battersea-hnav-active-bg: #667eea;
+      --battersea-hnav-active-text: #fff;
+      --battersea-primary: #667eea;
+    }
+    
+    /* Mobile Info Banner */
+    .mobile-info {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    
+    @media (max-width: 767px) {
+      .mobile-info {
+        display: block;
+      }
+    }
+    
+    .mobile-info p {
+      margin: 0;
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo Header with HorizontalNav -->
+  <header class="demo-header">
+    <div class="demo-header__container">
+      <div class="demo-header__brand">
+        <h1>Battersea HorizontalNav</h1>
+      </div>
+      
+      <!-- Horizontal Navigation -->
+      <nav class="battersea-header__nav" 
+           data-horizontal-nav
+           data-nav-hover-delay="200"
+           data-nav-edge-threshold="250"
+           data-nav-mobile-breakpoint="768"
+           data-nav-mobile-mode="overlay">
+        <ul class="battersea-hnav">
+          <!-- Level 1: Home -->
+          <li class="battersea-hnav__item">
+            <a href="#home" class="battersea-hnav__link active">Home</a>
+          </li>
+          
+          <!-- Level 1: Products (with dropdown) -->
+          <li class="battersea-hnav__item battersea-hnav__item--has-dropdown">
+            <a href="#products" class="battersea-hnav__link">Products</a>
+            <!-- Level 2: Dropdown -->
+            <ul class="battersea-hnav__dropdown">
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#electronics" class="battersea-hnav__dropdown-link">Electronics</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item battersea-hnav__item--has-flyout">
+                <a href="#clothing" class="battersea-hnav__dropdown-link">Clothing</a>
+                <!-- Level 3: Flyout (with smart positioning) -->
+                <ul class="battersea-hnav__flyout">
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#mens" class="battersea-hnav__flyout-link">Men's</a>
+                  </li>
+                  <li class="battersea-hnav__flyout-item battersea-hnav__item--has-accordion">
+                    <a href="#womens" class="battersea-hnav__flyout-link">Women's</a>
+                    <!-- Level 4: Accordion -->
+                    <ul class="battersea-hnav__accordion">
+                      <li><a href="#dresses">Dresses</a></li>
+                      <li><a href="#tops">Tops</a></li>
+                      <li><a href="#bottoms">Bottoms</a></li>
+                      <li><a href="#accessories">Accessories</a></li>
+                    </ul>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#kids" class="battersea-hnav__flyout-link">Kids</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="battersea-hnav__dropdown-item battersea-hnav__item--has-flyout">
+                <a href="#home-garden" class="battersea-hnav__dropdown-link">Home & Garden</a>
+                <!-- Level 3: Another Flyout -->
+                <ul class="battersea-hnav__flyout">
+                  <li class="battersea-hnav__flyout-item battersea-hnav__item--has-accordion">
+                    <a href="#furniture" class="battersea-hnav__flyout-link">Furniture</a>
+                    <!-- Level 4: Accordion -->
+                    <ul class="battersea-hnav__accordion">
+                      <li><a href="#living-room">Living Room</a></li>
+                      <li><a href="#bedroom">Bedroom</a></li>
+                      <li><a href="#dining">Dining</a></li>
+                    </ul>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#decor" class="battersea-hnav__flyout-link">Decor</a>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#outdoor" class="battersea-hnav__flyout-link">Outdoor</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#sports" class="battersea-hnav__dropdown-link">Sports & Outdoors</a>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- Level 1: Services (with dropdown) -->
+          <li class="battersea-hnav__item battersea-hnav__item--has-dropdown">
+            <a href="#services" class="battersea-hnav__link">Services</a>
+            <!-- Level 2: Dropdown -->
+            <ul class="battersea-hnav__dropdown">
+              <li class="battersea-hnav__dropdown-item battersea-hnav__item--has-flyout">
+                <a href="#consulting" class="battersea-hnav__dropdown-link">Consulting</a>
+                <!-- Level 3: Flyout -->
+                <ul class="battersea-hnav__flyout">
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#strategy" class="battersea-hnav__flyout-link">Strategy</a>
+                  </li>
+                  <li class="battersea-hnav__flyout-item battersea-hnav__item--has-accordion">
+                    <a href="#implementation" class="battersea-hnav__flyout-link">Implementation</a>
+                    <!-- Level 4: Accordion -->
+                    <ul class="battersea-hnav__accordion">
+                      <li><a href="#phase1">Phase 1: Discovery</a></li>
+                      <li><a href="#phase2">Phase 2: Planning</a></li>
+                      <li><a href="#phase3">Phase 3: Execution</a></li>
+                    </ul>
+                  </li>
+                  <li class="battersea-hnav__flyout-item">
+                    <a href="#support" class="battersea-hnav__flyout-link">Support</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#training" class="battersea-hnav__dropdown-link">Training</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#maintenance" class="battersea-hnav__dropdown-link">Maintenance</a>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- Level 1: About -->
+          <li class="battersea-hnav__item battersea-hnav__item--has-dropdown">
+            <a href="#about" class="battersea-hnav__link">About</a>
+            <!-- Level 2: Simple Dropdown -->
+            <ul class="battersea-hnav__dropdown">
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#company" class="battersea-hnav__dropdown-link">Company</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#team" class="battersea-hnav__dropdown-link">Team</a>
+              </li>
+              <li class="battersea-hnav__dropdown-item">
+                <a href="#careers" class="battersea-hnav__dropdown-link">Careers</a>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- Level 1: Contact -->
+          <li class="battersea-hnav__item">
+            <a href="#contact" class="battersea-hnav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="demo-content">
+    
+    <!-- Mobile Info -->
+    <div class="mobile-info">
+      <p>📱 <strong>Mobile View Detected:</strong> On mobile devices, the horizontal navigation is hidden. In production, it would switch to overlay mode (to be implemented in future component).</p>
+    </div>
+    
+    <!-- Introduction -->
+    <div class="demo-card">
+      <h2>🎯 Horizontal Navigation Component</h2>
+      <p>A feature-rich, accessible navigation component with up to 4 levels of menus, smooth animations, and intelligent positioning.</p>
+      
+      <div class="feature-grid">
+        <div class="feature-box">
+          <h4>✨ 4 Levels</h4>
+          <p>Main → Dropdown → Flyout → Accordion</p>
+        </div>
+        <div class="feature-box">
+          <h4>🎨 Smooth Animations</h4>
+          <p>Slide up, slide left/right, fade transitions</p>
+        </div>
+        <div class="feature-box">
+          <h4>🧠 Smart Positioning</h4>
+          <p>Auto-detects screen edges</p>
+        </div>
+        <div class="feature-box">
+          <h4>♿ Accessible</h4>
+          <p>Keyboard navigation & ARIA labels</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="demo-card">
+      <h2>✨ Features</h2>
+      
+      <h3>Level 1: Main Navigation</h3>
+      <ul>
+        <li>Horizontal menu items with hover effects</li>
+        <li>Active page highlighting (try clicking links)</li>
+        <li>Smooth color transitions on hover</li>
+        <li>Customizable icons for items with submenus (▼ indicator)</li>
+      </ul>
+      
+      <h3>Level 2: Dropdown Menus</h3>
+      <ul>
+        <li><strong>Animation:</strong> Slides UP to meet the header (fade in)</li>
+        <li><strong>Activation:</strong> Hover with configurable delay (200ms default)</li>
+        <li><strong>Close:</strong> Simple fade out when mouse leaves</li>
+        <li><strong>Try it:</strong> Hover over "Products" or "Services"</li>
+      </ul>
+      
+      <h3>Level 3: Flyout Menus</h3>
+      <ul>
+        <li><strong>Animation:</strong> Slides TOWARDS parent (left or right based on space)</li>
+        <li><strong>Smart Positioning:</strong> Checks available screen space</li>
+        <li><strong>Edge Threshold:</strong> 250px default (customizable)</li>
+        <li><strong>Try it:</strong> Hover over "Clothing" in Products dropdown</li>
+        <li><strong>Edge Detection:</strong> Try "Home & Garden" - notice it opens to the left if near screen edge!</li>
+      </ul>
+      
+      <h3>Level 4: Accordion Menus</h3>
+      <ul>
+        <li><strong>Animation:</strong> Smooth max-height expansion</li>
+        <li><strong>Activation:</strong> Click to toggle</li>
+        <li><strong>Close:</strong> Fade out with smooth collapse</li>
+        <li><strong>Try it:</strong> Navigate to Products → Clothing → Women's, then click "Women's" to see accordion items</li>
+      </ul>
+      
+      <h3>Keyboard Navigation</h3>
+      <ul>
+        <li><strong>Tab:</strong> Navigate through menu items</li>
+        <li><strong>Enter/Space:</strong> Toggle dropdowns</li>
+        <li><strong>Escape:</strong> Close all menus</li>
+        <li><strong>Focus Indicators:</strong> Visible outline on keyboard focus</li>
+      </ul>
+      
+      <h3>Additional Features</h3>
+      <ul>
+        <li>Click outside to close all menus</li>
+        <li>Hover delay prevents accidental closures (200ms)</li>
+        <li>Active trail highlighting (parent items of active pages)</li>
+        <li>Responsive breakpoints (mobile detection at 768px)</li>
+        <li>Custom events for integration with other components</li>
+      </ul>
+    </div>
+    
+    <!-- Configuration -->
+    <div class="demo-card">
+      <h2>⚙️ Configuration</h2>
+      
+      <h3>Data Attributes</h3>
+      <p>Configure the navigation using these data attributes:</p>
+      
+      <ul>
+        <li><code>data-horizontal-nav</code> - Initialize the component</li>
+        <li><code>data-nav-hover-delay="200"</code> - Delay before closing dropdowns (ms) <span class="badge badge-success">200ms</span></li>
+        <li><code>data-nav-edge-threshold="250"</code> - Screen edge detection threshold (px) <span class="badge badge-info">250px</span></li>
+        <li><code>data-nav-mobile-breakpoint="768"</code> - Mobile mode breakpoint (px) <span class="badge badge-warning">768px</span></li>
+        <li><code>data-nav-mobile-mode="overlay"</code> - Mobile navigation mode <span class="badge">overlay</span></li>
+      </ul>
+      
+      <h3>CSS Variables</h3>
+      <p>Customize the appearance using CSS variables:</p>
+      
+      <ul>
+        <li><code>--battersea-hnav-bg</code> - Background color</li>
+        <li><code>--battersea-hnav-text</code> - Text color</li>
+        <li><code>--battersea-hnav-hover-bg</code> - Hover background</li>
+        <li><code>--battersea-hnav-hover-text</code> - Hover text color</li>
+        <li><code>--battersea-hnav-active-bg</code> - Active background</li>
+        <li><code>--battersea-hnav-active-text</code> - Active text color</li>
+        <li><code>--battersea-hnav-dropdown-shadow</code> - Dropdown shadow</li>
+        <li><code>--battersea-hnav-animation-speed</code> - Animation duration</li>
+        <li><code>--battersea-hnav-icon-size</code> - Submenu indicator size</li>
+      </ul>
+    </div>
+    
+    <!-- Events -->
+    <div class="demo-card">
+      <h2>📡 Custom Events</h2>
+      <p>The component dispatches custom events you can listen to:</p>
+      
+      <ul>
+        <li><code>battersea:hnavInit</code> - Navigation initialized</li>
+        <li><code>battersea:hnavDropdownOpen</code> - Dropdown opened</li>
+        <li><code>battersea:hnavDropdownClose</code> - Dropdown closed</li>
+        <li><code>battersea:hnavFlyoutOpen</code> - Flyout opened</li>
+        <li><code>battersea:hnavFlyoutClose</code> - Flyout closed</li>
+        <li><code>battersea:hnavAccordionOpen</code> - Accordion opened</li>
+        <li><code>battersea:hnavAccordionClose</code> - Accordion closed</li>
+        <li><code>battersea:hnavMobileMode</code> - Switched to mobile mode</li>
+      </ul>
+      
+      <!-- Event Log -->
+      <div class="event-log">
+        <h4>📋 Event Log (Live)</h4>
+        <div id="eventLog"></div>
+      </div>
+    </div>
+    
+    <!-- Integration -->
+    <div class="demo-card">
+      <h2>🔗 Integration</h2>
+      
+      <h3>With Header Component</h3>
+      <p>The HorizontalNav is designed to work inside the <code>.battersea-header__nav</code> placeholder:</p>
+      <pre style="background: #f4f4f4; padding: 15px; border-radius: 6px; overflow-x: auto;"><code>&lt;header class="battersea-header" data-header&gt;
+  &lt;div class="battersea-header__brand"&gt;
+    &lt;a href="#"&gt;Logo&lt;/a&gt;
+  &lt;/div&gt;
+  
+  &lt;nav class="battersea-header__nav" data-horizontal-nav&gt;
+    &lt;ul class="battersea-hnav"&gt;
+      &lt;!-- Navigation items --&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+      
+      <h3>Future Integration</h3>
+      <p>When the mobile <strong>OverlayNav</strong> component is built, the HorizontalNav will automatically switch to overlay mode on mobile devices based on the <code>data-nav-mobile-mode</code> attribute.</p>
+    </div>
+    
+  </div>
+
+  <script>
+    // Event logging for demo
+    const eventLog = document.getElementById('eventLog');
+    const nav = document.querySelector('[data-horizontal-nav]');
+    
+    const events = [
+      'battersea:hnavInit',
+      'battersea:hnavDropdownOpen',
+      'battersea:hnavDropdownClose',
+      'battersea:hnavFlyoutOpen',
+      'battersea:hnavFlyoutClose',
+      'battersea:hnavAccordionOpen',
+      'battersea:hnavAccordionClose',
+      'battersea:hnavMobileMode'
+    ];
+    
+    events.forEach(eventName => {
+      nav.addEventListener(eventName, (e) => {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.className = 'event-log-entry';
+        entry.innerHTML = `<span class="timestamp">${timestamp}</span><span class="event-name">${eventName}</span>`;
+        eventLog.insertBefore(entry, eventLog.firstChild);
+        
+        // Keep only last 10 entries
+        while (eventLog.children.length > 10) {
+          eventLog.removeChild(eventLog.lastChild);
+        }
+      });
+    });
+    
+    // Log initialization
+    console.log('HorizontalNav Demo loaded');
+  </script>
+
+</body>
+</html>

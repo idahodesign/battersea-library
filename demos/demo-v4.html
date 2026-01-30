@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battersea Library - v4</title>
+  <link rel="stylesheet" href="/src/css/battersea-library.css">
+  <style>
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f5f5f5;
+    }
+    
+    section {
+      margin: 40px 0;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 15px;
+    }
+    
+    h2 {
+      color: #666;
+      margin-top: 0;
+      border-left: 4px solid #007bff;
+      padding-left: 15px;
+    }
+    
+    h3 {
+      color: #555;
+      margin: 25px 0 15px 0;
+    }
+    
+    .test-note {
+      background: #fff3cd;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      border-left: 4px solid #ffc107;
+      font-size: 14px;
+    }
+    
+    .test-note strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    /* Accordion */
+    [data-accordion-item] {
+      margin-bottom: 10px;
+    }
+    
+    [data-accordion-header] {
+      padding: 15px 50px 15px 15px;
+      background: #f0f0f0;
+      cursor: pointer;
+      border-radius: 4px;
+      position: relative;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    
+    [data-accordion-header]:hover {
+      background: #e8e8e8;
+    }
+    
+    [data-accordion-content] {
+      padding: 0 15px;
+      background: #fafafa;
+      border-radius: 0 0 4px 4px;
+    }
+    
+    [data-accordion-content] > * {
+      padding: 15px 0;
+    }
+    
+    /* Animation demo boxes */
+    .spacer {
+      height: 150px;
+      text-align: center;
+      color: #999;
+      padding-top: 50px;
+      font-size: 18px;
+    }
+    
+    .anim-box {
+      padding: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .anim-box h3 {
+      margin-top: 0;
+      color: white;
+    }
+    
+    .anim-box p {
+      margin: 10px 0;
+    }
+    
+    .child-box {
+      padding: 15px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      margin: 10px 0;
+      backdrop-filter: blur(10px);
+    }
+    
+    /* MultiSlider */
+    .multislider-item {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 Battersea Library - Accordion & Animation Test</h1>
+  <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
+    Focused testing on the two problematic components
+  </p>
+
+  <!-- ACCORDION -->
+  <section>
+    <h2>1. Accordion - Smooth Transition Test - v4</h2>
+    <div class="test-note">
+      <strong>What to test:</strong>
+      Open and close each section. Should be completely smooth with NO snapping at any point during the animation.
+    </div>
+    
+    <div data-accordion data-accordion-multiple="false">
+      <div data-accordion-item class="active">
+        <div data-accordion-header">Section 1 - Currently Open</div>
+        <div data-accordion-content">
+          <div>
+            <p>This section starts open. Click the header to close it smoothly.</p>
+            <p>The transition should be completely smooth from full height to zero.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div data-accordion-item>
+        <div data-accordion-header">Section 2 - Short Content</div>
+        <div data-accordion-content">
+          <div>
+            <p>This section has less content.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div data-accordion-item>
+        <div data-accordion-header">Section 3 - Long Content</div>
+        <div data-accordion-content">
+          <div>
+            <p>This section has more content to test the animation with different heights.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>The animation should be just as smooth regardless of content height.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div data-accordion-item>
+        <div data-accordion-header">Section 4 - Medium Content</div>
+        <div data-accordion-content">
+          <div>
+            <p>This is another section with medium-length content.</p>
+            <p>Test by rapidly clicking between sections to ensure smooth transitions even when interrupted.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIMATIONS -->
+  <section>
+    <h2>2. Animations - NO Flicker Test</h2>
+    <div class="test-note">
+      <strong>What to test:</strong>
+      Scroll down slowly. Elements should:
+      <ul style="margin: 10px 0 0 20px; padding: 0;">
+        <li>Start hidden (invisible)</li>
+        <li>Wait 0.5s after becoming visible</li>
+        <li>Animate in smoothly</li>
+        <li>Children wait 0.3s after parent completes, then animate</li>
+        <li>NO double animation, NO flicker, NO appearing then disappearing</li>
+      </ul>
+    </div>
+    
+    <div class="spacer">↓ Scroll down slowly to test ↓</div>
+    
+    <h3>Basic Animations</h3>
+    
+    <div data-animate="fade-in" class="anim-box">
+      <h3>Fade In</h3>
+      <p>Should fade in smoothly after 0.5s delay</p>
+      <p>No flicker, no double animation</p>
+    </div>
+
+    <div data-animate="fade-up" class="anim-box">
+      <h3>Fade Up</h3>
+      <p>Should slide up from bottom</p>
+      <p>0.5s delay before animation starts</p>
+    </div>
+    
+    <div data-animate="fade-down" class="anim-box">
+      <h3>Fade Down</h3>
+      <p>Should drop from top</p>
+      <p>Single smooth animation</p>
+    </div>
+
+    <div data-animate="fade-left" class="anim-box">
+      <h3>Fade Left</h3>
+      <p>Should slide in from right</p>
+    </div>
+
+    <div data-animate="fade-right" class="anim-box">
+      <h3>Fade Right</h3>
+      <p>Should slide in from left</p>
+    </div>
+
+    <h3>With Custom Delays</h3>
+    
+    <div data-animate="fade-up" class="delay-3 anim-box">
+      <h3>Fade Up + delay-3</h3>
+      <p>Base delay: 0.5s</p>
+      <p>Custom delay: 0.3s</p>
+      <p>Total: 0.8s before animation</p>
+    </div>
+
+    <div data-animate="fade-in" class="delay-8 anim-box">
+      <h3>Fade In + delay-8</h3>
+      <p>Base delay: 0.5s</p>
+      <p>Custom delay: 0.8s</p>
+      <p>Total: 1.3s before animation</p>
+    </div>
+
+    <h3>Parent with Children</h3>
+    
+    <div data-animate="fade-up" class="anim-box">
+      <h3>Parent Animates First</h3>
+      <p>Parent: 0.5s delay → animate</p>
+      <p>Then children animate in sequence:</p>
+      <div class="child-box">Child 1 - Waits 0.3s after parent finishes</div>
+      <div class="child-box">Child 2 - Appears 0.1s after Child 1</div>
+      <div class="child-box">Child 3 - Appears 0.1s after Child 2</div>
+    </div>
+
+    <div data-animate="fade-in" class="anim-box">
+      <h3>Children with Custom Delays</h3>
+      <p>Each child can have its own delay class:</p>
+      <div class="child-box">Normal child (0.3s base wait)</div>
+      <div class="child-box delay-2">delay-2 child (0.3s + 0.2s = 0.5s)</div>
+      <div class="child-box delay-5">delay-5 child (0.3s + 0.5s = 0.8s)</div>
+      <div class="child-box delay-8">delay-8 child (0.3s + 0.8s = 1.1s)</div>
+    </div>
+
+    <div data-animate="fade-left" class="anim-box">
+      <h3>Complex Nesting Test</h3>
+      <p>Parent fades left, then children cascade:</p>
+      <div class="child-box">
+        First child
+        <div class="child-box" style="margin-top: 10px;">Grandchild 1</div>
+        <div class="child-box">Grandchild 2</div>
+      </div>
+      <div class="child-box">Second child</div>
+      <div class="child-box">Third child</div>
+    </div>
+
+    <h3>Rapid Scroll Test</h3>
+    
+    <div data-animate="fade-up" class="anim-box">
+      <h3>Element 1</h3>
+      <p>Scroll quickly past these to ensure no double-trigger</p>
+    </div>
+
+    <div data-animate="fade-down" class="anim-box">
+      <h3>Element 2</h3>
+      <p>Each should only animate once</p>
+    </div>
+
+    <div data-animate="fade-left" class="anim-box">
+      <h3>Element 3</h3>
+      <p>Even if you scroll back up</p>
+    </div>
+
+    <div data-animate="fade-right" class="anim-box">
+      <h3>Element 4</h3>
+      <p>They stay animated (no re-trigger)</p>
+    </div>
+  </section>
+
+  <!-- MULTI-SLIDER (Known Working) -->
+  <section>
+    <h2>3. Multi-Slider (Control Test)</h2>
+    <div class="test-note">
+      <strong>Status:</strong> This component is working correctly. Included as a control test.
+    </div>
+    <div data-multislider 
+         data-multislider-items="3" 
+         data-multislider-items-md="2" 
+         data-multislider-items-sm="1" 
+         data-multislider-gap="20" 
+         data-multislider-autoplay="true" 
+         data-multislider-interval="3000">
+      <div data-multislider-track>
+        <div data-multislider-item class="multislider-item">1</div>
+        <div data-multislider-item class="multislider-item">2</div>
+        <div data-multislider-item class="multislider-item">3</div>
+        <div data-multislider-item class="multislider-item">4</div>
+        <div data-multislider-item class="multislider-item">5</div>
+        <div data-multislider-item class="multislider-item">6</div>
+      </div>
+      <button data-multislider-prev>‹</button>
+      <button data-multislider-next>›</button>
+    </div>
+  </section>
+
+  <!-- Load Battersea Library -->
+  <script src="/src/js/battersea-utils.js"></script>
+  <script src="/src/js/battersea-core.js"></script>
+  <script src="/src/js/battersea-accordion.js"></script>
+  <script src="/src/js/battersea-animation.js"></script>
+  <script src="/src/js/battersea-multislider.js"></script>
+
+  <script>
+    console.log('✅ Battersea Library Loaded');
+    console.log('🧪 Testing: Accordion smoothness & Animation timing/flicker');
+    
+    // Monitor accordion
+    document.querySelectorAll('[data-accordion]').forEach(accordion => {
+      accordion.addEventListener('battersea:accordionToggle', (e) => {
+        console.log('Accordion toggled:', e.detail.isOpen ? 'OPENED' : 'CLOSED');
+      });
+    });
+    
+    // Monitor animations
+    let animCount = 0;
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      const observer = new MutationObserver(() => {
+        if (el.classList.contains('battersea-animated')) {
+          animCount++;
+          console.log(`✓ Animation ${animCount}: ${el.dataset.animate}`);
+        }
+      });
+      observer.observe(el, { attributes: true, attributeFilter: ['class'] });
+    });
+  </script>
+</body>
+</html>

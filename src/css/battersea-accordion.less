@@ -1,0 +1,40 @@
+/**
+ * Battersea Library - Accordion Styles Version: 2.0.4
+*/
+
+[data-accordion-item] {
+  margin-bottom: 10px;
+  
+  [data-accordion-header] {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
+    position: relative;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    &::after {
+      content: '+';
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+  }
+  
+  [data-accordion-content] {
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    max-height: 0;
+  }
+  
+  &.active {
+    [data-accordion-header]::after {
+      content: 'âˆ’';
+    }
+  }
+}

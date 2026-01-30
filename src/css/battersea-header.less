@@ -1,0 +1,137 @@
+/**
+ * Battersea Library - Header Styles Version: 2.0.4
+*/
+
+// Pre-Header Bar
+.battersea-header-pre {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  transition: transform var(--battersea-header-transition),
+              opacity var(--battersea-header-transition);
+  
+  // Hidden state (applied by JS on scroll)
+  &.battersea-header-pre--hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+// Main Header
+.battersea-header {
+  background: var(--battersea-header-bg);
+  color: var(--battersea-header-text);
+  position: relative;
+  transition: all var(--battersea-header-transition);
+  
+  // Sticky positioning
+  &[data-sticky="true"] {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--battersea-header-shadow);
+  }
+  
+  // Shrunk state - use CSS custom property for smooth transition
+  &.battersea-header--shrunk {
+    height: var(--header-shrink-height);
+  }
+}
+
+// Header container
+.battersea-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--battersea-header-transition);
+}
+
+// Brand/Logo area
+.battersea-header__brand {
+  display: flex;
+  align-items: center;
+  transition: padding var(--battersea-header-transition);
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.battersea-header__logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: height var(--battersea-header-transition),
+              width var(--battersea-header-transition);
+}
+
+// Navigation area (placeholder for nav components)
+.battersea-header__nav {
+  display: flex;
+  align-items: center;
+}
+
+// Layout variations
+.battersea-header--right-align {
+  .battersea-header__container {
+    justify-content: space-between;
+  }
+}
+
+.battersea-header--center-align {
+  .battersea-header__container {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .battersea-header__nav {
+    margin-top: 15px;
+  }
+}
+
+.battersea-header--center-stacked {
+  .battersea-header__container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .battersea-header__brand {
+    justify-content: center;
+    width: 100%;
+    
+    a {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+  
+  .battersea-header__nav {
+    margin-top: 15px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// Mobile adjustments
+@media (max-width: 767px) {
+  .battersea-header__container {
+    flex-wrap: wrap;
+  }
+  
+  .battersea-header__nav {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  // Center-stacked stays stacked on mobile
+  .battersea-header--center-stacked {
+    .battersea-header__brand a {
+      flex-direction: column;
+    }
+  }
+}
