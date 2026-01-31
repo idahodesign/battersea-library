@@ -1,0 +1,151 @@
+/**
+ * Battersea Library - Enhanced Variables
+ * Version: 2.3.0
+ * 
+ * This file contains all themeable LESS variables for dynamic branding.
+ * Variables can be modified at runtime using less.modifyVars()
+ */
+
+// ============================================
+// BRAND COLOURS (Primary Theming Variables)
+// ============================================
+
+@primary-color: #667eea;
+@secondary-color: #764ba2;
+@accent-color: #4ecdc4;
+@text-color: #333333;
+@text-light: #666666;
+@bg-light: #f5f5f5;
+@bg-white: #ffffff;
+@border-color: #dddddd;
+
+// Gradient backgrounds
+@gradient-primary: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+@gradient-accent: linear-gradient(135deg, @accent-color 0%, @primary-color 100%);
+
+// ============================================
+// COMPONENT VARIABLES (Using Brand Colours)
+// ============================================
+
+:root {
+  // Base Colours
+  --battersea-primary: @primary-color;
+  --battersea-secondary: @secondary-color;
+  --battersea-accent: @accent-color;
+  --battersea-text: @text-color;
+  --battersea-text-light: @text-light;
+  --battersea-border: @border-color;
+  --battersea-bg-light: @bg-light;
+  --battersea-bg-white: @bg-white;
+  
+  // Tooltip
+  --battersea-tooltip-bg: rgba(0, 0, 0, 0.9);
+  --battersea-tooltip-text: #fff;
+  --battersea-tooltip-padding: 8px 12px;
+  --battersea-tooltip-radius: 4px;
+  
+  // Slider
+  --battersea-slider-arrow-bg: rgba(0, 0, 0, 0.5);
+  --battersea-slider-arrow-color: #fff;
+  --battersea-slider-dot-active: @primary-color;
+  --battersea-slider-dot-inactive: #ccc;
+  --battersea-slider-dot-size: 12px;
+  --battersea-slider-dot-spacing: 8px;
+  
+  // Tabs
+  --battersea-tab-padding: 12px 24px;
+  --battersea-tab-border-width: 2px;
+  --battersea-tab-active-color: @primary-color;
+  
+  // Popup
+  --battersea-popup-overlay-bg: rgba(0, 0, 0, 0.5);
+  --battersea-popup-padding: 24px;
+  --battersea-popup-max-width: 600px;
+  --battersea-popup-radius: 8px;
+  
+  // Accordion
+  --battersea-accordion-padding: 16px;
+  --battersea-accordion-border-width: 1px;
+  
+  // Progress
+  --battersea-progress-height: 20px;
+  --battersea-progress-radius: 10px;
+  --battersea-progress-bg: #e0e0e0;
+  --battersea-progress-fill: @primary-color;
+  --battersea-progress-circular-stroke: #e0e0e0;
+  --battersea-progress-circular-fill: @primary-color;
+  
+  // SmoothScroll
+  --battersea-scroll-dot-size: 12px;
+  --battersea-scroll-dot-color: #ccc;
+  --battersea-scroll-dot-active: @primary-color;
+  --battersea-scroll-dot-hover: #999;
+  --battersea-scroll-spacing: 15px;
+  --battersea-scroll-offset: 50px;
+  
+  // Animation
+  --battersea-animation-duration: 0.6s;
+  --battersea-animation-timing: ease-out;
+  
+  // Header
+  --battersea-header-bg: @bg-white;
+  --battersea-header-text: @text-color;
+  --battersea-header-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --battersea-header-transition: 0.3s ease;
+  
+  // Buttons
+  --battersea-button-primary-bg: @primary-color;
+  --battersea-button-primary-text: @bg-white;
+  --battersea-button-secondary-bg: @secondary-color;
+  --battersea-button-radius: 6px;
+  --battersea-button-padding: 12px 30px;
+}
+
+// ============================================
+// MIXINS FOR COMMON PATTERNS
+// ============================================
+
+.gradient-bg(@angle: 135deg) {
+  background: linear-gradient(@angle, @primary-color 0%, @secondary-color 100%);
+}
+
+.button-primary() {
+  background: @primary-color;
+  color: @bg-white;
+  padding: 12px 30px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px fade(@primary-color, 40%);
+  }
+}
+
+.button-secondary() {
+  background: transparent;
+  color: @primary-color;
+  padding: 12px 30px;
+  border-radius: 6px;
+  border: 2px solid @primary-color;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: @primary-color;
+    color: @bg-white;
+  }
+}
+
+.card-shadow() {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
