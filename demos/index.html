@@ -291,15 +291,17 @@
       
       <div class="tabs-container">
         <div data-tabs>
-          <div class="battersea-tabs__nav">
-            <button class="battersea-tabs__button active" data-tab-target="install">Installation</button>
-            <button class="battersea-tabs__button" data-tab-target="usage">Usage</button>
-            <button class="battersea-tabs__button" data-tab-target="customize">Customize</button>
+          <!-- Tab Navigation -->
+          <div data-tabs-nav>
+            <button data-tab="install" class="active">Installation</button>
+            <button data-tab="usage">Usage</button>
+            <button data-tab="customize">Customize</button>
           </div>
           
-          <div class="battersea-tabs__content">
+          <!-- Tab Content -->
+          <div data-tabs-content>
             <!-- Installation Tab -->
-            <div class="battersea-tabs__panel active" data-tab-panel="install">
+            <div data-tab-content="install" class="active">
               <h3>Quick Installation</h3>
               <p>Include the CSS and JavaScript files in your project:</p>
               
@@ -319,7 +321,7 @@
             </div>
             
             <!-- Usage Tab -->
-            <div class="battersea-tabs__panel" data-tab-panel="usage">
+            <div data-tab-content="usage">
               <h3>Simple Usage Example</h3>
               <p>Components are initialized automatically using data attributes:</p>
               
@@ -345,7 +347,7 @@
             </div>
             
             <!-- Customize Tab -->
-            <div class="battersea-tabs__panel" data-tab-panel="customize">
+            <div data-tab-content="customize">
               <h3>Theme Customization</h3>
               <p>Customize the library using CSS variables or LESS variables:</p>
               
