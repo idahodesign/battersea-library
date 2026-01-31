@@ -527,6 +527,7 @@
       border-radius: 16px;
       text-align: center;
       min-height: 300px;
+      width: 100%; // Ensure card fills slider width
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -829,6 +830,12 @@
         [data-accordion-header] {
           background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
           color: @bg-white;
+          transition: background 0.3s ease;
+          
+          // Reverse gradient on hover for active state
+          &:hover {
+            background: linear-gradient(135deg, @secondary-color 0%, @primary-color 100%);
+          }
           
           h3 {
             color: @bg-white;
@@ -853,6 +860,7 @@
         
         &:hover {
           background: darken(@bg-light, 3%);
+          // Text stays original colour on hover (not white)
         }
         
         h3 {
@@ -861,6 +869,7 @@
           color: @text-color;
           font-weight: 600;
           padding-right: 2rem; // Space for icon
+          transition: color 0.3s ease;
         }
         
         // The component adds ::after for the icon
@@ -870,9 +879,10 @@
           right: 1.5rem;
           font-size: 2rem;
           color: @primary-color;
-          transition: all 0.3s ease;
+          transition: transform 0.3s ease; // Only transform transitions
           font-weight: 300;
           line-height: 1;
+          transform-origin: center center; // Rotate from center
         }
       }
       
@@ -945,6 +955,11 @@
       font-weight: 700;
       margin-bottom: 0.5rem;
       line-height: 1;
+      
+      // Counter numbers at 1.1em relative to stat-number
+      [data-counter] {
+        font-size: 1.1em;
+      }
       
       @media (max-width: 768px) {
         font-size: 3rem;
