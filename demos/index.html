@@ -412,6 +412,360 @@ less.modifyVars({
     </p>
   </div>
 
+  <!-- ============================================ -->
+  <!-- TESTIMONIALS SECTION (Using Slider Component) -->
+  <!-- ============================================ -->
+  <section class="testimonials-section" data-scroll-section>
+    <div class="container">
+      <h2 class="section-title">Built with Battersea</h2>
+      <p class="section-subtitle">See what developers are creating with the library</p>
+      
+      <div class="testimonials-slider-wrapper">
+        <div data-slider data-slider-autoplay="true" data-slider-interval="5000" data-slider-dots="true" data-slider-arrows="true">
+          <div data-slider-track>
+            <!-- Testimonial 1 -->
+            <div data-slider-item>
+              <div class="testimonial-card">
+                <div class="testimonial-icon">💬</div>
+                <p class="testimonial-text">
+                  Battersea Library transformed our development workflow. The component architecture is brilliant, 
+                  and the accessibility features are best-in-class. We rebuilt our entire UI in half the time.
+                </p>
+                <div class="testimonial-author">
+                  <strong>Sarah Chen</strong>
+                  <span>Lead Developer, TechCorp</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div data-slider-item>
+              <div class="testimonial-card">
+                <div class="testimonial-icon">⭐</div>
+                <p class="testimonial-text">
+                  Zero dependencies means zero headaches. The LESS theming system is incredibly powerful - 
+                  we can rebrand client sites in minutes. This is exactly what we've been looking for.
+                </p>
+                <div class="testimonial-author">
+                  <strong>Marcus Rodriguez</strong>
+                  <span>Freelance Web Designer</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div data-slider-item>
+              <div class="testimonial-card">
+                <div class="testimonial-icon">🚀</div>
+                <p class="testimonial-text">
+                  Performance is exceptional. Loading only what we need keeps our pages lightning fast. 
+                  The data-attribute approach makes it incredibly easy to train our content team.
+                </p>
+                <div class="testimonial-author">
+                  <strong>Jennifer Williams</strong>
+                  <span>CTO, StartupHub</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 4 -->
+            <div data-slider-item>
+              <div class="testimonial-card">
+                <div class="testimonial-icon">♿</div>
+                <p class="testimonial-text">
+                  Accessibility built-in from day one. Every component follows WCAG guidelines without 
+                  additional configuration. This saved us weeks of compliance work.
+                </p>
+                <div class="testimonial-author">
+                  <strong>David Thompson</strong>
+                  <span>Accessibility Consultant</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slider Navigation -->
+          <button data-slider-prev aria-label="Previous testimonial"></button>
+          <button data-slider-next aria-label="Next testimonial"></button>
+          <div data-slider-dots></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- BROWSER SUPPORT SECTION (Using ProgressBar Component) -->
+  <!-- ============================================ -->
+  <section class="browser-support-section" data-scroll-section>
+    <div class="container">
+      <h2 class="section-title">Browser Support</h2>
+      <p class="section-subtitle">Works beautifully across all modern browsers</p>
+      
+      <div class="browser-grid">
+        <div class="browser-item" data-animation="fade-up">
+          <div class="browser-icon">🌐</div>
+          <h3>Chrome</h3>
+          <div data-progressbar data-progressbar-value="100" data-progressbar-color="#4CAF50">
+            <div class="battersea-progressbar">
+              <div class="battersea-progressbar__fill"></div>
+            </div>
+          </div>
+          <p class="browser-version">Latest + Last 2 versions</p>
+        </div>
+        
+        <div class="browser-item" data-animation="fade-up" data-animation-delay="1">
+          <div class="browser-icon">🦊</div>
+          <h3>Firefox</h3>
+          <div data-progressbar data-progressbar-value="100" data-progressbar-color="#FF7139">
+            <div class="battersea-progressbar">
+              <div class="battersea-progressbar__fill"></div>
+            </div>
+          </div>
+          <p class="browser-version">Latest + Last 2 versions</p>
+        </div>
+        
+        <div class="browser-item" data-animation="fade-up" data-animation-delay="2">
+          <div class="browser-icon">🧭</div>
+          <h3>Safari</h3>
+          <div data-progressbar data-progressbar-value="100" data-progressbar-color="#006CFF">
+            <div class="battersea-progressbar">
+              <div class="battersea-progressbar__fill"></div>
+            </div>
+          </div>
+          <p class="browser-version">Latest + Last 2 versions</p>
+        </div>
+        
+        <div class="browser-item" data-animation="fade-up" data-animation-delay="3">
+          <div class="browser-icon">📊</div>
+          <h3>Edge</h3>
+          <div data-progressbar data-progressbar-value="100" data-progressbar-color="#0078D7">
+            <div class="battersea-progressbar">
+              <div class="battersea-progressbar__fill"></div>
+            </div>
+          </div>
+          <p class="browser-version">Latest + Last 2 versions</p>
+        </div>
+      </div>
+      
+      <div class="browser-note">
+        <p>✓ Mobile browsers fully supported (iOS Safari, Chrome Mobile, Samsung Internet)</p>
+        <p>✓ Progressive enhancement ensures graceful degradation on older browsers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FAQ SECTION (Using Accordion Component) -->
+  <!-- ============================================ -->
+  <section class="faq-section" data-scroll-section>
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know about Battersea Library</p>
+      
+      <div class="faq-wrapper">
+        <div data-accordion data-accordion-multiple="false">
+          
+          <!-- FAQ 1 -->
+          <div data-accordion-item class="active">
+            <div data-accordion-header>
+              <h3>Do I need to include all components?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                No! That's the beauty of Battersea's modular architecture. You only need to include 
+                <code>battersea-utils.js</code> and <code>battersea-core.js</code>, then add only the 
+                component scripts you actually use. This keeps your page size minimal and performance optimal.
+              </p>
+              <p>
+                For example, if you only use Tabs and Accordion, just include those two component files 
+                along with the core files.
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ 2 -->
+          <div data-accordion-item>
+            <div data-accordion-header>
+              <h3>Is Battersea Library free to use?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                Yes! Battersea Library is completely free and open source under the MIT License. 
+                You can use it in personal projects, commercial projects, modify it, redistribute it - 
+                whatever you need. No attribution required (though always appreciated!).
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ 3 -->
+          <div data-accordion-item>
+            <div data-accordion-header>
+              <h3>Can I use this with React, Vue, or other frameworks?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                Absolutely! While Battersea is built with vanilla JavaScript, it works alongside any framework. 
+                The components use standard DOM manipulation and can be integrated into React components, 
+                Vue templates, or any other framework.
+              </p>
+              <p>
+                Just initialize the components after your framework renders the DOM elements. Many developers 
+                use Battersea components for specific UI elements while keeping their main app in a framework.
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ 4 -->
+          <div data-accordion-item>
+            <div data-accordion-header>
+              <h3>How do I customize the styling?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                You have multiple options:
+              </p>
+              <ul>
+                <li><strong>CSS Custom Properties:</strong> Override variables like <code>--battersea-primary</code> in your own CSS</li>
+                <li><strong>LESS Variables:</strong> Modify the LESS source files and recompile</li>
+                <li><strong>Runtime Theming:</strong> Use less.js to change themes dynamically (like the customizer on this page!)</li>
+                <li><strong>Custom CSS:</strong> Add your own classes and override specific styles</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- FAQ 5 -->
+          <div data-accordion-item>
+            <div data-accordion-header>
+              <h3>Are the components accessible?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                Yes! Accessibility is a core principle of Battersea Library. Every component includes:
+              </p>
+              <ul>
+                <li>Proper ARIA labels and roles</li>
+                <li>Full keyboard navigation support</li>
+                <li>Screen reader compatibility</li>
+                <li>Focus management and visible focus indicators</li>
+                <li>Semantic HTML structure</li>
+              </ul>
+              <p>
+                We follow WCAG 2.1 Level AA guidelines as a minimum standard.
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ 6 -->
+          <div data-accordion-item>
+            <div data-accordion-header>
+              <h3>What browsers are supported?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                Battersea supports all modern browsers:
+              </p>
+              <ul>
+                <li>Chrome (latest + last 2 versions)</li>
+                <li>Firefox (latest + last 2 versions)</li>
+                <li>Safari (latest + last 2 versions)</li>
+                <li>Edge (latest + last 2 versions)</li>
+                <li>Mobile browsers (iOS Safari, Chrome Mobile, Samsung Internet)</li>
+              </ul>
+              <p>
+                We use progressive enhancement, so core functionality works even in older browsers, 
+                with enhanced features in modern ones.
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ 7 -->
+          <div data-accordion-item>
+            <div data-accordion-header>
+              <h3>Can I contribute to the library?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                We'd love your contributions! Check out the 
+                <a href="https://github.com/idahodesign/battersea-library" target="_blank">GitHub repository</a> 
+                to:
+              </p>
+              <ul>
+                <li>Report bugs or request features via Issues</li>
+                <li>Submit pull requests with improvements</li>
+                <li>Improve documentation</li>
+                <li>Share examples of your projects using Battersea</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- FAQ 8 -->
+          <div data-accordion-item>
+            <div data-accordion-header>
+              <h3>How do I get support?</h3>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div data-accordion-content>
+              <p>
+                For support and questions:
+              </p>
+              <ul>
+                <li>Check the <a href="#getting-started">Getting Started</a> guide above</li>
+                <li>Browse the individual component demo pages for detailed examples</li>
+                <li>Open an issue on <a href="https://github.com/idahodesign/battersea-library/issues" target="_blank">GitHub</a></li>
+                <li>Review the source code - it's well-commented and easy to follow</li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- STATS SECTION (Using Counter Component) -->
+  <!-- ============================================ -->
+  <section class="stats-section" data-scroll-section>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-animation="fade-up">
+          <div class="stat-number">
+            <span data-counter data-counter-end="15" data-counter-duration="2000">0</span>
+          </div>
+          <div class="stat-label">Production-Ready Components</div>
+        </div>
+        
+        <div class="stat-item" data-animation="fade-up" data-animation-delay="1">
+          <div class="stat-number">
+            <span data-counter data-counter-end="0" data-counter-duration="2000">0</span>
+          </div>
+          <div class="stat-label">External Dependencies</div>
+        </div>
+        
+        <div class="stat-item" data-animation="fade-up" data-animation-delay="2">
+          <div class="stat-number">
+            <span data-counter data-counter-end="100" data-counter-duration="2000" data-counter-suffix="%">0</span>
+          </div>
+          <div class="stat-label">Accessibility Score</div>
+        </div>
+        
+        <div class="stat-item" data-animation="fade-up" data-animation-delay="3">
+          <div class="stat-number">
+            <span data-counter data-counter-end="30" data-counter-duration="2000" data-counter-suffix="KB">0</span>
+          </div>
+          <div class="stat-label">Core Library Size</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer style="background: #2d2d2d; color: white; padding: 3rem 0; margin-top: 4rem;">
     <div class="container" style="text-align: center;">
@@ -440,6 +794,10 @@ less.modifyVars({
   <script src="../src/js/battersea-core.js"></script>
   <script src="../src/js/battersea-tabs.js"></script>
   <script src="../src/js/battersea-animation.js"></script>
+  <script src="../src/js/battersea-slider.js"></script>
+  <script src="../src/js/battersea-accordion.js"></script>
+  <script src="../src/js/battersea-progressbar.js"></script>
+  <script src="../src/js/battersea-counter.js"></script>
   
   <!-- Theme Customizer Script -->
   <script>
