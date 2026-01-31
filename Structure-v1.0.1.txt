@@ -1,0 +1,42 @@
+battersea-library/
+├── .github/                    # GitHub-specific documentation
+│   ├── NEXT-STEPS.md
+│   └── REORGANIZATION-SUMMARY.md
+│
+├── src/                        # Source code
+│   ├── js/                     # All component JavaScript files
+│   │   ├── battersea-utils.js  # Utility functions (REQUIRED)
+│   │   ├── battersea-core.js   # Auto-init system (REQUIRED)
+│   │   └── battersea-*.js      # Individual components
+│   └── css/                    # All stylesheets
+│       ├── battersea-library.less      # Master LESS file
+│       ├── battersea-library-min.css   # Compiled CSS
+│       ├── battersea-*.less            # Individual component styles
+│       ├── battersea-brand.less        # Master brand LESS file
+│       └── battersea-brand-*.less      # Individual Brand styles
+│
+├── demos/                      # Demo pages
+│   ├── index.html              # Homepage
+│   ├── accordion.html          # Example demo template
+│   └── demo-*.html             # Component demos
+│
+├── includes/                   # Reusable HTML partials
+│   ├── header.html             # Meta tags, CSS includes
+│   ├── nav.html                # Site navigation
+│   ├── footer.html             # Script includes
+│   ├── nav-menu-full.html      # Full navigation menu
+│   └── nav-menu-simple.html    # Simple navigation menu
+│
+├── docs/                       # Documentation
+│   ├── HEADER-DOCUMENTATION.md
+│   ├── RELEASE-v2_1_0.md
+│   └── UPGRADE-v2_1_0.md
+│
+├── assets/                     # Static assets (images, fonts)
+│
+├── .gitignore                  # Git ignore rules
+├── CHANGELOG.md                # Version history
+├── LICENSE                     # MIT License
+├── README.md                   # Main documentation
+├── Structure-v1_0_1.txt        # Structure reference
+└── TODO.md                     # Task tracking
