@@ -1,0 +1,24 @@
+/**
+ * Battersea Library - Demo Site Card Styles
+ * Version: 2.3.0 | 02/02/26
+ * 
+ * Styles specific to the demo website
+ * Uses LESS variables for dynamic theming
+ */
+ 
+.component-card {
+	border: 1px solid  rgba(@white, 0.5);
+	border-bottom-color: rgba(@black, 0.3);
+	border-radius: 2px;
+	overflow: hidden;
+	.card-shadow();
+	transition: all 0.3s ease;
+}
+.feature-card {
+	background: -webkit-gradient(linear, 0 100%, 0 0, from(rgba(134, 162, 177, 0.9)), color-stop(0.16, rgba(142, 175, 190, 0.92)), color-stop(0.35, rgba(149, 187, 195, 0.94)), color-stop(0.56, rgba(148, 186, 190, 0.96)), color-stop(0.79, rgba(140, 176, 175, 0.99)), color-stop(0.9, rgba(137, 168, 168, 1)), to(rgba(134, 160, 161, 1)));
+	border: 1px solid rgba(@white, 0.4);
+	padding: 2rem;
+	text-align: center;
+	border-bottom-color: rgba(@black, 0.3);
+	border-radius: 2px;
+}

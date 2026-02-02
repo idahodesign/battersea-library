@@ -1,0 +1,107 @@
+/**
+ * Battersea Library - Demo Foundation Styles
+ * Version: 2.3.0 | 02/02/2026
+ * 
+ * Styles specific to the demo website
+ * Uses LESS variables for dynamic theming
+ */
+ 
+.ext-site-foundation {
+	height: 100%;
+	padding:0;
+	margin:0;
+	line-height: 1.5;
+	-webkit-hyphens: none; 
+	hyphens: none;
+}
+@viewport {
+	width: device-width;
+}
+:root {
+	font-size: @base-font-size; /* Fallback font-size */
+	font-feature-settings: "kern", "liga", "clig", "calt", "onum", "pnum";
+}
+:root.wf-active {
+	font-size: @base-font-size;
+} // TypeKit Fallback Font CSS
+@supports (font-kerning: normal) and (font-variant-ligatures: common-ligatures contextual) and (font-variant-numeric: oldstyle-nums proportional-nums) {
+	:root {
+		font-kerning: normal;
+		font-variant-ligatures: common-ligatures contextual;
+		font-variant-numeric: oldstyle-nums proportional-nums;
+		font-feature-settings: normal;
+	}
+}
+
+html {
+	&:extend(.ext-foundation-base all);
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	&:extend(.ext-site-foundation all);
+	position: relative;
+	line-height: 1.6;
+	font-size: 1em;
+	scroll-behavior: smooth;
+	line-height: 1.6;
+	color: @text-color;
+}
+#site-background {
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100vw;
+	height: 100vh;
+	background-size: cover;
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	z-index: 0;
+	&:after {
+		content:'';
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100vw;
+		height: 100vh;
+		background-color:@back-overlay-colour;
+		opacity:@back-overlay-opacity;
+	}
+	&:extend(.ext-foundation-background);
+}
+section {
+	position: relative;
+}
+.content-outer {
+	margin: 0 auto;
+	padding: 0 20px;
+	max-width: 1400px;
+	transition: padding 0.5s ease-out;
+	@media only screen and (min-width:1440px) {
+		padding: 0;
+	}
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+pre {
+	background: #2d2d2d;
+	color: #f8f8f2;
+	padding: 1.5rem;
+	border-radius: 2px;
+	overflow-x: auto;
+	margin: 1rem 0;
+	& code {
+		background: none;
+		color: inherit;
+		font-family: 'Monaco', 'Courier New', monospace;
+		font-size: 0.9rem;
+		line-height: 1.5;
+	}
+}

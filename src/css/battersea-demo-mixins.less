@@ -1,0 +1,56 @@
+/**
+ * Battersea Library - Demo Mixins
+ * Version: 2.3.0 | 02/02/2026
+ * 
+ * Styles specific to the demo website 
+ * Uses LESS variables for dynamic theming
+ */
+ 
+ // ============================================
+// MIXINS FOR COMMON PATTERNS
+// ============================================
+
+.gradient-bg(@angle: 135deg) {
+  background: linear-gradient(@angle, @primary-color 0%, @secondary-color 100%);
+}
+
+.button-primary() {
+  background: @primary-color;
+  color: @bg-white;
+  padding: 12px 30px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px fade(@primary-color, 40%);
+  }
+}
+
+.button-secondary() {
+  background: transparent;
+  color: @primary-color;
+  padding: 12px 30px;
+  border-radius: 6px;
+  border: 2px solid @primary-color;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: @primary-color;
+    color: @bg-white;
+  }
+}
+
+.card-shadow() {
+	box-shadow:	 0 .5rem 0.5rem rgba(@black, 0.35);
+	transition: box-shadow 0.3s ease;
+	&:hover {
+		box-shadow: 0 1rem 1.5rem rgba(@black, 0.35);
+	}
+}
+

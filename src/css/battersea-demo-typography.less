@@ -1,0 +1,60 @@
+/**
+ * Battersea Library - Demo Typography Styles
+ * Version: 2.3.0 | 01/02/2026
+ * 
+ * Styles specific to the demo website
+ * Uses LESS variables for dynamic theming
+ */
+ .ext-heading-all {
+	 font-weight: 400;
+ }
+
+/*************** Heading *************/ 
+ 
+h1 {
+	&:extend(.ext-heading-all all);
+} 
+h2 {
+	 &:extend(.ext-heading-all all);
+	 &.section-title {
+		 font-size: 2.5rem;
+		 text-align: center;
+		 margin-bottom: 3rem;
+		 font-weight: 300;
+		 letter-spacing: 0.025rem;
+	 }
+ }
+h3 {
+	&:extend(.ext-heading-all all);
+	.feature-card & {
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+	}
+}
+h4 {
+	&:extend(.ext-heading-all all);
+}
+h5 {
+	&:extend(.ext-heading-all all);
+}
+h6{
+	&:extend(.ext-heading-all all);
+}
+
+/*************** Pargraphs *************/ 
+
+p {
+	.feature-card & {
+		color:rgba(@white, 0.75);
+		line-height: 1.6;
+	}
+	&.section-subtitle {
+		font-size: 1.2rem;
+		margin-bottom: 3rem;
+		text-align: center;
+		margin-bottom: 4rem;
+		.section-title + & {
+			margin-top: -2rem;
+		}
+	}
+}

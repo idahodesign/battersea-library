@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accordion - Battersea Library</title>
-  <meta name="description" content="Accordion component demo - Battersea Library">
-  
-  <link rel="stylesheet" href="../src/css/battersea-library-min.css">
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: #f5f5f5;
-    }
-    
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Accordion - Battersea Library</title>
+	<meta name="description" content="Accordion component demo - Battersea Library">
+	
+	<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+	<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+	<!-- LESS.js Configuration & Compiler -->
+		<script>
+			// Configure LESS before loading the compiler
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+			
+				// Global LESS variables (can be modified at runtime)
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	<style>
+	
     nav {
       background: white;
       padding: 1rem 0;
@@ -86,6 +96,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-bottom: 2rem;
+	  position: relative;
     }
     
     .section h2 {
@@ -146,39 +157,6 @@
       border-radius: 3px;
     }
     
-    /* Custom accordion styling for demo */
-    [data-accordion-item] {
-      background: white;
-      border: 1px solid #e0e0e0;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      overflow: hidden;
-    }
-    
-    [data-accordion-header] {
-      padding: 1rem 1.5rem;
-      background: #f8f9fa;
-      font-weight: 600;
-      color: #667eea;
-    }
-    
-    [data-accordion-header]:hover {
-      background: #e9ecef;
-    }
-    
-    [data-accordion-item].active [data-accordion-header] {
-      background: #667eea;
-      color: white;
-    }
-    
-    [data-accordion-content] {
-      padding: 0 1.5rem;
-    }
-    
-    [data-accordion-content] > div {
-      padding: 1rem 0;
-    }
-    
     footer {
       background: #2d2d2d;
       color: white;
@@ -207,120 +185,123 @@
     }
   </style>
 </head>
-<body>
-  <!-- Navigation Placeholder -->
-  <div id="nav-placeholder"></div>
-  
-  <!-- Page Header -->
-  <div class="page-header">
-    <h1>📋 Accordion Component</h1>
-    <p>Collapsible content sections with smooth animations</p>
-  </div>
-  
-  <div class="container">
-    <!-- Live Demo Section -->
-    <div class="section">
-      <h2>Live Demo</h2>
-      
-      <h3>Single Open (default)</h3>
-      <div class="demo-box">
-        <div data-accordion data-accordion-multiple="false">
-          <div data-accordion-item class="active">
-            <div data-accordion-header>Section 1</div>
-            <div data-accordion-content>
-              <div>
-                <h4>What is the Accordion component?</h4>
-                <p>The Accordion component allows you to create collapsible content sections that expand and collapse smoothly. Perfect for FAQs, content organization, and space-saving layouts.</p>
-              </div>
-            </div>
-          </div>
-          
-          <div data-accordion-item>
-            <div data-accordion-header>Section 2</div>
-            <div data-accordion-content>
-              <div>
-                <h4>Key Features</h4>
-                <ul>
-                  <li>✅ Smooth max-height transitions</li>
-                  <li>✅ Single or multiple open sections</li>
-                  <li>✅ Keyboard accessible</li>
-                  <li>✅ No snapping or jerky animations</li>
-                  <li>✅ Works with dynamic content</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          <div data-accordion-item>
-            <div data-accordion-header>Section 3</div>
-            <div data-accordion-content>
-              <div>
-                <h4>Browser Support</h4>
-                <p>Works in all modern browsers: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <h3>Multiple Open</h3>
-      <div class="demo-box">
-        <div data-accordion data-accordion-multiple="true">
-          <div data-accordion-item class="active">
-            <div data-accordion-header">Installation</div>
-            <div data-accordion-content>
-              <div>
-                <p>Include the required files in your HTML:</p>
-                <pre><code>&lt;link rel="stylesheet" href="battersea-library.css"&gt;
+	<body>
+		<!-- Navigation Placeholder -->
+		<div id="nav-placeholder"></div>
+		<!-- Page Header -->
+		<div class="page-header">
+			<h1>📋 Accordion Component</h1>
+			<p>Collapsible content sections with smooth animations</p>
+		</div>
+		<div id="site-background" class="site-background-image"></div>
+		<div class="content-outer">
+			<div class="container">
+				<!-- Live Demo Section -->
+				<div class="section">
+					<h2>Live Demo</h2>
+					
+					<h3>Single Open (default)</h3>
+					<div class="demo-box">
+						<div data-accordion data-accordion-multiple="false">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Section 1</div>
+								<div data-accordion-content>
+									<div>
+										<h4>What is the Accordion component?</h4>
+										<p>The Accordion component allows you to create collapsible content sections that expand and collapse smoothly. Perfect for FAQs, content organization, and space-saving layouts.</p>
+									</div>
+								</div>
+							</div>
+							
+							<div data-accordion-item>
+								<div data-accordion-header>Section 2</div>
+								<div data-accordion-content>
+									<div>
+										<h4>Key Features</h4>
+										<ul>
+											<li>✅ Smooth max-height transitions</li>
+											<li>✅ Single or multiple open sections</li>
+											<li>✅ Keyboard accessible</li>
+											<li>✅ No snapping or jerky animations</li>
+											<li>✅ Works with dynamic content</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<div data-accordion-item>
+								<div data-accordion-header>Section 3</div>
+								<div data-accordion-content>
+									<div>
+										<h4>Browser Support</h4>
+										<p>Works in all modern browsers: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<h3>Multiple Open</h3>
+					<div class="demo-box">
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Installation</div>
+								<div data-accordion-content>
+									<div>
+										<p>Include the required files in your HTML:</p>
+										<pre><code>&lt;link rel="stylesheet" href="battersea-library.css"&gt;
 &lt;script src="battersea-utils.js"&gt;&lt;/script&gt;
 &lt;script src="battersea-core.js"&gt;&lt;/script&gt;
-&lt;script src="battersea-accordion.js"&gt;&lt;/script&gt;</code></pre>
-              </div>
-            </div>
-          </div>
-          
-          <div data-accordion-item>
-            <div data-accordion-header>Usage</div>
-            <div data-accordion-content>
-              <div>
-                <p>Add the accordion markup to your HTML:</p>
-                <pre><code>&lt;div data-accordion data-accordion-multiple="false"&gt;
-  &lt;div data-accordion-item&gt;
-    &lt;div data-accordion-header&gt;Header&lt;/div&gt;
-    &lt;div data-accordion-content&gt;
-      &lt;div&gt;Content&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- HTML Structure Section -->
-    <div class="section">
-      <h2>HTML Structure</h2>
-      <pre><code>&lt;div data-accordion data-accordion-multiple="false"&gt;
-  &lt;div data-accordion-item class="active"&gt;
-    &lt;div data-accordion-header&gt;Section 1&lt;/div&gt;
-    &lt;div data-accordion-content&gt;
-      &lt;div&gt;Content for section 1&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  
-  &lt;div data-accordion-item&gt;
-    &lt;div data-accordion-header&gt;Section 2&lt;/div&gt;
-    &lt;div data-accordion-content&gt;
-      &lt;div&gt;Content for section 2&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-    </div>
-    
-    <!-- Attributes Section -->
-    <div class="section">
+&lt;script src="battersea-accordion.js"&gt;&lt;/script&gt;
+										</code></pre>
+									</div>
+								</div>
+							</div>
+							
+							<div data-accordion-item>
+								<div data-accordion-header>Usage</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add the accordion markup to your HTML:</p>
+										<pre><code>&lt;div data-accordion data-accordion-multiple="false"&gt;
+	&lt;div data-accordion-item&gt;
+		&lt;div data-accordion-header&gt;Header&lt;/div&gt;
+			&lt;div data-accordion-content&gt;
+				&lt;div&gt;Content&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt
+	&lt;/div&gt;
+										</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- HTML Structure Section -->
+				<div class="section">
+					<h2>HTML Structure</h2>
+					<pre><code>&lt;div data-accordion data-accordion-multiple="false"&gt;
+	&lt;div data-accordion-item class="active"&gt;
+		&lt;div data-accordion-header&gt;Section 1&lt;/div&gt;
+			&lt;div data-accordion-content&gt;
+				&lt;div&gt;Content for section 1&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+ 
+		&lt;div data-accordion-item&gt;
+			&lt;div data-accordion-header&gt;Section 2&lt;/div&gt;
+			&lt;div data-accordion-content&gt;
+				&lt;div&gt;Content for section 2&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+					</code></pre>
+				</div>
+				
+				<!-- Attributes Section -->
+				<div class="section">
       <h2>Attributes</h2>
       
       <table class="attributes-table">
@@ -400,16 +381,17 @@ accordion.addEventListener('battersea:accordionToggle', (e) => {
 }</code></pre>
     </div>
   </div>
+</div>
   
   <!-- Battersea Library JavaScript -->
-  <script src="../src/js/battersea-utils.js"></script>
-  <script src="../src/js/battersea-core.js"></script>
-  <script src="../src/js/battersea-accordion.js"></script>
+  <script src="../../src/js/battersea-utils.js"></script>
+  <script src="../../src/js/battersea-core.js"></script>
+  <script src="../../src/js/battersea-accordion.js"></script>
   
   <!-- Navigation Loader -->
   <script>
     function loadIncludes() {
-      fetch('../includes/nav.html')
+      fetch('../../includes/nav.html')
         .then(response => response.text())
         .then(html => {
           document.getElementById('nav-placeholder').innerHTML = html;

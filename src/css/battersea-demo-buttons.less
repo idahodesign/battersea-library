@@ -1,0 +1,28 @@
+/**
+ * Battersea Library - Demo Buttons Styles
+ * Version: 2.3.0 | 02/02/2026
+ * 
+ * Styles specific to the demo website
+ * Uses LESS variables for dynamic theming
+ */
+ 
+ .btn {
+	border-radius: 2px;
+	align-items: center;
+	font-weight: 400;
+	background: linear-gradient(to right, rgba(209,216,224,0.5) 0%,rgba(209,215,223,0.5) 49%,rgba(209,215,222,0.5) 83%,rgba(209,215,222,0.5) 87%,rgba(209,216,224,0.5) 100%);
+	color:@text-color;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	border: solid white 1px;
+	padding: 1.25rem 1rem;
+	border-color: #F9FBFE #E5E8ED #60666D #5E636C;
+	line-height: 1;
+	display: grid;
+	box-shadow: -0.15rem 0.2rem 0.4rem 0.05rem rgba(@black, 0.2);
+	text-decoration: none;
+	transition: transform 0.15s ease-out; 
+	 &:hover {
+		transform: translateY(-2px);
+	}
+}

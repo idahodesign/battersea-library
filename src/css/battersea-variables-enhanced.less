@@ -1,6 +1,6 @@
 /**
  * Battersea Library - Enhanced Variables
- * Version: 2.3.0
+ * Version: 2.3.0 | 02/02/2026
  * 
  * This file contains all themeable LESS variables for dynamic branding.
  * Variables can be modified at runtime using less.modifyVars()
@@ -13,15 +13,29 @@
 @primary-color: #667eea;
 @secondary-color: #764ba2;
 @accent-color: #4ecdc4;
-@text-color: #333333;
+@text-color: #8C8693;
 @text-light: #666666;
 @bg-light: #f5f5f5;
 @bg-white: #ffffff;
 @border-color: #dddddd;
+@button-color: #CBD5DC;
+
+@base-font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+@base-font-weight: 200;
+@base-font-size: 16px;
+@default-transparency: 0.8;
+@background-image: '/assets/img/background-03.jpg';
+@back-overlay-colour: #000000;
+@back-overlay-opacity: 0;
+
+// Mono colours
+@black: #000000;
+@white: #ffffff;
 
 // Gradient backgrounds
 @gradient-primary: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
 @gradient-accent: linear-gradient(135deg, @accent-color 0%, @primary-color 100%);
+@section-box-gradient: linear-gradient(135deg, rgba(239,241,244,0.16) 0%,rgba(229,231,234,0.15) 18%,rgba(219,221,224,0.14) 47%,rgba(229,231,234,0.13) 78%,rgba(239,241,244,0.13) 100%);
 
 // ============================================
 // COMPONENT VARIABLES (Using Brand Colours)
@@ -99,53 +113,4 @@
   --battersea-button-secondary-bg: @secondary-color;
   --battersea-button-radius: 6px;
   --battersea-button-padding: 12px 30px;
-}
-
-// ============================================
-// MIXINS FOR COMMON PATTERNS
-// ============================================
-
-.gradient-bg(@angle: 135deg) {
-  background: linear-gradient(@angle, @primary-color 0%, @secondary-color 100%);
-}
-
-.button-primary() {
-  background: @primary-color;
-  color: @bg-white;
-  padding: 12px 30px;
-  border-radius: 6px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px fade(@primary-color, 40%);
-  }
-}
-
-.button-secondary() {
-  background: transparent;
-  color: @primary-color;
-  padding: 12px 30px;
-  border-radius: 6px;
-  border: 2px solid @primary-color;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: @primary-color;
-    color: @bg-white;
-  }
-}
-
-.card-shadow() {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-  
-  &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  }
 }

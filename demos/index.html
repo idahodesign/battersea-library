@@ -1,311 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Battersea Library - Modular JavaScript Component Library</title>
-  <meta name="description" content="A lightweight, modular JavaScript component library built with vanilla JavaScript, LESS/CSS, and accessibility-first design.">
-  
-  <!-- LESS Stylesheet (for dynamic theming) -->
-  <link rel="stylesheet/less" type="text/css" href="../src/css/battersea-library.less">
-  <link rel="stylesheet/less" type="text/css" href="../src/css/battersea-demo-site.less">
-  
-  <!-- LESS.js Configuration & Compiler -->
-  <script>
-    // Configure LESS before loading the compiler
-    less = {
-      env: 'development',
-      async: false,
-      fileAsync: false,
-      poll: 1000,
-      logLevel: 2,
-      
-      // Global LESS variables (can be modified at runtime)
-      globalVars: {
-        'primary-color': '#667eea',
-        'secondary-color': '#764ba2',
-        'accent-color': '#4ecdc4'
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
-  
-  <style>
-    /* Minimal base styles - most styling is in LESS files */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ============================================ -->
-  <!-- HERO SECTION -->
-  <!-- ============================================ -->
-  <section class="hero-section" data-scroll-section>
-    <div class="hero-content">
-      <h1>Battersea Library</h1>
-      <p class="hero-subtitle">
-        A lightweight, modular JavaScript component library built with vanilla JavaScript.
-        No dependencies. Fully accessible. Infinitely themeable.
-      </p>
-      
-      <div class="hero-buttons">
-        <a href="#getting-started" class="btn btn-primary">Get Started</a>
-        <a href="https://github.com/idahodesign/battersea-library" class="btn btn-secondary" target="_blank">
-          View on GitHub
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- FEATURES SECTION -->
-  <!-- ============================================ -->
-  <section class="features-section" data-scroll-section>
-    <div class="container">
-      <h2 class="section-title">Why Choose Battersea?</h2>
-      
-      <div class="features-grid">
-        <div class="feature-card" data-animation="fade-up">
-          <div class="feature-icon">⚡</div>
-          <h3>Lightweight</h3>
-          <p>Zero dependencies. Pure vanilla JavaScript. Only load what you need. Perfect for performance-critical projects.</p>
-        </div>
-        
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="1">
-          <div class="feature-icon">♿</div>
-          <h3>Accessible</h3>
-          <p>ARIA labels, keyboard navigation, and semantic HTML built-in. WCAG compliant from the ground up.</p>
-        </div>
-        
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="2">
-          <div class="feature-icon">🎨</div>
-          <h3>Themeable</h3>
-          <p>Built with LESS. Change your entire brand with a few variables. Dynamic theming with less.js support.</p>
-        </div>
-        
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="3">
-          <div class="feature-icon">📱</div>
-          <h3>Responsive</h3>
-          <p>Mobile-first design. Works beautifully on all devices. Touch-friendly interactions throughout.</p>
-        </div>
-        
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="4">
-          <div class="feature-icon">🔧</div>
-          <h3>Modular</h3>
-          <p>Use just one component or all 15. No bloat. Tree-shakeable. Import only what you need.</p>
-        </div>
-        
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="5">
-          <div class="feature-icon">⚙️</div>
-          <h3>Data-Driven</h3>
-          <p>Configure with data attributes. No JavaScript required. Progressive enhancement built-in.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- COMPONENT SHOWCASE SECTION -->
-  <!-- ============================================ -->
-  <section class="showcase-section" data-scroll-section>
-    <div class="container">
-      <h2 class="section-title">15 Production-Ready Components</h2>
-      <p class="section-subtitle">Explore our complete collection of accessible, customizable components</p>
-      
-      <div class="component-grid">
-        <!-- Accordion -->
-        <div class="component-card" data-animation="fade-up">
-          <div class="component-preview">▼</div>
-          <div class="component-info">
-            <h3>Accordion</h3>
-            <p>Collapsible sections with smooth animations and keyboard support.</p>
-            <a href="accordion.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Animation -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="1">
-          <div class="component-preview">✨</div>
-          <div class="component-info">
-            <h3>Animation</h3>
-            <p>Scroll-triggered animations with parent-child cascading effects.</p>
-            <a href="animation.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Counter -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="2">
-          <div class="component-preview">123</div>
-          <div class="component-info">
-            <h3>Counter</h3>
-            <p>Animated number counting triggered on scroll into view.</p>
-            <a href="counter.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Flipbox -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="3">
-          <div class="component-preview">🔄</div>
-          <div class="component-info">
-            <h3>Flipbox</h3>
-            <p>3D flip card animations with front and back content.</p>
-            <a href="flipbox.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Header -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="4">
-          <div class="component-preview">☰</div>
-          <div class="component-info">
-            <h3>Header</h3>
-            <p>Adaptive navigation with shrink-on-scroll functionality.</p>
-            <a href="header.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Horizontal Nav -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="5">
-          <div class="component-preview">≡</div>
-          <div class="component-info">
-            <h3>Horizontal Nav</h3>
-            <p>Multi-level dropdown menus up to 4 levels deep.</p>
-            <a href="horizontalnav.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- MultiSlider -->
-        <div class="component-card" data-animation="fade-up">
-          <div class="component-preview">⋮⋮⋮</div>
-          <div class="component-info">
-            <h3>MultiSlider</h3>
-            <p>Multi-item carousel with true infinite loop support.</p>
-            <a href="multislider.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- NestedProgress -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="1">
-          <div class="component-preview">◉</div>
-          <div class="component-info">
-            <h3>Nested Progress</h3>
-            <p>Multi-layer circular progress visualization.</p>
-            <a href="nestedprogress.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Parallax -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="2">
-          <div class="component-preview">⛰</div>
-          <div class="component-info">
-            <h3>Parallax</h3>
-            <p>Smooth parallax scrolling backgrounds with depth.</p>
-            <a href="parallax.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Popup -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="3">
-          <div class="component-preview">⬜</div>
-          <div class="component-info">
-            <h3>Popup/Modal</h3>
-            <p>Accessible overlay dialogs with backdrop and ESC support.</p>
-            <a href="popup.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- ProgressBar -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="4">
-          <div class="component-preview">━</div>
-          <div class="component-info">
-            <h3>Progress Bar</h3>
-            <p>Horizontal and circular progress indicators.</p>
-            <a href="progressbar.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Slider -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="5">
-          <div class="component-preview">◀ ▶</div>
-          <div class="component-info">
-            <h3>Slider</h3>
-            <p>Image carousel with true infinite loop using clones.</p>
-            <a href="slider.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- SmoothScroll -->
-        <div class="component-card" data-animation="fade-up">
-          <div class="component-preview">⊙</div>
-          <div class="component-info">
-            <h3>SmoothScroll</h3>
-            <p>Section navigation with visual dots and dynamic header detection.</p>
-            <a href="smoothscroll.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Tabs -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="1">
-          <div class="component-preview">⊟⊟⊟</div>
-          <div class="component-info">
-            <h3>Tabs</h3>
-            <p>Tabbed content interface with keyboard navigation.</p>
-            <a href="tabs.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-        
-        <!-- Tooltip -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="2">
-          <div class="component-preview">💬</div>
-          <div class="component-info">
-            <h3>Tooltip</h3>
-            <p>Hover/focus tooltips with smart positioning.</p>
-            <a href="tooltip.html" class="component-link">View Demo →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- GETTING STARTED SECTION (Using Tabs Component) -->
-  <!-- ============================================ -->
-  <section class="getting-started-section" id="getting-started" data-scroll-section>
-    <div class="container">
-      <h2 class="section-title">Getting Started</h2>
-      
-      <div class="tabs-container">
-        <div data-tabs>
-          <!-- Tab Navigation -->
-          <div data-tabs-nav>
-            <button data-tab="install" class="active">Installation</button>
-            <button data-tab="usage">Usage</button>
-            <button data-tab="customize">Customize</button>
-          </div>
-          
-          <!-- Tab Content -->
-          <div data-tabs-content>
-            <!-- Installation Tab -->
-            <div data-tab-content="install" class="active">
-              <h3>Quick Installation</h3>
-              <p>Include the CSS and JavaScript files in your project:</p>
-              
-              <pre><code>&lt;!-- CSS --&gt;
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Battersea Library - Modular JavaScript Component Library Demonstration</title>
+		<meta name="description" content="A lightweight, modular JavaScript component library built with vanilla JavaScript, LESS/CSS, and accessibility-first design.">
+		
+		<!-- LESS Stylesheet (for dynamic theming) -->
+		<link rel="stylesheet/less" type="text/css" href="../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../src/css/battersea-demo-site.less">
+		
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			// Configure LESS before loading the compiler
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+			
+				// Global LESS variables (can be modified at runtime)
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section>
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Battersea Library</h1>
+						<p class="hero-subtitle">
+							A lightweight, modular JavaScript component library built with vanilla JavaScript.
+							No dependencies. Fully accessible. Infinitely themeable.
+						</p>
+					
+						<div class="hero-buttons">
+							<a href="#getting-started" class="btn btn-primary">Get Started</a>
+							<a href="https://github.com/idahodesign/battersea-library" class="btn btn-secondary" target="_blank">
+								View on GitHub
+							</a>
+						</div>
+					</div>
+				</dov>
+			</section>
+	
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section class="features-section" data-scroll-section>
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Why Choose Battersea?</h2>
+						
+						<div class="features-grid">
+							<div class="feature-card" data-animation="fade-up">
+								<div class="feature-icon">⚡</div>
+								<h3>Lightweight</h3>
+								<p>Zero dependencies. Pure vanilla JavaScript. Only load what you need. Perfect for performance-critical projects.</p>
+							</div>
+					
+							<div class="feature-card" data-animation="fade-up" data-animation-delay="1">
+								<div class="feature-icon">♿</div>
+								<h3>Accessible</h3>
+								<p>ARIA labels, keyboard navigation, and semantic HTML built-in. WCAG compliant from the ground up.</p>
+							</div>
+					
+							<div class="feature-card" data-animation="fade-up" data-animation-delay="2">
+								<div class="feature-icon">🎨</div>
+								<h3>Themeable</h3>
+								<p>Built with LESS. Change your entire brand with a few variables. Dynamic theming with less.js support.</p>
+							</div>
+						
+							<div class="feature-card" data-animation="fade-up" data-animation-delay="3">
+								<div class="feature-icon">📱</div>
+								<h3>Responsive</h3>
+								<p>Mobile-first design. Works beautifully on all devices. Touch-friendly interactions throughout.</p>
+							</div>
+						
+							<div class="feature-card" data-animation="fade-up" data-animation-delay="4">
+								<div class="feature-icon">🔧</div>
+								<h3>Modular</h3>
+								<p>Use just one component or all 15. No bloat. Tree-shakeable. Import only what you need.</p>
+							</div>
+						
+							<div class="feature-card" data-animation="fade-up" data-animation-delay="5">
+								<div class="feature-icon">⚙️</div>
+								<h3>Data-Driven</h3>
+								<p>Configure with data attributes. No JavaScript required. Progressive enhancement built-in.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+	
+			<!-- ============================================ -->
+			<!-- COMPONENT SHOWCASE SECTION -->
+			<!-- ============================================ -->
+			<section class="showcase-section" data-scroll-section>
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">15 Production-Ready Components</h2>
+						<p class="section-subtitle">Explore our complete collection of accessible, customizable components</p>
+					
+						<div class="component-grid">
+							<!-- Accordion -->
+							<div class="component-card" data-animation="fade-up">
+								<div class="component-preview">▼</div>
+								<div class="component-info">
+									<h3>Accordion</h3>
+									<p>Collapsible sections with smooth animations and keyboard support.</p>
+								</div>
+								<a href="components/accordion.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Animation -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="1">
+								<div class="component-preview">✨</div>
+								<div class="component-info">
+									<h3>Animation</h3>
+									<p>Scroll-triggered animations with parent-child cascading effects.</p>
+								</div>
+								<a href="animation.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Counter -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="2">
+								<div class="component-preview">123</div>
+								<div class="component-info">
+									<h3>Counter</h3>
+									<p>Animated number counting triggered on scroll into view.</p>
+								</div>
+								<a href="counter.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Flipbox -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="3">
+								<div class="component-preview">🔄</div>
+								<div class="component-info">
+									<h3>Flipbox</h3>
+									<p>3D flip card animations with front and back content.</p>
+								</div>
+								<a href="flipbox.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Header -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="4">
+								<div class="component-preview">☰</div>
+								<div class="component-info">
+									<h3>Header</h3>
+									<p>Adaptive navigation with shrink-on-scroll functionality.</p>
+								</div>
+								<a href="header.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Horizontal Nav -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="5">
+								<div class="component-preview">≡</div>
+								<div class="component-info">
+									<h3>Horizontal Nav</h3>
+									<p>Multi-level dropdown menus up to 4 levels deep.</p>
+								</div>
+								<a href="horizontalnav.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- MultiSlider -->
+							<div class="component-card" data-animation="fade-up">
+								<div class="component-preview">⋮⋮⋮</div>
+								<div class="component-info">
+									<h3>MultiSlider</h3>
+									<p>Multi-item carousel with true infinite loop support.</p>
+								</div>
+								<a href="multislider.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- NestedProgress -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="1">
+								<div class="component-preview">◉</div>
+								<div class="component-info">
+									<h3>Nested Progress</h3>
+									<p>Multi-layer circular progress visualization.</p>
+								</div>
+								<a href="nestedprogress.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Parallax -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="2">
+								<div class="component-preview">⛰</div>
+								<div class="component-info">
+									<h3>Parallax</h3>
+									<p>Smooth parallax scrolling backgrounds with depth.</p>
+								</div>
+								<a href="parallax.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Popup -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="3">
+								<div class="component-preview">⬜</div>
+								<div class="component-info">
+									<h3>Popup/Modal</h3>
+									<p>Accessible overlay dialogs with backdrop and ESC support.</p>
+								</div>
+								<a href="popup.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- ProgressBar -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="4">
+								<div class="component-preview">━</div>
+								<div class="component-info">
+									<h3>Progress Bar</h3>
+									<p>Horizontal and circular progress indicators.</p>
+								</div>
+								<a href="progressbar.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Slider -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="5">
+								<div class="component-preview">◀ ▶</div>
+								<div class="component-info">
+									<h3>Slider</h3>
+									<p>Image carousel with true infinite loop using clones.</p>
+								</div>
+								<a href="slider.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- SmoothScroll -->
+							<div class="component-card" data-animation="fade-up">
+								<div class="component-preview">⊙</div>
+								<div class="component-info">
+									<h3>SmoothScroll</h3>
+									<p>Section navigation with visual dots and dynamic header detection.</p>
+								</div>
+								<a href="smoothscroll.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Tabs -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="1">
+								<div class="component-preview">⊟⊟⊟</div>
+								<div class="component-info">
+									<h3>Tabs</h3>
+									<p>Tabbed content interface with keyboard navigation.</p>
+								</div>
+								<a href="tabs.html" class="component-link">View Demo</a>
+							</div>
+						
+							<!-- Tooltip -->
+							<div class="component-card" data-animation="fade-up" data-animation-delay="2">
+								<div class="component-preview">💬</div>
+								<div class="component-info">
+									<h3>Tooltip</h3>
+									<p>Hover/focus tooltips with smart positioning.</p>
+								</div>
+								<a href="tooltip.html" class="component-link">View Demo</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+	
+			<!-- ============================================ -->
+			<!-- GETTING STARTED SECTION (Using Tabs Component) -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" id="getting-started" data-scroll-section>
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Getting Started</h2>
+				
+						<div class="tabs-container">
+							<div data-tabs>
+								<!-- Tab Navigation -->
+								<div data-tabs-nav>
+									<button data-tab="install" class="active">Installation</button>
+									<button data-tab="usage">Usage</button>
+									<button data-tab="customize">Customize</button>
+								</div>
+						
+								<!-- Tab Content -->
+								<div data-tabs-content>
+									<!-- Installation Tab -->
+									<div data-tab-content="install" class="active">
+										<h3>Quick Installation</h3>
+										<p>Include the CSS and JavaScript files in your project:</p>
+								
+										<pre><code>&lt;!-- CSS --&gt;
 &lt;link rel="stylesheet" href="path/to/battersea-library-min.css"&gt;
 
 &lt;!-- Core JavaScript (Required) --&gt;
@@ -314,557 +304,567 @@
 
 &lt;!-- Component Scripts (Load only what you need) --&gt;
 &lt;script src="path/to/battersea-slider.js"&gt;&lt;/script&gt;
-&lt;script src="path/to/battersea-accordion.js"&gt;&lt;/script&gt;</code></pre>
-              
-              <p style="margin-top: 1rem;">Or clone from GitHub:</p>
-              <pre><code>git clone https://github.com/idahodesign/battersea-library.git</code></pre>
-            </div>
-            
-            <!-- Usage Tab -->
-            <div data-tab-content="usage">
-              <h3>Simple Usage Example</h3>
-              <p>Components are initialized automatically using data attributes:</p>
-              
-              <pre><code>&lt;!-- Accordion Example --&gt;
+&lt;script src="path/to/battersea-accordion.js"&gt;&lt;/script&gt;
+										</code></pre>
+								
+										<p style="margin-top: 1rem;">Or clone from GitHub:</p>
+										<pre><code>git clone https://github.com/idahodesign/battersea-library.git</code></pre>
+									</div>
+							
+									<!-- Usage Tab -->
+									<div data-tab-content="usage">
+										<h3>Simple Usage Example</h3>
+										<p>Components are initialized automatically using data attributes:</p>
+									
+										<pre><code>&lt;!-- Accordion Example --&gt;
 &lt;div data-accordion&gt;
-  &lt;div class="battersea-accordion__item"&gt;
-    &lt;button data-accordion-trigger&gt;Section 1&lt;/button&gt;
-    &lt;div data-accordion-content&gt;
-      &lt;p&gt;Content goes here...&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+	&lt;div class="battersea-accordion__item"&gt;
+		&lt;button data-accordion-trigger&gt;Section 1&lt;/button&gt;
+		&lt;div data-accordion-content&gt;
+			&lt;p&gt;Content goes here...&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
 &lt;/div&gt;
-
+			
 &lt;!-- Slider Example --&gt;
 &lt;div data-slider data-slider-autoplay="true"&gt;
-  &lt;div class="battersea-slider__track"&gt;
-    &lt;div class="battersea-slider__slide"&gt;Slide 1&lt;/div&gt;
-    &lt;div class="battersea-slider__slide"&gt;Slide 2&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-              
-              <p style="margin-top: 1rem;">No JavaScript configuration required! Components auto-initialize on page load.</p>
-            </div>
-            
-            <!-- Customize Tab -->
-            <div data-tab-content="customize">
-              <h3>Theme Customization</h3>
-              <p>Customize the library using CSS variables or LESS variables:</p>
-              
-              <pre><code>/* CSS Custom Properties */
+	&lt;div class="battersea-slider__track"&gt;
+		&lt;div class="battersea-slider__slide"&gt;Slide 1&lt;/div&gt;
+		&lt;div class="battersea-slider__slide"&gt;Slide 2&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+										</code></pre>
+								
+										<p style="margin-top: 1rem;">No JavaScript configuration required! Components auto-initialize on page load.</p>
+									</div>
+							
+									<!-- Customize Tab -->
+									<div data-tab-content="customize">
+										<h3>Theme Customization</h3>
+										<p>Customize the library using CSS variables or LESS variables:</p>
+								
+										<pre><code>/* CSS Custom Properties */
 :root {
-  --battersea-primary: #667eea;
-  --battersea-secondary: #764ba2;
-  --battersea-text: #333;
+	--battersea-secondary: #764ba2;
+	--battersea-text: #333;
 }
-
+			
 /* Or use LESS variables */
 @primary-color: #667eea;
 @secondary-color: #764ba2;
-
-/* Dynamic theming with less.js */
+			
 less.modifyVars({
-  '@primary-color': '#ff6b6b',
-  '@secondary-color': '#4ecdc4'
-});</code></pre>
-              
-              <p style="margin-top: 1rem;">Try the theme customizer below to see dynamic theming in action!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- THEME CUSTOMIZER (Floating Widget) -->
-  <!-- ============================================ -->
-  <div class="theme-customizer" id="themeCustomizer">
-    <button class="toggle-customizer" onclick="toggleCustomizer()">🎨 Theme</button>
-    
-    <h3>Live Theme Editor</h3>
-    <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
-      Change colors and see the entire site update instantly!
-    </p>
-    
-    <div class="color-picker-group">
-      <label for="primaryColor">Primary Colour</label>
-      <input type="color" id="primaryColor" value="#667eea">
-    </div>
-    
-    <div class="color-picker-group">
-      <label for="secondaryColor">Secondary Colour</label>
-      <input type="color" id="secondaryColor" value="#764ba2">
-    </div>
-    
-    <div class="color-picker-group">
-      <label for="accentColor">Accent Colour</label>
-      <input type="color" id="accentColor" value="#4ecdc4">
-    </div>
-    
-    <div class="theme-buttons">
-      <button onclick="applyTheme()">Apply Theme</button>
-      <button class="btn-reset" onclick="resetTheme()">Reset</button>
-    </div>
-    
-    <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">
-      Powered by less.js runtime compilation
-    </p>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- TESTIMONIALS SECTION (Using Slider Component) -->
-  <!-- ============================================ -->
-  <section class="testimonials-section" data-scroll-section>
-    <div class="container">
-      <h2 class="section-title">Built with Battersea</h2>
-      <p class="section-subtitle">See what developers are creating with the library</p>
-      
-      <div class="testimonials-slider-wrapper">
-        <div data-slider data-slider-autoplay="true" data-slider-interval="5000" data-slider-transition="fade" data-slider-dots="true" data-slider-arrows="true">
-          <div data-slider-track>
-            <!-- Testimonial 1 -->
-            <div data-slider-item>
-              <div class="testimonial-card">
-                <div class="testimonial-icon">💬</div>
-                <p class="testimonial-text">
-                  Battersea Library transformed our development workflow. The component architecture is brilliant, 
-                  and the accessibility features are best-in-class. We rebuilt our entire UI in half the time.
-                </p>
-                <div class="testimonial-author">
-                  <strong>Sarah Chen</strong>
-                  <span>Lead Developer, TechCorp</span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Testimonial 2 -->
-            <div data-slider-item>
-              <div class="testimonial-card">
-                <div class="testimonial-icon">⭐</div>
-                <p class="testimonial-text">
-                  Zero dependencies means zero headaches. The LESS theming system is incredibly powerful - 
-                  we can rebrand client sites in minutes. This is exactly what we've been looking for.
-                </p>
-                <div class="testimonial-author">
-                  <strong>Marcus Rodriguez</strong>
-                  <span>Freelance Web Designer</span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Testimonial 3 -->
-            <div data-slider-item>
-              <div class="testimonial-card">
-                <div class="testimonial-icon">🚀</div>
-                <p class="testimonial-text">
-                  Performance is exceptional. Loading only what we need keeps our pages lightning fast. 
-                  The data-attribute approach makes it incredibly easy to train our content team.
-                </p>
-                <div class="testimonial-author">
-                  <strong>Jennifer Williams</strong>
-                  <span>CTO, StartupHub</span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Testimonial 4 -->
-            <div data-slider-item>
-              <div class="testimonial-card">
-                <div class="testimonial-icon">♿</div>
-                <p class="testimonial-text">
-                  Accessibility built-in from day one. Every component follows WCAG guidelines without 
-                  additional configuration. This saved us weeks of compliance work.
-                </p>
-                <div class="testimonial-author">
-                  <strong>David Thompson</strong>
-                  <span>Accessibility Consultant</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Slider Navigation -->
-          <button data-slider-prev aria-label="Previous testimonial"></button>
-          <button data-slider-next aria-label="Next testimonial"></button>
-          <div data-slider-dots></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- BROWSER SUPPORT SECTION (Using ProgressBar Component) -->
-  <!-- ============================================ -->
-  <section class="browser-support-section" data-scroll-section>
-    <div class="container">
-      <h2 class="section-title">Browser Support</h2>
-      <p class="section-subtitle">Works beautifully across all modern browsers</p>
-      
-      <div class="browser-grid">
-        <div class="browser-item" data-animation="fade-up">
-          <div class="browser-icon">🌐</div>
-          <h3>Chrome</h3>
-          <div data-progress data-progress-animated="true" data-progress-value="100"></div>
-          <p class="browser-version">Latest + Last 2 versions</p>
-        </div>
-        
-        <div class="browser-item" data-animation="fade-up" data-animation-delay="1">
-          <div class="browser-icon">🦊</div>
-          <h3>Firefox</h3>
-          <div data-progress data-progress-animated="true" data-progress-value="100"></div>
-          <p class="browser-version">Latest + Last 2 versions</p>
-        </div>
-        
-        <div class="browser-item" data-animation="fade-up" data-animation-delay="2">
-          <div class="browser-icon">🧭</div>
-          <h3>Safari</h3>
-          <div data-progress data-progress-animated="true" data-progress-value="100"></div>
-          <p class="browser-version">Latest + Last 2 versions</p>
-        </div>
-        
-        <div class="browser-item" data-animation="fade-up" data-animation-delay="3">
-          <div class="browser-icon">📊</div>
-          <h3>Edge</h3>
-          <div data-progress data-progress-animated="true" data-progress-value="100"></div>
-          <p class="browser-version">Latest + Last 2 versions</p>
-        </div>
-      </div>
-      
-      <div class="browser-note">
-        <p>✓ Mobile browsers fully supported (iOS Safari, Chrome Mobile, Samsung Internet)</p>
-        <p>✓ Progressive enhancement ensures graceful degradation on older browsers</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- FAQ SECTION (Using Accordion Component) -->
-  <!-- ============================================ -->
-  <section class="faq-section" data-scroll-section>
-    <div class="container">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <p class="section-subtitle">Everything you need to know about Battersea Library</p>
-      
-      <div class="faq-wrapper">
-        <div data-accordion data-accordion-multiple="false">
-          
-          <!-- FAQ 1 -->
-          <div data-accordion-item class="active">
-            <div data-accordion-header>
-              <h3>Do I need to include all components?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                No! That's the beauty of Battersea's modular architecture. You only need to include 
-                <code>battersea-utils.js</code> and <code>battersea-core.js</code>, then add only the 
-                component scripts you actually use. This keeps your page size minimal and performance optimal.
-              </p>
-              <p>
-                For example, if you only use Tabs and Accordion, just include those two component files 
-                along with the core files.
-              </p>
-            </div>
-          </div>
-          
-          <!-- FAQ 2 -->
-          <div data-accordion-item>
-            <div data-accordion-header>
-              <h3>Is Battersea Library free to use?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                Yes! Battersea Library is completely free and open source under the MIT License. 
-                You can use it in personal projects, commercial projects, modify it, redistribute it - 
-                whatever you need. No attribution required (though always appreciated!).
-              </p>
-            </div>
-          </div>
-          
-          <!-- FAQ 3 -->
-          <div data-accordion-item>
-            <div data-accordion-header>
-              <h3>Can I use this with React, Vue, or other frameworks?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                Absolutely! While Battersea is built with vanilla JavaScript, it works alongside any framework. 
-                The components use standard DOM manipulation and can be integrated into React components, 
-                Vue templates, or any other framework.
-              </p>
-              <p>
-                Just initialize the components after your framework renders the DOM elements. Many developers 
-                use Battersea components for specific UI elements while keeping their main app in a framework.
-              </p>
-            </div>
-          </div>
-          
-          <!-- FAQ 4 -->
-          <div data-accordion-item>
-            <div data-accordion-header>
-              <h3>How do I customize the styling?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                You have multiple options:
-              </p>
-              <ul>
-                <li><strong>CSS Custom Properties:</strong> Override variables like <code>--battersea-primary</code> in your own CSS</li>
-                <li><strong>LESS Variables:</strong> Modify the LESS source files and recompile</li>
-                <li><strong>Runtime Theming:</strong> Use less.js to change themes dynamically (like the customizer on this page!)</li>
-                <li><strong>Custom CSS:</strong> Add your own classes and override specific styles</li>
-              </ul>
-            </div>
-          </div>
-          
-          <!-- FAQ 5 -->
-          <div data-accordion-item>
-            <div data-accordion-header>
-              <h3>Are the components accessible?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                Yes! Accessibility is a core principle of Battersea Library. Every component includes:
-              </p>
-              <ul>
-                <li>Proper ARIA labels and roles</li>
-                <li>Full keyboard navigation support</li>
-                <li>Screen reader compatibility</li>
-                <li>Focus management and visible focus indicators</li>
-                <li>Semantic HTML structure</li>
-              </ul>
-              <p>
-                We follow WCAG 2.1 Level AA guidelines as a minimum standard.
-              </p>
-            </div>
-          </div>
-          
-          <!-- FAQ 6 -->
-          <div data-accordion-item>
-            <div data-accordion-header>
-              <h3>What browsers are supported?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                Battersea supports all modern browsers:
-              </p>
-              <ul>
-                <li>Chrome (latest + last 2 versions)</li>
-                <li>Firefox (latest + last 2 versions)</li>
-                <li>Safari (latest + last 2 versions)</li>
-                <li>Edge (latest + last 2 versions)</li>
-                <li>Mobile browsers (iOS Safari, Chrome Mobile, Samsung Internet)</li>
-              </ul>
-              <p>
-                We use progressive enhancement, so core functionality works even in older browsers, 
-                with enhanced features in modern ones.
-              </p>
-            </div>
-          </div>
-          
-          <!-- FAQ 7 -->
-          <div data-accordion-item>
-            <div data-accordion-header>
-              <h3>Can I contribute to the library?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                We'd love your contributions! Check out the 
-                <a href="https://github.com/idahodesign/battersea-library" target="_blank">GitHub repository</a> 
-                to:
-              </p>
-              <ul>
-                <li>Report bugs or request features via Issues</li>
-                <li>Submit pull requests with improvements</li>
-                <li>Improve documentation</li>
-                <li>Share examples of your projects using Battersea</li>
-              </ul>
-            </div>
-          </div>
-          
-          <!-- FAQ 8 -->
-          <div data-accordion-item>
-            <div data-accordion-header>
-              <h3>How do I get support?</h3>
-              
-            </div>
-            <div data-accordion-content>
-              <p>
-                For support and questions:
-              </p>
-              <ul>
-                <li>Check the <a href="#getting-started">Getting Started</a> guide above</li>
-                <li>Browse the individual component demo pages for detailed examples</li>
-                <li>Open an issue on <a href="https://github.com/idahodesign/battersea-library/issues" target="_blank">GitHub</a></li>
-                <li>Review the source code - it's well-commented and easy to follow</li>
-              </ul>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- STATS SECTION (Using Counter Component) -->
-  <!-- ============================================ -->
-  <section class="stats-section" data-scroll-section>
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item" data-animation="fade-up">
-          <div class="stat-number">
-            <span data-counter data-counter-end="15" data-counter-duration="2000">0</span>
-          </div>
-          <div class="stat-label">Production-Ready Components</div>
-        </div>
-        
-        <div class="stat-item" data-animation="fade-up" data-animation-delay="1">
-          <div class="stat-number">
-            <span data-counter data-counter-end="0" data-counter-duration="2000">0</span>
-          </div>
-          <div class="stat-label">External Dependencies</div>
-        </div>
-        
-        <div class="stat-item" data-animation="fade-up" data-animation-delay="2">
-          <div class="stat-number">
-            <span data-counter data-counter-end="100" data-counter-duration="2000" data-counter-suffix="%">0</span>
-          </div>
-          <div class="stat-label">Accessibility Score</div>
-        </div>
-        
-        <div class="stat-item" data-animation="fade-up" data-animation-delay="3">
-          <div class="stat-number">
-            <span data-counter data-counter-end="30" data-counter-duration="2000" data-counter-suffix="KB">0</span>
-          </div>
-          <div class="stat-label">Core Library Size</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer style="background: #2d2d2d; color: white; padding: 3rem 0; margin-top: 4rem;">
-    <div class="container" style="text-align: center;">
-      <p style="font-size: 1.1rem; margin-bottom: 1rem;">&copy; 2024-2026 Battersea Library</p>
-      <p style="opacity: 0.8; margin-bottom: 1.5rem;">
-        Open source under the MIT License
-      </p>
-      <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-        <a href="https://github.com/idahodesign/battersea-library" target="_blank" 
-           style="color: #667eea; text-decoration: none; font-weight: 600;">
-          GitHub Repository
-        </a>
-        <a href="https://github.com/idahodesign/battersea-library/issues" target="_blank"
-           style="color: #667eea; text-decoration: none; font-weight: 600;">
-          Report an Issue
-        </a>
-        <a href="#getting-started" style="color: #667eea; text-decoration: none; font-weight: 600;">
-          Documentation
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Battersea Library JavaScript -->
-  <script src="../src/js/battersea-utils.js"></script>
-  <script src="../src/js/battersea-core.js"></script>
-  <script src="../src/js/battersea-tabs.js"></script>
-  <script src="../src/js/battersea-animation.js"></script>
-  <script src="../src/js/battersea-slider.js"></script>
-  <script src="../src/js/battersea-accordion.js"></script>
-  <script src="../src/js/battersea-progressbar.js"></script>
-  <script src="../src/js/battersea-counter.js"></script>
-  
-  <!-- Theme Customizer Script -->
-  <script>
-    // Theme Customizer Functions
-    function applyTheme() {
-      const primary = document.getElementById('primaryColor').value;
-      const secondary = document.getElementById('secondaryColor').value;
-      const accent = document.getElementById('accentColor').value;
-      
-      // Update LESS variables dynamically
-      less.modifyVars({
-        '@primary-color': primary,
-        '@secondary-color': secondary,
-        '@accent-color': accent
-      }).then(() => {
-        console.log('✓ Theme updated successfully!');
-        
-        // Optional: Show success message
-        showNotification('Theme applied successfully!');
-      }).catch(err => {
-        console.error('Error updating theme:', err);
-      });
-    }
-    
-    function resetTheme() {
-      // Reset to default colors
-      document.getElementById('primaryColor').value = '#667eea';
-      document.getElementById('secondaryColor').value = '#764ba2';
-      document.getElementById('accentColor').value = '#4ecdc4';
-      
-      less.modifyVars({
-        '@primary-color': '#667eea',
-        '@secondary-color': '#764ba2',
-        '@accent-color': '#4ecdc4'
-      }).then(() => {
-        console.log('✓ Theme reset to defaults');
-        showNotification('Theme reset to defaults!');
-      });
-    }
-    
-    function toggleCustomizer() {
-      const customizer = document.getElementById('themeCustomizer');
-      customizer.classList.toggle('collapsed');
-    }
-    
-    function showNotification(message) {
-      // Simple notification (you could use the Popup component here!)
-      const notification = document.createElement('div');
-      notification.textContent = message;
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #4CAF50;
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 6px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 10000;
-        animation: slideIn 0.3s ease;
-      `;
-      
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-      }, 2000);
-    }
-    
-    // Add animation keyframes
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes slideIn {
-        from { transform: translateX(400px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-      }
-      @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(400px); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-  </script>
-</body>
+	'@primary-color': '#ff6b6b',
+	'@secondary-color': '#4ecdc4'
+});
+										</code></pre>
+								
+										<p style="margin-top: 1rem;">Try the theme customizer below to see dynamic theming in action!</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+	
+			<!-- ============================================ -->
+			<!-- THEME CUSTOMIZER (Floating Widget) -->
+			<!-- ============================================ -->
+			<div class="theme-customizer collapsed" id="themeCustomizer">
+				<button class="toggle-customizer" onclick="toggleCustomizer()">🎨 Theme</button>
+			
+				<h3>Live Theme Editor</h3>
+				<p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+					Change colors and see the entire site update instantly!
+				</p>
+			
+				<div class="color-picker-group">
+					<label for="primaryColor">Primary Colour</label>
+					<input type="color" id="primaryColor" value="#667eea">
+				</div>
+			
+				<div class="color-picker-group">
+					<label for="secondaryColor">Secondary Colour</label>
+					<input type="color" id="secondaryColor" value="#764ba2">
+				</div>
+			
+				<div class="color-picker-group">
+					<label for="accentColor">Accent Colour</label>
+					<input type="color" id="accentColor" value="#4ecdc4">
+				</div>
+			
+				<div class="theme-buttons">
+					<button onclick="applyTheme()">Apply Theme</button>
+					<button class="btn-reset" onclick="resetTheme()">Reset</button>
+				</div>
+			
+				<p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">
+					Powered by less.js runtime compilation
+				</p>
+			</div>
+	
+			<!-- ============================================ -->
+			<!-- TESTIMONIALS SECTION (Using Slider Component) -->
+			<!-- ============================================ -->
+			<section class="testimonials-section" data-scroll-section>
+				<div class="section-box">
+					<div class="container">
+					<h2 class="section-title">Built with Battersea</h2>
+					<p class="section-subtitle">See what developers are creating with the library</p>
+					
+						<div class="testimonials-slider-wrapper">
+							<div data-slider data-slider-autoplay="true" data-slider-interval="5000" data-slider-transition="fade" data-slider-dots="true" data-slider-arrows="true">
+								<div data-slider-track>
+								<!-- Testimonial 1 -->
+								<div data-slider-item>
+									<div class="testimonial-card">
+										<div class="testimonial-icon">💬</div>
+										<p class="testimonial-text">
+										Battersea Library transformed our development workflow. The component architecture is brilliant, 
+										and the accessibility features are best-in-class. We rebuilt our entire UI in half the time.
+										</p>
+										<div class="testimonial-author">
+										<strong>Sarah Chen</strong>
+										<span>Lead Developer, TechCorp</span>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Testimonial 2 -->
+								<div data-slider-item>
+									<div class="testimonial-card">
+										<div class="testimonial-icon">⭐</div>
+										<p class="testimonial-text">
+										Zero dependencies means zero headaches. The LESS theming system is incredibly powerful - 
+										we can rebrand client sites in minutes. This is exactly what we've been looking for.
+										</p>
+										<div class="testimonial-author">
+										<strong>Marcus Rodriguez</strong>
+										<span>Freelance Web Designer</span>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Testimonial 3 -->
+								<div data-slider-item>
+									<div class="testimonial-card">
+										<div class="testimonial-icon">🚀</div>
+										<p class="testimonial-text">
+										Performance is exceptional. Loading only what we need keeps our pages lightning fast. 
+										The data-attribute approach makes it incredibly easy to train our content team.
+										</p>
+										<div class="testimonial-author">
+										<strong>Jennifer Williams</strong>
+										<span>CTO, StartupHub</span>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Testimonial 4 -->
+								<div data-slider-item>
+									<div class="testimonial-card">
+										<div class="testimonial-icon">♿</div>
+										<p class="testimonial-text">
+										Accessibility built-in from day one. Every component follows WCAG guidelines without 
+										additional configuration. This saved us weeks of compliance work.
+										</p>
+										<div class="testimonial-author">
+										<strong>David Thompson</strong>
+										<span>Accessibility Consultant</span>
+										</div>
+									</div>
+								</div>
+								</div>
+								
+								<!-- Slider Navigation -->
+								<button data-slider-prev aria-label="Previous testimonial"></button>
+								<button data-slider-next aria-label="Next testimonial"></button>
+								<div data-slider-dots></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+	
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION (Using ProgressBar Component) -->
+			<!-- ============================================ -->
+			<section class="browser-support-section" data-scroll-section>
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works beautifully across all modern browsers</p>
+						
+						<div class="browser-grid">
+							<div class="browser-item" data-animation="fade-up">
+								<div class="browser-icon">🌐</div>
+								<h3>Chrome</h3>
+								<div data-progress data-progress-animated="true" data-progress-value="100"></div>
+								<p class="browser-version">Latest + Last 2 versions</p>
+							</div>
+							
+							<div class="browser-item" data-animation="fade-up" data-animation-delay="1">
+								<div class="browser-icon">🦊</div>
+								<h3>Firefox</h3>
+								<div data-progress data-progress-animated="true" data-progress-value="100"></div>
+								<p class="browser-version">Latest + Last 2 versions</p>
+							</div>
+							
+							<div class="browser-item" data-animation="fade-up" data-animation-delay="2">
+								<div class="browser-icon">🧭</div>
+								<h3>Safari</h3>
+								<div data-progress data-progress-animated="true" data-progress-value="100"></div>
+								<p class="browser-version">Latest + Last 2 versions</p>
+							</div>
+							
+							<div class="browser-item" data-animation="fade-up" data-animation-delay="3">
+								<div class="browser-icon">📊</div>
+								<h3>Edge</h3>
+								<div data-progress data-progress-animated="true" data-progress-value="100"></div>
+								<p class="browser-version">Latest + Last 2 versions</p>
+							</div>
+						</div>
+						
+						<div class="browser-note">
+							<p>✓ Mobile browsers fully supported (iOS Safari, Chrome Mobile, Samsung Internet)</p>
+							<p>✓ Progressive enhancement ensures graceful degradation on older browsers</p>
+						</div>
+					</div>
+				</div>
+			</section>
+	
+			<!-- ============================================ -->
+			<!-- FAQ SECTION (Using Accordion Component) -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section>
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Frequently Asked Questions</h2>
+						<p class="section-subtitle">Everything you need to know about Battersea Library</p>
+				
+						<div class="faq-wrapper">
+							<div data-accordion data-accordion-multiple="false">
+						
+								<!-- FAQ 1 -->
+								<div data-accordion-item class="active">
+									<div data-accordion-header>
+										<h3>Do I need to include all components?</h3>
+										
+									</div>
+									<div data-accordion-content>
+										<p>
+											No! That's the beauty of Battersea's modular architecture. You only need to include 
+											<code>battersea-utils.js</code> and <code>battersea-core.js</code>, then add only the 
+											component scripts you actually use. This keeps your page size minimal and performance optimal.
+										</p>
+										<p>
+											For example, if you only use Tabs and Accordion, just include those two component files 
+											along with the core files.
+										</p>
+									</div>
+								</div>
+						
+								<!-- FAQ 2 -->
+								<div data-accordion-item>
+									<div data-accordion-header>
+										<h3>Is Battersea Library free to use?</h3>
+										
+									</div>
+									<div data-accordion-content>
+										<p>
+											Yes! Battersea Library is completely free and open source under the MIT License. 
+											You can use it in personal projects, commercial projects, modify it, redistribute it - 
+											whatever you need. No attribution required (though always appreciated!).
+										</p>
+									</div>
+								</div>
+						
+								<!-- FAQ 3 -->
+								<div data-accordion-item>
+									<div data-accordion-header>
+										<h3>Can I use this with React, Vue, or other frameworks?</h3>
+										
+									</div>
+									<div data-accordion-content>
+										<p>
+											Absolutely! While Battersea is built with vanilla JavaScript, it works alongside any framework. 
+											The components use standard DOM manipulation and can be integrated into React components, 
+											Vue templates, or any other framework.
+										</p>
+										<p>
+											Just initialize the components after your framework renders the DOM elements. Many developers 
+											use Battersea components for specific UI elements while keeping their main app in a framework.
+										</p>
+									</div>
+								</div>
+						
+								<!-- FAQ 4 -->
+								<div data-accordion-item>
+									<div data-accordion-header>
+										<h3>How do I customize the styling?</h3>
+										
+									</div>
+									<div data-accordion-content>
+										<p>
+											You have multiple options:
+										</p>
+										<ul>
+											<li><strong>CSS Custom Properties:</strong> Override variables like <code>--battersea-primary</code> in your own CSS</li>
+											<li><strong>LESS Variables:</strong> Modify the LESS source files and recompile</li>
+											<li><strong>Runtime Theming:</strong> Use less.js to change themes dynamically (like the customizer on this page!)</li>
+											<li><strong>Custom CSS:</strong> Add your own classes and override specific styles</li>
+										</ul>
+									</div>
+								</div>
+						
+								<!-- FAQ 5 -->
+								<div data-accordion-item>
+									<div data-accordion-header>
+										<h3>Are the components accessible?</h3>
+										
+									</div>
+									<div data-accordion-content>
+										<p>
+											Yes! Accessibility is a core principle of Battersea Library. Every component includes:
+										</p>
+										<ul>
+											<li>Proper ARIA labels and roles</li>
+											<li>Full keyboard navigation support</li>
+											<li>Screen reader compatibility</li>
+											<li>Focus management and visible focus indicators</li>
+											<li>Semantic HTML structure</li>
+										</ul>
+										<p>
+											We follow WCAG 2.1 Level AA guidelines as a minimum standard.
+										</p>
+									</div>
+								</div>
+						
+								<!-- FAQ 6 -->
+								<div data-accordion-item>
+									<div data-accordion-header>
+										<h3>What browsers are supported?</h3>
+							
+									</div>
+									<div data-accordion-content>
+										<p>
+											Battersea supports all modern browsers:
+										</p>
+										<ul>
+											<li>Chrome (latest + last 2 versions)</li>
+											<li>Firefox (latest + last 2 versions)</li>
+											<li>Safari (latest + last 2 versions)</li>
+											<li>Edge (latest + last 2 versions)</li>
+											<li>Mobile browsers (iOS Safari, Chrome Mobile, Samsung Internet)</li>
+										</ul>
+										<p>
+											We use progressive enhancement, so core functionality works even in older browsers, 
+											with enhanced features in modern ones.
+										</p>
+									</div>
+								</div>
+						
+								<!-- FAQ 7 -->
+								<div data-accordion-item>
+									<div data-accordion-header>
+										<h3>Can I contribute to the library?</h3>
+								
+									</div>
+									<div data-accordion-content>
+										<p>
+											We'd love your contributions! Check out the 
+											<a href="https://github.com/idahodesign/battersea-library" target="_blank">GitHub repository</a> 
+											to:
+										</p>
+										<ul>
+											<li>Report bugs or request features via Issues</li>
+											<li>Submit pull requests with improvements</li>
+											<li>Improve documentation</li>
+											<li>Share examples of your projects using Battersea</li>
+										</ul>
+									</div>
+								</div>
+							
+								<!-- FAQ 8 -->
+								<div data-accordion-item>
+									<div data-accordion-header>
+										<h3>How do I get support?</h3>
+								
+									</div>
+									<div data-accordion-content>
+										<p>
+											For support and questions:
+										</p>
+										<ul>
+											<li>Check the <a href="#getting-started">Getting Started</a> guide above</li>
+											<li>Browse the individual component demo pages for detailed examples</li>
+											<li>Open an issue on <a href="https://github.com/idahodesign/battersea-library/issues" target="_blank">GitHub</a></li>
+											<li>Review the source code - it's well-commented and easy to follow</li>
+										</ul>
+									</div>
+								</div>
+						
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+	
+			<!-- ============================================ -->
+			<!-- STATS SECTION (Using Counter Component) -->
+			<!-- ============================================ -->
+			<section class="stats-section" data-scroll-section>
+				<div class="section-box">
+					<div class="container">
+						<div class="stats-grid">
+							<div class="stat-item" data-animation="fade-up">
+								<div class="stat-number">
+									<span data-counter data-counter-end="15" data-counter-duration="2000">0</span>
+								</div>
+								<div class="stat-label">Production-Ready Components</div>
+							</div>
+								<div class="stat-item" data-animation="fade-up" data-animation-delay="1">
+								<div class="stat-number">
+									<span data-counter data-counter-end="0" data-counter-duration="2000">0</span>
+								</div>
+								<div class="stat-label">External Dependencies</div>
+							</div>
+						
+							<div class="stat-item" data-animation="fade-up" data-animation-delay="2">
+								<div class="stat-number">
+									<span data-counter data-counter-end="100" data-counter-duration="2000" data-counter-suffix="%">0</span>
+								</div>
+								<div class="stat-label">Accessibility Score</div>
+							</div>
+					
+							<div class="stat-item" data-animation="fade-up" data-animation-delay="3">
+								<div class="stat-number">
+									<span data-counter data-counter-end="30" data-counter-duration="2000" data-counter-suffix="KB">0</span>
+								</div>
+								<div class="stat-label">Core Library Size</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<!-- Footer -->
+		<footer style="background: #2d2d2d; color: white; padding: 3rem 0; margin-top: 4rem;">
+			<div class="container" style="text-align: center;">
+				<p style="font-size: 1.1rem; margin-bottom: 1rem;">&copy; 2024-2026 Battersea Library</p>
+				<p style="opacity: 0.8; margin-bottom: 1.5rem;">
+					Open source under the MIT License
+				</p>
+				<div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+					<a href="https://github.com/idahodesign/battersea-library" target="_blank" 
+						style="color: #667eea; text-decoration: none; font-weight: 600;">
+						GitHub Repository
+					</a>
+					<a href="https://github.com/idahodesign/battersea-library/issues" target="_blank"
+						style="color: #667eea; text-decoration: none; font-weight: 600;">
+						Report an Issue
+					</a>
+					<a href="#getting-started" style="color: #667eea; text-decoration: none; font-weight: 600;">
+						Documentation
+					</a>
+				</div>
+			</div>
+		</footer>
+		
+	<!-- Battersea Library JavaScript -->
+	<script src="../src/js/battersea-utils.js"></script>
+	<script src="../src/js/battersea-core.js"></script>
+	<script src="../src/js/battersea-tabs.js"></script>
+	<script src="../src/js/battersea-animation.js"></script>
+	<script src="../src/js/battersea-slider.js"></script>
+	<script src="../src/js/battersea-accordion.js"></script>
+	<script src="../src/js/battersea-progressbar.js"></script>
+	<script src="../src/js/battersea-counter.js"></script>
+	
+	<!-- Theme Customizer Script -->
+	<script>
+		// Theme Customizer Functions
+		function applyTheme() {
+		const primary = document.getElementById('primaryColor').value;
+		const secondary = document.getElementById('secondaryColor').value;
+		const accent = document.getElementById('accentColor').value;
+		
+		// Update LESS variables dynamically
+		less.modifyVars({
+			'@primary-color': primary,
+			'@secondary-color': secondary,
+			'@accent-color': accent
+		}).then(() => {
+			console.log('✓ Theme updated successfully!');
+			
+			// Optional: Show success message
+			showNotification('Theme applied successfully!');
+		}).catch(err => {
+			console.error('Error updating theme:', err);
+		});
+		}
+		
+		function resetTheme() {
+		// Reset to default colors
+		document.getElementById('primaryColor').value = '#667eea';
+		document.getElementById('secondaryColor').value = '#764ba2';
+		document.getElementById('accentColor').value = '#4ecdc4';
+		
+		less.modifyVars({
+			'@primary-color': '#667eea',
+			'@secondary-color': '#764ba2',
+			'@accent-color': '#4ecdc4'
+		}).then(() => {
+			console.log('✓ Theme reset to defaults');
+			showNotification('Theme reset to defaults!');
+		});
+		}
+		
+		function toggleCustomizer() {
+		const customizer = document.getElementById('themeCustomizer');
+		customizer.classList.toggle('collapsed');
+		}
+		
+		function showNotification(message) {
+		// Simple notification (you could use the Popup component here!)
+		const notification = document.createElement('div');
+		notification.textContent = message;
+		notification.style.cssText = `
+			position: fixed;
+			top: 20px;
+			right: 20px;
+			background: #4CAF50;
+			color: white;
+			padding: 1rem 1.5rem;
+			border-radius: 6px;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+			z-index: 10000;
+			animation: slideIn 0.3s ease;
+		`;
+		
+		document.body.appendChild(notification);
+		
+		setTimeout(() => {
+			notification.style.animation = 'slideOut 0.3s ease';
+			setTimeout(() => notification.remove(), 300);
+		}, 2000);
+		}
+		
+		// Add animation keyframes
+		const style = document.createElement('style');
+		style.textContent = `
+		@keyframes slideIn {
+			from { transform: translateX(400px); opacity: 0; }
+			to { transform: translateX(0); opacity: 1; }
+		}
+		@keyframes slideOut {
+			from { transform: translateX(0); opacity: 1; }
+			to { transform: translateX(400px); opacity: 0; }
+		}
+		`;
+		document.head.appendChild(style);
+	</script>
+	</body>
 </html>
