@@ -24,7 +24,7 @@
 @base-font-weight: 200;
 @base-font-size: 16px;
 @default-transparency: 0.8;
-@background-image: "/assets/img/background-03.jpg";
+@background-image: /assets/img/background-03.jpg;
 @back-overlay-colour: @black;
 @back-overlay-opacity: 0;
 
@@ -53,13 +53,13 @@
   --battersea-bg-white: @bg-white;
   
   // Tooltip
-  --battersea-tooltip-bg: rgba(0, 0, 0, 0.9);
+  --battersea-tooltip-bg: rgba(@black, 0.9);
   --battersea-tooltip-text: #fff;
   --battersea-tooltip-padding: 8px 12px;
   --battersea-tooltip-radius: 4px;
   
   // Slider
-  --battersea-slider-arrow-bg: rgba(0, 0, 0, 0.5);
+  --battersea-slider-arrow-bg: rgba(@black, 0.5);
   --battersea-slider-arrow-color: #fff;
   --battersea-slider-dot-active: @primary-color;
   --battersea-slider-dot-inactive: #ccc;
@@ -72,7 +72,7 @@
   --battersea-tab-active-color: @primary-color;
   
   // Popup
-  --battersea-popup-overlay-bg: rgba(0, 0, 0, 0.5);
+  --battersea-popup-overlay-bg: rgba(@black, 0.5);
   --battersea-popup-padding: 24px;
   --battersea-popup-max-width: 600px;
   --battersea-popup-radius: 8px;
@@ -104,7 +104,7 @@
   // Header
   --battersea-header-bg: @bg-white;
   --battersea-header-text: @text-color;
-  --battersea-header-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --battersea-header-shadow: 0 2px 4px rgba(@black, 0.1);
   --battersea-header-transition: 0.3s ease;
   
   // Buttons
