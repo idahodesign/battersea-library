@@ -2,9 +2,7 @@
 	<div class="battersea-header__container">
 		<div class="battersea-header__brand">
 			<a href="#home">
-				<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23667eea'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E"
-				alt="Logo" 
-				class="battersea-header__logo"/>
+				<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23667eea'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="Logo" class="battersea-header__logo"/>
 				<div class="logo-text">Battersea</div>
 			</a>
 		</div>
@@ -18,7 +16,7 @@
 <script>
 (function() {
   function loadNestedNav() {
-    fetch('demo-nav.html')
+    fetch('/battersea-library/includes/demo-nav.html')
       .then(response => {
         if (!response.ok) throw new Error('Navigation not found');
         return response.text();
