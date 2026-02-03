@@ -36,16 +36,23 @@
 <body>
 	<div id="site-background" class="site-background-image"></div>
   <!-- PreHeader Include (GTM, etc) -->
-  <div id="preheader-placeholder"></div>
+  <div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
 
   <!-- Navigation Include -->
-  <div id="demo-nav-placeholder"></div>
+  <header id="mainHeader" class="battersea-header"
+	data-header
+	data-sticky="true"
+	data-shrink="true"
+	data-shrink-offset="100"
+	data-shrink-height="60"
+	data-layout="right-align"
+    data-transition-speed="0.3"></header>
   
 <div class="content-outer">
   <!-- ============================================ -->
   <!-- HERO SECTION -->
   <!-- ============================================ -->
-  <section class="hero-section" data-scroll-section data-animation="fade-up">
+  <section class="hero-section" data-scroll-section data-animate="fade-up">
 	<div class="section-box">
     <div class="hero-content">
       <h1>Battersea Library</h1>
@@ -67,43 +74,43 @@
   <!-- ============================================ -->
   <!-- FEATURES SECTION -->
   <!-- ============================================ -->
-  <section class="features-section" data-scroll-section data-animation="fade-up">
+  <section class="features-section" data-scroll-section data-animate="fade-up">
 	<div class="section-box">
     <div class="container">
       <h2 class="section-title">Why Choose Battersea?</h2>
       
       <div class="features-grid">
-        <div class="feature-card" data-animation="fade-up">
+        <div class="feature-card" data-animate="fade-up">
           <div class="feature-icon">⚡</div>
           <h3>Lightweight</h3>
           <p>Zero dependencies. Pure vanilla JavaScript. Only load what you need. Perfect for performance-critical projects.</p>
         </div>
         
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="1">
+        <div class="feature-card" data-animate="fade-up" data-animation-delay="1">
           <div class="feature-icon">♿</div>
           <h3>Accessible</h3>
           <p>ARIA labels, keyboard navigation, and semantic HTML built-in. WCAG compliant from the ground up.</p>
         </div>
         
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="2">
+        <div class="feature-card" data-animate="fade-up" data-animation-delay="2">
           <div class="feature-icon">🎨</div>
           <h3>Themeable</h3>
           <p>Built with LESS. Change your entire brand with a few variables. Dynamic theming with less.js support.</p>
         </div>
         
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="3">
+        <div class="feature-card" data-animate="fade-up" data-animation-delay="3">
           <div class="feature-icon">📱</div>
           <h3>Responsive</h3>
           <p>Mobile-first design. Works beautifully on all devices. Touch-friendly interactions throughout.</p>
         </div>
         
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="4">
+        <div class="feature-card" data-animate="fade-up" data-animation-delay="4">
           <div class="feature-icon">🔧</div>
           <h3>Modular</h3>
           <p>Use just one component or all 15. No bloat. Tree-shakeable. Import only what you need.</p>
         </div>
         
-        <div class="feature-card" data-animation="fade-up" data-animation-delay="5">
+        <div class="feature-card" data-animate="fade-up" data-animation-delay="5">
           <div class="feature-icon">⚙️</div>
           <h3>Data-Driven</h3>
           <p>Configure with data attributes. No JavaScript required. Progressive enhancement built-in.</p>
@@ -116,7 +123,7 @@
   <!-- ============================================ -->
   <!-- COMPONENT SHOWCASE SECTION -->
   <!-- ============================================ -->
-  <section class="showcase-section" data-scroll-section data-animation="fade-up">
+  <section class="showcase-section" data-scroll-section data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">15 Production-Ready Components</h2>
@@ -124,7 +131,7 @@
       
       <div class="component-grid">
         <!-- Accordion -->
-        <div class="component-card" data-animation="fade-up">
+        <div class="component-card" data-animate="fade-up">
           <div class="component-preview">▼</div>
           <div class="component-info">
             <h3>Accordion</h3>
@@ -134,7 +141,7 @@
         </div>
         
         <!-- Animation -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="1">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="1">
           <div class="component-preview">✨</div>
           <div class="component-info">
             <h3>Animation</h3>
@@ -144,7 +151,7 @@
         </div>
         
         <!-- Counter -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="2">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="2">
           <div class="component-preview">123</div>
           <div class="component-info">
             <h3>Counter</h3>
@@ -154,7 +161,7 @@
         </div>
         
         <!-- Flipbox -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="3">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="3">
           <div class="component-preview">🔄</div>
           <div class="component-info">
             <h3>Flipbox</h3>
@@ -164,7 +171,7 @@
         </div>
         
         <!-- Header -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="4">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="4">
           <div class="component-preview">☰</div>
           <div class="component-info">
             <h3>Header</h3>
@@ -174,7 +181,7 @@
         </div>
         
         <!-- Horizontal Nav -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="5">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="5">
           <div class="component-preview">≡</div>
           <div class="component-info">
             <h3>Horizontal Nav</h3>
@@ -184,7 +191,7 @@
         </div>
         
         <!-- MultiSlider -->
-        <div class="component-card" data-animation="fade-up">
+        <div class="component-card" data-animate="fade-up">
           <div class="component-preview">⋮⋮⋮</div>
           <div class="component-info">
             <h3>MultiSlider</h3>
@@ -194,7 +201,7 @@
         </div>
         
         <!-- NestedProgress -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="1">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="1">
           <div class="component-preview">◉</div>
           <div class="component-info">
             <h3>Nested Progress</h3>
@@ -204,7 +211,7 @@
         </div>
         
         <!-- Parallax -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="2">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="2">
           <div class="component-preview">⛰</div>
           <div class="component-info">
             <h3>Parallax</h3>
@@ -214,7 +221,7 @@
         </div>
         
         <!-- Popup -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="3">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="3">
           <div class="component-preview">⬜</div>
           <div class="component-info">
             <h3>Popup/Modal</h3>
@@ -224,7 +231,7 @@
         </div>
         
         <!-- ProgressBar -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="4">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="4">
           <div class="component-preview">━</div>
           <div class="component-info">
             <h3>Progress Bar</h3>
@@ -234,7 +241,7 @@
         </div>
         
         <!-- Slider -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="5">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="5">
           <div class="component-preview">◀ ▶</div>
           <div class="component-info">
             <h3>Slider</h3>
@@ -244,7 +251,7 @@
         </div>
         
         <!-- SmoothScroll -->
-        <div class="component-card" data-animation="fade-up">
+        <div class="component-card" data-animate="fade-up">
           <div class="component-preview">⊙</div>
           <div class="component-info">
             <h3>SmoothScroll</h3>
@@ -254,7 +261,7 @@
         </div>
         
         <!-- Tabs -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="1">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="1">
           <div class="component-preview">⊟⊟⊟</div>
           <div class="component-info">
             <h3>Tabs</h3>
@@ -264,7 +271,7 @@
         </div>
         
         <!-- Tooltip -->
-        <div class="component-card" data-animation="fade-up" data-animation-delay="2">
+        <div class="component-card" data-animate="fade-up" data-animation-delay="2">
           <div class="component-preview">💬</div>
           <div class="component-info">
             <h3>Tooltip</h3>
@@ -280,7 +287,7 @@
   <!-- ============================================ -->
   <!-- GETTING STARTED SECTION (Using Tabs Component) -->
   <!-- ============================================ -->
-  <section class="getting-started-section" id="getting-started" data-scroll-section data-animation="fade-up">
+  <section class="getting-started-section" id="getting-started" data-scroll-section data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">Getting Started</h2>
@@ -415,7 +422,7 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- TESTIMONIALS SECTION (Using Slider Component) -->
   <!-- ============================================ -->
-  <section class="testimonials-section" data-scroll-section data-animation="fade-up">
+  <section class="testimonials-section" data-scroll-section data-animate="fade-up">
 	<div class="section-box">
     <div class="container">
       <h2 class="section-title">Built with Battersea</h2>
@@ -498,35 +505,35 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- BROWSER SUPPORT SECTION (Using ProgressBar Component) -->
   <!-- ============================================ -->
-  <section class="browser-support-section" data-scroll-section data-animation="fade-up">
+  <section class="browser-support-section" data-scroll-section data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">Browser Support</h2>
       <p class="section-subtitle">Works beautifully across all modern browsers</p>
       
       <div class="browser-grid">
-        <div class="browser-item" data-animation="fade-up">
+        <div class="browser-item" data-animate="fade-up">
           <div class="browser-icon">🌐</div>
           <h3>Chrome</h3>
           <div data-progress data-progress-animated="true" data-progress-value="100"></div>
           <p class="browser-version">Latest + Last 2 versions</p>
         </div>
         
-        <div class="browser-item" data-animation="fade-up" data-animation-delay="1">
+        <div class="browser-item" data-animate="fade-up" data-animation-delay="1">
           <div class="browser-icon">🦊</div>
           <h3>Firefox</h3>
           <div data-progress data-progress-animated="true" data-progress-value="100"></div>
           <p class="browser-version">Latest + Last 2 versions</p>
         </div>
         
-        <div class="browser-item" data-animation="fade-up" data-animation-delay="2">
+        <div class="browser-item" data-animate="fade-up" data-animation-delay="2">
           <div class="browser-icon">🧭</div>
           <h3>Safari</h3>
           <div data-progress data-progress-animated="true" data-progress-value="100"></div>
           <p class="browser-version">Latest + Last 2 versions</p>
         </div>
         
-        <div class="browser-item" data-animation="fade-up" data-animation-delay="3">
+        <div class="browser-item" data-animate="fade-up" data-animation-delay="3">
           <div class="browser-icon">📊</div>
           <h3>Edge</h3>
           <div data-progress data-progress-animated="true" data-progress-value="100"></div>
@@ -545,7 +552,7 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- FAQ SECTION (Using Accordion Component) -->
   <!-- ============================================ -->
-  <section class="faq-section" data-scroll-section data-animation="fade-up">
+  <section class="faq-section" data-scroll-section data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">Frequently Asked Questions</h2>
@@ -722,32 +729,32 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- STATS SECTION (Using Counter Component) -->
   <!-- ============================================ -->
-  <section class="stats-section" data-scroll-section data-animation="fade-up">
+  <section class="stats-section" data-scroll-section data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <div class="stats-grid">
-        <div class="stat-item" data-animation="fade-up">
+        <div class="stat-item" data-animate="fade-up">
           <div class="stat-number">
             <span data-counter data-counter-end="15" data-counter-duration="2000">0</span>
           </div>
           <div class="stat-label">Production-Ready Components</div>
         </div>
         
-        <div class="stat-item" data-animation="fade-up" data-animation-delay="1">
+        <div class="stat-item" data-animate="fade-up" data-animation-delay="1">
           <div class="stat-number">
             <span data-counter data-counter-end="0" data-counter-duration="2000">0</span>
           </div>
           <div class="stat-label">External Dependencies</div>
         </div>
         
-        <div class="stat-item" data-animation="fade-up" data-animation-delay="2">
+        <div class="stat-item" data-animate="fade-up" data-animation-delay="2">
           <div class="stat-number">
             <span data-counter data-counter-end="100" data-counter-duration="2000" data-counter-suffix="%">0</span>
           </div>
           <div class="stat-label">Accessibility Score</div>
         </div>
         
-        <div class="stat-item" data-animation="fade-up" data-animation-delay="3">
+        <div class="stat-item" data-animate="fade-up" data-animation-delay="3">
           <div class="stat-number">
             <span data-counter data-counter-end="30" data-counter-duration="2000" data-counter-suffix="KB">0</span>
           </div>
@@ -758,6 +765,17 @@ less.modifyVars({
 				</div>
   </section>
 </div>
+  <!-- Battersea Library JavaScript -->
+  <script src="../src/js/battersea-utils.js"></script>
+  <script src="../src/js/battersea-core.js"></script>
+  <script src="../src/js/battersea-tabs.js"></script>
+  <script src="../src/js/battersea-header.js"></script>
+  <script src="../src/js/battersea-animation.js"></script>
+  <script src="../src/js/battersea-slider.js"></script>
+  <script src="../src/js/battersea-accordion.js"></script>
+  <script src="../src/js/battersea-progressbar.js"></script>
+  <script src="../src/js/battersea-counter.js"></script>
+  <script src="../src/js/battersea-horizontalnav.js"></script>
   
   <!-- Theme Customizer Script -->
   <script>
@@ -849,18 +867,6 @@ less.modifyVars({
   <div id="demo-footer-placeholder"></div>
 
   <!-- ============================================ -->
-  <!-- BATTERSEA LIBRARY SCRIPTS -->
-  <!-- ============================================ -->
-  <script src="../src/js/battersea-utils.js"></script>
-  <script src="../src/js/battersea-core.js"></script>
-  <script src="../src/js/battersea-tabs.js"></script>
-  <script src="../src/js/battersea-animation.js"></script>
-  <script src="../src/js/battersea-slider.js"></script>
-  <script src="../src/js/battersea-accordion.js"></script>
-  <script src="../src/js/battersea-progressbar.js"></script>
-  <script src="../src/js/battersea-counter.js"></script>
-
-  <!-- ============================================ -->
   <!-- INCLUDE LOADER SCRIPT -->
   <!-- ============================================ -->
   <script>
@@ -894,9 +900,10 @@ less.modifyVars({
     function loadIncludes() {
       // Load includes in order
       Promise.all([
-        loadInclude('../includes/preHeader.html', 'preheader-placeholder'),
-        loadInclude('../includes/nav.html', 'demo-nav-placeholder'),
-        loadInclude('../includes/footer.html', 'demo-footer-placeholder')
+        loadInclude('../includes/preHeader.html', 'demo-preheader-placeholder'),
+		loadInclude('../includes/demo-header-component.html', 'mainHeader'),
+        loadInclude('../includes/demo-nav.html', 'demo-nav-nested'),
+        loadInclude('../includes/demo-footer.html', 'demo-footer-placeholder')
       ]).then(() => {
         console.log('✓ All includes loaded successfully');
       });

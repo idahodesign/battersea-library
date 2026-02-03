@@ -5,6 +5,52 @@
  * Navigation styling for demo website
  */
 
+  /* Pre-header styles */
+    .pre-header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .pre-header-menu {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      margin: 0;
+    }
+    
+    .pre-header-menu a {
+      color: inherit;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    
+    .pre-header-menu a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Placeholder nav styles */
+    .nav-placeholder {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+    
+    .nav-placeholder a {
+      color: var(--battersea-header-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-placeholder a:hover {
+      color: var(--battersea-primary);
+    }
+ 
+ 
 .demo-nav {
   position: fixed;
   top: 0;
@@ -149,9 +195,4 @@
       }
     }
   }
-}
-
-// Add padding to body for fixed nav
-body {
-  padding-top: 70px;
 }

@@ -1,9 +1,68 @@
 /**
  * Battersea Library - Demo Foundation Styles
- * Version: 2.3.0 | 01/02/2026
+ * Version: 2.3.0 | 03/02/2026
  * 
  * Styles specific to the demo website homepage
  * Uses LESS variables for dynamic theming
  */
- 
-
+ .battersea-header-pre {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      font-size: 14px;
+      padding: 8px 20px;
+      text-align: center;
+    }
+    
+    .battersea-header {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .battersea-header__container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .battersea-header__brand {
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .battersea-header__brand a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .battersea-header__logo {
+      height: 40px;
+      width: auto;
+    }
+    
+    .logo-text {
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Shrunk state adjustments */
+    .battersea-header--shrunk .battersea-header__logo {
+      height: 30px;
+    }
+    
+    .battersea-header--shrunk .battersea-header__brand {
+      padding: 12px 0;
+    }
+    
+    .battersea-header--shrunk .logo-text {
+      font-size: 22px;
+    }

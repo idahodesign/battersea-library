@@ -1,0 +1,48 @@
+<!-- Battersea Header Component with Nested Navigation -->
+	<div class="battersea-header__container">
+		<div class="battersea-header__brand">
+			<a href="#home">
+				<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23667eea'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E"
+				alt="Logo" 
+				class="battersea-header__logo">
+				<div class="logo-text">Battersea</div>
+			</a>
+		</div>
+		<!-- Navigation - Loaded from external file -->
+		<nav class="battersea-header__nav" id="demo-nav-nested">
+			<!-- Menu will be loaded here -->
+		</nav>
+	</div>
+
+<!-- Load navigation into header -->
+<script>
+(function() {
+  function loadNestedNav() {
+    fetch('../includes/demo-nav.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Navigation not found');
+        return response.text();
+      })
+      .then(html => {
+        const placeholder = document.getElementById('demo-nav-nested');
+        if (placeholder) {
+          placeholder.innerHTML = html;
+          console.log('✓ Navigation loaded into Header component');
+          
+          // Re-initialize Battersea components after dynamic load
+          if (window.Battersea && window.Battersea.initializeAll) {
+            setTimeout(() => window.Battersea.initializeAll(), 100);
+          }
+        }
+      })
+      .catch(err => console.error('Error loading navigation:', err));
+  }
+  
+  // Load when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadNestedNav);
+  } else {
+    loadNestedNav();
+  }
+})();
+</script>
