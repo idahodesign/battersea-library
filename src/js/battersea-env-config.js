@@ -68,27 +68,40 @@
     });
   }
 
-  // Run when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fixNavigationPaths);
-  } else {
-    fixNavigationPaths();
-  }
-
-  // Also run after includes are loaded (for dynamically loaded navigation)
-  // This uses a MutationObserver to catch dynamically added content
-  const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.addedNodes.length) {
+  // Set up MutationObserver to watch for dynamically loaded content (includes)
+  function setupObserver() {
+    const observer = new MutationObserver(function(mutations) {
+      let shouldFix = false;
+      mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+          shouldFix = true;
+        }
+      });
+      if (shouldFix) {
         fixNavigationPaths();
       }
     });
-  });
 
-  observer.observe(document.body || document.documentElement, {
-    childList: true,
-    subtree: true
-  });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      fixNavigationPaths();
+      setupObserver();
+    });
+  } else {
+    fixNavigationPaths();
+    if (document.body) {
+      setupObserver();
+    } else {
+      document.addEventListener('DOMContentLoaded', setupObserver);
+    }
+  }
 
   console.log('[Battersea] Environment configured:', {
     hostname: hostname,
