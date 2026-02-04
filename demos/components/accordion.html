@@ -7,8 +7,8 @@
 		<meta name="description" content="Collapsible content sections with smooth animations - Battersea Library Component">
 		
 		<!-- LESS Stylesheets -->
-		<link rel="stylesheet/less" type="text/css" href="../src/css/battersea-library.less">
-		<link rel="stylesheet/less" type="text/css" href="../src/css/battersea-demo-site.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
 		
 		<!-- LESS.js Configuration & Compiler -->
 		<script>
@@ -779,12 +779,12 @@ accordion.addEventListener('battersea:accordionToggle', (e) => {
 		
 
 		<!-- Battersea Library JavaScript -->
-  <script src="../src/js/battersea-utils.js"></script>
-  <script src="../src/js/battersea-core.js"></script>
-  <script src="../src/js/battersea-animation.js"></script>
-  <script src="../src/js/battersea-accordion.js"></script>
-  <script src="../src/js/battersea-header.js"></script>
-  <script src="../src/js/battersea-horizontalnav"></script>
+  <script src="../../src/js/battersea-utils.js"></script>
+  <script src="../../src/js/battersea-core.js"></script>
+  <script src="../../src/js/battersea-animation.js"></script>
+  <script src="../../src/js/battersea-accordion.js"></script>
+  <script src="../../src/js/battersea-header.js"></script>
+  <script src="../../src/js/battersea-horizontalnav"></script>
   
 		 <!-- Include Loader Script -->
 		 <script>
@@ -816,10 +816,10 @@ accordion.addEventListener('battersea:accordionToggle', (e) => {
 			 function loadIncludes() {
 				 // Load includes in order
 				 Promise.all([
-        loadInclude('../includes/preHeader.html', 'demo-preheader-placeholder'),
-        loadInclude('../includes/demo-header-component.html', 'mainHeader'),
-        loadInclude('../includes/demo-nav.html', 'demo-nav-nested'),
-        loadInclude('../includes/demo-footer.html', 'demo-footer-placeholder')
+        loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+        loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+        loadInclude('../../includes/demo-nav.html', 'demo-nav-nested'),
+        loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
 				 ]).then(() => {
 					 console.log('✓ All includes loaded successfully');
 				 });
