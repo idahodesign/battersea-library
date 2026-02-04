@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Accordion Component - Battersea Library</title>
+		<meta name="description" content="Collapsible content sections with smooth animations - Battersea Library Component">
+		
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+		
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+			
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>📋 Accordion Component</h1>
+						<p class="hero-subtitle">Collapsible content sections with smooth animations and keyboard support</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section class="showcase-section" data-scroll-section data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">See the accordion component in action</p>
+
+						<!-- Single Open Mode (Default) -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Single Open Mode (Default)</h3>
+							<p>Only one section can be open at a time. Opening a new section automatically closes the previous one.</p>
+
+							<div class="demo-container">
+								<div data-accordion data-accordion-multiple="false">
+									<div data-accordion-item class="active">
+										<div data-accordion-header>What is the Accordion component?</div>
+										<div data-accordion-content>
+											<div>
+												<p>The Accordion component allows you to create collapsible content sections that expand and collapse smoothly. Perfect for FAQs, content organisation, and space-saving layouts.</p>
+												<p>It features:</p>
+												<ul>
+													<li>Smooth max-height transitions</li>
+													<li>Keyboard accessibility</li>
+													<li>Custom events for integration</li>
+													<li>No snapping or jerky animations</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div data-accordion-item>
+										<div data-accordion-header>How do I install it?</div>
+										<div data-accordion-content>
+											<div>
+												<p>Installation is straightforward. Include the required files in your HTML:</p>
+												<pre><code>&lt;link rel="stylesheet" href="battersea-library.css"&gt;
+	&lt;script src="battersea-utils.js"&gt;&lt;/script&gt;
+	&lt;script src="battersea-core.js"&gt;&lt;/script&gt;
+	&lt;script src="battersea-accordion.js"&gt;&lt;/script&gt;</code></pre>
+												<p>Then add the accordion markup to your page and it will initialise automatically!</p>
+											</div>
+										</div>
+									</div>
+
+									 <div data-accordion-item>
+										<div data-accordion-header>Is it accessible?</div>
+										<div data-accordion-content>
+											<div>
+												<p>Yes! The accordion is fully keyboard accessible and follows accessibility best practices:</p>
+												<ul>
+													<li>✅ Keyboard navigation with Tab and Enter</li>
+													<li>✅ Clear visual focus indicators</li>
+													<li>✅ Semantic HTML structure</li>
+													<li>✅ Works with screen readers</li>
+													<li>✅ WCAG 2.1 compliant</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div data-accordion-item>
+										<div data-accordion-header>Browser Support</div>
+										<div data-accordion-content>
+											<div>
+												<p>Works in all modern browsers:</p>
+												<ul>
+													<li>Chrome 90+</li>
+													<li>Firefox 88+</li>
+													<li>Safari 14+</li>
+													<li>Edge 90+</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Multiple Open Mode -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Multiple Open Mode</h3>
+							<p>Allow multiple sections to be open simultaneously. Perfect for complex content where users may need to reference multiple sections.</p>
+
+							<div class="demo-container">
+								<div data-accordion data-accordion-multiple="true">
+									<div data-accordion-item class="active">
+										<div data-accordion-header>📦 Step 1: Installation</div>
+										<div data-accordion-content>
+											<div>
+												<p>First, include the Battersea Library files in your project:</p>
+												<pre><code>&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="path/to/battersea-library.css"&gt;
+
+&lt;!-- Core JavaScript (Required) --&gt;
+&lt;script src="path/to/battersea-utils.js"&gt;&lt;/script&gt;
+&lt;script src="path/to/battersea-core.js"&gt;&lt;/script&gt;
+
+&lt;!-- Accordion Component --&gt;
+&lt;script src="path/to/battersea-accordion.js"&gt;&lt;/script&gt;</code></pre>
+											</div>
+										</div>
+									</div>
+
+									<div data-accordion-item>
+										<div data-accordion-header>🔧 Step 2: HTML Markup</div>
+										<div data-accordion-content>
+											<div>
+												<p>Add the accordion structure to your HTML:</p>
+												<pre><code>&lt;div data-accordion data-accordion-multiple="true"&gt;
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Section Title&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;Section content goes here&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+											</div>
+										</div>
+									</div>
+
+									<div data-accordion-item>
+										<div data-accordion-header>✨ Step 3: Customisation</div>
+										<div data-accordion-content>
+											<div>
+												<p>Customise the appearance with CSS:</p>
+												<pre><code>[data-accordion-item] {
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+[data-accordion-header] {
+  padding: 1rem;
+  cursor: pointer;
+  background: #f8f9fa;
+  transition: background 0.3s;
+}
+
+[data-accordion-header]:hover {
+  background: #e9ecef;
+}</code></pre>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Pre-opened Accordion -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Pre-opened Sections</h3>
+							<p>Add the <code>active</code> class to any accordion item to have it open by default when the page loads.</p>
+
+							<div class="demo-container">
+								<div data-accordion data-accordion-multiple="false">
+									<div data-accordion-item>
+										<div data-accordion-header>Why choose Battersea Library?</div>
+										<div data-accordion-content>
+											<div>
+												<p>Battersea Library offers a modern, accessible approach to building interactive web components.</p>
+											</div>
+										</div>
+									</div>
+									<div data-accordion-item class="active">
+										<div data-accordion-header>⭐ Key Features (Pre-opened)</div>
+										<div data-accordion-content>
+											<div>
+												<p>This section is open by default because it has the <code>active</code> class:</p>
+												<ul>
+													<li>⚡ Zero dependencies - Pure vanilla JavaScript</li>
+													<li>♿ Fully accessible - ARIA labels and keyboard navigation</li>
+													<li>🎨 Infinitely themeable - Built with LESS variables</li>
+													<li>📱 Mobile-first responsive design</li>
+													<li>🔧 Modular architecture - Use only what you need</li>
+													<li>⚙️ Data-driven configuration - No JavaScript required</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div data-accordion-item>
+										<div data-accordion-header>Getting Support</div>
+										<div data-accordion-content>
+											<div>
+												<p>Need help? Check out our documentation or open an issue on GitHub.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Nested Accordions -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Nested Accordions</h3>
+							<p>Accordions can be nested inside each other for complex hierarchical content structures.</p>
+
+							<div class="demo-container">
+								<div data-accordion data-accordion-multiple="false">
+									<div data-accordion-item>
+										<div data-accordion-header>🗂️ Frontend Components</div>
+										<div data-accordion-content>
+											<div>
+												<p>Explore our frontend component categories:</p>
+
+												<!-- Nested Accordion -->
+												<div data-accordion data-accordion-multiple="false" style="margin-top: 1rem;">
+													<div data-accordion-item>
+														<div data-accordion-header>Navigation Components</div>
+														<div data-accordion-content>
+															<div>
+																<ul>
+																	<li>Header with shrink-on-scroll</li>
+																	<li>Horizontal navigation with flyout menus</li>
+																	<li>Smooth scroll navigation</li>
+																	<li>Breadcrumbs (coming soon)</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+
+													<div data-accordion-item>
+														<div data-accordion-header>Content Components</div>
+														<div data-accordion-content>
+															<div>
+																<ul>
+																	<li>Accordion (you're viewing it!)</li>
+																	<li>Tabs</li>
+																	<li>Slider</li>
+																	<li>Multi-slider</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+
+													<div data-accordion-item>
+														<div data-accordion-header>Interactive Components</div>
+														<div data-accordion-content>
+															<div>
+																<ul>
+																	<li>Popup/Modal</li>
+																	<li>Tooltip</li>
+																	<li>Flipbox</li>
+																	<li>Progress bar</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div data-accordion-item>
+										<div data-accordion-header>📚 Documentation</div>
+										<div data-accordion-content>
+											<div>
+												<p>Browse documentation by topic:</p>
+
+												<!-- Nested Accordion -->
+												<div data-accordion data-accordion-multiple="false" style="margin-top: 1rem;">
+													<div data-accordion-item>
+														<div data-accordion-header>Getting Started</div>
+														<div data-accordion-content>
+															<div>
+																<p>Learn the basics:</p>
+																<ul>
+																	<li>Installation guide</li>
+																	<li>Quick start tutorial</li>
+																	<li>Project structure</li>
+																	<li>Configuration options</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+														
+													<div data-accordion-item>
+														<div data-accordion-header>API Reference</div>
+														<div data-accordion-content>
+															<div>
+																<p>Technical documentation:</p>
+																<ul>
+																	<li>Data attributes</li>
+																	<li>JavaScript methods</li>
+																	<li>Custom events</li>
+																	<li>CSS classes</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div data-accordion-item>
+										<div data-accordion-header>⚙️ Advanced Topics</div>
+										<div data-accordion-content>
+											<div>
+												<p>Advanced implementation topics and patterns for complex applications.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+    <!-- ============================================ -->
+    <!-- FEATURES SECTION -->
+    <!-- ============================================ -->
+    <section class="features-section" data-scroll-section data-animate="fade-up">
+      <div class="section-box">
+        <div class="container">
+          <h2 class="section-title">Key Features</h2>
+          
+          <div class="features-grid">
+            <div class="feature-card delay-1" data-animate="fade-up">
+              <div class="feature-icon">✨</div>
+              <h3>Smooth Animations</h3>
+              <p>Buttery-smooth max-height transitions with no jerky movements or snapping. Uses requestAnimationFrame for optimal performance.</p>
+            </div>
+            
+            <div class="feature-card delay-2" data-animate="fade-up">
+              <div class="feature-icon">⚙️</div>
+              <h3>Single or Multiple</h3>
+              <p>Choose between single-open mode (only one section at a time) or multiple-open mode (several sections expanded simultaneously).</p>
+            </div>
+            
+            <div class="feature-card delay-3" data-animate="fade-up">
+              <div class="feature-icon">♿</div>
+              <h3>Fully Accessible</h3>
+              <p>Keyboard navigation with Tab and Enter. Clear focus indicators. Semantic HTML structure. Screen reader compatible.</p>
+            </div>
+            
+            <div class="feature-card delay-4" data-animate="fade-up">
+              <div class="feature-icon">🎯</div>
+              <h3>Auto-initialisation</h3>
+              <p>No JavaScript configuration needed. Just add data attributes and the component initialises automatically on page load.</p>
+            </div>
+            
+            <div class="feature-card delay-5" data-animate="fade-up">
+              <div class="feature-icon">📡</div>
+              <h3>Custom Events</h3>
+              <p>Dispatches battersea:accordionToggle events for seamless integration with other components and custom functionality.</p>
+            </div>
+            
+            <div class="feature-card delay-6" data-animate="fade-up">
+              <div class="feature-icon">🔄</div>
+              <h3>Dynamic Content</h3>
+              <p>Works perfectly with dynamically loaded content. Height calculations update automatically as content changes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CONFIGURATION SECTION -->
+    <!-- ============================================ -->
+    <section class="getting-started-section" data-scroll-section data-animate="fade-up">
+      <div class="section-box">
+        <div class="container">
+          <h2 class="section-title">Configuration & Options</h2>
+          
+          <div class="config-content">
+            <h3>Data Attributes</h3>
+            <p>Configure the accordion component using these data attributes:</p>
+            
+            <table class="config-table">
+              <thead>
+                <tr>
+                  <th>Attribute</th>
+                  <th>Values</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>data-accordion</code></td>
+                  <td>-</td>
+                  <td>required</td>
+                  <td>Initialises the accordion component on the container element</td>
+                </tr>
+                <tr>
+                  <td><code>data-accordion-multiple</code></td>
+                  <td><code>true</code> / <code>false</code></td>
+                  <td><code>false</code></td>
+                  <td>Allow multiple sections to be open simultaneously</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h3 style="margin-top: 2rem;">Item Structure</h3>
+            <p>Each accordion item must follow this structure:</p>
+            
+            <pre><code>&lt;div data-accordion-item&gt;
+  &lt;div data-accordion-header&gt;Section Title&lt;/div&gt;
+  &lt;div data-accordion-content&gt;
+    &lt;div&gt;
+      Content wrapper required for proper height calculation
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            
+            <h3 style="margin-top: 2rem;">CSS Classes</h3>
+            <p>The component automatically manages these classes:</p>
+            
+            <table class="config-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Element</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>active</code></td>
+                  <td><code>data-accordion-item</code></td>
+                  <td>Applied when the section is expanded. Add manually to pre-open a section.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+				
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Single-Open Accordion</div>
+								<div data-accordion-content>
+									<div>
+										<p>The most common use case - only one section open at a time:</p>
+										<pre><code>&lt;div data-accordion data-accordion-multiple="false"&gt;
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Section 1&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;Content for section 1&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Section 2&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;Content for section 2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Section 3&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;Content for section 3&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+				
+							<div data-accordion-item>
+								<div data-accordion-header>Multiple-Open Accordion</div>
+								<div data-accordion-content>
+									<div>
+										<p>Allow users to expand multiple sections simultaneously:</p>
+										<pre><code>&lt;div data-accordion data-accordion-multiple="true"&gt;
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Step 1&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;Instructions for step 1&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+	  
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Step 2&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;Instructions for step 2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+				
+							<div data-accordion-item>
+								<div data-accordion-header>Pre-opened Section</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add the <code>active</code> class to open a section by default:</p>
+										<pre><code>&lt;div data-accordion&gt;
+  &lt;div data-accordion-item class="active"&gt;
+    &lt;div data-accordion-header&gt;Important Notice&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;This section is open by default&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Additional Info&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;This section is closed by default&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+				
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling</div>
+								<div data-accordion-content>
+									<div>
+										<p>Customise the appearance with your own CSS:</p>
+										<pre><code>/* Container styles */
+[data-accordion-item] {
+  background: white;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Header styles */
+[data-accordion-header] {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  background: #f8f9fa;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+[data-accordion-header]:hover {
+  background: #e9ecef;
+}
+
+/* Active header */
+[data-accordion-item].active [data-accordion-header] {
+  background: #667eea;
+  color: white;
+}
+
+/* Content wrapper */
+[data-accordion-content] {
+  padding: 0 1.5rem;
+}
+
+/* Inner content div */
+[data-accordion-content] > div {
+  padding: 1rem 0;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+				
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>Listen for toggle events to integrate with other functionality:</p>
+										<pre><code>const accordion = document.querySelector('[data-accordion]');
+
+accordion.addEventListener('battersea:accordionToggle', (e) => {
+  console.log('Item toggled:', e.detail.item);
+  console.log('Is now open:', e.detail.isOpen);
+  
+  // Custom logic here
+  if (e.detail.isOpen) {
+    // Section was opened
+    console.log('Section expanded');
+  } else {
+    // Section was closed
+    console.log('Section collapsed');
+  }
+});</code></pre>
+									</div>
+								</div>
+							</div>
+				
+							<div data-accordion-item>
+								<div data-accordion-header>Nested Accordions</div>
+								<div data-accordion-content>
+									<div>
+										<p>Create nested accordion structures for complex hierarchies:</p>
+										<pre><code>&lt;div data-accordion&gt;
+  &lt;div data-accordion-item&gt;
+    &lt;div data-accordion-header&gt;Parent Section&lt;/div&gt;
+    &lt;div data-accordion-content&gt;
+      &lt;div&gt;
+        &lt;p&gt;Parent content here&lt;/p&gt;
+        
+        &lt;!-- Nested accordion --&gt;
+        &lt;div data-accordion&gt;
+          &lt;div data-accordion-item&gt;
+            &lt;div data-accordion-header&gt;Child Section 1&lt;/div&gt;
+            &lt;div data-accordion-content&gt;
+              &lt;div&gt;Child content 1&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          
+          &lt;div data-accordion-item&gt;
+            &lt;div data-accordion-header&gt;Child Section 2&lt;/div&gt;
+            &lt;div data-accordion-content&gt;
+              &lt;div&gt;Child content 2&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section class="features-section" data-scroll-section data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+	
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">⌨️</div>
+								<h3>Keyboard Navigation</h3>
+								<p>Full keyboard support with Tab to navigate between headers and Enter/Space to toggle sections.</p>
+							</div>
+	
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">👁️</div>
+								<h3>Focus Indicators</h3>
+								<p>Clear, visible focus indicators on all interactive elements for keyboard users.</p>
+							</div>
+				
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">🔊</div>
+								<h3>Screen Reader Support</h3>
+								<p>Semantic HTML structure ensures compatibility with assistive technologies.</p>
+							</div>
+				
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">✓</div>
+								<h3>WCAG 2.1 Compliant</h3>
+								<p>Meets Level AA accessibility standards for web content.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+    <!-- ============================================ -->
+    <!-- BROWSER SUPPORT SECTION -->
+    <!-- ============================================ -->
+    <section class="getting-started-section" data-scroll-section data-animate="fade-up">
+      <div class="section-box">
+        <div class="container">
+          <h2 class="section-title">Browser Support</h2>
+          <p class="section-subtitle">Works in all modern browsers</p>
+          
+          <div class="browser-grid">
+            <div class="browser-item">
+              <div class="browser-icon">🌐</div>
+              <h4>Chrome</h4>
+              <p>90+</p>
+            </div>
+            
+            <div class="browser-item">
+              <div class="browser-icon">🦊</div>
+              <h4>Firefox</h4>
+              <p>88+</p>
+            </div>
+            
+            <div class="browser-item">
+              <div class="browser-icon">🧭</div>
+              <h4>Safari</h4>
+              <p>14+</p>
+            </div>
+            
+            <div class="browser-item">
+              <div class="browser-icon">⚡</div>
+              <h4>Edge</h4>
+              <p>90+</p>
+            </div>
+          </div>
+          
+          <p style="margin-top: 2rem; text-align: center; color: #666;">
+            The component uses modern JavaScript features including <code>requestAnimationFrame</code>, 
+            CSS transitions, and custom events. Legacy browser support can be added with polyfills.
+          </p>
+        </div>
+      </div>
+		</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+		
+
+		<!-- Battersea Library JavaScript -->
+  <script src="../../src/js/battersea-utils.js"></script>
+  <script src="../../src/js/battersea-core.js"></script>
+  <script src="../../src/js/battersea-animation.js"></script>
+  <script src="../../src/js/battersea-accordion.js"></script>
+  <script src="../../src/js/battersea-header.js"></script>
+  <script src="../../src/js/battersea-horizontalnav.js"></script>
+  
+		 <!-- Include Loader Script -->
+		 <script>
+			 function loadInclude(url, placeholderId) {
+				 fetch(url)
+				 .then(response => {
+					 if (!response.ok) {
+						 throw new Error(`Failed to load ${url}: ${response.status}`);
+					 }
+					 return response.text();
+				 })
+				 .then(html => {
+					 const placeholder = document.getElementById(placeholderId);
+					 if (placeholder) {
+						 placeholder.innerHTML = html;
+					 }
+				 })
+				 .catch(err => {
+					 console.error(`Error loading ${url}:`, err);
+				 });
+			 }
+		
+			 // Load all includes when DOM is ready
+			 if (document.readyState === 'loading') {
+				 document.addEventListener('DOMContentLoaded', loadIncludes);
+			 } else {
+				 loadIncludes();
+			 }
+			 function loadIncludes() {
+				 // Load includes in order
+				 Promise.all([
+        loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+        loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+        loadInclude('../../includes/demo-nav.html', 'demo-nav-nested'),
+        loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				 ]).then(() => {
+					 console.log('✓ All includes loaded successfully');
+				 });
+			 }
+		</script>
+	</body>
+</html>

@@ -1,11 +1,15 @@
 <!-- Demo Site Navigation -->
-<ul class="battersea-hnav" 
+<!--
+  Navigation uses data-href attributes which are resolved by the environment config script.
+  This allows the same HTML to work on both GitHub Pages and uundi hosting.
+-->
+<ul class="battersea-hnav"
 	data-horizontal-nav
     data-nav-hover-delay="200"
     data-nav-edge-threshold="250"
     data-nav-mobile-breakpoint="768">
 	<li class="battersea-hnav__item">
-		<a href="/battersea-library/demos/index.html" class="battersea-hnav__link">Home</a>
+		<a href="/demo/index.html" data-nav-link="home" class="battersea-hnav__link">Home</a>
 	</li>
 	<li class="battersea-hnav__item">
 		<a href="#" class="battersea-hnav__link">Navigation</a>
@@ -17,7 +21,7 @@
 		<a href="#" class="battersea-hnav__link">Interactive</a>
 		 <ul class="battersea-hnav__dropdown">
 			 <li class="battersea-hnav__dropdown-item">
-				 <a href="/battersea-library/demos/components/accordion.html" class="battersea-hnav__dropdown-link">Accordion</a>
+				 <a href="/demo/components/accordion.html" data-nav-link="accordion" class="battersea-hnav__dropdown-link">Accordion</a>
 			 </li>
 		 </ul>
 	</li>
