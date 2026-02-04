@@ -1,6 +1,6 @@
 /**
  * Battersea Library - Accordion Component
- * Version: 2.0.0
+ * Version: 2.0.1 - FIXED for nested accordions
  * 
  * Usage:
  * <div data-accordion data-accordion-multiple="false">
@@ -31,7 +31,13 @@
     constructor(el) {
       this.el = el;
       this.allowMultiple = Utils.parseBoolean(Utils.getData(el, 'accordion-multiple') || 'false');
-      this.items = Utils.qsa('[data-accordion-item]', el);
+      
+      // FIXED: Only select direct child accordion items, not nested ones
+      // OLD: this.items = Utils.qsa('[data-accordion-item]', el);
+      this.items = Array.from(el.children).filter(child => 
+        child.hasAttribute('data-accordion-item')
+      );
+      
       this.events = [];
 
       if (this.items.length === 0) {
@@ -44,8 +50,9 @@
 
     init() {
       this.items.forEach((item, index) => {
-        const header = Utils.qs('[data-accordion-header]', item);
-        const content = Utils.qs('[data-accordion-content]', item);
+        // FIXED: Use querySelector with :scope to only select direct child header/content
+        const header = item.querySelector(':scope > [data-accordion-header]');
+        const content = item.querySelector(':scope > [data-accordion-content]');
 
         if (!header || !content) {
           console.warn('Accordion item missing header or content');
@@ -66,14 +73,18 @@
 
         // Bind click event
         this.events.push(
-          Utils.addEvent(header, 'click', () => this.toggle(item))
+          Utils.addEvent(header, 'click', (e) => {
+            // FIXED: Stop propagation to prevent nested accordion clicks from affecting parent
+            e.stopPropagation();
+            this.toggle(item);
+          })
         );
       });
     }
 
     toggle(item) {
       const isActive = item.classList.contains('active');
-      const content = Utils.qs('[data-accordion-content]', item);
+      const content = item.querySelector(':scope > [data-accordion-content]');
 
       if (!this.allowMultiple) {
         // Close all other items
@@ -98,7 +109,7 @@
     }
 
     open(item) {
-      const content = Utils.qs('[data-accordion-content]', item);
+      const content = item.querySelector(':scope > [data-accordion-content]');
       if (!content) return;
 
       // Ensure content is visible for measurement
@@ -134,7 +145,7 @@
     }
 
     close(item) {
-      const content = Utils.qs('[data-accordion-content]', item);
+      const content = item.querySelector(':scope > [data-accordion-content]');
       if (!content) return;
 
       // Set current height explicitly
