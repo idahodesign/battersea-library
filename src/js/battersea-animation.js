@@ -1,9 +1,40 @@
 /**
- * Battersea Library - Animation Component
- * Version: 2.0.6
+ * Battersea Library - Animation Component (Enhanced)
+ * Version: 2.2.0
+ * 
+ * DEFAULT BEHAVIOR (CHANGED in v2.2.0):
+ * - By default, children do NOT animate (they appear immediately)
+ * - Use data-animate-children="true" to enable child cascade animation
+ * 
+ * FEATURES:
+ * - data-animate-children="true" - Enable cascading child animations
+ * - data-animate-children=".selector" - Only animate specific children
+ * - Individual children can override with their own data-animate
  * 
  * Usage:
- * <div data-animate="fade-up" class="delay-5">Content</div>
+ * 
+ * Basic (children appear immediately):
+ * <section data-animate="fade-up">
+ *   <div>Appears immediately</div>
+ * </section>
+ * 
+ * With child cascade:
+ * <section data-animate="fade-up" data-animate-children="true">
+ *   <div>Fades in after parent</div>
+ *   <div>Fades in with stagger</div>
+ * </section>
+ * 
+ * Animate specific children only:
+ * <section data-animate="fade-up" data-animate-children=".animate-me">
+ *   <div class="animate-me">Animated</div>
+ *   <div>Not animated</div>
+ * </section>
+ * 
+ * Individual child override:
+ * <section data-animate="fade-up">
+ *   <div>Appears immediately</div>
+ *   <button data-animate="fade-up" class="delay-2">Animates independently!</button>
+ * </section>
  * 
  * Available animations: fade-in, fade-up, fade-down, fade-left, fade-right
  * Delay classes: delay-1 through delay-10 (delay-5 = 0.5 seconds)
@@ -25,6 +56,7 @@
     constructor(el) {
       this.el = el;
       this.animation = Utils.getData(el, 'animate');
+      this.animateChildren = Utils.getData(el, 'animate-children'); // NEW: Control child animation
       this.observer = null;
       this.isAnimating = false;
       this.hasAnimated = false;
@@ -34,19 +66,52 @@
         return;
       }
 
-      // Immediately hide children without their own animate attribute
-      this.hideChildren(this.el);
+      // Only hide/animate children if explicitly set to "true"
+      // Default is to NOT animate children (changed from previous behavior)
+      if (this.animateChildren === 'true') {
+        this.hideChildren(this.el);
+      }
       
       this.init();
     }
 
     hideChildren(element) {
+      // If animateChildren is a selector, only hide matching elements
+      if (this.animateChildren && this.animateChildren !== 'false' && this.animateChildren !== 'true') {
+        // It's a selector - only hide elements matching this selector
+        const targetChildren = element.querySelectorAll(this.animateChildren);
+        targetChildren.forEach(child => {
+          if (!Utils.getData(child, 'animate')) {
+            child.style.opacity = '0';
+            child.style.visibility = 'hidden';
+          }
+        });
+        return;
+      }
+
+      // Default behavior: hide all children without data-animate
       const children = Array.from(element.children);
       children.forEach(child => {
         if (!Utils.getData(child, 'animate')) {
           child.style.opacity = '0';
           child.style.visibility = 'hidden';
-          this.hideChildren(child); // Recursively hide
+          
+          // Only recurse if animateChildren is "true"
+          if (this.animateChildren === 'true') {
+            this.hideChildrenRecursive(child);
+          }
+        }
+      });
+    }
+    
+    // NEW: Separate recursive method for cleaner control
+    hideChildrenRecursive(element) {
+      const children = Array.from(element.children);
+      children.forEach(child => {
+        if (!Utils.getData(child, 'animate')) {
+          child.style.opacity = '0';
+          child.style.visibility = 'hidden';
+          this.hideChildrenRecursive(child);
         }
       });
     }
@@ -101,76 +166,57 @@
         this.el.style.opacity = '1';
         this.el.classList.add('battersea-animated', `battersea-${this.animation}`);
         
-        // Wait for animation to complete
-        const duration = parseFloat(getComputedStyle(this.el).animationDuration) * 1000 || 600;
-        
+        // After animation completes, show all children
         setTimeout(() => {
-          this.animateChildren(this.el, this.animation);
-          this.isAnimating = false;
-        }, duration);
+          // Only cascade children if explicitly set to "true"
+          if (this.animateChildren === 'true') {
+            this.showChildren(this.el);
+          } else {
+            // Default: show children immediately without animation
+            this.showAllChildren(this.el);
+          }
+        }, 600); // Match animation duration
       }, totalDelay);
     }
-
-    animateChildren(parent, parentAnimation) {
-      const children = Array.from(parent.children);
-      
-      if (children.length === 0) return;
-
+    
+    showChildren(element) {
+      const children = Array.from(element.children);
       children.forEach((child, index) => {
-        const childAnimation = Utils.getData(child, 'animate');
-        
-        // Only animate children without their own animation setting
-        if (!childAnimation && !child.classList.contains('battersea-animated')) {
-          child.classList.add('battersea-animated');
-          
-          // Child delay: 300ms base + custom delay + stagger
-          const customDelay = this.getDelay(child);
-          const childDelay = 300 + customDelay + (index * 100);
+        if (!Utils.getData(child, 'animate')) {
+          const childDelay = this.getDelay(child);
+          // Add stagger delay based on index (100ms per child)
+          const staggerDelay = childDelay + (index * 100);
           
           setTimeout(() => {
             child.style.visibility = 'visible';
             child.style.opacity = '1';
-            child.classList.add(`battersea-${parentAnimation}`);
-            
-            // Animate grandchildren
-            const animationDuration = parseFloat(getComputedStyle(child).animationDuration) * 1000 || 600;
-            setTimeout(() => {
-              this.animateGrandchildren(child, parentAnimation);
-            }, animationDuration);
-          }, childDelay);
+            // Add animation classes to make children fade in
+            child.classList.add('battersea-animated', `battersea-${this.animation}`);
+            this.showChildren(child); // Recursively show
+          }, staggerDelay);
+        }
+      });
+    }
+    
+    // NEW: Show all children immediately without delays
+    showAllChildren(element) {
+      const allElements = element.querySelectorAll('*');
+      allElements.forEach(el => {
+        const hasOwnAnimation = Utils.getData(el, 'animate');
+        // Skip elements with their own data-animate (they'll animate themselves)
+        if (el.style.visibility === 'hidden' && !hasOwnAnimation) {
+          el.style.visibility = 'visible';
+          el.style.opacity = '1';
         }
       });
     }
 
-    animateGrandchildren(child, animation) {
-      const grandchildren = Array.from(child.children);
-      
-      if (grandchildren.length === 0) return;
-
-      grandchildren.forEach((grandchild, gIndex) => {
-        const grandchildAnimation = Utils.getData(grandchild, 'animate');
-        
-        if (!grandchildAnimation && !grandchild.classList.contains('battersea-animated')) {
-          grandchild.classList.add('battersea-animated');
-          
-          const customDelay = this.getDelay(grandchild);
-          const grandchildDelay = 300 + customDelay + (gIndex * 100);
-          
-          setTimeout(() => {
-            grandchild.style.visibility = 'visible';
-            grandchild.style.opacity = '1';
-            grandchild.classList.add(`battersea-${animation}`);
-          }, grandchildDelay);
-        }
-      });
-    }
-
-    getDelay(el) {
-      const classes = el.className.split(' ');
+    getDelay(element) {
+      const classes = element.className.split(' ');
       const delayClass = classes.find(cls => cls.startsWith('delay-'));
       
       if (delayClass) {
-        const delayValue = parseInt(delayClass.replace('delay-', ''));
+        const delayValue = parseInt(delayClass.replace('delay-', ''), 10);
         return delayValue * 100; // delay-5 = 500ms
       }
       
@@ -180,11 +226,12 @@
     destroy() {
       if (this.observer) {
         this.observer.disconnect();
+        this.observer = null;
       }
     }
   }
 
-  // Register component with Battersea
+  // Register with Battersea Core
   window.Battersea.register('animation', Animation, '[data-animate]');
 
 })(window, document);

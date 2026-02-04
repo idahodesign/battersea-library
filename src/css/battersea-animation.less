@@ -1,11 +1,17 @@
 /**
- * Battersea Library - Animation Styles Version: 2.0.4
+ * Battersea Library - Animation Styles Version: 2.1.0
 */
 
 // Hide elements with data-animate attribute initially
 [data-animate] {
   opacity: 0;
   visibility: hidden;
+}
+
+// Keep animated elements visible after animation completes
+.battersea-animated {
+	opacity: 1 !important;
+	visibility: visible !important;
 }
 
 // Keyframe animations
