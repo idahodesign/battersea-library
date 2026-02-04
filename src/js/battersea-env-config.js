@@ -46,22 +46,16 @@
 
   // Auto-fix navigation links when DOM is ready
   function fixNavigationPaths() {
-    // Find all links with data-nav-link attribute
-    const navLinks = document.querySelectorAll('[data-nav-link]');
+    // Skip if no basePath needed
+    if (!basePath) return;
 
-    navLinks.forEach(function(link) {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('/')) {
-        link.setAttribute('href', basePath + href);
-      }
-    });
-
-    // Also fix any links that start with /demo/ or /src/
+    // Find all links that start with /demo/, /src/, or /assets/ (but not already prefixed)
     const allLinks = document.querySelectorAll('a[href^="/demo/"], a[href^="/src/"], a[href^="/assets/"]');
 
     allLinks.forEach(function(link) {
       const href = link.getAttribute('href');
-      if (!link.hasAttribute('data-path-fixed')) {
+      // Only fix if not already fixed and doesn't already have the basePath
+      if (!link.hasAttribute('data-path-fixed') && !href.startsWith(basePath)) {
         link.setAttribute('href', basePath + href);
         link.setAttribute('data-path-fixed', 'true');
       }
