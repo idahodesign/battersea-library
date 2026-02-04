@@ -1,8 +1,8 @@
 # Battersea Library - TODO
 
-**Last Updated:** January 30, 2026  
-**Current Version:** 2.2.0  
-**Status:** Repository reorganised, live on GitHub Pages
+**Last Updated:** 5 February 2026
+**Current Version:** 2.2.0
+**Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
 
@@ -12,14 +12,18 @@
 - [x] Set up Git and GitHub Desktop
 - [x] Create GitHub repository
 - [x] Reorganise file structure (src/, demos/, includes/, docs/)
-- [x] Create homepage (demos/index.html)
+- [x] Create homepage (demo/index.html)
 - [x] Create include system (header, nav, footer)
 - [x] Create example demo page (accordion.html)
 - [x] Enable GitHub Pages
 - [x] Deploy live site
+- [x] **Consolidate demo folders** - `demos/` → `demo/` with redirects (Feb 2026)
+- [x] **Create environment config** - `battersea-env-config.js` for multi-host paths
+- [x] **Set up SSH for GitHub** - Push without authentication prompts
+- [x] **Deploy to Uundi** - Secondary testing environment
+- [x] **Archive old uundi demo folder** - Moved to Archive/
 
 ### 🔨 In Progress
-- [ ] Update .gitignore to exclude config.codekit3
 - [ ] Clean up Project Files (remove redundant files)
 
 ### 📋 Next Up
@@ -123,5 +127,6 @@
 
 **Quick Links:**
 - Repository: https://github.com/idahodesign/battersea-library
-- Live Site: https://idahodesign.github.io/battersea-library/demos/
+- Live Demo (GitHub Pages): https://idahodesign.github.io/battersea-library/demo/
+- Live Demo (Uundi/Testing): https://uundi.david-haworth.com/demo/
 - Issues: (Create GitHub Issues when needed)

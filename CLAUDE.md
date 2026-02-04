@@ -88,7 +88,7 @@ battersea-library/
 ### File Naming
 - JavaScript: `battersea-[component].js`
 - CSS/LESS: `battersea-[component].less`
-- Demo pages: `[component].html` in `/demos/`
+- Demo pages: `[component].html` in `/demo/components/`
 - Documentation: `[COMPONENT]-DOCUMENTATION.md` in `/docs/`
 
 ---
@@ -123,15 +123,15 @@ battersea-library/
 3. Review relevant component code in `src/js/`
 
 ### Creating Demo Pages
-- Use `demos/components/accordion.html` as template
+- Use `demo/components/accordion.html` as template
 - Update navigation in `includes/demo-nav.html`
-- Test locally before committing
+- Test on Uundi before committing to Git
 
 ### Adding New Components
 1. Create `src/js/battersea-[name].js` following existing patterns
 2. Create `src/css/battersea-[name].less`
 3. Register with core: `window.Battersea.register(...)`
-4. Add demo page in `demos/`
+4. Add demo page in `demo/components/`
 5. Update this file's component list
 6. Update `CHANGELOG.md`
 
@@ -157,7 +157,7 @@ battersea-library/
 | Current tasks | `TODO.md` |
 | Version history | `CHANGELOG.md` |
 | Component patterns | `src/js/battersea-accordion.js` (good example) |
-| Demo page template | `demos/components/accordion.html` |
+| Demo page template | `demo/components/accordion.html` |
 | Header docs | `docs/HEADER-DOCUMENTATION.md` |
 
 ---

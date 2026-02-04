@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.2.1] - 2026-02-05
+
+### Added
+- **Environment Configuration** - `battersea-env-config.js` for multi-host deployment
+- **SSH Authentication** - Configured for GitHub pushes without password prompts
+- **Uundi Deployment** - Secondary testing environment at uundi.david-haworth.com
+
+### Changed
+- **Demo folder restructure** - Renamed `demos/` to `demo/` as primary folder
+- **Redirect system** - `demos/` now contains redirects for backwards compatibility
+- **Navigation paths** - Updated to use root-based paths with environment detection
+- **Documentation** - Updated CLAUDE.md, TODO.md, and PROJECT-INSTRUCTIONS.md
+
+### Infrastructure
+- Multi-host support: Same codebase works on GitHub Pages and Uundi
+- FTP deployment workflow documented for Fetch app
+
+---
+
 ## [2.2.0] - 2026-01-28
 
 ### Added
@@ -102,6 +121,7 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.2.1** - Multi-host deployment, demo folder consolidation
 - **2.2.0** - Header & Horizontal Navigation components
 - **2.1.0** - SmoothScroll component with dynamic header detection
 - **2.0.0** - Initial release with 12 core components
@@ -119,5 +139,6 @@ For detailed upgrade instructions, see:
 ## Links
 
 - [GitHub Repository](https://github.com/idahodesign/battersea-library)
-- [Live Demos](https://idahodesign.github.io/battersea-library/demos/)
+- [Live Demo (GitHub Pages)](https://idahodesign.github.io/battersea-library/demo/)
+- [Live Demo (Uundi)](https://uundi.david-haworth.com/demo/)
 - [Documentation](https://github.com/idahodesign/battersea-library/tree/main/docs)
