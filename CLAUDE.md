@@ -8,7 +8,9 @@
 
 - **Current Version:** 2.2.0
 - **Repository:** https://github.com/idahodesign/battersea-library
-- **Live Demo:** https://idahodesign.github.io/battersea-library/demos/
+- **Live Demos:**
+  - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
+  - Uundi: https://uundi.david-haworth.com/demo/
 - **License:** MIT
 
 ---
@@ -19,12 +21,13 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 17 JavaScript component files
+│   ├── js/           # 18 JavaScript files (includes env-config)
 │   └── css/          # LESS source and compiled CSS
-├── demos/            # Demo pages (index.html + component demos)
+├── demo/             # PRIMARY demo folder
+├── demos/            # Redirect folder (backwards compatibility)
 ├── includes/         # Reusable HTML partials (header, nav, footer)
 ├── docs/             # Component documentation
-├── assets/           # Images and fonts (placeholder)
+├── assets/           # Images and video
 ├── CLAUDE.md         # This file - Claude Code context
 ├── TODO.md           # Active task tracking
 ├── CHANGELOG.md      # Version history
@@ -51,6 +54,7 @@ battersea-library/
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
 - `battersea-core.js` - Auto-initialization system
+- `battersea-env-config.js` - Environment detection for multi-host deployment
 
 ---
 
@@ -96,6 +100,9 @@ battersea-library/
 - Homepage with component showcase
 - Include system for reusable HTML
 - 15 components fully functional
+- **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` with redirects
+- **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
+- **SSH setup** for GitHub pushes
 
 ### In Progress
 - See `TODO.md` for current tasks
@@ -132,6 +139,14 @@ battersea-library/
 - Commit messages: descriptive, present tense
 - Branch for features if needed
 - Push to main for deployment to GitHub Pages
+- **SSH is configured** - can push directly without authentication prompts
+
+### Deployment
+- **GitHub Pages**: Auto-deploys from main branch
+- **Uundi (VentraIP/cPanel)**: Use Fetch app for FTP uploads
+  - Host: `ftp.david-haworth.com`
+  - Protocol: FTP with TLS/SSL
+  - Path: `/public_html/uundi/`
 
 ---
 
@@ -154,6 +169,20 @@ battersea-library/
 - GitHub Pages auto-deploys from main branch
 - When creating demo pages, follow the exact structure of accordion.html
 
+### Environment Configuration
+The `battersea-env-config.js` script auto-detects the hosting environment:
+- **GitHub Pages**: Adds `/battersea-library` prefix to paths
+- **Uundi/localhost**: No prefix needed
+- Navigation links with `data-nav-link` attribute are automatically fixed
+
+### Folder Structure Note
+- `demo/` is the PRIMARY demo folder
+- `demos/` contains redirect files only (for backwards compatibility with old URLs)
+- Both hosts use the same codebase - no separate versions needed
+
+### Archived Files
+Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
+
 ---
 
-*Last updated: February 2026*
+*Last updated: 5 February 2026*
