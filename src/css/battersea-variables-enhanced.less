@@ -1,6 +1,6 @@
 /**
  * Battersea Library - Enhanced Variables
- * Version: 2.3.0 | 02/02/2026
+ * Version: 2.3.0 | 05/02/2026
  * 
  * This file contains all themeable LESS variables for dynamic branding.
  * Variables can be modified at runtime using less.modifyVars()
@@ -10,9 +10,18 @@
 // BRAND COLOURS (Primary Theming Variables)
 // ============================================
 
-@primary-color: #667eea;
-@secondary-color: #764ba2;
-@accent-color: #4ecdc4;
+@primary-color: #9599ab;
+@primary-color-d: #656a81;
+@primary-color-l: #b5b9c5;
+@secondary-color: #87b9cb;
+@secondary-color-d: #71abc2;
+@secondary-color-l: #91cce3;
+@third-color: #a2bfa6;
+@third-color-d: #67a29e;
+@third-color-l: #eee2b4;
+@accent-color: #b65389;
+@accent-color-d: #893b6f;
+@accent-color-l: #bee4ee;
 @text-color: #8C8693;
 @text-light: rgba(@text-color, 0,7);
 @bg-light: #f5f5f5;
@@ -24,7 +33,7 @@
 @base-font-weight: 200;
 @base-font-size: 16px;
 @default-transparency: 0.8;
-@background-image: /assets/img/background-03.jpg;
+@background-image: /assets/img/background-02.jpg;
 @back-overlay-colour: @black;
 @back-overlay-opacity: 0;
 
@@ -33,10 +42,16 @@
 @white: #ffffff;
 
 // Gradient backgrounds
-@gradient-primary: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+@gradient-primary: linear-gradient(45deg, @primary-color 0%, @secondary-color 100%);
 @gradient-accent: linear-gradient(135deg, @accent-color 0%, @primary-color 100%);
 @section-box-gradient: linear-gradient(135deg, rgba(239,241,244,0.16) 0%,rgba(229,231,234,0.15) 18%,rgba(219,221,224,0.14) 47%,rgba(229,231,234,0.13) 78%,rgba(239,241,244,0.13) 100%);
-
+@box-gradient: linear-gradient(135deg, #e7eff4 0%,#e3edf3 20%,#e1ecf1 52%,#e1e9f0 76%,#cdd5df 100%);
+@primary-gradient:linear-gradient(45deg, @primary-color-l 0%,@primary-color 50%,@primary-color-d 100%);
+@secondary-gradient:linear-gradient(45deg, @secondary-color-l 0%,@secondary-color 50%,@secondary-color-d 100%);
+@accent-gradient:linear-gradient(45deg, @accent-color-l 0%,@accent-color 50%,@accent-color-d 100%);
+@third-gradient:linear-gradient(145deg, @secondary-color-l 0%,@secondary-color 50%,@secondary-color-d 100%);
+@primary-secondary:linear-gradient(45deg, @primary-color 0%,@secondary-color 100%);
+@primary-secondary-third:linear-gradient(45deg, @primary-color 0%,@secondary-color 50%,@third-color 100%);
 // ============================================
 // COMPONENT VARIABLES (Using Brand Colours)
 // ============================================
@@ -91,11 +106,11 @@
   
   // SmoothScroll
   --battersea-scroll-dot-size: 12px;
-  --battersea-scroll-dot-color: #ccc;
+  --battersea-scroll-dot-color: #fff;
   --battersea-scroll-dot-active: @primary-color;
   --battersea-scroll-dot-hover: #999;
   --battersea-scroll-spacing: 15px;
-  --battersea-scroll-offset: 50px;
+  --battersea-scroll-offset: 20px;
   
   // Animation
   --battersea-animation-duration: 0.6s;
