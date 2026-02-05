@@ -54,7 +54,7 @@
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>📋 Accordion Component</h1>
@@ -66,7 +66,7 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section class="showcase-section" data-scroll-section data-animate="fade-up">
+			<section class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
@@ -377,7 +377,7 @@
     <!-- ============================================ -->
     <!-- FEATURES SECTION -->
     <!-- ============================================ -->
-    <section class="features-section" data-scroll-section data-animate="fade-up">
+    <section class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
       <div class="section-box">
         <div class="container">
           <h2 class="section-title">Key Features</h2>
@@ -426,7 +426,7 @@
     <!-- ============================================ -->
     <!-- CONFIGURATION SECTION -->
     <!-- ============================================ -->
-    <section class="getting-started-section" data-scroll-section data-animate="fade-up">
+    <section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
       <div class="section-box">
         <div class="container">
           <h2 class="section-title">Configuration & Options</h2>
@@ -499,7 +499,7 @@
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -697,7 +697,7 @@ accordion.addEventListener('battersea:accordionToggle', (e) => {
 			<!-- ============================================ -->
 			<!-- ACCESSIBILITY SECTION -->
 			<!-- ============================================ -->
-			<section class="features-section" data-scroll-section data-animate="fade-up">
+			<section class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Accessibility Features</h2>
@@ -735,7 +735,7 @@ accordion.addEventListener('battersea:accordionToggle', (e) => {
     <!-- ============================================ -->
     <!-- BROWSER SUPPORT SECTION -->
     <!-- ============================================ -->
-    <section class="getting-started-section" data-scroll-section data-animate="fade-up">
+    <section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
       <div class="section-box">
         <div class="container">
           <h2 class="section-title">Browser Support</h2>
@@ -779,6 +779,15 @@ accordion.addEventListener('battersea:accordionToggle', (e) => {
 
 		<!-- Footer Include -->
 		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
 		
 
 		<!-- Battersea Library JavaScript -->
@@ -788,6 +797,8 @@ accordion.addEventListener('battersea:accordionToggle', (e) => {
   <script src="../../src/js/battersea-accordion.js"></script>
   <script src="../../src/js/battersea-header.js"></script>
   <script src="../../src/js/battersea-horizontalnav.js"></script>
+  <script src="../../src/js/battersea-tooltip.js"></script>
+  <script src="../../src/js/battersea-smoothscroll.js"></script>
   
 		 <!-- Include Loader Script -->
 		 <script>

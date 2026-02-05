@@ -31,7 +31,7 @@
   <script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
 
   <!-- Environment Configuration (must load before includes) -->
-  <script src="../src/js/battersea-env-config.js"></script>
+  <script src="../src/js/battersea-env-config.js"></script> 
 
   <style>
 			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
@@ -56,7 +56,7 @@
 		<!-- ============================================ -->
 		<!-- HERO SECTION -->
 		<!-- ============================================ -->
-		<section class="hero-section" data-scroll-section data-animate="fade-up">
+		<section class="hero-section" data-scroll-section data-scroll-title="Home" data-animate="fade-up">
 			<div class="section-box">
 				<div class="hero-content delay-1" data-animate="fade-in">
 					<h1>Battersea Library</h1>
@@ -77,7 +77,7 @@
   <!-- ============================================ -->
   <!-- FEATURES SECTION -->
   <!-- ============================================ -->
-  <section class="features-section" data-scroll-section data-animate="fade-up">
+  <section class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
 	<div class="section-box">
     <div class="container">
       <h2 class="section-title">Why Choose Battersea?</h2>
@@ -126,7 +126,7 @@
   <!-- ============================================ -->
   <!-- COMPONENT SHOWCASE SECTION -->
   <!-- ============================================ -->
-  <section class="showcase-section" data-scroll-section data-animate="fade-up">
+  <section class="showcase-section" data-scroll-section data-scroll-title="Components" data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">15 Production-Ready Components</h2>
@@ -290,7 +290,7 @@
   <!-- ============================================ -->
   <!-- GETTING STARTED SECTION (Using Tabs Component) -->
   <!-- ============================================ -->
-  <section class="getting-started-section" id="getting-started" data-scroll-section data-animate="fade-up">
+  <section class="getting-started-section" id="getting-started" data-scroll-section data-scroll-title="Getting Started" data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">Getting Started</h2>
@@ -425,7 +425,7 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- TESTIMONIALS SECTION (Using Slider Component) -->
   <!-- ============================================ -->
-  <section class="testimonials-section" data-scroll-section data-animate="fade-up">
+  <section class="testimonials-section" data-scroll-section data-scroll-title="Testimonials" data-animate="fade-up">
 	<div class="section-box">
     <div class="container">
       <h2 class="section-title">Built with Battersea</h2>
@@ -508,7 +508,7 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- BROWSER SUPPORT SECTION (Using ProgressBar Component) -->
   <!-- ============================================ -->
-  <section class="browser-support-section" data-scroll-section data-animate="fade-up">
+  <section class="browser-support-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">Browser Support</h2>
@@ -555,7 +555,7 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- FAQ SECTION (Using Accordion Component) -->
   <!-- ============================================ -->
-  <section class="faq-section" data-scroll-section data-animate="fade-up">
+  <section class="faq-section" data-scroll-section data-scroll-title="FAQ" data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <h2 class="section-title">Frequently Asked Questions</h2>
@@ -732,7 +732,7 @@ less.modifyVars({
   <!-- ============================================ -->
   <!-- STATS SECTION (Using Counter Component) -->
   <!-- ============================================ -->
-  <section class="stats-section" data-scroll-section data-animate="fade-up">
+  <section class="stats-section" data-scroll-section data-scroll-title="Stats" data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
       <div class="stats-grid">
@@ -779,7 +779,9 @@ less.modifyVars({
   <script src="../src/js/battersea-progressbar.js"></script>
   <script src="../src/js/battersea-counter.js"></script>
   <script src="../src/js/battersea-horizontalnav.js"></script>
-  
+  <script src="../src/js/battersea-tooltip.js"></script>
+  <script src="../src/js/battersea-smoothscroll.js"></script>
+
   <!-- Theme Customizer Script -->
   <script>
     // Theme Customizer Functions
@@ -868,6 +870,15 @@ less.modifyVars({
   <!-- FOOTER INCLUDE -->
   <!-- ============================================ -->
   <div id="demo-footer-placeholder"></div>
+
+  <!-- SmoothScroll Navigation -->
+  <div data-smoothscroll
+    data-smoothscroll-header-selector="#mainHeader"
+    data-smoothscroll-position="right"
+    data-smoothscroll-duration="800"
+    data-smoothscroll-easing="ease-out"
+    data-smoothscroll-hide-mobile="true">
+  </div>
 
   <!-- ============================================ -->
   <!-- INCLUDE LOADER SCRIPT -->

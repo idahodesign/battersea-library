@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
 **Last Updated:** 5 February 2026
-**Current Version:** 2.2.0
+**Current Version:** 2.2.2
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -22,6 +22,8 @@
 - [x] **Set up SSH for GitHub** - Push without authentication prompts
 - [x] **Deploy to Uundi** - Secondary testing environment
 - [x] **Archive old uundi demo folder** - Moved to Archive/
+- [x] **Add SmoothScroll to demo pages** - Index and Accordion pages now have section navigation dots
+- [x] **Fix Header logo warning** - Dynamic logo detection via MutationObserver
 
 ### 🔨 In Progress
 - [ ] Clean up Project Files (remove redundant files)

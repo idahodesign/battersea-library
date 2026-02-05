@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.2.2] - 2026-02-05
+
+### Added
+- **SmoothScroll integration** - Added SmoothScroll navigation to demo site pages
+  - Index page now has section navigation dots (Home, Features, Components, Getting Started, Testimonials, Browser Support, FAQ, Stats)
+  - Accordion demo page has section navigation dots (Introduction, Live Demos, Features, Configuration, Usage Examples, Accessibility, Browser Support)
+- **Dynamic logo detection** - Header component now detects logo elements loaded via async includes
+
+### Changed
+- **Header component** (v2.2.1) - Added `setupLogoObserver()` method that uses MutationObserver to detect when logo is loaded dynamically via the include system, eliminating the console warning about missing logo elements
+
+### Fixed
+- Resolved "[Header] Logo element not found" console warning that occurred when header content was loaded asynchronously via includes
+
+---
+
 ## [2.2.1] - 2026-02-05
 
 ### Added
@@ -121,6 +137,7 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.2.2** - SmoothScroll integration on demo pages, Header dynamic logo detection
 - **2.2.1** - Multi-host deployment, demo folder consolidation
 - **2.2.0** - Header & Horizontal Navigation components
 - **2.1.0** - SmoothScroll component with dynamic header detection

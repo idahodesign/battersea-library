@@ -35,7 +35,7 @@
       this.logo = Utils.qs('.battersea-header__logo', this.el);
       this.nav = Utils.qs('.battersea-header__nav', this.el);
       this.preHeader = document.querySelector('.battersea-header-pre');
-      
+
       // State tracking
       this.isSticky = false;
       this.isShrunk = false;
@@ -44,17 +44,48 @@
       this.currentHeight = 0;
       this.lastScrollY = 0;
       this.ticking = false;
-      
+      this.logoFound = !!this.logo;
+
       // Mobile logo handling
       this.desktopLogoSrc = this.logo ? this.logo.src : null;
       this.logoSwapBreakpoint = 768;
-      
-      // Validate required elements
+
+      // If logo not found initially, set up observer to detect when it's loaded via includes
       if (!this.logo) {
-        console.warn('[Header] Logo element (.battersea-header__logo) not found');
+        this.setupLogoObserver();
       }
-      
+
       this.init();
+    }
+
+    /**
+     * Watch for logo element to be added via dynamic includes
+     */
+    setupLogoObserver() {
+      if (!('MutationObserver' in window)) return;
+
+      this.logoObserver = new MutationObserver((mutations) => {
+        // Check if logo has been added
+        const logo = Utils.qs('.battersea-header__logo', this.el);
+        if (logo && !this.logoFound) {
+          this.logoFound = true;
+          this.logo = logo;
+          this.desktopLogoSrc = logo.src;
+
+          // Recalculate heights now that logo is available
+          this.calculateHeights();
+          this.dispatchHeightEvent();
+
+          // Disconnect observer - no longer needed
+          this.logoObserver.disconnect();
+          this.logoObserver = null;
+        }
+      });
+
+      this.logoObserver.observe(this.el, {
+        childList: true,
+        subtree: true
+      });
     }
 
     init() {
@@ -385,10 +416,16 @@
     }
 
     destroy() {
+      // Disconnect logo observer if active
+      if (this.logoObserver) {
+        this.logoObserver.disconnect();
+        this.logoObserver = null;
+      }
+
       // Remove all event listeners
       this.events.forEach(event => event.remove());
       this.events = [];
-      
+
       // Remove classes
       this.el.classList.remove('battersea-header--sticky');
       this.el.classList.remove('battersea-header--shrunk');
