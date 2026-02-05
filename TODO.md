@@ -29,6 +29,9 @@
 - [ ] Clean up Project Files (remove redundant files)
 
 ### 📋 Next Up
+- [ ] Update Navigation to inlcude a mobile navigation
+- [ ] Update Navigation to inlcude a vertical navigation option
+- [ ] Create an accessibility tool that increase font size
 - [ ] Create remaining demo pages (13 more needed):
   - [ ] animation.html
   - [ ] counter.html
@@ -49,9 +52,9 @@
 ## 📚 Documentation Tasks
 
 - [ ] Add "Live Demo" link to README.md
-- [ ] Create LICENSE file (MIT recommended)
+- [x] Create LICENSE file (MIT recommended)
 - [ ] Add CONTRIBUTING.md for potential contributors
-- [ ] Create CHANGELOG.md for version history
+- [x] Create CHANGELOG.md for version history
 
 ---
 
@@ -91,8 +94,13 @@
 - [ ] ImageGallery - Lightbox with thumbnails
 - [ ] FormValidation - Real-time form validation
 - [ ] DragDrop - Reorderable lists
-- [ ] Breadcrumbs - Navigation breadcrumb trail
+- [ ] Breadcrumbs - Navigation breadcrumb trail using Json file
+- [ ] Level 1 - Page navigation using Json file
+- [ ] Level 2 - Page navigation using Json file
+- [ ] Page navigation using Json file
 - [ ] Timeline - Vertical/horizontal timeline
+- [ ] MiniQuiz - Small interactive quiz element that users can complete and the see the correct answer
+- [ ] 
 
 ### Infrastructure
 - [ ] Set up automated LESS compilation
@@ -120,7 +128,7 @@
 
 ## 🎓 Learning Goals
 
-- [ ] Master Git workflow (branches, pull requests)
+- [x] Master Git workflow (branches, pull requests)
 - [ ] Learn more about accessibility best practices
 - [ ] Explore advanced CSS animations
 - [ ] Study component design patterns
