@@ -135,6 +135,11 @@ battersea-library/
 5. Update this file's component list
 6. Update `CHANGELOG.md`
 
+### Testing workflow
+- If possible create http://localhost:8080/demo/ and test locally
+- Final test ftps to Uundi: https://uundi.david-haworth.com/demo/
+- Once approaved move to Git Workflow
+
 ### Git Workflow
 - Commit messages: descriptive, present tense
 - Branch for features if needed

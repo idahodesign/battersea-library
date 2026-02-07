@@ -31,6 +31,7 @@
 
 ### 📋 Next Up
 - [ ] Update Navigation to inlcude a vertical navigation option
+- [ ] ImageGallery - Lightbox with thumbnails
 - [ ] Create an accessibility tool that increase font size
 - [ ] Create remaining demo pages (13 more needed):
   - [ ] animation.html
@@ -91,7 +92,6 @@
 
 ### Planned Components
 - [ ] DataTable - Sortable, filterable tables
-- [ ] ImageGallery - Lightbox with thumbnails
 - [ ] FormValidation - Real-time form validation
 - [ ] DragDrop - Reorderable lists
 - [ ] Breadcrumbs - Navigation breadcrumb trail using Json file
