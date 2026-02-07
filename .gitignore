@@ -38,3 +38,7 @@ build/
 # CodeKit
 config.codekit3
 *.codekit3
+
+# Dev documents (local planning/notes)
+dev-documents/
+MY_VOICE.md
