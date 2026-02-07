@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
-**Last Updated:** 5 February 2026
-**Current Version:** 2.2.2
+**Last Updated:** 7 February 2026
+**Current Version:** 2.3.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -24,12 +24,12 @@
 - [x] **Archive old uundi demo folder** - Moved to Archive/
 - [x] **Add SmoothScroll to demo pages** - Index and Accordion pages now have section navigation dots
 - [x] **Fix Header logo warning** - Dynamic logo detection via MutationObserver
+- [x] **Add mobile menu to Header** - Full-screen overlay with drill-down sub-navigation panels (v2.3.0)
 
 ### 🔨 In Progress
 - [ ] Clean up Project Files (remove redundant files)
 
 ### 📋 Next Up
-- [ ] Update Navigation to inlcude a mobile navigation
 - [ ] Update Navigation to inlcude a vertical navigation option
 - [ ] Create an accessibility tool that increase font size
 - [ ] Create remaining demo pages (13 more needed):
