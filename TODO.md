@@ -25,9 +25,9 @@
 - [x] **Add SmoothScroll to demo pages** - Index and Accordion pages now have section navigation dots
 - [x] **Fix Header logo warning** - Dynamic logo detection via MutationObserver
 - [x] **Add mobile menu to Header** - Full-screen overlay with drill-down sub-navigation panels (v2.3.0)
+- [x] **Clean up Project Files** - Removed demos/ folder, backup LESS, unused CSS, outdated docs, .DS_Store files; gitignored compiled CSS; untracked local-only files
 
 ### 🔨 In Progress
-- [ ] Clean up Project Files (remove redundant files)
 
 ### 📋 Next Up
 - [ ] Update Navigation to inlcude a vertical navigation option

@@ -22,9 +22,8 @@
 battersea-library/
 ├── src/
 │   ├── js/           # 19 JavaScript files (includes env-config)
-│   └── css/          # LESS source and compiled CSS
-├── demo/             # PRIMARY demo folder
-├── demos/            # Redirect folder (backwards compatibility)
+│   └── css/          # LESS source (compiled CSS is gitignored)
+├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
 ├── docs/             # Component documentation
 ├── assets/           # Images and video
@@ -101,7 +100,8 @@ battersea-library/
 - Homepage with component showcase
 - Include system for reusable HTML
 - 16 components fully functional
-- **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` with redirects
+- **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` (old redirects removed)
+- **Project file cleanup** (Feb 2026): Removed redundant files, gitignored compiled CSS
 - **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
 - **SSH setup** for GitHub pushes
 
@@ -182,8 +182,7 @@ The `battersea-env-config.js` script auto-detects the hosting environment:
 - Navigation links with `data-nav-link` attribute are automatically fixed
 
 ### Folder Structure Note
-- `demo/` is the PRIMARY demo folder
-- `demos/` contains redirect files only (for backwards compatibility with old URLs)
+- `demo/` is the demo folder
 - Both hosts use the same codebase - no separate versions needed
 
 ### Archived Files
