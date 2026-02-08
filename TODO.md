@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
-**Last Updated:** 7 February 2026
-**Current Version:** 2.3.0
+**Last Updated:** 8 February 2026
+**Current Version:** 2.4.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -31,7 +31,7 @@
 
 ### 📋 Next Up
 - [ ] Update Navigation to inlcude a vertical navigation option
-- [ ] ImageGallery - Lightbox with thumbnails
+- [x] ImageGallery - Lightbox with thumbnails (v2.4.0)
 - [ ] Create an accessibility tool that increase font size
 - [ ] Create remaining demo pages (13 more needed):
   - [ ] animation.html

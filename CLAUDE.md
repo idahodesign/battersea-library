@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.2.2
+- **Current Version:** 2.4.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 18 JavaScript files (includes env-config)
+│   ├── js/           # 19 JavaScript files (includes env-config)
 │   └── css/          # LESS source and compiled CSS
 ├── demo/             # PRIMARY demo folder
 ├── demos/            # Redirect folder (backwards compatibility)
@@ -34,22 +34,23 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (15 total)
+### Components (16 total)
 1. Accordion - Collapsible sections
 2. Animation - Scroll-triggered animations
 3. Counter - Animated number counting
 4. Flipbox - 3D flip cards
 5. Header - Adaptive header with shrink-on-scroll
 6. HorizontalNav - Multi-level dropdown menus
-7. MultiSlider - Multi-item carousel
-8. NestedProgress - Multi-layer circular progress
-9. Parallax - Parallax backgrounds
-10. Popup - Modal dialogs
-11. ProgressBar - Horizontal/circular progress
-12. Slider - Image/content carousel
-13. SmoothScroll - Scroll-to-section navigation
-14. Tabs - Tabbed interface
-15. Tooltip - Hover/focus tooltips
+7. ImageGallery - Lightbox with masonry grid, zoom, and video
+8. MultiSlider - Multi-item carousel
+9. NestedProgress - Multi-layer circular progress
+10. Parallax - Parallax backgrounds
+11. Popup - Modal dialogs
+12. ProgressBar - Horizontal/circular progress
+13. Slider - Image/content carousel
+14. SmoothScroll - Scroll-to-section navigation
+15. Tabs - Tabbed interface
+16. Tooltip - Hover/focus tooltips
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -99,7 +100,7 @@ battersea-library/
 - Repository structure and GitHub Pages deployment
 - Homepage with component showcase
 - Include system for reusable HTML
-- 15 components fully functional
+- 16 components fully functional
 - **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` with redirects
 - **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
 - **SSH setup** for GitHub pushes
@@ -190,4 +191,4 @@ Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
 
 ---
 
-*Last updated: 5 February 2026*
+*Last updated: 8 February 2026*

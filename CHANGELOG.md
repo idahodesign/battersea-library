@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.4.0] - 2026-02-08
+
+### Added
+- **ImageGallery Component** - Lightbox gallery with masonry layout, zoom, and video support
+  - CSS `column-count` masonry grid with configurable columns and gap
+  - Fullscreen lightbox overlay with prev/next navigation
+  - Click-to-zoom with drag-to-pan for detailed image viewing
+  - HTML5 video support with native player controls in lightbox
+  - Optional titles and captions per gallery item
+  - Keyboard navigation (arrows, Escape, +/- zoom, 0 reset)
+  - Touch swipe support for mobile navigation
+  - Responsive grid (4 cols desktop, 3 tablet, 2 mobile, 1 small)
+  - ARIA labels, focus management, and screen reader support
+  - CSS custom properties for full theming control
+  - Custom events: `battersea:galleryOpen`, `battersea:galleryClose`, `battersea:galleryChange`
+- **ImageGallery demo page** at `demo/components/imagegallery.html`
+- **Navigation update** - Added Image Gallery link under Content menu
+
+---
+
 ## [2.2.2] - 2026-02-05
 
 ### Added
@@ -137,6 +157,7 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.4.0** - ImageGallery component with lightbox, masonry layout, zoom, and video support
 - **2.2.2** - SmoothScroll integration on demo pages, Header dynamic logo detection
 - **2.2.1** - Multi-host deployment, demo folder consolidation
 - **2.2.0** - Header & Horizontal Navigation components
