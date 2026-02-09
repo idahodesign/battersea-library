@@ -7,6 +7,79 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.5.2] - 2026-02-09
+
+### Added
+- **VerticalNav Hover-to-Expand** - Collapsible mode now supports two patterns
+  - Use `<a>` links as parent items: group expands on hover, link stays clickable for navigation
+  - Use `<button class="battersea-vnav__group-toggle">`: click-to-expand (original behaviour)
+  - Both patterns work side-by-side in the same nav
+  - Chevron indicator auto-added to links with child groups (`.battersea-vnav__link--has-group`)
+  - Hover delay uses existing `data-vertical-nav-flyout-hover-delay` setting
+- **VerticalNav Off-Canvas Panel** - Slide-in navigation from left or right
+  - Configurable via `data-vertical-nav-offcanvas="true"` and `data-vertical-nav-offcanvas-direction="left|right"`
+  - Works at all screen sizes (not just mobile)
+  - Semi-transparent backdrop with click-to-close
+  - External toggle routes to off-canvas when enabled (hamburger always visible)
+  - Body scroll lock when panel is open
+  - ESC key closes the panel
+  - Custom events: `battersea:vnavOffCanvasOpen`, `battersea:vnavOffCanvasClose`
+  - CSS variables: `--battersea-vnav-offcanvas-shadow`, `--battersea-vnav-offcanvas-backdrop`
+- **Demo page updated** with hover-to-expand, click-to-expand, and off-canvas sections
+
+### Changed
+- Flyout-to-collapsible mobile fallback now uses hover-expand (keeps links clickable) instead of creating button toggles
+
+### Fixed
+- Off-canvas panel now covers full viewport height (moved nav to `<body>` to escape parent `transform` stacking contexts from scroll animations)
+- Off-canvas nav no longer peeks out from screen edges when closed
+- External toggle (hamburger/X) now stays visible above the off-canvas panel when open (moved to `<body>` with `position: fixed` and `z-index: 1001`)
+
+---
+
+## [2.5.1] - 2026-02-08
+
+### Added
+- **VerticalNav Mobile Overlay** - Full-screen mobile menu with drill-down panels
+  - Matches the Header component's mobile menu pattern
+  - Panel-based navigation with slide transitions
+  - Back button to drill up through levels
+  - Body scroll lock when overlay is open
+  - Focus trap for accessibility (Tab cycles within overlay)
+  - Lazy panel building (first open)
+  - Custom events: `battersea:vnavMobileOpen`, `battersea:vnavMobileClose`
+- **External Toggle Support** - Place a hamburger button anywhere on the page
+  - Link any button to a nav using `data-vertical-nav-toggle-target` and `data-vertical-nav-id`
+  - Hamburger-to-X animation (matching Header component)
+  - ARIA attributes managed automatically
+  - `.battersea-vnav__external-toggle` class with 3-span hamburger structure
+- **Mobile overlay CSS variables** for theming (`--battersea-vnav-mobile-bg`, `--battersea-vnav-mobile-text`, etc.)
+- **Desktop nav hidden on mobile** when mobile overlay is enabled (`.battersea-vnav--mobile` class)
+- **Demo page updated** with Mobile Overlay & External Toggle section
+
+---
+
+## [2.5.0] - 2026-02-08
+
+### Added
+- **VerticalNav Component** - Sidebar navigation with three configurable modes
+  - Simple list mode for clean documentation-style sidebars
+  - Collapsible groups mode with smooth accordion-style expand/collapse
+  - Multi-level flyout mode with hover-activated sub-menus and edge detection
+  - Optional sidebar toggle (collapse/expand to narrow strip)
+  - Active page detection with active-trail highlighting
+  - Auto-opens parent groups containing the active page link
+  - Single or multiple groups open simultaneously (configurable)
+  - Keyboard navigation (arrow keys, Enter/Space, Escape)
+  - Responsive: flyout mode falls back to collapsible on mobile
+  - CSS custom properties for full theming control
+  - Custom events: `battersea:vnavInit`, `battersea:vnavGroupOpen`, `battersea:vnavGroupClose`, `battersea:vnavFlyoutOpen`, `battersea:vnavFlyoutClose`, `battersea:vnavToggle`
+- **VerticalNav demo page** at `demo/components/verticalnav.html`
+- **Navigation update** - Added Vertical Navigation link under Navigation menu
+- **Project cleanup** - Removed redundant files, gitignored compiled CSS
+
+---
+
 ## [2.4.0] - 2026-02-08
 
 ### Added
@@ -157,6 +230,9 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.5.2** - VerticalNav hover-to-expand, off-canvas panel, stacking context fixes
+- **2.5.1** - VerticalNav mobile overlay and external toggle support
+- **2.5.0** - VerticalNav component with simple, collapsible, and flyout modes
 - **2.4.0** - ImageGallery component with lightbox, masonry layout, zoom, and video support
 - **2.2.2** - SmoothScroll integration on demo pages, Header dynamic logo detection
 - **2.2.1** - Multi-host deployment, demo folder consolidation

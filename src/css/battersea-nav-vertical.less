@@ -1,0 +1,621 @@
+/**
+ * Battersea Library - Vertical Navigation Styles
+ * Version: 2.5.2
+ *
+ * Three modes: simple, collapsible, flyout
+ * Collapsible: hover-to-expand (links) or click-to-expand (buttons)
+ * Off-canvas panel (slide from left or right)
+ * Optional sidebar toggle
+ * Mobile overlay with drill-down panels
+ * External toggle with hamburger animation
+ */
+
+// ---- Base Container ----
+[data-vertical-nav] {
+  width: var(--battersea-vnav-width);
+  transition: width var(--battersea-vnav-animation-speed) ease;
+}
+
+.battersea-vnav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--battersea-vnav-bg);
+  border-right: 1px solid var(--battersea-vnav-border);
+  font-family: inherit;
+}
+
+// ---- Nav Items ----
+.battersea-vnav__item {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+// ---- Links ----
+.battersea-vnav__link {
+  display: block;
+  padding: var(--battersea-vnav-padding);
+  color: var(--battersea-vnav-text);
+  text-decoration: none;
+  transition: background-color var(--battersea-vnav-animation-speed),
+              color var(--battersea-vnav-animation-speed),
+              border-color var(--battersea-vnav-animation-speed);
+  border-left: 3px solid transparent;
+
+  &:hover,
+  &:focus {
+    background-color: var(--battersea-vnav-hover-bg);
+    color: var(--battersea-vnav-hover-text);
+    outline: none;
+  }
+
+  &.active {
+    background-color: var(--battersea-vnav-active-bg);
+    color: var(--battersea-vnav-active-text);
+    border-left-color: var(--battersea-vnav-active-bg);
+    font-weight: 600;
+  }
+}
+
+// ---- Active Trail ----
+.battersea-vnav__item.active-trail > .battersea-vnav__link,
+.battersea-vnav__item.active-trail > .battersea-vnav__group-toggle {
+  font-weight: 600;
+  border-left-color: var(--battersea-vnav-active-bg);
+}
+
+// ---- Collapsible Mode: Group Toggles ----
+.battersea-vnav__group-toggle {
+  display: block;
+  width: 100%;
+  padding: var(--battersea-vnav-padding);
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  color: var(--battersea-vnav-text);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  transition: background-color var(--battersea-vnav-animation-speed),
+              border-color var(--battersea-vnav-animation-speed);
+  position: relative;
+  padding-right: 40px;
+
+  &:hover,
+  &:focus {
+    background-color: var(--battersea-vnav-hover-bg);
+    outline: none;
+  }
+
+  // Chevron indicator
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    border-left: var(--battersea-vnav-icon-size) solid transparent;
+    border-right: var(--battersea-vnav-icon-size) solid transparent;
+    border-top: var(--battersea-vnav-icon-size) solid currentColor;
+    transition: transform var(--battersea-vnav-animation-speed);
+  }
+}
+
+// Open state rotates chevron
+.battersea-vnav__item--open > .battersea-vnav__group-toggle::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+// ---- Hover-Expand Links (keeps <a> clickable, expands on hover) ----
+.battersea-vnav__link--has-group {
+  position: relative;
+  padding-right: 40px;
+
+  // Down chevron — same as group-toggle
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    border-left: var(--battersea-vnav-icon-size) solid transparent;
+    border-right: var(--battersea-vnav-icon-size) solid transparent;
+    border-top: var(--battersea-vnav-icon-size) solid currentColor;
+    transition: transform var(--battersea-vnav-animation-speed);
+  }
+}
+
+// Open state rotates chevron for hover-expand links
+.battersea-vnav__item--open > .battersea-vnav__link--has-group::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+// Active trail for hover-expand links
+.battersea-vnav__item.active-trail > .battersea-vnav__link--has-group {
+  font-weight: 600;
+  border-left-color: var(--battersea-vnav-active-bg);
+}
+
+// ---- Collapsible Groups (sub-lists) ----
+.battersea-vnav__group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--battersea-vnav-animation-speed) ease;
+  background-color: var(--battersea-vnav-group-bg);
+
+  .battersea-vnav__link {
+    padding-left: calc(16px + var(--battersea-vnav-indent));
+    font-size: 0.95em;
+  }
+
+  // Nested groups get more indent
+  .battersea-vnav__group .battersea-vnav__link {
+    padding-left: calc(16px + var(--battersea-vnav-indent) * 2);
+    font-size: 0.9em;
+  }
+}
+
+// ---- Flyout Mode: Items with Flyouts ----
+.battersea-vnav__item--has-flyout > .battersea-vnav__link {
+  padding-right: 40px;
+  position: relative;
+
+  // Right arrow indicator
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: var(--battersea-vnav-icon-size) solid transparent;
+    border-bottom: var(--battersea-vnav-icon-size) solid transparent;
+    border-left: var(--battersea-vnav-icon-size) solid currentColor;
+    transition: transform var(--battersea-vnav-animation-speed);
+  }
+}
+
+// ---- Flyout Sub-Menu ----
+.battersea-vnav__flyout {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: var(--battersea-vnav-flyout-width);
+  background: var(--battersea-vnav-bg);
+  box-shadow: var(--battersea-vnav-flyout-shadow);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  z-index: 1000;
+  border-radius: 4px;
+  border: 1px solid var(--battersea-vnav-border);
+
+  // Hidden state
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  pointer-events: none;
+  transition: opacity var(--battersea-vnav-animation-speed),
+              transform var(--battersea-vnav-animation-speed),
+              visibility 0s var(--battersea-vnav-animation-speed);
+
+  .battersea-vnav__link {
+    border-left: none;
+    padding: 8px 16px;
+  }
+}
+
+// Flyout visible
+.battersea-vnav__flyout--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+  transition: opacity var(--battersea-vnav-animation-speed),
+              transform var(--battersea-vnav-animation-speed),
+              visibility 0s 0s;
+}
+
+// Flyout opens left (edge detection)
+.battersea-vnav__flyout--left {
+  left: auto;
+  right: 100%;
+  transform: translateX(10px);
+
+  &.battersea-vnav__flyout--visible {
+    transform: translateX(0);
+  }
+}
+
+// ---- Toggle Button ----
+.battersea-vnav__toggle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--battersea-vnav-toggle-bg);
+  border: none;
+  border-bottom: 1px solid var(--battersea-vnav-border);
+  cursor: pointer;
+  font: inherit;
+  font-size: inherit;
+  color: var(--battersea-vnav-text);
+  transition: background var(--battersea-vnav-animation-speed);
+
+  &:hover {
+    background: var(--battersea-vnav-hover-bg);
+  }
+}
+
+.battersea-vnav__toggle-icon {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+  margin-right: 10px;
+  flex-shrink: 0;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    position: absolute;
+    left: 0;
+    transition: transform var(--battersea-vnav-animation-speed);
+  }
+  &::before { top: -6px; }
+  &::after { top: 6px; }
+}
+
+.battersea-vnav__toggle-label {
+  transition: opacity 0.15s, width 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// ---- Collapsed State ----
+.battersea-vnav--collapsed {
+  width: var(--battersea-vnav-collapsed-width);
+  overflow: hidden;
+
+  .battersea-vnav {
+    border-right: 1px solid var(--battersea-vnav-border);
+  }
+
+  .battersea-vnav__link,
+  .battersea-vnav__group-toggle {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+
+  .battersea-vnav__toggle-label {
+    opacity: 0;
+    width: 0;
+  }
+}
+
+// ---- External Toggle (Hamburger) ----
+.battersea-vnav__external-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--battersea-vnav-mobile-text);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  @media (max-width: 767px) {
+    display: flex;
+  }
+}
+
+// Hamburger to X animation
+.battersea-vnav__external-toggle--active {
+  span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+  }
+  span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+// ---- Mobile Overlay ----
+.battersea-vnav__mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: var(--battersea-vnav-mobile-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+  }
+}
+
+// Spacer to push content below header
+.battersea-vnav__mobile-spacer {
+  flex-shrink: 0;
+}
+
+// Panel container
+.battersea-vnav__mobile-panels {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+// Individual panel
+.battersea-vnav__mobile-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: transform 0.3s ease;
+  background: var(--battersea-vnav-mobile-bg);
+
+  &--active {
+    transform: translateX(0);
+  }
+
+  &--left {
+    transform: translateX(-100%);
+  }
+
+  &--right {
+    transform: translateX(100%);
+  }
+}
+
+// Back button at top of sub-panels
+.battersea-vnav__mobile-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--battersea-vnav-mobile-back-bg);
+  border: none;
+  border-bottom: 1px solid var(--battersea-vnav-mobile-border);
+  color: var(--battersea-vnav-mobile-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+}
+
+// Menu list
+.battersea-vnav__mobile-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Menu item
+.battersea-vnav__mobile-item {
+  border-bottom: 1px solid var(--battersea-vnav-mobile-border);
+}
+
+// Menu link
+.battersea-vnav__mobile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 16px 20px;
+  color: var(--battersea-vnav-mobile-text);
+  text-decoration: none;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+
+  &:active {
+    background: var(--battersea-vnav-mobile-back-bg);
+  }
+
+  // Chevron for items with children
+  &--has-children::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--battersea-vnav-mobile-chevron);
+    border-top: 2px solid var(--battersea-vnav-mobile-chevron);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+}
+
+// ---- Focus Visible (Accessibility) ----
+.battersea-vnav__link:focus-visible,
+.battersea-vnav__group-toggle:focus-visible,
+.battersea-vnav__toggle:focus-visible,
+.battersea-vnav__external-toggle:focus-visible,
+.battersea-vnav__mobile-link:focus-visible,
+.battersea-vnav__mobile-back:focus-visible {
+  outline: 2px solid var(--battersea-primary);
+  outline-offset: -2px;
+}
+
+// ---- Responsive ----
+@media (max-width: 767px) {
+  // Hide the desktop nav on mobile (mobile overlay handles it)
+  .battersea-vnav--mobile {
+    .battersea-vnav {
+      display: none;
+    }
+
+    .battersea-vnav__toggle {
+      display: none;
+    }
+  }
+
+  [data-vertical-nav] {
+    width: 100%;
+  }
+
+  .battersea-vnav {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--battersea-vnav-border);
+  }
+
+  // Flyouts become inline on mobile (JS switches to collapsible mode)
+  .battersea-vnav__flyout {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--battersea-vnav-animation-speed) ease;
+    background-color: var(--battersea-vnav-group-bg);
+
+    .battersea-vnav__link {
+      padding-left: calc(16px + var(--battersea-vnav-indent));
+    }
+  }
+}
+
+// ---- Off-Canvas Panel ----
+.battersea-vnav--offcanvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: var(--battersea-vnav-width);
+  z-index: 1000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: transform 0.3s ease;
+  box-shadow: none;
+
+  // Hide the internal toggle when off-canvas (external toggle handles it)
+  .battersea-vnav__toggle {
+    display: none;
+  }
+}
+
+.battersea-vnav--offcanvas-left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.battersea-vnav--offcanvas-right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.battersea-vnav--offcanvas-open {
+  transform: translateX(0);
+  box-shadow: var(--battersea-vnav-offcanvas-shadow);
+}
+
+// Backdrop
+.battersea-vnav__offcanvas-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: var(--battersea-vnav-offcanvas-backdrop);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+  }
+}
+
+// When off-canvas is enabled, always show external toggle (override mobile-only rule)
+.battersea-vnav--offcanvas ~ .battersea-vnav__external-toggle,
+[data-vertical-nav-offcanvas="true"] ~ .battersea-vnav__external-toggle {
+  display: flex;
+}
+
+// ---- Print ----
+@media print {
+  .battersea-vnav__flyout,
+  .battersea-vnav__toggle,
+  .battersea-vnav__external-toggle,
+  .battersea-vnav__mobile-overlay,
+  .battersea-vnav__offcanvas-backdrop {
+    display: none !important;
+  }
+  .battersea-vnav--offcanvas {
+    position: static;
+    transform: none;
+    overflow: visible;
+  }
+  .battersea-vnav__group {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}

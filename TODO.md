@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
-**Last Updated:** 8 February 2026
-**Current Version:** 2.4.0
+**Last Updated:** 9 February 2026
+**Current Version:** 2.5.2
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -30,7 +30,7 @@
 ### 🔨 In Progress
 
 ### 📋 Next Up
-- [ ] Update Navigation to inlcude a vertical navigation option
+- [x] **VerticalNav Component** - Sidebar navigation with simple, collapsible, flyout, hover-to-expand, off-canvas panel (v2.5.0 - v2.5.2)
 - [x] ImageGallery - Lightbox with thumbnails (v2.4.0)
 - [ ] Create an accessibility tool that increase font size
 - [ ] Create remaining demo pages (13 more needed):

@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.4.0
+- **Current Version:** 2.5.2
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 19 JavaScript files (includes env-config)
+│   ├── js/           # 20 JavaScript files (includes env-config)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (16 total)
+### Components (17 total)
 1. Accordion - Collapsible sections
 2. Animation - Scroll-triggered animations
 3. Counter - Animated number counting
@@ -50,6 +50,7 @@ battersea-library/
 14. SmoothScroll - Scroll-to-section navigation
 15. Tabs - Tabbed interface
 16. Tooltip - Hover/focus tooltips
+17. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -99,11 +100,12 @@ battersea-library/
 - Repository structure and GitHub Pages deployment
 - Homepage with component showcase
 - Include system for reusable HTML
-- 16 components fully functional
+- 17 components fully functional
 - **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` (old redirects removed)
 - **Project file cleanup** (Feb 2026): Removed redundant files, gitignored compiled CSS
 - **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
 - **SSH setup** for GitHub pushes
+- **VerticalNav v2.5.2** (Feb 2026): Hover-to-expand, off-canvas panel, stacking context fixes
 
 ### In Progress
 - See `TODO.md` for current tasks
@@ -165,6 +167,8 @@ battersea-library/
 | Component patterns | `src/js/battersea-accordion.js` (good example) |
 | Demo page template | `demo/components/accordion.html` |
 | Header docs | `docs/HEADER-DOCUMENTATION.md` |
+| VerticalNav docs | `docs/VERTICALNAV-DOCUMENTATION.md` |
+| ImageGallery docs | `docs/IMAGEGALLERY-DOCUMENTATION.md` |
 
 ---
 
@@ -190,4 +194,4 @@ Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
 
 ---
 
-*Last updated: 8 February 2026*
+*Last updated: 9 February 2026*
