@@ -31,7 +31,7 @@
 
 ### 📋 Next Up
 - [x] **VerticalNav Component** - Sidebar navigation with simple, collapsible, flyout, hover-to-expand, off-canvas panel (v2.5.0 - v2.5.2)
-- [x] ImageGallery - Lightbox with thumbnails (v2.4.0)
+- [x] **ImageGallery** - Lightbox with thumbnails (v2.4.0)
 - [x] **Accessibility Component** - Font size adjustment tool with dropdown slider in pre-header (v2.6.0)
 - [ ] Create remaining demo pages (12 more needed):
   - [x] accessibility.html
@@ -48,11 +48,13 @@
   - [ ] smoothscroll.html
   - [ ] tabs.html
   - [ ] tooltip.html
+  - [ ] HorizontalNav.html
 
 ---
 
 ## 📚 Documentation Tasks
 
+- [ ] Create a README.md
 - [ ] Add "Live Demo" link to README.md
 - [x] Create LICENSE file (MIT recommended)
 - [ ] Add CONTRIBUTING.md for potential contributors
@@ -84,7 +86,7 @@
 
 ## 🐛 Known Issues
 
-- [ ] config.codekit3 keeps appearing in Git changes
+- [x] config.codekit3 keeps appearing in Git changes
 - [ ] (Add any bugs you discover here)
 
 ---
@@ -95,13 +97,14 @@
 - [ ] DataTable - Sortable, filterable tables
 - [ ] FormValidation - Real-time form validation
 - [ ] DragDrop - Reorderable lists
+- [ ] Staff grid - Grid of staff photos that on rollover show their name position and company. Clicking the photo opens a light box containing a panel with thier photo, name, title, position, university, bio, telephone number, email address, website and socialmedia links.
+- [ ] Graphing - Animated graphs.
 - [ ] Breadcrumbs - Navigation breadcrumb trail using Json file
 - [ ] Level 1 - Page navigation using Json file
 - [ ] Level 2 - Page navigation using Json file
 - [ ] Page navigation using Json file
 - [ ] Timeline - Vertical/horizontal timeline
 - [ ] MiniQuiz - Small interactive quiz element that users can complete and the see the correct answer
-- [ ] 
 
 ### Infrastructure
 - [ ] Set up automated LESS compilation
