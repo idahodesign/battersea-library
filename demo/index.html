@@ -129,12 +129,22 @@
   <section id="demos"class="showcase-section" data-scroll-section data-scroll-title="Components" data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
-      <h2 class="section-title">16 Production-Ready Components</h2>
+      <h2 class="section-title">17 Production-Ready Components</h2>
       <p class="section-subtitle">Explore our complete collection of accessible, customisable components</p>
       
       <div class="component-grid">
+        <!-- Accessibility -->
+        <div class="component-card delay-1" data-animate="fade-up">
+          <div class="component-preview">Aa</div>
+          <div class="component-info">
+            <h3>Accessibility</h3>
+            <p>Font size slider that lets visitors adjust text to a comfortable reading size.</p>
+          </div>
+								<a href="components/accessibility.html" class="component-link">View Demo</a>
+        </div>
+
         <!-- Accordion -->
-        <div class="component-card delay-1" data-animate="fade-up" >
+        <div class="component-card delay-2" data-animate="fade-up" >
           <div class="component-preview">▼</div>
           <div class="component-info">
             <h3>Accordion</h3>
@@ -791,6 +801,7 @@ less.modifyVars({
   <script src="../src/js/battersea-horizontalnav.js"></script>
   <script src="../src/js/battersea-tooltip.js"></script>
   <script src="../src/js/battersea-smoothscroll.js"></script>
+  <script src="../src/js/battersea-accessibility.js"></script>
 
   <!-- Theme Customizer Script -->
   <script>
@@ -922,14 +933,15 @@ less.modifyVars({
     }
 
     function loadIncludes() {
-      // Load includes in order
+      // Load includes in order - nav must load after header since demo-nav-nested is inside the header include
       Promise.all([
         loadInclude('../includes/preHeader.html', 'demo-preheader-placeholder'),
 		loadInclude('../includes/demo-header-component.html', 'mainHeader'),
-        loadInclude('../includes/demo-nav.html', 'demo-nav-nested'),
         loadInclude('../includes/demo-footer.html', 'demo-footer-placeholder')
       ]).then(() => {
-        console.log('✓ All includes loaded successfully');
+        return loadInclude('../includes/demo-nav.html', 'demo-nav-nested');
+      }).then(() => {
+        console.log('All includes loaded successfully');
       });
     }
   </script>

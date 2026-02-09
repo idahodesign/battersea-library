@@ -1155,11 +1155,12 @@ nav.addEventListener('battersea:vnavToggle', (e) =&gt; {
 		<script src="../../src/js/battersea-horizontalnav.js"></script>
 		<script src="../../src/js/battersea-tooltip.js"></script>
 		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
 
 		<!-- Include Loader Script -->
 		<script>
 			function loadInclude(url, placeholderId) {
-				fetch(url)
+				return fetch(url)
 				.then(response => {
 					if (!response.ok) {
 						throw new Error(`Failed to load ${url}: ${response.status}`);
@@ -1184,12 +1185,14 @@ nav.addEventListener('battersea:vnavToggle', (e) =&gt; {
 				loadIncludes();
 			}
 			function loadIncludes() {
+				// Nav must load after header since demo-nav-nested is inside the header include
 				Promise.all([
 					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
 					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
-					loadInclude('../../includes/demo-nav.html', 'demo-nav-nested'),
 					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
 				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
 					console.log('All includes loaded successfully');
 				});
 			}

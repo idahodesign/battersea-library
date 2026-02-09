@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.5.2
+- **Current Version:** 2.6.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -33,24 +33,25 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (17 total)
-1. Accordion - Collapsible sections
-2. Animation - Scroll-triggered animations
-3. Counter - Animated number counting
-4. Flipbox - 3D flip cards
-5. Header - Adaptive header with shrink-on-scroll
-6. HorizontalNav - Multi-level dropdown menus
-7. ImageGallery - Lightbox with masonry grid, zoom, and video
-8. MultiSlider - Multi-item carousel
-9. NestedProgress - Multi-layer circular progress
-10. Parallax - Parallax backgrounds
-11. Popup - Modal dialogs
-12. ProgressBar - Horizontal/circular progress
-13. Slider - Image/content carousel
-14. SmoothScroll - Scroll-to-section navigation
-15. Tabs - Tabbed interface
-16. Tooltip - Hover/focus tooltips
-17. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
+### Components (18 total)
+1. Accessibility - Font size adjustment tool with dropdown slider
+2. Accordion - Collapsible sections
+3. Animation - Scroll-triggered animations
+4. Counter - Animated number counting
+5. Flipbox - 3D flip cards
+6. Header - Adaptive header with shrink-on-scroll
+7. HorizontalNav - Multi-level dropdown menus
+8. ImageGallery - Lightbox with masonry grid, zoom, and video
+9. MultiSlider - Multi-item carousel
+10. NestedProgress - Multi-layer circular progress
+11. Parallax - Parallax backgrounds
+12. Popup - Modal dialogs
+13. ProgressBar - Horizontal/circular progress
+14. Slider - Image/content carousel
+15. SmoothScroll - Scroll-to-section navigation
+16. Tabs - Tabbed interface
+17. Tooltip - Hover/focus tooltips
+18. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -100,18 +101,19 @@ battersea-library/
 - Repository structure and GitHub Pages deployment
 - Homepage with component showcase
 - Include system for reusable HTML
-- 17 components fully functional
+- 18 components fully functional
 - **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` (old redirects removed)
 - **Project file cleanup** (Feb 2026): Removed redundant files, gitignored compiled CSS
 - **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
 - **SSH setup** for GitHub pushes
 - **VerticalNav v2.5.2** (Feb 2026): Hover-to-expand, off-canvas panel, stacking context fixes
+- **Accessibility v2.6.0** (Feb 2026): Font size adjustment component with dropdown slider
 
 ### In Progress
 - See `TODO.md` for current tasks
 
 ### Next Priorities
-1. Create remaining 13 demo pages
+1. Create remaining 12 demo pages
 2. Component documentation for each component
 3. Accessibility audit
 4. Mobile testing

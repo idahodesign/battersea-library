@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
 **Last Updated:** 9 February 2026
-**Current Version:** 2.5.2
+**Current Version:** 2.6.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -32,8 +32,9 @@
 ### 📋 Next Up
 - [x] **VerticalNav Component** - Sidebar navigation with simple, collapsible, flyout, hover-to-expand, off-canvas panel (v2.5.0 - v2.5.2)
 - [x] ImageGallery - Lightbox with thumbnails (v2.4.0)
-- [ ] Create an accessibility tool that increase font size
-- [ ] Create remaining demo pages (13 more needed):
+- [x] **Accessibility Component** - Font size adjustment tool with dropdown slider in pre-header (v2.6.0)
+- [ ] Create remaining demo pages (12 more needed):
+  - [x] accessibility.html
   - [ ] animation.html
   - [ ] counter.html
   - [ ] flipbox.html

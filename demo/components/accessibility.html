@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Accessibility Component - Battersea Library</title>
+		<meta name="description" content="Font size adjustment tool with a simple slider - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Accessibility Component</h1>
+						<p class="hero-subtitle">A simple font size slider that lets visitors adjust text to a comfortable reading size</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demo" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Try It Out</h2>
+						<p class="section-subtitle">Click the <strong>Aa</strong> button in the pre-header bar above to open the font size slider</p>
+
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>How it works</h3>
+							<p>The accessibility tool is already active on this page. Here's how to use it:</p>
+
+							<div class="demo-container" style="text-align: left;">
+								<ol style="line-height: 2; padding-left: 1.5rem;">
+									<li>Click the <strong>Aa</strong> button in the gradient bar at the top of the page</li>
+									<li>A slim panel slides down with a slider between a small <strong>a</strong> and a large <strong>A</strong></li>
+									<li>Drag the slider left to shrink text, or right to enlarge it</li>
+									<li>Click anywhere outside the panel to close it &mdash; your preference is saved automatically</li>
+									<li>Refresh the page or navigate to another demo &mdash; your chosen size persists</li>
+								</ol>
+							</div>
+						</div>
+
+						<!-- Sample content to demonstrate scaling -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Sample Content</h3>
+							<p>Use the slider to see how these different text sizes respond. Everything built with <code>rem</code> units scales proportionally.</p>
+
+							<div class="demo-container" style="text-align: left;">
+								<h2 style="margin-top: 0;">This is a heading</h2>
+								<p>This is body text at the default paragraph size. It should be comfortable to read at any slider position between 80% and 200%. The component adjusts the root font size on the <code>&lt;html&gt;</code> element, which scales all <code>rem</code>-based sizes across the page.</p>
+								<p style="font-size: 0.85rem; color: #888;">This is smaller text, like a caption or footnote. It scales too.</p>
+								<blockquote style="border-left: 3px solid #667eea; padding-left: 1rem; margin: 1.5rem 0; font-style: italic;">
+									"The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect."
+								</blockquote>
+								<p><strong>Bold text</strong>, <em>italic text</em>, and <a href="#">linked text</a> all scale together.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">Aa</div>
+								<h3>Simple Slider</h3>
+								<p>A clean, minimal interface with just a slider between a small "a" and large "A". No clutter, no unnecessary buttons.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">%</div>
+								<h3>Wide Range</h3>
+								<p>Adjusts from 80% to 200% of the default text size, in 10% steps. Configurable via data attributes.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9881;</div>
+								<h3>Auto-Save</h3>
+								<p>The chosen size is saved to localStorage and restored on every page load. No save button needed &mdash; just close the panel.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Drop-In Ready</h3>
+								<p>Add a single button with <code>data-accessibility</code> anywhere on your page. The component handles everything else.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">A11y</div>
+								<h3>Keyboard Accessible</h3>
+								<p>Full keyboard support &mdash; Tab to the trigger, Enter to open, arrow keys on the slider, Escape to close.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Custom Events</h3>
+								<p>Dispatches <code>battersea:fontSizeChange</code> with the current percentage, so other components can respond to size changes.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the component using these data attributes on the trigger button:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-accessibility</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the accessibility component on the trigger element</td>
+									</tr>
+									<tr>
+										<td><code>data-accessibility-min</code></td>
+										<td>number</td>
+										<td><code>80</code></td>
+										<td>Minimum font size percentage</td>
+									</tr>
+									<tr>
+										<td><code>data-accessibility-max</code></td>
+										<td>number</td>
+										<td><code>200</code></td>
+										<td>Maximum font size percentage</td>
+									</tr>
+									<tr>
+										<td><code>data-accessibility-step</code></td>
+										<td>number</td>
+										<td><code>10</code></td>
+										<td>Slider step increment</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Usage</h3>
+							<p>The simplest way to add the component &mdash; a single button:</p>
+
+							<pre><code>&lt;button data-accessibility aria-label="Adjust text size"&gt;Aa&lt;/button&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">Custom Range</h3>
+							<p>Narrow the range and change the step size:</p>
+
+							<pre><code>&lt;button data-accessibility
+  data-accessibility-min="90"
+  data-accessibility-max="150"
+  data-accessibility-step="5"
+  aria-label="Adjust text size"&gt;Aa&lt;/button&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">Listening to Changes</h3>
+							<p>React to font size changes in your own code:</p>
+
+							<pre><code>const trigger = document.querySelector('[data-accessibility]');
+
+trigger.addEventListener('battersea:fontSizeChange', (e) =&gt; {
+  console.log('Font size:', e.detail.percentage + '%');
+});</code></pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- HOW IT WORKS SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="How It Works" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">How It Works</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>What does the slider actually change?</div>
+								<div data-accordion-content>
+									<div>
+										<p>The component sets <code>font-size</code> as a percentage on the <code>&lt;html&gt;</code> element. For example, sliding to 130% applies <code>html { font-size: 130%; }</code>.</p>
+										<p>This scales everything that uses <code>rem</code> units proportionally. Elements using <code>px</code> values stay the same size &mdash; which is usually what you want for things like borders, icons, and component chrome.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Where is the preference stored?</div>
+								<div data-accordion-content>
+									<div>
+										<p>The chosen font size is saved to <code>localStorage</code> under the key <code>battersea-font-size</code>. It's read on every page load, so the user's preference follows them across the site.</p>
+										<p>If localStorage isn't available (private browsing, storage full), the component still works &mdash; the preference just won't persist between sessions.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Where should I place the trigger button?</div>
+								<div data-accordion-content>
+									<div>
+										<p>Anywhere you like. The component is designed to be flexible:</p>
+										<ul>
+											<li><strong>Pre-header bar</strong> &mdash; like on this demo site, as a small utility button</li>
+											<li><strong>Header</strong> &mdash; alongside your main navigation</li>
+											<li><strong>Footer</strong> &mdash; in a utilities section</li>
+											<li><strong>Floating button</strong> &mdash; fixed to a corner of the viewport</li>
+										</ul>
+										<p>The slide-down panel positions itself relative to the trigger's nearest positioned parent. If the trigger is inside a <code>.battersea-header-pre</code> element, the panel spans the full width of that bar.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Does it affect component sizes?</div>
+								<div data-accordion-content>
+									<div>
+										<p>Only elements sized with <code>rem</code> units will scale. Most Battersea Library components use a mix of <code>rem</code> (for text and spacing) and <code>px</code> (for borders, shadows, and fixed-size chrome), so they scale gracefully.</p>
+										<p>If you want an element to be immune to font size changes, use <code>px</code> values. If you want it to scale, use <code>rem</code>.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">Tab</div>
+								<h3>Keyboard Navigation</h3>
+								<p>Tab to the trigger button, Enter or Space to open the panel, arrow keys to adjust the slider, Escape to close.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">[ ]</div>
+								<h3>Focus Indicators</h3>
+								<p>Clear focus outlines on the trigger button and slider thumb for keyboard users.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">SR</div>
+								<h3>Screen Reader Support</h3>
+								<p>ARIA attributes on the slider announce the current value. The panel uses <code>role="group"</code> with a descriptive label.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#10003;</div>
+								<h3>WCAG 2.1 Compliant</h3>
+								<p>Meets Level AA accessibility standards. The component itself is an accessibility tool &mdash; it would be a shame if it weren't accessible.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses <code>localStorage</code>, <code>backdrop-filter</code>, and custom events.
+							The <code>backdrop-filter</code> blur effect degrades gracefully in older browsers &mdash; the panel still works, it just loses the frosted glass look.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					// Nav must load after header since demo-nav-nested is inside the header include
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

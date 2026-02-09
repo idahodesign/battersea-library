@@ -1,0 +1,134 @@
+/**
+ * Battersea Library - Accessibility Component Styles
+ * Version: 1.1.0
+ * Font size slider that slides down from the pre-header
+ */
+
+/* Trigger button (styled to work in pre-header or anywhere) */
+[data-accessibility] {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+  }
+}
+
+/* Pre-header needs relative positioning for the panel */
+.battersea-header-pre {
+  position: relative;
+}
+
+/* Slide-down panel */
+.battersea-a11y-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 24px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+
+  &--open {
+    max-height: 60px;
+    opacity: 1;
+    padding: 12px 24px;
+  }
+
+  /* "a" and "A" labels */
+  &__label {
+    color: #fff;
+    font-weight: 600;
+    line-height: 1;
+    flex-shrink: 0;
+    user-select: none;
+
+    &--small {
+      font-size: 12px;
+    }
+
+    &--large {
+      font-size: 22px;
+    }
+  }
+}
+
+/* Range slider */
+.battersea-a11y-slider {
+  width: 200px;
+  max-width: 50vw;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  margin: 0;
+  flex-shrink: 1;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s;
+  }
+
+  &::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  &::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s;
+  }
+
+  &::-moz-range-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  &:focus-visible {
+    &::-webkit-slider-thumb {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+}

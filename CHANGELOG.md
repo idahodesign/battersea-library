@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.6.0] - 2026-02-09
+
+### Added
+- **Accessibility Component** (v1.1.0) - Font size adjustment tool
+  - Small "Aa" trigger button in the pre-header bar (replaces old scroll link)
+  - Slim panel slides down from pre-header with frosted glass effect
+  - Range slider with small "a" and large "A" labels (80%–200%, step 10%)
+  - Sets `font-size` on `<html>` element to scale all `rem`-based sizes
+  - Click outside to close and auto-save; Escape key support
+  - Persists user preference via localStorage
+  - Configurable via data attributes: `data-accessibility-min`, `data-accessibility-max`, `data-accessibility-step`
+  - Custom event: `battersea:fontSizeChange`
+  - New files: `battersea-accessibility.js`, `battersea-accessibility.less`
+- **Accessibility demo page** (`demo/components/accessibility.html`)
+  - Live demo, key features, configuration options, how it works FAQ, browser support
+  - Added to navigation under Utilities dropdown
+- **Homepage component card** for Accessibility added to component grid (17 total)
+
+### Fixed
+- **Include system race condition** — Nav include now loads after header include (was parallel, causing nav placeholder to not exist yet)
+- **Missing `return` in `loadInclude()`** — `Promise.all` was resolving immediately without waiting for fetches; added `return fetch()` in all demo pages
+- **Removed redundant nav loader** from `demo-header-component.html` — had hardcoded GitHub Pages path that 404ed on localhost; pages handle their own nav loading
+
+---
+
 ## [2.5.2] - 2026-02-09
 
 ### Added
