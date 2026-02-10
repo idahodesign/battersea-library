@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>NestedProgress Component - Battersea Library</title>
+		<meta name="description" content="Nested circular progress bars with multiple rings in one SVG - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>NestedProgress Component</h1>
+						<p class="hero-subtitle">Multiple stacked circular progress rings in a single SVG &mdash; perfect for dashboards and skill charts</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Scroll down to see the rings animate</p>
+
+						<!-- Skills Chart -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Skills Chart</h3>
+							<p>Three concentric rings showing different skill levels. Each ring has its own colour and value, all rendered inside one SVG. It's a compact way to show multiple data points at once.</p>
+
+							<div class="demo-container">
+								<div style="padding: 2rem; display: flex; justify-content: center;">
+									<div data-progress-nested
+										data-progress-circles='[{"label":"HTML","value":90,"color":"#e34c26"},{"label":"CSS","value":85,"color":"#264de4"},{"label":"JavaScript","value":75,"color":"#f0db4f"}]'
+										data-progress-duration="1500">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Project Progress with Legend -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Project Progress with Legend</h3>
+							<p>Enable the legend and you get a key underneath showing what each ring represents. Useful when the chart is part of a larger dashboard and people need to know what they're looking at without guessing.</p>
+
+							<div class="demo-container">
+								<div style="padding: 2rem; display: flex; justify-content: center;">
+									<div data-progress-nested
+										data-progress-circles='[{"label":"Design","value":100,"color":"#667eea"},{"label":"Development","value":72,"color":"#764ba2"},{"label":"Testing","value":45,"color":"#4ecdc4"}]'
+										data-progress-legend="true"
+										data-progress-duration="1500">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- With Centre Title -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>With Centre Title</h3>
+							<p>Add a title in the middle of the rings to give the whole chart a label. The text sits right in the centre of the SVG, so it's clear what the data is about.</p>
+
+							<div class="demo-container">
+								<div style="padding: 2rem; display: flex; justify-content: center;">
+									<div data-progress-nested
+										data-progress-circles='[{"label":"Frontend","value":88,"color":"#667eea"},{"label":"Backend","value":65,"color":"#764ba2"},{"label":"DevOps","value":40,"color":"#4ecdc4"}]'
+										data-progress-title="Stats"
+										data-progress-legend="true"
+										data-progress-duration="1500">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Minimal Two-Ring -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Two-Ring Chart</h3>
+							<p>You don't have to use three rings. Two works just fine for simpler comparisons &mdash; like budget spent vs. budget remaining, or tasks done vs. total.</p>
+
+							<div class="demo-container">
+								<div style="padding: 2rem; display: flex; justify-content: center;">
+									<div data-progress-nested
+										data-progress-circles='[{"label":"Completed","value":68,"color":"#667eea"},{"label":"Remaining","value":32,"color":"#e0e0e0"}]'
+										data-progress-title="Tasks"
+										data-progress-legend="true"
+										data-progress-duration="1200">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9711;</div>
+								<h3>Stacked Rings</h3>
+								<p>Multiple progress rings rendered concentrically in one SVG. Each ring has its own value, colour, and label.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>JSON Configuration</h3>
+								<p>Define your rings with a simple JSON array in a data attribute. Label, value, and colour for each ring &mdash; that's all you need.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">~</div>
+								<h3>Animated on Scroll</h3>
+								<p>Rings animate from zero to their target value when they scroll into view. The animation duration is configurable.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#9776;</div>
+								<h3>Optional Legend</h3>
+								<p>Turn on the legend to show a colour-coded key beneath the chart. Makes it clear what each ring represents.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">Aa</div>
+								<h3>Centre Title</h3>
+								<p>Drop a title right in the middle of the rings to label the whole chart. Keeps things tidy and self-explanatory.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Zero Config</h3>
+								<p>No JavaScript setup needed. The data attributes handle everything &mdash; just define your rings and the component does the rest.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the nested progress component using these data attributes:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-progress-nested</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the nested progress component on this element</td>
+									</tr>
+									<tr>
+										<td><code>data-progress-circles</code></td>
+										<td>JSON array</td>
+										<td>required</td>
+										<td>Array of circle objects, each with <code>label</code>, <code>value</code> (0&ndash;100), and <code>color</code> (hex)</td>
+									</tr>
+									<tr>
+										<td><code>data-progress-title</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>Text displayed in the centre of the rings</td>
+									</tr>
+									<tr>
+										<td><code>data-progress-legend</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show a colour-coded legend beneath the chart</td>
+									</tr>
+									<tr>
+										<td><code>data-progress-duration</code></td>
+										<td>Number (ms)</td>
+										<td><code>1000</code></td>
+										<td>How long the ring animation takes in milliseconds</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Circles JSON Format</h3>
+							<p>The <code>data-progress-circles</code> attribute takes a JSON array. Each object in the array defines one ring:</p>
+
+							<pre><code>[
+  {
+    "label": "HTML",
+    "value": 90,
+    "color": "#e34c26"
+  },
+  {
+    "label": "CSS",
+    "value": 85,
+    "color": "#264de4"
+  },
+  {
+    "label": "JavaScript",
+    "value": 75,
+    "color": "#f0db4f"
+  }
+]</code></pre>
+
+							<p style="margin-top: 1rem;">The first item in the array becomes the outermost ring, and each subsequent item nests inside it. You can have as many rings as you like, though three or four tends to look best.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Three-Ring Chart</div>
+								<div data-accordion-content>
+									<div>
+										<p>The most common setup &mdash; three rings with labels and colours:</p>
+										<pre><code>&lt;div data-progress-nested
+  data-progress-circles='[
+    {"label":"HTML","value":90,"color":"#e34c26"},
+    {"label":"CSS","value":85,"color":"#264de4"},
+    {"label":"JavaScript","value":75,"color":"#f0db4f"}
+  ]'
+  data-progress-duration="1500"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>With Legend Enabled</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add <code>data-progress-legend="true"</code> to show what each ring means:</p>
+										<pre><code>&lt;div data-progress-nested
+  data-progress-circles='[
+    {"label":"Design","value":100,"color":"#667eea"},
+    {"label":"Development","value":72,"color":"#764ba2"},
+    {"label":"Testing","value":45,"color":"#4ecdc4"}
+  ]'
+  data-progress-legend="true"
+  data-progress-duration="1500"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Centre Title</div>
+								<div data-accordion-content>
+									<div>
+										<p>Put a label in the middle of the chart with <code>data-progress-title</code>:</p>
+										<pre><code>&lt;div data-progress-nested
+  data-progress-circles='[
+    {"label":"Frontend","value":88,"color":"#667eea"},
+    {"label":"Backend","value":65,"color":"#764ba2"},
+    {"label":"DevOps","value":40,"color":"#4ecdc4"}
+  ]'
+  data-progress-title="Skills"
+  data-progress-legend="true"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Animation Duration</div>
+								<div data-accordion-content>
+									<div>
+										<p>Control how fast the rings fill up. The value is in milliseconds:</p>
+										<pre><code>&lt;!-- Slow and dramatic --&gt;
+&lt;div data-progress-nested
+  data-progress-circles='[
+    {"label":"Progress","value":78,"color":"#667eea"},
+    {"label":"Quality","value":92,"color":"#4ecdc4"}
+  ]'
+  data-progress-duration="3000"&gt;
+&lt;/div&gt;
+
+&lt;!-- Quick and snappy --&gt;
+&lt;div data-progress-nested
+  data-progress-circles='[
+    {"label":"Progress","value":78,"color":"#667eea"},
+    {"label":"Quality","value":92,"color":"#4ecdc4"}
+  ]'
+  data-progress-duration="500"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Required Files</div>
+								<div data-accordion-content>
+									<div>
+										<p>Include these files to get the nested progress component working:</p>
+										<pre><code>&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="battersea-library.css"&gt;
+
+&lt;!-- Core JavaScript (required) --&gt;
+&lt;script src="battersea-utils.js"&gt;&lt;/script&gt;
+&lt;script src="battersea-core.js"&gt;&lt;/script&gt;
+
+&lt;!-- NestedProgress Component --&gt;
+&lt;script src="battersea-nestedprogress.js"&gt;&lt;/script&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses inline SVG for rendering, <code>IntersectionObserver</code> for scroll-triggered animations,
+							and <code>requestAnimationFrame</code> for smooth ring transitions. All well-supported in modern browsers.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-nestedprogress.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			// Load all includes when DOM is ready
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				// Load includes in order - nav must load after header since demo-nav-nested is inside the header include
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

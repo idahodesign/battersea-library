@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.6.1] - 2026-02-10
+
+### Added
+- **All remaining demo pages** — 14 new component demo pages, completing the full set of 18
+  - counter, flipbox, header, horizontalnav, multislider, nestedprogress, parallax, popup, progressbar, slider, smoothscroll, tooltip (new)
+  - animation, tabs (created earlier in the session)
+  - Each page follows the standard template: hero, live demos, features, configuration, usage examples, browser support
+- **Updated demo navigation** — `demo-nav.html` reorganised into 6 categories:
+  - Navigation (Header, Horizontal Navigation, Vertical Navigation)
+  - Content (Image Gallery, Parallax, Slider, MultiSlider)
+  - Interactive (Accordion, Counter, Flipbox, Popup, Tabs, Tooltip)
+  - Data Display (Progress Bar, Nested Progress)
+  - Utilities (Accessibility, Animation, SmoothScroll)
+
+### Fixed
+- **Slider/MultiSlider arrow duplication** — CSS `::before` pseudo-elements in `battersea-slider.less` and `battersea-slider-multi-item.less` had corrupted UTF-8 chevron characters (`Ã¢â‚¬Â¹`); replaced with encoding-safe CSS unicode escapes (`\2039` / `\203A`)
+- **Circular progress bars not rendering** — `createCircular()` in `battersea-progressbar.js` was using `parentElement.offsetWidth` which returned 0 before layout, causing negative SVG radius values; now uses the specified `data-progress-size` directly with explicit pixel dimensions on the SVG
+- **Progress bar animation quality** — Replaced `setInterval` with `requestAnimationFrame` for smooth frame-synced animation; removed conflicting CSS `transition: width 0.3s ease` from `.battersea-progress-fill`; horizontal bars use ease-out cubic, circular bars use ease-in-out cubic with longer duration (1800ms) for a satisfying sweep effect
+
+---
+
 ## [2.6.0] - 2026-02-09
 
 ### Added

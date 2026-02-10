@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Parallax Component - Battersea Library</title>
+		<meta name="description" content="Background parallax scrolling effect with configurable speed - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Parallax Component</h1>
+						<p class="hero-subtitle">Smooth background parallax scrolling that adds depth and motion to your pages</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Scroll through these sections to see the parallax effect in action</p>
+
+						<!-- Standard Parallax -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Standard Parallax (Speed 0.5)</h3>
+							<p>The default speed setting &mdash; a good balance between movement and subtlety. The background image scrolls at half the speed of the page content.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-parallax data-parallax-speed="0.5" style="background-image: url('../../assets/img/background-01.jpg'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; position: relative;">
+									<div style="background: rgba(0,0,0,0.4); padding: 2rem; border-radius: 12px;">
+										<h3 style="color: white; margin-top: 0; font-size: 1.5rem;">Standard Parallax</h3>
+										<p style="margin-bottom: 0; max-width: 500px;">This background moves at half the scroll speed, creating a natural sense of depth. It's the most commonly used setting and works well for hero sections and content breaks.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slow Parallax -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Slow Parallax (Speed 0.2)</h3>
+							<p>A much subtler effect &mdash; the background barely moves as you scroll. Nice for situations where you want just a hint of depth without too much drama.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-parallax data-parallax-speed="0.2" style="background-image: url('../../assets/img/background-02.jpg'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; position: relative;">
+									<div style="background: rgba(0,0,0,0.4); padding: 2rem; border-radius: 12px;">
+										<h3 style="color: white; margin-top: 0; font-size: 1.5rem;">Slow Parallax</h3>
+										<p style="margin-bottom: 0; max-width: 500px;">With a speed of 0.2, the background only shifts a small amount. You'll notice it if you're looking for it, but it won't distract from the content. Great for long-form reading pages.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Fast Parallax -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Fast Parallax (Speed 0.8)</h3>
+							<p>A more pronounced effect &mdash; the background moves at nearly the same speed as the scroll. Use this sparingly, as it can feel quite intense.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-parallax data-parallax-speed="0.8" style="background-image: url('../../assets/img/background-03.jpg'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; position: relative;">
+									<div style="background: rgba(0,0,0,0.4); padding: 2rem; border-radius: 12px;">
+										<h3 style="color: white; margin-top: 0; font-size: 1.5rem;">Fast Parallax</h3>
+										<p style="margin-bottom: 0; max-width: 500px;">At 0.8 speed, the background moves quite dramatically. This works well for short, punchy sections where you want to grab attention &mdash; but you probably wouldn't want a full page of this.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">~</div>
+								<h3>Smooth Scrolling</h3>
+								<p>Uses requestAnimationFrame for buttery-smooth background movement with no janky stuttering or tearing.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#9881;</div>
+								<h3>Adjustable Speed</h3>
+								<p>Set the parallax speed from 0 (no movement) to 1 (full scroll speed) using a simple data attribute. Fine-tune it to your liking.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Auto-Initialisation</h3>
+								<p>Just add <code>data-parallax</code> to any element with a background image and you're done. No JavaScript configuration needed.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Zero Dependencies</h3>
+								<p>Built with pure vanilla JavaScript. No jQuery, no external libraries, no bloat. Just clean, efficient code.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#9733;</div>
+								<h3>GPU Accelerated</h3>
+								<p>Uses CSS transforms for hardware-accelerated rendering, keeping your animations smooth even on less powerful devices.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#8635;</div>
+								<h3>Mobile Aware</h3>
+								<p>The parallax effect degrades gracefully on mobile devices where performance can be a concern. No jarring behaviour on touch screens.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the parallax component using these data attributes:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-parallax</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the parallax effect on the element</td>
+									</tr>
+									<tr>
+										<td><code>data-parallax-speed</code></td>
+										<td><code>0</code> to <code>1</code></td>
+										<td><code>0.5</code></td>
+										<td>Controls how fast the background scrolls relative to the page. 0 means no movement, 1 means it scrolls at the same speed as the content.</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Usage</h3>
+							<p>Add a parallax background to any element &mdash; just make sure it has a background image and a height set:</p>
+
+							<pre><code>&lt;div data-parallax data-parallax-speed="0.5"
+  style="background-image: url('your-image.jpg');
+         background-size: cover;
+         background-position: center;
+         min-height: 400px;"&gt;
+  &lt;!-- Your content here --&gt;
+&lt;/div&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">Tips</h3>
+							<ul>
+								<li>Always set <code>background-size: cover</code> so the image fills the container</li>
+								<li>Use <code>background-position: center</code> to keep the focal point centred</li>
+								<li>Give the element a <code>min-height</code> so it's tall enough to show the effect</li>
+								<li>Lower speed values (0.1&ndash;0.3) work best for subtle, professional layouts</li>
+								<li>Higher speed values (0.7&ndash;0.9) create dramatic effects &mdash; use them sparingly</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Hero Section with Parallax</div>
+								<div data-accordion-content>
+									<div>
+										<p>A common pattern &mdash; a full-width hero banner with a parallax background:</p>
+										<pre><code>&lt;section data-parallax data-parallax-speed="0.4"
+  style="background-image: url('hero-bg.jpg');
+         background-size: cover;
+         background-position: center;
+         min-height: 600px;
+         display: flex;
+         align-items: center;
+         justify-content: center;"&gt;
+  &lt;div style="text-align: center; color: white;"&gt;
+    &lt;h1&gt;Welcome to Our Site&lt;/h1&gt;
+    &lt;p&gt;Something compelling goes here&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Content Break Parallax</div>
+								<div data-accordion-content>
+									<div>
+										<p>Use parallax sections to break up long pages of content:</p>
+										<pre><code>&lt;!-- Regular content section --&gt;
+&lt;section class="content"&gt;
+  &lt;p&gt;Your content here...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;!-- Parallax break --&gt;
+&lt;div data-parallax data-parallax-speed="0.3"
+  style="background-image: url('break-bg.jpg');
+         background-size: cover;
+         min-height: 300px;"&gt;
+&lt;/div&gt;
+
+&lt;!-- More content --&gt;
+&lt;section class="content"&gt;
+  &lt;p&gt;More content here...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Parallax with Overlay</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add a semi-transparent overlay for better text readability:</p>
+										<pre><code>&lt;div data-parallax data-parallax-speed="0.5"
+  style="background-image: url('bg.jpg');
+         background-size: cover;
+         min-height: 400px;
+         position: relative;
+         display: flex;
+         align-items: center;
+         justify-content: center;"&gt;
+  &lt;div style="background: rgba(0,0,0,0.5);
+              padding: 2rem;
+              border-radius: 12px;
+              color: white;
+              text-align: center;"&gt;
+    &lt;h2&gt;Your Heading&lt;/h2&gt;
+    &lt;p&gt;Content is easy to read thanks to the overlay&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Multiple Parallax Sections</div>
+								<div data-accordion-content>
+									<div>
+										<p>Each parallax element is independent &mdash; you can have several on the same page with different speeds:</p>
+										<pre><code>&lt;div data-parallax data-parallax-speed="0.3"
+  style="background-image: url('bg-1.jpg'); ..."&gt;
+  &lt;!-- Slow section --&gt;
+&lt;/div&gt;
+
+&lt;div class="content"&gt;
+  &lt;p&gt;Regular content between parallax sections&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div data-parallax data-parallax-speed="0.7"
+  style="background-image: url('bg-2.jpg'); ..."&gt;
+  &lt;!-- Faster section --&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses CSS <code>transform</code> and <code>requestAnimationFrame</code> for smooth, hardware-accelerated animations.
+							On mobile devices where parallax can be janky, the effect gracefully degrades to a fixed background.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-parallax.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

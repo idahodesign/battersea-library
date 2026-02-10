@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Counter Component - Battersea Library</title>
+		<meta name="description" content="Animated number counting with scroll-triggered animation - Battersea Library Component">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+		<script>
+			less = { env: 'development', async: false, fileAsync: false, poll: 1000, logLevel: 2,
+				globalVars: { 'primary-color': '#667eea', 'secondary-color': '#764ba2', 'accent-color': '#4ecdc4' }
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+		<script src="../../src/js/battersea-env-config.js"></script>
+		<style>@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+		<header id="mainHeader" class="battersea-header" data-header data-sticky="true" data-shrink="true" data-shrink-offset="100" data-shrink-height="60" data-layout="right-align" data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- HERO -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Counter Component</h1>
+						<p class="hero-subtitle">Animated number counting that triggers as you scroll into view</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- LIVE DEMOS -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Scroll down to trigger the counters &mdash; they animate once when they enter the viewport</p>
+
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Basic Counters</h3>
+							<p>Simple counting from zero to a target number. The animation triggers automatically when the element scrolls into view.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center;">
+									<div>
+										<div data-counter data-counter-end="1500" data-counter-duration="2000" style="font-size: 2.5rem; font-weight: 700; color: #667eea;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">Users</p>
+									</div>
+									<div>
+										<div data-counter data-counter-end="328" data-counter-duration="2000" style="font-size: 2.5rem; font-weight: 700; color: #764ba2;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">Projects</p>
+									</div>
+									<div>
+										<div data-counter data-counter-end="99" data-counter-duration="1500" style="font-size: 2.5rem; font-weight: 700; color: #4ecdc4;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">Components</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Prefix &amp; Suffix</h3>
+							<p>Add text before or after the number &mdash; currency symbols, percentage signs, plus signs, whatever you need.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center;">
+									<div>
+										<div data-counter data-counter-end="42000" data-counter-duration="2500" data-counter-prefix="$" style="font-size: 2.5rem; font-weight: 700; color: #667eea;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">Revenue</p>
+									</div>
+									<div>
+										<div data-counter data-counter-end="97" data-counter-duration="2000" data-counter-suffix="%" style="font-size: 2.5rem; font-weight: 700; color: #764ba2;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">Uptime</p>
+									</div>
+									<div>
+										<div data-counter data-counter-end="500" data-counter-duration="2000" data-counter-suffix="+" style="font-size: 2.5rem; font-weight: 700; color: #4ecdc4;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">Downloads</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Decimals &amp; Thousand Separators</h3>
+							<p>Control the number format with decimal places and custom thousand separators.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+									<div>
+										<div data-counter data-counter-end="99.9" data-counter-decimals="1" data-counter-duration="2000" data-counter-suffix="%" style="font-size: 2.5rem; font-weight: 700; color: #667eea;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">Accuracy (1 decimal)</p>
+									</div>
+									<div>
+										<div data-counter data-counter-end="1250000" data-counter-duration="3000" data-counter-separator="," style="font-size: 2.5rem; font-weight: 700; color: #764ba2;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">With commas</p>
+									</div>
+									<div>
+										<div data-counter data-counter-end="3.14" data-counter-decimals="2" data-counter-duration="1500" style="font-size: 2.5rem; font-weight: 700; color: #4ecdc4;">0</div>
+										<p style="margin-top: 0.5rem; color: #666;">2 decimal places</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Custom Start Value</h3>
+							<p>Counters don't have to start from zero. Set a custom starting point for countdowns or partial progress.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center;">
+									<div>
+										<div data-counter data-counter-start="1000" data-counter-end="0" data-counter-duration="3000" style="font-size: 2.5rem; font-weight: 700; color: #667eea;">1000</div>
+										<p style="margin-top: 0.5rem; color: #666;">Countdown</p>
+									</div>
+									<div>
+										<div data-counter data-counter-start="50" data-counter-end="100" data-counter-duration="2000" data-counter-suffix="%" style="font-size: 2.5rem; font-weight: 700; color: #764ba2;">50</div>
+										<p style="margin-top: 0.5rem; color: #666;">50 to 100%</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- FEATURES -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9654;</div>
+								<h3>Scroll-Triggered</h3>
+								<p>Counters start when they enter the viewport using IntersectionObserver. No wasted animations above the fold.</p>
+							</div>
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">$</div>
+								<h3>Prefix &amp; Suffix</h3>
+								<p>Add currency symbols, percentage signs, or any text before or after the number.</p>
+							</div>
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">,</div>
+								<h3>Number Formatting</h3>
+								<p>Configurable decimal places and thousand separators. Numbers look the way you want them to.</p>
+							</div>
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#8987;</div>
+								<h3>Configurable Duration</h3>
+								<p>Control how long the counting animation takes. Fast for small numbers, slower for dramatic effect.</p>
+							</div>
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#8595;</div>
+								<h3>Count Up or Down</h3>
+								<p>Set any start and end value. Count up from zero, count down from a thousand, or anything in between.</p>
+							</div>
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">60</div>
+								<h3>60fps Animation</h3>
+								<p>Uses 16ms intervals for buttery-smooth number transitions at 60 frames per second.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CONFIGURATION -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure each counter using these data attributes:</p>
+							<table class="config-table">
+								<thead>
+									<tr><th>Attribute</th><th>Values</th><th>Default</th><th>Description</th></tr>
+								</thead>
+								<tbody>
+									<tr><td><code>data-counter</code></td><td>-</td><td>required</td><td>Initialises the counter on the element</td></tr>
+									<tr><td><code>data-counter-end</code></td><td>number</td><td>element text</td><td>The target number to count to</td></tr>
+									<tr><td><code>data-counter-start</code></td><td>number</td><td><code>0</code></td><td>The starting number</td></tr>
+									<tr><td><code>data-counter-duration</code></td><td>ms</td><td><code>2000</code></td><td>How long the animation takes in milliseconds</td></tr>
+									<tr><td><code>data-counter-prefix</code></td><td>string</td><td>none</td><td>Text before the number (e.g. "$")</td></tr>
+									<tr><td><code>data-counter-suffix</code></td><td>string</td><td>none</td><td>Text after the number (e.g. "%", "+")</td></tr>
+									<tr><td><code>data-counter-decimals</code></td><td>number</td><td><code>0</code></td><td>Number of decimal places to show</td></tr>
+									<tr><td><code>data-counter-separator</code></td><td>string</td><td><code>,</code></td><td>Thousand separator character</td></tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Usage</h3>
+							<pre><code>&lt;div data-counter data-counter-end="1500"&gt;0&lt;/div&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">Formatted Counter</h3>
+							<pre><code>&lt;div data-counter
+  data-counter-end="42000"
+  data-counter-duration="2500"
+  data-counter-prefix="$"
+  data-counter-separator=","&gt;0&lt;/div&gt;</code></pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- BROWSER SUPPORT -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+						<div class="browser-grid">
+							<div class="browser-item"><div class="browser-icon">Ch</div><h4>Chrome</h4><p>90+</p></div>
+							<div class="browser-item"><div class="browser-icon">Ff</div><h4>Firefox</h4><p>88+</p></div>
+							<div class="browser-item"><div class="browser-icon">Sa</div><h4>Safari</h4><p>14+</p></div>
+							<div class="browser-item"><div class="browser-icon">Ed</div><h4>Edge</h4><p>90+</p></div>
+						</div>
+						<p style="margin-top: 2rem; text-align: center; color: #666;">Uses IntersectionObserver for scroll detection. Falls back to animating immediately in older browsers.</p>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div id="demo-footer-placeholder"></div>
+		<div data-smoothscroll data-smoothscroll-header-selector="#mainHeader" data-smoothscroll-position="right" data-smoothscroll-duration="800" data-smoothscroll-easing="ease-out" data-smoothscroll-hide-mobile="true"></div>
+
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-counter.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url).then(response => { if (!response.ok) throw new Error(`Failed to load ${url}: ${response.status}`); return response.text(); })
+				.then(html => { const placeholder = document.getElementById(placeholderId); if (placeholder) placeholder.innerHTML = html; })
+				.catch(err => console.error(`Error loading ${url}:`, err));
+			}
+			if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadIncludes); } else { loadIncludes(); }
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => loadInclude('../../includes/demo-nav.html', 'demo-nav-nested'))
+				.then(() => console.log('All includes loaded successfully'));
+			}
+		</script>
+	</body>
+</html>

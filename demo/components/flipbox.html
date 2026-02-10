@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Flipbox Component - Battersea Library</title>
+		<meta name="description" content="3D flip card animation with hover and click triggers - Battersea Library Component">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+		<script>
+			less = { env: 'development', async: false, fileAsync: false, poll: 1000, logLevel: 2,
+				globalVars: { 'primary-color': '#667eea', 'secondary-color': '#764ba2', 'accent-color': '#4ecdc4' }
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+		<script src="../../src/js/battersea-env-config.js"></script>
+		<style>@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+		<header id="mainHeader" class="battersea-header" data-header data-sticky="true" data-shrink="true" data-shrink-offset="100" data-shrink-height="60" data-layout="right-align" data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Flipbox Component</h1>
+						<p class="hero-subtitle">3D flip cards that reveal hidden content on hover or click</p>
+					</div>
+				</div>
+			</section>
+
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Hover over the cards (or click, where indicated) to see them flip</p>
+
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Horizontal Flip (Hover)</h3>
+							<p>The default behaviour &mdash; cards flip left-to-right when you hover over them.</p>
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+									<div data-flipbox data-flipbox-direction="horizontal" data-flipbox-trigger="hover" style="height: 200px;">
+										<div data-flipbox-front style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Front Side</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">Hover to flip</p></div>
+										</div>
+										<div data-flipbox-back style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Back Side</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">Here's the hidden content</p></div>
+										</div>
+									</div>
+									<div data-flipbox data-flipbox-direction="horizontal" data-flipbox-trigger="hover" style="height: 200px;">
+										<div data-flipbox-front style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #764ba2, #667eea); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Team Member</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">Product Designer</p></div>
+										</div>
+										<div data-flipbox-back style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Contact Info</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">hello@example.com</p></div>
+										</div>
+									</div>
+									<div data-flipbox data-flipbox-direction="horizontal" data-flipbox-trigger="hover" style="height: 200px;">
+										<div data-flipbox-front style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #4ecdc4, #2ab7a9); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Feature</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">Hover for details</p></div>
+										</div>
+										<div data-flipbox-back style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #333; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Details</strong><p style="margin: 0.5rem 0 0;">Full description revealed on the back of the card.</p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Vertical Flip (Hover)</h3>
+							<p>The card flips top-to-bottom instead. Same idea, different axis.</p>
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+									<div data-flipbox data-flipbox-direction="vertical" data-flipbox-trigger="hover" style="height: 200px;">
+										<div data-flipbox-front style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: #333; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Vertical Flip</strong><p style="margin: 0.5rem 0 0;">Hover me</p></div>
+										</div>
+										<div data-flipbox-back style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Flipped!</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">Top-to-bottom rotation</p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Click Trigger</h3>
+							<p>Click the card instead of hovering. Useful on touch devices or when you want the flip to feel more deliberate. Click again to flip back.</p>
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+									<div data-flipbox data-flipbox-direction="horizontal" data-flipbox-trigger="click" style="height: 200px; cursor: pointer;">
+										<div data-flipbox-front style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Click Me</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">Tap or click to flip</p></div>
+										</div>
+										<div data-flipbox-back style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 12px; padding: 1.5rem; text-align: center;">
+											<div><strong style="font-size: 1.2rem;">Got it!</strong><p style="margin: 0.5rem 0 0; opacity: 0.8;">Click again to flip back</p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">3D</div>
+								<h3>CSS 3D Transforms</h3>
+								<p>True 3D perspective flipping using CSS transforms. Smooth, hardware-accelerated, and works at 60fps.</p>
+							</div>
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#8596;</div>
+								<h3>Two Directions</h3>
+								<p>Flip horizontally (left-to-right) or vertically (top-to-bottom). Set with a single data attribute.</p>
+							</div>
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9755;</div>
+								<h3>Hover or Click</h3>
+								<p>Choose the trigger that fits your design. Hover for desktop-focused layouts, click for touch-friendly interfaces.</p>
+							</div>
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Custom Events</h3>
+								<p>Dispatches <code>battersea:flipboxFlip</code> with flip state, so you can react to flips in your own code.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<table class="config-table">
+								<thead><tr><th>Attribute</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+								<tbody>
+									<tr><td><code>data-flipbox</code></td><td>-</td><td>required</td><td>Initialises the flipbox on the container</td></tr>
+									<tr><td><code>data-flipbox-direction</code></td><td><code>horizontal</code> / <code>vertical</code></td><td><code>horizontal</code></td><td>The axis the card flips on</td></tr>
+									<tr><td><code>data-flipbox-trigger</code></td><td><code>hover</code> / <code>click</code></td><td><code>hover</code></td><td>What triggers the flip animation</td></tr>
+								</tbody>
+							</table>
+							<h3 style="margin-top: 2rem;">Required Structure</h3>
+							<pre><code>&lt;div data-flipbox data-flipbox-direction="horizontal" data-flipbox-trigger="hover"&gt;
+  &lt;div data-flipbox-front&gt;Front content&lt;/div&gt;
+  &lt;div data-flipbox-back&gt;Back content&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+						<div class="browser-grid">
+							<div class="browser-item"><div class="browser-icon">Ch</div><h4>Chrome</h4><p>90+</p></div>
+							<div class="browser-item"><div class="browser-icon">Ff</div><h4>Firefox</h4><p>88+</p></div>
+							<div class="browser-item"><div class="browser-icon">Sa</div><h4>Safari</h4><p>14+</p></div>
+							<div class="browser-item"><div class="browser-icon">Ed</div><h4>Edge</h4><p>90+</p></div>
+						</div>
+						<p style="margin-top: 2rem; text-align: center; color: #666;">Uses CSS 3D transforms and <code>backface-visibility</code>. The 3D effect requires a browser with perspective transform support.</p>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div id="demo-footer-placeholder"></div>
+		<div data-smoothscroll data-smoothscroll-header-selector="#mainHeader" data-smoothscroll-position="right" data-smoothscroll-duration="800" data-smoothscroll-easing="ease-out" data-smoothscroll-hide-mobile="true"></div>
+
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-flipbox.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url).then(response => { if (!response.ok) throw new Error(`Failed to load ${url}: ${response.status}`); return response.text(); })
+				.then(html => { const placeholder = document.getElementById(placeholderId); if (placeholder) placeholder.innerHTML = html; })
+				.catch(err => console.error(`Error loading ${url}:`, err));
+			}
+			if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadIncludes); } else { loadIncludes(); }
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => loadInclude('../../includes/demo-nav.html', 'demo-nav-nested'))
+				.then(() => console.log('All includes loaded successfully'));
+			}
+		</script>
+	</body>
+</html>

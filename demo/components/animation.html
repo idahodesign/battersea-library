@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Animation Component - Battersea Library</title>
+		<meta name="description" content="Scroll-triggered animations with fade, slide, and stagger effects - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Animation Component</h1>
+						<p class="hero-subtitle">Scroll-triggered animations that bring elements to life as they enter the viewport</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Scroll down to trigger each animation &mdash; they only fire once</p>
+
+						<!-- Fade Up -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Fade Up</h3>
+							<p>The default workhorse. Elements slide up and fade in as you scroll to them. This is the animation used throughout this demo site.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+									<div data-animate="fade-up" class="delay-1" style="padding: 2rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px; text-align: centre;">
+										<strong>First</strong>
+										<p style="margin: 0.5rem 0 0;">delay-1</p>
+									</div>
+									<div data-animate="fade-up" class="delay-3" style="padding: 2rem; background: rgba(102, 126, 234, 0.15); border-radius: 8px; text-align: centre;">
+										<strong>Second</strong>
+										<p style="margin: 0.5rem 0 0;">delay-3</p>
+									</div>
+									<div data-animate="fade-up" class="delay-5" style="padding: 2rem; background: rgba(102, 126, 234, 0.2); border-radius: 8px; text-align: centre;">
+										<strong>Third</strong>
+										<p style="margin: 0.5rem 0 0;">delay-5</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Fade Down -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Fade Down</h3>
+							<p>The opposite direction &mdash; elements drop in from above. Useful for headers, banners, and anything that should feel like it's settling into place.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+									<div data-animate="fade-down" class="delay-1" style="padding: 2rem; background: rgba(118, 75, 162, 0.1); border-radius: 8px; text-align: centre;">
+										<strong>First</strong>
+										<p style="margin: 0.5rem 0 0;">delay-1</p>
+									</div>
+									<div data-animate="fade-down" class="delay-3" style="padding: 2rem; background: rgba(118, 75, 162, 0.15); border-radius: 8px; text-align: centre;">
+										<strong>Second</strong>
+										<p style="margin: 0.5rem 0 0;">delay-3</p>
+									</div>
+									<div data-animate="fade-down" class="delay-5" style="padding: 2rem; background: rgba(118, 75, 162, 0.2); border-radius: 8px; text-align: centre;">
+										<strong>Third</strong>
+										<p style="margin: 0.5rem 0 0;">delay-5</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Fade Left & Right -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Fade Left &amp; Fade Right</h3>
+							<p>Horizontal slides. These work well for side-by-side content where you want each column to slide in from its own edge.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+									<div data-animate="fade-right" class="delay-1" style="padding: 2rem; background: rgba(78, 205, 196, 0.1); border-radius: 8px; text-align: centre;">
+										<strong>Fade Right</strong>
+										<p style="margin: 0.5rem 0 0;">Slides in from the left</p>
+									</div>
+									<div data-animate="fade-left" class="delay-3" style="padding: 2rem; background: rgba(78, 205, 196, 0.15); border-radius: 8px; text-align: centre;">
+										<strong>Fade Left</strong>
+										<p style="margin: 0.5rem 0 0;">Slides in from the right</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Fade In -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Fade In</h3>
+							<p>A simple opacity fade with no movement. Subtle and understated &mdash; good for images or content that should appear without drawing too much attention to the entrance.</p>
+
+							<div class="demo-container">
+								<div data-animate="fade-in" class="delay-2" style="padding: 2rem; background: rgba(102, 126, 234, 0.08); border-radius: 8px; text-align: centre;">
+									<strong>Just a gentle fade</strong>
+									<p style="margin: 0.5rem 0 0;">No sliding, no drama. It just appears.</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Staggered Children -->
+						<div class="demo-subsection delay-4" data-animate="fade-up">
+							<h3>Cascading Children</h3>
+							<p>With <code>data-animate-children="true"</code>, the parent animates first and then each child fades in one after another. The stagger creates a natural cascade effect.</p>
+
+							<div class="demo-container">
+								<div data-animate="fade-up" data-animate-children="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
+									<div style="padding: 1.5rem; background: rgba(102, 126, 234, 0.08); border-radius: 8px; text-align: centre;">One</div>
+									<div style="padding: 1.5rem; background: rgba(102, 126, 234, 0.12); border-radius: 8px; text-align: centre;">Two</div>
+									<div style="padding: 1.5rem; background: rgba(102, 126, 234, 0.16); border-radius: 8px; text-align: centre;">Three</div>
+									<div style="padding: 1.5rem; background: rgba(102, 126, 234, 0.20); border-radius: 8px; text-align: centre;">Four</div>
+									<div style="padding: 1.5rem; background: rgba(102, 126, 234, 0.24); border-radius: 8px; text-align: centre;">Five</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Selective Children -->
+						<div class="demo-subsection delay-5" data-animate="fade-up">
+							<h3>Selective Children</h3>
+							<p>Pass a CSS selector instead of <code>true</code> to only animate specific children. Here, only the highlighted cards cascade &mdash; the rest appear immediately with the parent.</p>
+
+							<div class="demo-container">
+								<div data-animate="fade-up" data-animate-children=".animate-me" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
+									<div style="padding: 1.5rem; background: rgba(200, 200, 200, 0.15); border-radius: 8px; text-align: centre;">Static</div>
+									<div class="animate-me" style="padding: 1.5rem; background: rgba(102, 126, 234, 0.15); border-radius: 8px; text-align: centre; border: 2px solid rgba(102, 126, 234, 0.3);">Animated</div>
+									<div style="padding: 1.5rem; background: rgba(200, 200, 200, 0.15); border-radius: 8px; text-align: centre;">Static</div>
+									<div class="animate-me" style="padding: 1.5rem; background: rgba(102, 126, 234, 0.15); border-radius: 8px; text-align: centre; border: 2px solid rgba(102, 126, 234, 0.3);">Animated</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9654;</div>
+								<h3>Scroll-Triggered</h3>
+								<p>Animations fire when elements enter the viewport using IntersectionObserver. No scroll event listeners, no performance overhead.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">1x</div>
+								<h3>Fire Once</h3>
+								<p>Each element animates exactly once. The observer disconnects after triggering, so there's nothing left running in the background.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">~</div>
+								<h3>Five Animations</h3>
+								<p>Fade in, fade up, fade down, fade left, and fade right. Simple, clean, and enough for most use cases.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#8987;</div>
+								<h3>Delay Classes</h3>
+								<p>Add <code>delay-1</code> through <code>delay-10</code> to stagger elements. Each step adds 100ms, so <code>delay-5</code> waits half a second.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#8595;</div>
+								<h3>Child Cascades</h3>
+								<p>Set <code>data-animate-children="true"</code> to cascade through child elements automatically, with a 100ms stagger between each.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Data-Driven</h3>
+								<p>Everything is configured with data attributes. No JavaScript setup needed &mdash; add the attributes and the component handles the rest.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure animations using these data attributes:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-animate</code></td>
+										<td><code>fade-in</code>, <code>fade-up</code>, <code>fade-down</code>, <code>fade-left</code>, <code>fade-right</code></td>
+										<td>required</td>
+										<td>The animation type to apply when the element enters the viewport</td>
+									</tr>
+									<tr>
+										<td><code>data-animate-children</code></td>
+										<td><code>true</code> / CSS selector</td>
+										<td>not set</td>
+										<td>Enable cascading child animations. Use <code>true</code> for all children or a selector like <code>.my-class</code> for specific ones</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Delay Classes</h3>
+							<p>Add a CSS class to control when each element starts its animation:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Class</th>
+										<th>Delay</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>delay-1</code></td>
+										<td>100ms</td>
+										<td>Short pause before animating</td>
+									</tr>
+									<tr>
+										<td><code>delay-3</code></td>
+										<td>300ms</td>
+										<td>Medium pause</td>
+									</tr>
+									<tr>
+										<td><code>delay-5</code></td>
+										<td>500ms</td>
+										<td>Half-second pause</td>
+									</tr>
+									<tr>
+										<td><code>delay-10</code></td>
+										<td>1000ms</td>
+										<td>Full second pause</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<p style="margin-top: 1rem;">All delay classes add to the base 500ms wait, so <code>delay-5</code> actually triggers at 1000ms total. This ensures elements are properly in view before they animate.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Fade Up</div>
+								<div data-accordion-content>
+									<div>
+										<p>The simplest use &mdash; add a single attribute to any element:</p>
+										<pre><code>&lt;section data-animate="fade-up"&gt;
+  &lt;h2&gt;This whole section fades up&lt;/h2&gt;
+  &lt;p&gt;Children appear immediately with the parent&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Staggered Cards</div>
+								<div data-accordion-content>
+									<div>
+										<p>Give each card its own <code>data-animate</code> with increasing delay classes for a staggered entrance:</p>
+										<pre><code>&lt;div class="card" data-animate="fade-up" class="delay-1"&gt;Card 1&lt;/div&gt;
+&lt;div class="card" data-animate="fade-up" class="delay-2"&gt;Card 2&lt;/div&gt;
+&lt;div class="card" data-animate="fade-up" class="delay-3"&gt;Card 3&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Cascading Children</div>
+								<div data-accordion-content>
+									<div>
+										<p>Let the parent handle the stagger automatically:</p>
+										<pre><code>&lt;div data-animate="fade-up" data-animate-children="true"&gt;
+  &lt;div&gt;Fades in first&lt;/div&gt;
+  &lt;div&gt;Fades in 100ms later&lt;/div&gt;
+  &lt;div&gt;Fades in 200ms later&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+										<p>The parent animates first, then each child fades in with a 100ms stagger between them.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Selective Child Animation</div>
+								<div data-accordion-content>
+									<div>
+										<p>Only animate children that match a CSS selector:</p>
+										<pre><code>&lt;div data-animate="fade-up" data-animate-children=".highlight"&gt;
+  &lt;p&gt;This appears immediately&lt;/p&gt;
+  &lt;div class="highlight"&gt;This cascades in&lt;/div&gt;
+  &lt;p&gt;This appears immediately too&lt;/p&gt;
+  &lt;div class="highlight"&gt;This cascades in after&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Mixed Directions</div>
+								<div data-accordion-content>
+									<div>
+										<p>Combine different animation types on a single page for variety:</p>
+										<pre><code>&lt;!-- Hero drops in from above --&gt;
+&lt;section data-animate="fade-down"&gt;...&lt;/section&gt;
+
+&lt;!-- Content rises into view --&gt;
+&lt;section data-animate="fade-up"&gt;...&lt;/section&gt;
+
+&lt;!-- Side-by-side columns slide in from opposite edges --&gt;
+&lt;div data-animate="fade-right"&gt;Left column&lt;/div&gt;
+&lt;div data-animate="fade-left"&gt;Right column&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- HOW IT WORKS SECTION -->
+			<!-- ============================================ -->
+			<section id="how-it-works" class="features-section" data-scroll-section data-scroll-title="How It Works" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">How It Works</h2>
+						<p class="section-subtitle">The short version</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">1</div>
+								<h3>Hidden on Load</h3>
+								<p>Elements with <code>data-animate</code> start with <code>opacity: 0</code> and <code>visibility: hidden</code> via CSS.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">2</div>
+								<h3>Observer Watches</h3>
+								<p>An IntersectionObserver monitors each element. When 10% of it enters the viewport, the animation triggers.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">3</div>
+								<h3>Classes Applied</h3>
+								<p>The component adds <code>battersea-animated</code> and the appropriate animation class (e.g. <code>battersea-fade-up</code>).</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">4</div>
+								<h3>Observer Disconnects</h3>
+								<p>Once triggered, the observer disconnects immediately. Nothing is left running &mdash; zero overhead after the animation fires.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses IntersectionObserver, CSS animations, and <code>requestAnimationFrame</code>.
+							In older browsers without IntersectionObserver support, elements animate immediately on page load as a graceful fallback.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

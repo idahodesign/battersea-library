@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Slider Component - Battersea Library</title>
+		<meta name="description" content="Image and content carousel with arrows, dots, autoplay and touch support - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Slider Component</h1>
+						<p class="hero-subtitle">A flexible content carousel with slide and fade transitions, autoplay, touch support, and infinite looping</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">See the slider component in action with different configurations</p>
+
+						<!-- Basic Slide Transition -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Basic Slide Transition</h3>
+							<p>The default behaviour &mdash; slides move horizontally from one to the next. Click the arrows or dots to navigate between slides.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-slider data-slider-autoplay="false" data-slider-transition="slide" data-slider-arrows="true" data-slider-dots="true" style="position: relative; min-height: 300px;">
+									<div data-slider-track>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Slide One</h3>
+												<p style="max-width: 500px; margin: 0 auto;">This is a basic slide transition. The content glides smoothly from right to left as you navigate forward.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #4ecdc4, #556270);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Slide Two</h3>
+												<p style="max-width: 500px; margin: 0 auto;">Each slide can contain whatever you like &mdash; text, images, cards, forms. The container adapts to your content.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f093fb, #f5576c);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Slide Three</h3>
+												<p style="max-width: 500px; margin: 0 auto;">Touch and swipe gestures work on mobile devices, so your carousel feels native on phones and tablets.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Slide Four</h3>
+												<p style="max-width: 500px; margin: 0 auto;">The slider loops infinitely by default, so you can keep clicking forward and it'll wrap back to the beginning.</p>
+											</div>
+										</div>
+									</div>
+									<button data-slider-prev></button>
+									<button data-slider-next></button>
+									<div data-slider-dots></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Fade Transition -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Fade Transition</h3>
+							<p>Instead of sliding, each slide fades in and out. A softer, more elegant effect that works well with image-heavy content.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-slider data-slider-autoplay="false" data-slider-transition="fade" data-slider-arrows="true" data-slider-dots="true" style="position: relative; min-height: 300px;">
+									<div data-slider-track>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ff9a9e, #fecfef);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Fade In</h3>
+												<p style="max-width: 500px; margin: 0 auto;">This slide fades in gently. The transition feels natural and doesn't distract from the content itself.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a1c4fd, #c2e9fb);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Smooth Crossfade</h3>
+												<p style="max-width: 500px; margin: 0 auto;">The fade transition is particularly nice for photo galleries and testimonial sections where you want the focus on the content.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d4fc79, #96e6a1);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Clean and Simple</h3>
+												<p style="max-width: 500px; margin: 0 auto;">Just set <code style="background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px;">data-slider-transition="fade"</code> and you're sorted.</p>
+											</div>
+										</div>
+									</div>
+									<button data-slider-prev></button>
+									<button data-slider-next></button>
+									<div data-slider-dots></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Autoplay Slider -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Autoplay Slider</h3>
+							<p>This one advances automatically every 3 seconds. Hovering over the slider pauses autoplay, and it resumes when you move away.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-slider data-slider-autoplay="true" data-slider-interval="3000" data-slider-transition="slide" data-slider-arrows="true" data-slider-dots="true" style="position: relative; min-height: 300px;">
+									<div data-slider-track>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #43e97b, #38f9d7);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Auto-Advancing</h3>
+												<p style="max-width: 500px; margin: 0 auto;">This slide will change in 3 seconds. Hover over the slider to pause, then move away to resume.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #fa709a, #fee140);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Keep Watching</h3>
+												<p style="max-width: 500px; margin: 0 auto;">Autoplay is great for hero banners and promotional content where you want to cycle through messages automatically.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Manual Override</h3>
+												<p style="max-width: 500px; margin: 0 auto;">You can still click the arrows or dots to jump to a specific slide. The autoplay timer resets after manual navigation.</p>
+											</div>
+										</div>
+										<div data-slider-item style="min-height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #4ecdc4, #556270);">
+											<div style="text-align: center; color: white; padding: 2rem;">
+												<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Back to the Start</h3>
+												<p style="max-width: 500px; margin: 0 auto;">The loop is seamless &mdash; after this slide, it wraps right back to the first one without any jarring jump.</p>
+											</div>
+										</div>
+									</div>
+									<button data-slider-prev></button>
+									<button data-slider-next></button>
+									<div data-slider-dots></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">~</div>
+								<h3>Smooth Transitions</h3>
+								<p>Choose between slide and fade transitions. Both are CSS-powered for smooth, hardware-accelerated animation.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#9654;</div>
+								<h3>Autoplay</h3>
+								<p>Set slides to advance automatically with a configurable interval. Pauses on hover so users can read at their own pace.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#8635;</div>
+								<h3>Infinite Loop</h3>
+								<p>The carousel wraps seamlessly from the last slide back to the first. No dead ends, just continuous browsing.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#9758;</div>
+								<h3>Touch &amp; Swipe</h3>
+								<p>Native touch support for mobile devices. Swipe left or right to navigate between slides &mdash; feels completely natural on phones.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">A11y</div>
+								<h3>Keyboard Accessible</h3>
+								<p>Full keyboard navigation with arrow keys, Tab, and Enter. Clear focus indicators on all interactive elements.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Auto-Initialisation</h3>
+								<p>Drop in the markup, add your data attributes, and the slider configures itself. No JavaScript setup required.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the slider using these data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-slider</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the slider component on the container element</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-transition</code></td>
+										<td><code>slide</code> / <code>fade</code></td>
+										<td><code>slide</code></td>
+										<td>The animation style between slides</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-autoplay</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Whether slides advance automatically</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-interval</code></td>
+										<td>milliseconds</td>
+										<td><code>5000</code></td>
+										<td>Time between auto-advances (only used when autoplay is on)</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-arrows</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show or hide the previous/next arrow buttons</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-dots</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show or hide the dot indicators at the bottom</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Element Structure</h3>
+							<p>Each slider needs a track, slide items, and optionally navigation buttons and a dots container:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Element</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-slider-track</code></td>
+										<td>div</td>
+										<td>The track that holds all slide items</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-item</code></td>
+										<td>div</td>
+										<td>Each individual slide (direct children of the track)</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-prev</code></td>
+										<td>button</td>
+										<td>The "previous slide" navigation button</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-next</code></td>
+										<td>button</td>
+										<td>The "next slide" navigation button</td>
+									</tr>
+									<tr>
+										<td><code>data-slider-dots</code></td>
+										<td>div</td>
+										<td>Container where dot indicators are generated</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Markup</h3>
+							<p>Here's the minimum markup you need to get a slider running:</p>
+
+							<pre><code>&lt;div data-slider data-slider-transition="slide"&gt;
+  &lt;div data-slider-track&gt;
+    &lt;div data-slider-item&gt;Slide 1 content&lt;/div&gt;
+    &lt;div data-slider-item&gt;Slide 2 content&lt;/div&gt;
+    &lt;div data-slider-item&gt;Slide 3 content&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button data-slider-prev&gt;&amp;#8249;&lt;/button&gt;
+  &lt;button data-slider-next&gt;&amp;#8250;&lt;/button&gt;
+  &lt;div data-slider-dots&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Simple Image Slider</div>
+								<div data-accordion-content>
+									<div>
+										<p>A straightforward image carousel with navigation:</p>
+										<pre><code>&lt;div data-slider data-slider-transition="slide"
+  style="position: relative; min-height: 400px;"&gt;
+  &lt;div data-slider-track&gt;
+    &lt;div data-slider-item&gt;
+      &lt;img src="photo-1.jpg" alt="Photo 1"
+        style="width: 100%; height: 400px; object-fit: cover;"&gt;
+    &lt;/div&gt;
+    &lt;div data-slider-item&gt;
+      &lt;img src="photo-2.jpg" alt="Photo 2"
+        style="width: 100%; height: 400px; object-fit: cover;"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button data-slider-prev&gt;&amp;#8249;&lt;/button&gt;
+  &lt;button data-slider-next&gt;&amp;#8250;&lt;/button&gt;
+  &lt;div data-slider-dots&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Autoplay Hero Banner</div>
+								<div data-accordion-content>
+									<div>
+										<p>A full-width hero banner that cycles through promotional messages:</p>
+										<pre><code>&lt;div data-slider
+  data-slider-autoplay="true"
+  data-slider-interval="4000"
+  data-slider-transition="fade"
+  style="position: relative; min-height: 500px;"&gt;
+  &lt;div data-slider-track&gt;
+    &lt;div data-slider-item
+      style="background: linear-gradient(135deg, #667eea, #764ba2);
+             min-height: 500px; display: flex;
+             align-items: center; justify-content: center;"&gt;
+      &lt;h2 style="color: white;"&gt;Welcome to Our Store&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div data-slider-item
+      style="background: linear-gradient(135deg, #4ecdc4, #556270);
+             min-height: 500px; display: flex;
+             align-items: center; justify-content: center;"&gt;
+      &lt;h2 style="color: white;"&gt;Summer Sale Now On&lt;/h2&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div data-slider-dots&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Slide Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>Hook into slider events for custom behaviour:</p>
+										<pre><code>const slider = document.querySelector('[data-slider]');
+
+slider.addEventListener('battersea:slideChange', (e) =&gt; {
+  console.log('Current slide:', e.detail.currentIndex);
+  console.log('Previous slide:', e.detail.previousIndex);
+  console.log('Total slides:', e.detail.totalSlides);
+});</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Fade Transition with No Arrows</div>
+								<div data-accordion-content>
+									<div>
+										<p>A minimal setup using fade transitions with only dot navigation:</p>
+										<pre><code>&lt;div data-slider
+  data-slider-transition="fade"
+  data-slider-arrows="false"
+  data-slider-dots="true"
+  data-slider-autoplay="true"
+  data-slider-interval="5000"
+  style="position: relative; min-height: 300px;"&gt;
+  &lt;div data-slider-track&gt;
+    &lt;div data-slider-item&gt;Content 1&lt;/div&gt;
+    &lt;div data-slider-item&gt;Content 2&lt;/div&gt;
+    &lt;div data-slider-item&gt;Content 3&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div data-slider-dots&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses CSS transitions, touch events, and <code>requestAnimationFrame</code>.
+							Touch and swipe support works on all modern mobile browsers.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-slider.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

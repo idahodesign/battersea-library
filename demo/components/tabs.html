@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tabs Component - Battersea Library</title>
+		<meta name="description" content="Tabbed interface for organising content into switchable panels - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Tabs Component</h1>
+						<p class="hero-subtitle">Organise content into switchable panels with a clean, minimal interface</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Click the tabs to switch between content panels</p>
+
+						<!-- Basic Tabs -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Basic Tabs</h3>
+							<p>The standard tab layout. Click a tab to reveal its content &mdash; only one panel is visible at a time.</p>
+
+							<div class="demo-container">
+								<div data-tabs>
+									<div data-tabs-nav>
+										<button data-tab="basic-html" class="active">HTML</button>
+										<button data-tab="basic-css">CSS</button>
+										<button data-tab="basic-js">JavaScript</button>
+									</div>
+									<div data-tabs-content>
+										<div data-tab-content="basic-html" class="active">
+											<p>HTML is the backbone of every web page. It defines the structure and content &mdash; headings, paragraphs, links, images, and forms. Everything you see on a page starts here.</p>
+											<p>It's declarative rather than procedural: you describe <em>what</em> should be on the page, not <em>how</em> to put it there.</p>
+										</div>
+										<div data-tab-content="basic-css">
+											<p>CSS handles the visual side of things &mdash; colours, spacing, typography, layout, and animations. It takes the raw HTML structure and makes it look the way you want.</p>
+											<p>Modern CSS is remarkably powerful. Flexbox, Grid, custom properties, and container queries mean you can build complex, responsive layouts without a single line of JavaScript.</p>
+										</div>
+										<div data-tab-content="basic-js">
+											<p>JavaScript adds interactivity. It's what makes buttons respond to clicks, forms validate input, and content update without a page reload.</p>
+											<p>This tabs component is written in vanilla JavaScript &mdash; no frameworks, no dependencies. Just the browser APIs you already have.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Content-Rich Tabs -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Content-Rich Tabs</h3>
+							<p>Tabs work well for organising detailed content that would be overwhelming if shown all at once. Here's a practical example.</p>
+
+							<div class="demo-container">
+								<div data-tabs>
+									<div data-tabs-nav>
+										<button data-tab="getting-started" class="active">Getting Started</button>
+										<button data-tab="configuration">Configuration</button>
+										<button data-tab="events">Events</button>
+										<button data-tab="styling">Styling</button>
+									</div>
+									<div data-tabs-content>
+										<div data-tab-content="getting-started" class="active">
+											<h4 style="margin-top: 0;">Installation</h4>
+											<p>Include the required files in your HTML:</p>
+											<pre><code>&lt;link rel="stylesheet" href="battersea-library.css"&gt;
+&lt;script src="battersea-utils.js"&gt;&lt;/script&gt;
+&lt;script src="battersea-core.js"&gt;&lt;/script&gt;
+&lt;script src="battersea-tabs.js"&gt;&lt;/script&gt;</code></pre>
+											<p>Add the tab markup to your page and it initialises automatically. No JavaScript configuration needed.</p>
+										</div>
+										<div data-tab-content="configuration">
+											<h4 style="margin-top: 0;">Data Attributes</h4>
+											<p>The component uses data attributes for all its configuration:</p>
+											<ul>
+												<li><code>data-tabs</code> &mdash; The container element</li>
+												<li><code>data-tabs-nav</code> &mdash; Wraps the tab buttons</li>
+												<li><code>data-tab="id"</code> &mdash; Each tab button, with a unique ID</li>
+												<li><code>data-tabs-content</code> &mdash; Wraps the content panels</li>
+												<li><code>data-tab-content="id"</code> &mdash; Each panel, matching its tab's ID</li>
+											</ul>
+											<p>The IDs link each button to its panel. They can be any string &mdash; just make sure they match.</p>
+										</div>
+										<div data-tab-content="events">
+											<h4 style="margin-top: 0;">Custom Events</h4>
+											<p>The component dispatches a <code>battersea:tabChange</code> event whenever a tab is switched:</p>
+											<pre><code>const tabs = document.querySelector('[data-tabs]');
+
+tabs.addEventListener('battersea:tabChange', (e) =&gt; {
+  console.log('Switched to:', e.detail.tabId);
+});</code></pre>
+											<p>This is useful for loading content on demand, updating URLs, or syncing with other components.</p>
+										</div>
+										<div data-tab-content="styling">
+											<h4 style="margin-top: 0;">Customising the Look</h4>
+											<p>The default styling is intentionally minimal &mdash; a bottom border on the active tab and not much else. Override the CSS to match your design:</p>
+											<pre><code>[data-tabs-nav] [data-tab] {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+[data-tabs-nav] [data-tab].active {
+  border-bottom-color: #667eea;
+  color: #667eea;
+}</code></pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Pre-selected Tab -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Pre-selected Tab</h3>
+							<p>Add the <code>active</code> class to any tab button and its matching content panel to select it by default. Here, the second tab is pre-selected.</p>
+
+							<div class="demo-container">
+								<div data-tabs>
+									<div data-tabs-nav>
+										<button data-tab="pre-one">Overview</button>
+										<button data-tab="pre-two" class="active">Details</button>
+										<button data-tab="pre-three">Summary</button>
+									</div>
+									<div data-tabs-content>
+										<div data-tab-content="pre-one">
+											<p>This is the overview panel. It wasn't selected by default &mdash; click the "Overview" tab above to see it.</p>
+										</div>
+										<div data-tab-content="pre-two" class="active">
+											<p>This panel was pre-selected using the <code>active</code> class on both the tab button and the content panel. It's visible when the page loads.</p>
+										</div>
+										<div data-tab-content="pre-three">
+											<p>This is the summary panel. Click its tab to reveal it.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Multiple Tab Sets -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Multiple Tab Sets</h3>
+							<p>Each <code>data-tabs</code> container operates independently. You can have as many on a page as you like &mdash; they won't interfere with each other.</p>
+
+							<div class="demo-container">
+								<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+									<div>
+										<h4 style="margin-top: 0;">Tab Set A</h4>
+										<div data-tabs>
+											<div data-tabs-nav>
+												<button data-tab="setA-1" class="active">Alpha</button>
+												<button data-tab="setA-2">Beta</button>
+											</div>
+											<div data-tabs-content>
+												<div data-tab-content="setA-1" class="active">
+													<p>Content for Alpha in Set A. Switching tabs here doesn't affect Set B.</p>
+												</div>
+												<div data-tab-content="setA-2">
+													<p>Content for Beta in Set A.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div>
+										<h4 style="margin-top: 0;">Tab Set B</h4>
+										<div data-tabs>
+											<div data-tabs-nav>
+												<button data-tab="setB-1" class="active">Gamma</button>
+												<button data-tab="setB-2">Delta</button>
+											</div>
+											<div data-tabs-content>
+												<div data-tab-content="setB-1" class="active">
+													<p>Content for Gamma in Set B. Completely independent from Set A.</p>
+												</div>
+												<div data-tab-content="setB-2">
+													<p>Content for Delta in Set B.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">~</div>
+								<h3>Clean Transitions</h3>
+								<p>Smooth visual transitions when switching between tabs. The active state updates instantly with a subtle border indicator.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#9881;</div>
+								<h3>Auto-Initialisation</h3>
+								<p>No JavaScript setup needed. Add the data attributes to your HTML and the component handles everything automatically on page load.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#8644;</div>
+								<h3>Independent Sets</h3>
+								<p>Multiple tab sets on the same page work independently. Each container manages its own state without affecting the others.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Custom Events</h3>
+								<p>Dispatches <code>battersea:tabChange</code> events with the active tab ID, making it easy to integrate with other components or custom logic.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Data-Driven</h3>
+								<p>Tab IDs are defined in data attributes, not hard-coded in JavaScript. Change your content structure without touching any scripts.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">0kb</div>
+								<h3>Lightweight</h3>
+								<p>Under 100 lines of vanilla JavaScript. No dependencies, no bloat. Just the functionality you need.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the tabs component using these data attributes:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Element</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-tabs</code></td>
+										<td>Container</td>
+										<td>Initialises the tabs component on the container element</td>
+									</tr>
+									<tr>
+										<td><code>data-tabs-nav</code></td>
+										<td>Nav wrapper</td>
+										<td>Wraps the tab buttons. Must be a direct child of the container</td>
+									</tr>
+									<tr>
+										<td><code>data-tab="id"</code></td>
+										<td>Button</td>
+										<td>A tab button. The value is the unique ID that links it to its content panel</td>
+									</tr>
+									<tr>
+										<td><code>data-tabs-content</code></td>
+										<td>Content wrapper</td>
+										<td>Wraps the content panels. Must be a direct child of the container</td>
+									</tr>
+									<tr>
+										<td><code>data-tab-content="id"</code></td>
+										<td>Panel</td>
+										<td>A content panel. The value must match a <code>data-tab</code> button ID</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Required Structure</h3>
+							<p>The component expects this HTML structure:</p>
+
+							<pre><code>&lt;div data-tabs&gt;
+  &lt;div data-tabs-nav&gt;
+    &lt;button data-tab="tab1" class="active"&gt;Tab 1&lt;/button&gt;
+    &lt;button data-tab="tab2"&gt;Tab 2&lt;/button&gt;
+    &lt;button data-tab="tab3"&gt;Tab 3&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div data-tabs-content&gt;
+    &lt;div data-tab-content="tab1" class="active"&gt;Content 1&lt;/div&gt;
+    &lt;div data-tab-content="tab2"&gt;Content 2&lt;/div&gt;
+    &lt;div data-tab-content="tab3"&gt;Content 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">CSS Classes</h3>
+							<p>The component manages these classes automatically:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Class</th>
+										<th>Element</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>active</code></td>
+										<td><code>data-tab</code> button</td>
+										<td>Applied to the currently selected tab. Add manually to pre-select a tab.</td>
+									</tr>
+									<tr>
+										<td><code>active</code></td>
+										<td><code>data-tab-content</code> panel</td>
+										<td>Applied to the visible content panel. Add manually to pre-show a panel.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Tabs</div>
+								<div data-accordion-content>
+									<div>
+										<p>The simplest tab setup:</p>
+										<pre><code>&lt;div data-tabs&gt;
+  &lt;div data-tabs-nav&gt;
+    &lt;button data-tab="one" class="active"&gt;First&lt;/button&gt;
+    &lt;button data-tab="two"&gt;Second&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div data-tabs-content&gt;
+    &lt;div data-tab-content="one" class="active"&gt;
+      First panel content
+    &lt;/div&gt;
+    &lt;div data-tab-content="two"&gt;
+      Second panel content
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Pre-selected Tab</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add <code>active</code> to both the button and its content panel to pre-select a tab:</p>
+										<pre><code>&lt;div data-tabs&gt;
+  &lt;div data-tabs-nav&gt;
+    &lt;button data-tab="info"&gt;Info&lt;/button&gt;
+    &lt;button data-tab="details" class="active"&gt;Details&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div data-tabs-content&gt;
+    &lt;div data-tab-content="info"&gt;Info content&lt;/div&gt;
+    &lt;div data-tab-content="details" class="active"&gt;
+      This panel is visible on load
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Tab Changes</div>
+								<div data-accordion-content>
+									<div>
+										<p>Use the custom event to respond when a user switches tabs:</p>
+										<pre><code>const tabs = document.querySelector('[data-tabs]');
+
+tabs.addEventListener('battersea:tabChange', (e) =&gt; {
+  const activeTab = e.detail.tabId;
+  console.log('Now viewing:', activeTab);
+
+  // Load content on demand, update the URL,
+  // or sync with another component
+});</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling</div>
+								<div data-accordion-content>
+									<div>
+										<p>Override the default styles to match your design. The component uses data attribute selectors, so specificity is low and easy to override:</p>
+										<pre><code>/* Pill-style tabs */
+[data-tabs-nav] {
+  border-bottom: none;
+  gap: 0.5rem;
+}
+
+[data-tabs-nav] [data-tab] {
+  border-radius: 20px;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #ddd;
+}
+
+[data-tabs-nav] [data-tab].active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">Tab</div>
+								<h3>Keyboard Navigation</h3>
+								<p>Tab through the buttons and press Enter or Space to switch panels. Standard keyboard interaction patterns.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">[ ]</div>
+								<h3>Focus Indicators</h3>
+								<p>Clear, visible focus outlines on tab buttons for keyboard users navigating the interface.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">SR</div>
+								<h3>Screen Reader Support</h3>
+								<p>Semantic button elements with clear text labels. Content panels update visually without disrupting the reading flow.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#10003;</div>
+								<h3>WCAG 2.1 Compliant</h3>
+								<p>Meets Level AA accessibility standards for interactive controls and content visibility.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses standard DOM APIs and CSS transitions. No polyfills required for any modern browser.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-tabs.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

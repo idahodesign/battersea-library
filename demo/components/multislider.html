@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>MultiSlider Component - Battersea Library</title>
+		<meta name="description" content="Multi-item carousel showing multiple slides at once with responsive breakpoints - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>MultiSlider Component</h1>
+						<p class="hero-subtitle">A multi-item carousel that shows several slides at once &mdash; perfect for product listings, team members, and card grids</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">See the multi-slider in action with different configurations</p>
+
+						<!-- Basic 4-item Carousel -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Basic Carousel (4 Visible Items)</h3>
+							<p>Shows 4 items at a time on desktop. Click the arrows to scroll through all 8 cards. Each click advances by one item.</p>
+
+							<div class="demo-container" style="padding: 1rem; overflow: hidden;">
+								<div data-multislider data-multislider-items="4" data-multislider-gap="20" data-multislider-autoplay="false" style="position: relative;">
+									<div data-multislider-track>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">1</h3><p style="margin-bottom: 0;">Card One</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #4ecdc4, #556270); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">2</h3><p style="margin-bottom: 0;">Card Two</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #f093fb, #f5576c); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">3</h3><p style="margin-bottom: 0;">Card Three</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #a18cd1, #fbc2eb); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">4</h3><p style="margin-bottom: 0;">Card Four</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #43e97b, #38f9d7); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">5</h3><p style="margin-bottom: 0;">Card Five</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #fa709a, #fee140); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">6</h3><p style="margin-bottom: 0;">Card Six</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">7</h3><p style="margin-bottom: 0;">Card Seven</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">8</h3><p style="margin-bottom: 0;">Card Eight</p></div>
+											</div>
+										</div>
+									</div>
+									<button data-multislider-prev></button>
+									<button data-multislider-next></button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Responsive Carousel -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Responsive Breakpoints</h3>
+							<p>This carousel shows 3 items on desktop, 2 on tablet, and 1 on mobile. Resize your browser window to see it adapt.</p>
+
+							<div class="demo-container" style="padding: 1rem; overflow: hidden;">
+								<div data-multislider data-multislider-items="3" data-multislider-items-md="2" data-multislider-items-sm="1" data-multislider-gap="20" data-multislider-autoplay="false" style="position: relative;">
+									<div data-multislider-track>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0;">Design</h3><p style="margin-bottom: 0;">Beautiful interfaces that work on any screen size</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #4ecdc4, #556270); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0;">Development</h3><p style="margin-bottom: 0;">Clean, maintainable code with no dependencies</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #f093fb, #f5576c); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0;">Testing</h3><p style="margin-bottom: 0;">Tested across browsers and devices</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #a18cd1, #fbc2eb); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0;">Deploy</h3><p style="margin-bottom: 0;">Ship with confidence on any platform</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #43e97b, #38f9d7); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0;">Maintain</h3><p style="margin-bottom: 0;">Easy to update and extend over time</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #fa709a, #fee140); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0;">Scale</h3><p style="margin-bottom: 0;">Grows with your project without added complexity</p></div>
+											</div>
+										</div>
+									</div>
+									<button data-multislider-prev></button>
+									<button data-multislider-next></button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Autoplay Carousel -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Autoplay Carousel</h3>
+							<p>This one scrolls on its own every 2.5 seconds. Hover over it to pause, move away to resume. You can still use the arrows to navigate manually.</p>
+
+							<div class="demo-container" style="padding: 1rem; overflow: hidden;">
+								<div data-multislider data-multislider-items="3" data-multislider-items-md="2" data-multislider-items-sm="1" data-multislider-gap="20" data-multislider-autoplay="true" data-multislider-interval="2500" style="position: relative;">
+									<div data-multislider-track>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #ff9a9e, #fad0c4); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">A</h3><p style="margin-bottom: 0;">Accessibility</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">B</h3><p style="margin-bottom: 0;">Battersea</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #d4fc79, #96e6a1); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">C</h3><p style="margin-bottom: 0;">Components</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #ffecd2, #fcb69f); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">D</h3><p style="margin-bottom: 0;">Data Attributes</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">E</h3><p style="margin-bottom: 0;">Events</p></div>
+											</div>
+										</div>
+										<div data-multislider-item>
+											<div style="background: linear-gradient(135deg, #f093fb, #f5576c); padding: 2rem; border-radius: 12px; min-height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+												<div><h3 style="color: white; margin-top: 0; font-size: 2rem;">F</h3><p style="margin-bottom: 0;">Flexibility</p></div>
+											</div>
+										</div>
+									</div>
+									<button data-multislider-prev></button>
+									<button data-multislider-next></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9776;</div>
+								<h3>Multiple Items</h3>
+								<p>Show several items at once &mdash; unlike a regular slider that shows one at a time. Perfect for product cards, team members, or portfolios.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#9881;</div>
+								<h3>Responsive Breakpoints</h3>
+								<p>Set different item counts for desktop, tablet, and mobile. The carousel recalculates automatically when the window resizes.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9654;</div>
+								<h3>Autoplay</h3>
+								<p>Optional auto-scrolling with a configurable interval. Pauses on hover so users aren't fighting with the carousel while browsing.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#8596;</div>
+								<h3>Configurable Gap</h3>
+								<p>Control the spacing between items with the <code>data-multislider-gap</code> attribute. Set it in pixels &mdash; the layout handles the rest.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#9758;</div>
+								<h3>Touch Support</h3>
+								<p>Swipe left and right on mobile to scroll through items. The interaction feels natural and responsive on touch screens.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Zero Dependencies</h3>
+								<p>Pure vanilla JavaScript with no external libraries. Lightweight and fast, with no bloat to slow your page down.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the multi-slider using these data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-multislider</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the multi-slider component on the container</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-items</code></td>
+										<td>number</td>
+										<td><code>3</code></td>
+										<td>Number of items visible on desktop</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-items-md</code></td>
+										<td>number</td>
+										<td><code>2</code></td>
+										<td>Number of items visible on tablet (768px&ndash;1023px)</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-items-sm</code></td>
+										<td>number</td>
+										<td><code>1</code></td>
+										<td>Number of items visible on mobile (&lt; 768px)</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-gap</code></td>
+										<td>pixels</td>
+										<td><code>20</code></td>
+										<td>Gap between items in pixels</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-autoplay</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Whether the carousel scrolls automatically</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-interval</code></td>
+										<td>milliseconds</td>
+										<td><code>3000</code></td>
+										<td>Time between auto-scrolls (only used when autoplay is on)</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Element Structure</h3>
+							<p>The multi-slider uses a track and item system with arrow buttons:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Element</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-multislider-track</code></td>
+										<td>div</td>
+										<td>The scrollable track containing all items</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-item</code></td>
+										<td>div</td>
+										<td>Each carousel item (direct children of the track)</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-prev</code></td>
+										<td>button</td>
+										<td>Navigate to previous items</td>
+									</tr>
+									<tr>
+										<td><code>data-multislider-next</code></td>
+										<td>button</td>
+										<td>Navigate to next items</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Markup</h3>
+							<p>Here's the minimum markup for a multi-slider:</p>
+
+							<pre><code>&lt;div data-multislider data-multislider-items="3"
+  data-multislider-gap="20"&gt;
+  &lt;div data-multislider-track&gt;
+    &lt;div data-multislider-item&gt;Card 1&lt;/div&gt;
+    &lt;div data-multislider-item&gt;Card 2&lt;/div&gt;
+    &lt;div data-multislider-item&gt;Card 3&lt;/div&gt;
+    &lt;div data-multislider-item&gt;Card 4&lt;/div&gt;
+    &lt;div data-multislider-item&gt;Card 5&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button data-multislider-prev&gt;&amp;#8249;&lt;/button&gt;
+  &lt;button data-multislider-next&gt;&amp;#8250;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Product Card Carousel</div>
+								<div data-accordion-content>
+									<div>
+										<p>A typical product carousel showing 4 items on desktop, stepping down for smaller screens:</p>
+										<pre><code>&lt;div data-multislider
+  data-multislider-items="4"
+  data-multislider-items-md="2"
+  data-multislider-items-sm="1"
+  data-multislider-gap="20"&gt;
+  &lt;div data-multislider-track&gt;
+    &lt;div data-multislider-item&gt;
+      &lt;div class="product-card"&gt;
+        &lt;img src="product-1.jpg" alt="Product 1"&gt;
+        &lt;h3&gt;Product Name&lt;/h3&gt;
+        &lt;p&gt;&amp;pound;29.99&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- More items... --&gt;
+  &lt;/div&gt;
+  &lt;button data-multislider-prev&gt;&amp;#8249;&lt;/button&gt;
+  &lt;button data-multislider-next&gt;&amp;#8250;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Team Member Showcase</div>
+								<div data-accordion-content>
+									<div>
+										<p>Show team members in a carousel with autoplay:</p>
+										<pre><code>&lt;div data-multislider
+  data-multislider-items="3"
+  data-multislider-items-md="2"
+  data-multislider-items-sm="1"
+  data-multislider-gap="30"
+  data-multislider-autoplay="true"
+  data-multislider-interval="4000"&gt;
+  &lt;div data-multislider-track&gt;
+    &lt;div data-multislider-item&gt;
+      &lt;div class="team-card"&gt;
+        &lt;img src="team-1.jpg" alt="Team Member"&gt;
+        &lt;h3&gt;Jane Smith&lt;/h3&gt;
+        &lt;p&gt;Lead Developer&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- More team members... --&gt;
+  &lt;/div&gt;
+  &lt;button data-multislider-prev&gt;&amp;#8249;&lt;/button&gt;
+  &lt;button data-multislider-next&gt;&amp;#8250;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Scroll Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>Hook into the multi-slider's navigation events:</p>
+										<pre><code>const carousel = document.querySelector('[data-multislider]');
+
+carousel.addEventListener('battersea:multisliderScroll', (e) =&gt; {
+  console.log('Scrolled to index:', e.detail.currentIndex);
+  console.log('Visible items:', e.detail.visibleItems);
+  console.log('Total items:', e.detail.totalItems);
+});</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Tight Spacing with 5 Items</div>
+								<div data-accordion-content>
+									<div>
+										<p>For compact layouts, show more items with a smaller gap:</p>
+										<pre><code>&lt;div data-multislider
+  data-multislider-items="5"
+  data-multislider-items-md="3"
+  data-multislider-items-sm="2"
+  data-multislider-gap="10"&gt;
+  &lt;div data-multislider-track&gt;
+    &lt;div data-multislider-item&gt;Thumbnail 1&lt;/div&gt;
+    &lt;div data-multislider-item&gt;Thumbnail 2&lt;/div&gt;
+    &lt;div data-multislider-item&gt;Thumbnail 3&lt;/div&gt;
+    &lt;!-- More items... --&gt;
+  &lt;/div&gt;
+  &lt;button data-multislider-prev&gt;&amp;#8249;&lt;/button&gt;
+  &lt;button data-multislider-next&gt;&amp;#8250;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses CSS <code>flexbox</code>, <code>transform</code>, and the <code>ResizeObserver</code> API for responsive recalculation.
+							Touch events are supported on all modern mobile browsers.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-multislider.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

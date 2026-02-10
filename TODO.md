@@ -1,6 +1,6 @@
 # Battersea Library - TODO
 
-**Last Updated:** 9 February 2026
+**Last Updated:** 10 February 2026
 **Current Version:** 2.6.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
@@ -33,22 +33,23 @@
 - [x] **VerticalNav Component** - Sidebar navigation with simple, collapsible, flyout, hover-to-expand, off-canvas panel (v2.5.0 - v2.5.2)
 - [x] **ImageGallery** - Lightbox with thumbnails (v2.4.0)
 - [x] **Accessibility Component** - Font size adjustment tool with dropdown slider in pre-header (v2.6.0)
-- [ ] Create remaining demo pages (12 more needed):
+- [x] **Create all demo pages** - All 18 component demo pages complete (Feb 2026):
   - [x] accessibility.html
-  - [ ] animation.html
-  - [ ] counter.html
-  - [ ] flipbox.html
-  - [ ] header.html
-  - [ ] multislider.html
-  - [ ] nestedprogress.html
-  - [ ] parallax.html
-  - [ ] popup.html
-  - [ ] progressbar.html
-  - [ ] slider.html
-  - [ ] smoothscroll.html
-  - [ ] tabs.html
-  - [ ] tooltip.html
-  - [ ] HorizontalNav.html
+  - [x] animation.html
+  - [x] counter.html
+  - [x] flipbox.html
+  - [x] header.html
+  - [x] horizontalnav.html
+  - [x] multislider.html
+  - [x] nestedprogress.html
+  - [x] parallax.html
+  - [x] popup.html
+  - [x] progressbar.html
+  - [x] slider.html
+  - [x] smoothscroll.html
+  - [x] tabs.html
+  - [x] tooltip.html
+- [x] **Updated demo-nav.html** - All 18 pages organised into 6 navigation categories (Feb 2026)
 
 ---
 
@@ -63,6 +64,9 @@
 ---
 
 ## 🎨 Enhancement Ideas
+
+### Demo
+- [ ] When yuo have a user with an anchor point eg. demo/components/tabs.html#demos and the website smoothly but quickly scroll to the anchor rather than it happening immediatly.
 
 ### Homepage
 - [ ] Add screenshots/GIFs of components in action

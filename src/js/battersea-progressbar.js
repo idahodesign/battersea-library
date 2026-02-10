@@ -78,17 +78,14 @@
 
     createCircular() {
       this.el.classList.add('battersea-progress', 'battersea-progress-circular');
-      
-      // Get size from parent or use specified size
-      const parentWidth = this.el.parentElement ? this.el.parentElement.offsetWidth : this.size;
-      const calculatedSize = Math.min(parentWidth, this.size);
-      
+
+      // Use the specified size directly — avoids negative radius when parent hasn't laid out yet
+      const calculatedSize = this.size;
+
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('width', '100%');
-      svg.setAttribute('height', '100%');
+      svg.setAttribute('width', calculatedSize);
+      svg.setAttribute('height', calculatedSize);
       svg.setAttribute('viewBox', `0 0 ${calculatedSize} ${calculatedSize}`);
-      svg.style.maxWidth = calculatedSize + 'px';
-      svg.style.maxHeight = calculatedSize + 'px';
       
       const center = calculatedSize / 2;
       const radius = (calculatedSize - this.stroke) / 2;
@@ -153,23 +150,34 @@
     }
 
     animateProgress() {
-      const duration = 1000;
-      const steps = 60;
-      const increment = this.value / steps;
-      let current = 0;
-      let step = 0;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        step++;
-        
-        if (step >= steps) {
-          current = this.value;
-          clearInterval(timer);
+      const targetValue = this.value;
+      let startTime = null;
+
+      // Different easing and duration per type
+      const isCircular = this.type === 'circular';
+      const duration = isCircular ? 1800 : 1200;
+
+      // Ease-out cubic for horizontal — shoots across then settles
+      const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+      // Ease-in-out cubic for circular — slow start, sweeps through, slow finish
+      const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      const easeFn = isCircular ? easeInOutCubic : easeOutCubic;
+
+      const animate = (now) => {
+        if (!startTime) startTime = now;
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeFn(progress);
+
+        this.setProgress(easedProgress * targetValue);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         }
-        
-        this.setProgress(current);
-      }, duration / steps);
+      };
+
+      requestAnimationFrame(animate);
     }
 
     setProgress(value) {

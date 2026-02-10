@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.6.0
+- **Current Version:** 2.6.1
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -108,15 +108,18 @@ battersea-library/
 - **SSH setup** for GitHub pushes
 - **VerticalNav v2.5.2** (Feb 2026): Hover-to-expand, off-canvas panel, stacking context fixes
 - **Accessibility v2.6.0** (Feb 2026): Font size adjustment component with dropdown slider
+- **All 18 demo pages complete** (Feb 2026): Every component now has a dedicated demo page
+- **Demo navigation v2.6.1** (Feb 2026): Reorganised into 6 categories with all 18 pages linked
+- **ProgressBar fixes v2.6.1** (Feb 2026): Circular rendering fix, animation quality improvements
+- **Slider/MultiSlider arrow fix v2.6.1** (Feb 2026): Corrupted UTF-8 chevrons replaced with unicode escapes
 
 ### In Progress
 - See `TODO.md` for current tasks
 
 ### Next Priorities
-1. Create remaining 12 demo pages
-2. Component documentation for each component
-3. Accessibility audit
-4. Mobile testing
+1. Component documentation for each component
+2. Accessibility audit
+3. Mobile testing
 
 ---
 
@@ -196,4 +199,4 @@ Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
 
 ---
 
-*Last updated: 9 February 2026*
+*Last updated: 10 February 2026*

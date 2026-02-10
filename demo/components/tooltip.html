@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tooltip Component - Battersea Library</title>
+		<meta name="description" content="Hover and focus tooltips with configurable positioning - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Tooltip Component</h1>
+						<p class="hero-subtitle">Lightweight hover and focus tooltips that appear on any element &mdash; no JavaScript configuration needed</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Hover over (or tab to) each element to see the tooltip appear</p>
+
+						<!-- All 4 Positions -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Tooltip Positions</h3>
+							<p>Tooltips can appear on any side of the trigger element. Here are all four positions &mdash; hover over each button to see them.</p>
+
+							<div class="demo-container" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; padding: 3rem 2rem;">
+								<button data-tooltip="I'm above the button" data-tooltip-position="top" style="padding: 0.75rem 1.5rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+									Top Tooltip
+								</button>
+								<button data-tooltip="I'm below the button" data-tooltip-position="bottom" style="padding: 0.75rem 1.5rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+									Bottom Tooltip
+								</button>
+								<button data-tooltip="I'm on the left" data-tooltip-position="left" style="padding: 0.75rem 1.5rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+									Left Tooltip
+								</button>
+								<button data-tooltip="I'm on the right" data-tooltip-position="right" style="padding: 0.75rem 1.5rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+									Right Tooltip
+								</button>
+							</div>
+						</div>
+
+						<!-- Different Elements -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Tooltips on Different Elements</h3>
+							<p>Tooltips aren't just for buttons &mdash; you can attach them to links, inline text, or any HTML element. The component handles the positioning automatically.</p>
+
+							<div class="demo-container" style="text-align: left; padding: 2rem;">
+								<p style="line-height: 2.2;">
+									Here's a tooltip on <a href="#" data-tooltip="This link goes nowhere, but the tooltip is nice" data-tooltip-position="top" style="text-decoration: underline; color: #667eea;">a regular link</a> within a paragraph of text.
+									You can also put one on
+									<button data-tooltip="Yep, buttons work too" data-tooltip-position="top" style="padding: 0.4rem 0.8rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 6px; cursor: pointer; font-size: 0.9rem; vertical-align: middle;">a button</button>
+									inline with your text, or on
+									<span data-tooltip="Surprise! Even plain text can have tooltips" data-tooltip-position="bottom" style="border-bottom: 1px dashed #667eea; cursor: help; color: #667eea;">an inline span</span>
+									&mdash; the dashed underline is a nice visual cue that something is there.
+								</p>
+							</div>
+						</div>
+
+						<!-- Long Text -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Long Tooltip Text</h3>
+							<p>Tooltips automatically wrap longer text. They're best kept short, but if you need a bit more detail, they handle it gracefully.</p>
+
+							<div class="demo-container" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; padding: 3rem 2rem;">
+								<button data-tooltip="Short tip" data-tooltip-position="top" style="padding: 0.75rem 1.5rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+									Short Text
+								</button>
+								<button data-tooltip="This tooltip has a bit more text in it, which wraps nicely across multiple lines without breaking the layout" data-tooltip-position="top" style="padding: 0.75rem 1.5rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+									Medium Text
+								</button>
+								<button data-tooltip="Here's a proper paragraph in a tooltip. You probably wouldn't do this in production, but it shows that the component handles longer content without any issues. The tooltip stays readable and well-positioned regardless of how much text you throw at it." data-tooltip-position="bottom" style="padding: 0.75rem 1.5rem; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+									Long Text
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#8689;</div>
+								<h3>Four Positions</h3>
+								<p>Place tooltips on any side of the trigger &mdash; top, bottom, left, or right. Defaults to top if you don't specify.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">~</div>
+								<h3>Smooth Animation</h3>
+								<p>Tooltips fade in and out with a gentle transition. No abrupt popping or jarring movements.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">A11y</div>
+								<h3>Focus Support</h3>
+								<p>Tooltips appear on keyboard focus as well as hover, so keyboard and screen reader users get the same information.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Auto-Initialisation</h3>
+								<p>Add <code>data-tooltip</code> to any element and the tooltip is created automatically. No extra JavaScript needed.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#9733;</div>
+								<h3>Custom Styling</h3>
+								<p>Apply a custom CSS class with <code>data-tooltip-class</code> to match your design system or create themed tooltips.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Zero Dependencies</h3>
+								<p>Pure vanilla JavaScript. Lightweight, fast, and no external libraries to worry about.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure tooltips using these data attributes on the trigger element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-tooltip</code></td>
+										<td>string</td>
+										<td>required</td>
+										<td>The text content shown inside the tooltip</td>
+									</tr>
+									<tr>
+										<td><code>data-tooltip-position</code></td>
+										<td><code>top</code> / <code>bottom</code> / <code>left</code> / <code>right</code></td>
+										<td><code>top</code></td>
+										<td>Which side of the element the tooltip appears on</td>
+									</tr>
+									<tr>
+										<td><code>data-tooltip-class</code></td>
+										<td>CSS class name</td>
+										<td>-</td>
+										<td>Adds a custom CSS class to the tooltip element for custom styling</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Usage</h3>
+							<p>The simplest tooltip &mdash; just one attribute:</p>
+
+							<pre><code>&lt;button data-tooltip="Save your changes"&gt;Save&lt;/button&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">With Position</h3>
+							<p>Specify where the tooltip should appear:</p>
+
+							<pre><code>&lt;button data-tooltip="I appear below"
+  data-tooltip-position="bottom"&gt;
+  Hover me
+&lt;/button&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">With Custom Class</h3>
+							<p>Apply your own styling with a custom class:</p>
+
+							<pre><code>&lt;button data-tooltip="I'm special"
+  data-tooltip-position="top"
+  data-tooltip-class="tooltip-warning"&gt;
+  Warning
+&lt;/button&gt;
+
+&lt;style&gt;
+.tooltip-warning {
+  background: #f44336;
+  colour: white;
+}
+&lt;/style&gt;</code></pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Icon Button with Tooltip</div>
+								<div data-accordion-content>
+									<div>
+										<p>Great for icon-only buttons where the user needs a label:</p>
+										<pre><code>&lt;button data-tooltip="Settings"
+  data-tooltip-position="bottom"
+  aria-label="Settings"&gt;
+  &amp;#9881;
+&lt;/button&gt;
+
+&lt;button data-tooltip="Delete"
+  data-tooltip-position="bottom"
+  aria-label="Delete"&gt;
+  &amp;#10005;
+&lt;/button&gt;
+
+&lt;button data-tooltip="Download"
+  data-tooltip-position="bottom"
+  aria-label="Download"&gt;
+  &amp;#8595;
+&lt;/button&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Inline Help Text</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add contextual help to form labels or tricky terms:</p>
+										<pre><code>&lt;label for="email"&gt;
+  Email Address
+  &lt;span data-tooltip="We'll never share your email with anyone"
+    data-tooltip-position="right"
+    style="cursor: help; border-bottom: 1px dashed #999;"&gt;
+    (why do we need this?)
+  &lt;/span&gt;
+&lt;/label&gt;
+&lt;input type="email" id="email"&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Navigation Link Tooltips</div>
+								<div data-accordion-content>
+									<div>
+										<p>Give additional context to navigation items:</p>
+										<pre><code>&lt;nav&gt;
+  &lt;a href="/dashboard"
+    data-tooltip="View your personal dashboard"
+    data-tooltip-position="bottom"&gt;
+    Dashboard
+  &lt;/a&gt;
+  &lt;a href="/reports"
+    data-tooltip="Generate and download reports"
+    data-tooltip-position="bottom"&gt;
+    Reports
+  &lt;/a&gt;
+  &lt;a href="/settings"
+    data-tooltip="Manage your account preferences"
+    data-tooltip-position="bottom"&gt;
+    Settings
+  &lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Tooltip on a Table Header</div>
+								<div data-accordion-content>
+									<div>
+										<p>Explain column meanings without cluttering the table:</p>
+										<pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th data-tooltip="Full name of the customer"
+        data-tooltip-position="top"&gt;Name&lt;/th&gt;
+      &lt;th data-tooltip="Monthly recurring revenue in GBP"
+        data-tooltip-position="top"&gt;MRR&lt;/th&gt;
+      &lt;th data-tooltip="Customer lifetime value"
+        data-tooltip-position="top"&gt;LTV&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;!-- Table data --&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses CSS transitions and <code>getBoundingClientRect()</code> for positioning.
+							Tooltips are created dynamically and removed from the DOM when hidden, keeping things clean.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>
