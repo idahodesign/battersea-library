@@ -60,10 +60,10 @@
 
 ## 📚 Documentation Tasks
 
-- [ ] Create a README.md
-- [ ] Add "Live Demo" link to README.md
+- [x] Create a README.md
+- [x] Add "Live Demo" link to README.md
 - [x] Create LICENSE file (MIT recommended)
-- [ ] Add CONTRIBUTING.md for potential contributors
+- [x] Add CONTRIBUTING.md for potential contributors
 - [x] Create CHANGELOG.md for version history
 
 ---
