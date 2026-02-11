@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.7.0] - 2026-02-11
+
+### Added
+- **Smooth anchor scrolling** — Built into `battersea-core.js` so it works on every page automatically
+  - Pages loaded with a hash anchor (e.g. `tabs.html#demos`) now scroll smoothly to the target instead of jumping
+  - Clicking in-page anchor links (`<a href="#section">`) also scrolls smoothly
+  - 500ms ease-out cubic animation for a quick, natural feel
+  - Automatically accounts for sticky header height
+  - Updates the URL hash via `history.pushState` without triggering a jump
+  - Only intercepts same-page links — cross-page anchors are left alone
+
+---
+
 ## [2.6.1] - 2026-02-10
 
 ### Added
@@ -276,6 +289,9 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.7.0** - Smooth anchor scrolling in battersea-core.js
+- **2.6.1** - All 18 demo pages, updated nav, slider/progress bar fixes
+- **2.6.0** - Accessibility component with font size slider
 - **2.5.2** - VerticalNav hover-to-expand, off-canvas panel, stacking context fixes
 - **2.5.1** - VerticalNav mobile overlay and external toggle support
 - **2.5.0** - VerticalNav component with simple, collapsible, and flyout modes

@@ -206,10 +206,140 @@
     }
   };
 
+  // =========================================
+  // Smooth Anchor Scrolling
+  // =========================================
+  // Smoothly scrolls to hash anchors instead of jumping instantly.
+  // Works on page load (URL with #hash) and on in-page anchor clicks.
+
+  const AnchorScroll = {
+    duration: 500,
+
+    /**
+     * Get the sticky header height to use as scroll offset
+     */
+    getHeaderOffset: function() {
+      const header = document.querySelector('[data-header]');
+      if (header) {
+        const style = window.getComputedStyle(header);
+        return parseFloat(style.height) || 0;
+      }
+      return 0;
+    },
+
+    /**
+     * Ease-out cubic: smooth deceleration
+     */
+    easeOut: function(t) {
+      return 1 - Math.pow(1 - t, 3);
+    },
+
+    /**
+     * Animate scroll to a target element
+     */
+    scrollTo: function(target, callback) {
+      const startY = window.pageYOffset;
+      const offset = this.getHeaderOffset();
+      const targetY = target.getBoundingClientRect().top + startY - offset;
+      const distance = targetY - startY;
+      const startTime = performance.now();
+      const duration = this.duration;
+      const self = this;
+
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = self.easeOut(progress);
+
+        window.scrollTo(0, startY + distance * eased);
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else if (callback) {
+          callback();
+        }
+      }
+
+      requestAnimationFrame(step);
+    },
+
+    /**
+     * Scroll to the hash in the current URL (on page load)
+     */
+    scrollToHash: function() {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      // Prevent the browser's default jump
+      window.scrollTo(0, 0);
+
+      // Small delay to let the page render (includes, animations, etc.)
+      setTimeout(() => {
+        this.scrollTo(target);
+      }, 100);
+    },
+
+    /**
+     * Intercept clicks on in-page anchor links
+     */
+    bindAnchorClicks: function() {
+      const self = this;
+
+      document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href*="#"]');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        // Extract the hash portion
+        let hash;
+        if (href.startsWith('#')) {
+          // Simple hash link: #demos
+          hash = href;
+        } else {
+          // Full or relative URL with hash: page.html#demos
+          // Only handle if it points to the current page
+          try {
+            const url = new URL(href, window.location.href);
+            if (url.pathname !== window.location.pathname) return;
+            hash = url.hash;
+          } catch (err) {
+            return;
+          }
+        }
+
+        if (!hash) return;
+
+        const target = document.querySelector(hash);
+        if (!target) return;
+
+        e.preventDefault();
+
+        // Update the URL hash without jumping
+        history.pushState(null, '', hash);
+
+        self.scrollTo(target);
+      });
+    },
+
+    /**
+     * Initialise anchor scrolling
+     */
+    init: function() {
+      this.scrollToHash();
+      this.bindAnchorClicks();
+    }
+  };
+
   // Auto-initialize on DOM ready
   function initializeBattersea() {
     Battersea.init();
     Battersea.setupObserver();
+    AnchorScroll.init();
   }
 
   if (document.readyState === 'loading') {

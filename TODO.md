@@ -50,6 +50,11 @@
   - [x] tabs.html
   - [x] tooltip.html
 - [x] **Updated demo-nav.html** - All 18 pages organised into 6 navigation categories (Feb 2026)
+- [x] **Smooth anchor scrolling** - Pages with hash anchors (e.g. `tabs.html#demos`) now scroll smoothly instead of jumping. Also works when clicking in-page anchor links. Added to battersea-core.js (v2.7.0)
+- [ ] Profile grid - Grid of staff photos that on rollover show their name position and company. Clicking the photo opens a light box containing a panel with thier photo, name, title, position, university, bio, telephone number, email address, website and socialmedia links.
+- [ ] DragDrop - Reorderable items, move things from one container to another and remember what choices were made on another page.
+- [ ] MiniQuiz - Small interactive quiz element that users can complete and the see the correct answer
+- [ ] Graphing - Animated graphs.
 
 ---
 
@@ -64,9 +69,6 @@
 ---
 
 ## 🎨 Enhancement Ideas
-
-### Demo
-- [ ] When yuo have a user with an anchor point eg. demo/components/tabs.html#demos and the website smoothly but quickly scroll to the anchor rather than it happening immediatly.
 
 ### Homepage
 - [ ] Add screenshots/GIFs of components in action
@@ -98,17 +100,15 @@
 ## 🚀 Future Features (v2.3+)
 
 ### Planned Components
-- [ ] DataTable - Sortable, filterable tables
-- [ ] FormValidation - Real-time form validation
-- [ ] DragDrop - Reorderable lists
-- [ ] Staff grid - Grid of staff photos that on rollover show their name position and company. Clicking the photo opens a light box containing a panel with thier photo, name, title, position, university, bio, telephone number, email address, website and socialmedia links.
-- [ ] Graphing - Animated graphs.
 - [ ] Breadcrumbs - Navigation breadcrumb trail using Json file
 - [ ] Level 1 - Page navigation using Json file
 - [ ] Level 2 - Page navigation using Json file
 - [ ] Page navigation using Json file
 - [ ] Timeline - Vertical/horizontal timeline
-- [ ] MiniQuiz - Small interactive quiz element that users can complete and the see the correct answer
+- [ ] Video player - in page video with stylable controls
+- [ ] Audio player - In page audio player with stylable controls
+- [ ] FormValidation - Real-time form validation
+- [ ] DataTable - Sortable, filterable tables
 
 ### Infrastructure
 - [ ] Set up automated LESS compilation
