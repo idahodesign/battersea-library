@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.8.0
+- **Current Version:** 2.9.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 21 JavaScript files (includes env-config)
+│   ├── js/           # 22 JavaScript files (includes env-config)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (19 total)
+### Components (20 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
@@ -53,6 +53,7 @@ battersea-library/
 17. Tabs - Tabbed interface
 18. Tooltip - Hover/focus tooltips
 19. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
+20. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -102,7 +103,7 @@ battersea-library/
 - Repository structure and GitHub Pages deployment
 - Homepage with component showcase
 - Include system for reusable HTML
-- 19 components fully functional
+- 20 components fully functional
 - **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` (old redirects removed)
 - **Project file cleanup** (Feb 2026): Removed redundant files, gitignored compiled CSS
 - **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
@@ -114,6 +115,7 @@ battersea-library/
 - **ProgressBar fixes v2.6.1** (Feb 2026): Circular rendering fix, animation quality improvements
 - **Slider/MultiSlider arrow fix v2.6.1** (Feb 2026): Corrupted UTF-8 chevrons replaced with unicode escapes
 - **AudioPlayer v2.8.0** (Feb 2026): Custom audio player with stylable controls, seek bar, volume, keyboard navigation
+- **VideoPlayer v2.9.0** (Feb 2026): Custom video player with overlay controls, fullscreen, auto-hiding controls bar
 
 ### In Progress
 - See `TODO.md` for current tasks

@@ -105,7 +105,7 @@
 - [ ] Level 2 - Page navigation using Json file
 - [ ] Page navigation using Json file
 - [ ] Timeline - Vertical/horizontal timeline
-- [ ] Video player - in page video with stylable controls
+- [x] Video player - in page video with stylable controls (v2.9.0)
 - [x] Audio player - In page audio player with stylable controls (v2.8.0)
 - [ ] FormValidation - Real-time form validation
 - [ ] DataTable - Sortable, filterable tables

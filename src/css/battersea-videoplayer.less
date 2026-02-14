@@ -1,0 +1,447 @@
+/**
+ * Battersea Library - Video Player Styles
+ * Version: 1.0.0
+ */
+
+.battersea-video {
+  position: relative;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: inherit;
+  user-select: none;
+  -webkit-user-select: none;
+  max-width: 100%;
+  line-height: 0;
+
+  // Native video element
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  // --- Poster overlay ---
+  &__poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+  }
+
+  &__poster--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  // --- Title overlay (top-left) ---
+  &__title {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1.3;
+    z-index: 4;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    transition: opacity 0.3s ease;
+  }
+
+  &__title--hidden {
+    opacity: 0;
+  }
+
+  // --- Large centred play/pause overlay ---
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    padding: 0;
+  }
+
+  &__overlay--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__overlay--playing {
+    .battersea-video__overlay-icon--pause {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    &:hover .battersea-video__overlay-icon--pause {
+      opacity: 1;
+    }
+  }
+
+  // Play overlay icon (large CSS triangle)
+  &__overlay-icon--play {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 24px 0 24px 40px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+    margin-left: 4px;
+  }
+
+  // Pause overlay icon (two bars)
+  &__overlay-icon--pause {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  // --- Controls bar ---
+  &__controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    z-index: 5;
+    line-height: normal;
+    transition: opacity 0.3s ease;
+  }
+
+  &__controls--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  // --- Play/Pause button (in controls bar) ---
+  &__play {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s, transform 0.15s;
+    padding: 0;
+    color: #e0e0e0;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #667eea;
+      outline-offset: 2px;
+    }
+  }
+
+  // Controls play icon (CSS triangle, smaller than overlay)
+  &__icon--play {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent #e0e0e0;
+    margin-left: 2px;
+  }
+
+  // Controls pause icon (two bars, smaller)
+  &__icon--pause {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 1px;
+    }
+  }
+
+  // --- Time display ---
+  &__time {
+    font-size: 0.75em;
+    font-variant-numeric: tabular-nums;
+    min-width: 34px;
+    text-align: center;
+    flex-shrink: 0;
+    color: #e0e0e0;
+    opacity: 0.8;
+    letter-spacing: 0.02em;
+  }
+
+  // --- Shared slider styles (progress + volume) ---
+  &__progress,
+  &__volume {
+    position: relative;
+    cursor: pointer;
+    padding: 8px 0;
+    touch-action: none;
+  }
+
+  &__progress {
+    flex: 1 1 0;
+    min-width: 60px;
+  }
+
+  &__volume {
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  &__progress-bar,
+  &__volume-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    position: relative;
+    overflow: visible;
+  }
+
+  &__progress-fill,
+  &__volume-fill {
+    height: 4px;
+    background: #667eea;
+    border-radius: 2px;
+    width: 0%;
+    position: relative;
+  }
+
+  &__progress-handle,
+  &__volume-handle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+
+  // Show handle on hover/focus/drag
+  &__progress:hover &__progress-handle,
+  &__progress:focus-within &__progress-handle,
+  &--dragging-progress &__progress-handle {
+    opacity: 1;
+  }
+
+  &__volume:hover &__volume-handle,
+  &__volume:focus-within &__volume-handle,
+  &--dragging-volume &__volume-handle {
+    opacity: 1;
+  }
+
+  // Slider focus ring
+  &__progress:focus-visible,
+  &__volume:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  // --- Mute button ---
+  &__mute {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #667eea;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+  }
+
+  // --- Fullscreen button ---
+  &__fullscreen {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #667eea;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+  }
+
+  // --- Error state ---
+  &--error {
+    opacity: 0.5;
+
+    .battersea-video__controls,
+    .battersea-video__overlay {
+      pointer-events: none;
+    }
+  }
+
+  &__error-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9em;
+    color: #e0e0e0;
+    text-align: center;
+    z-index: 6;
+    line-height: normal;
+  }
+
+  // --- Fullscreen mode adjustments ---
+  &--fullscreen {
+    border-radius: 0;
+
+    .battersea-video__controls {
+      padding: 14px 24px;
+    }
+
+    .battersea-video__time {
+      font-size: 0.85em;
+    }
+
+    .battersea-video__play {
+      width: 40px;
+      height: 40px;
+    }
+
+    .battersea-video__overlay-icon--play {
+      border-width: 30px 0 30px 50px;
+    }
+
+    .battersea-video__overlay-icon--pause {
+      gap: 10px;
+
+      &::before,
+      &::after {
+        width: 10px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+// --- Accent colour override ---
+.battersea-video[style*="--battersea-video-accent"] {
+  .battersea-video__play:focus-visible,
+  .battersea-video__progress:focus-visible,
+  .battersea-video__volume:focus-visible,
+  .battersea-video__mute:focus-visible,
+  .battersea-video__fullscreen:focus-visible {
+    outline-color: var(--battersea-video-accent);
+  }
+  .battersea-video__progress-fill,
+  .battersea-video__volume-fill {
+    background: var(--battersea-video-accent);
+  }
+}
+
+// --- Responsive: hide volume on small screens ---
+@media (max-width: 480px) {
+  .battersea-video {
+    &__volume {
+      display: none;
+    }
+
+    &__controls {
+      gap: 8px;
+      padding: 8px 12px;
+    }
+
+    &__time {
+      font-size: 0.7em;
+      min-width: 28px;
+    }
+  }
+}

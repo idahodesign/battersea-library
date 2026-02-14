@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.9.0] - 2026-02-14
+
+### Added
+- **Video Player Component** (v1.0.0) — Fully custom video player with stylable controls
+  - Play/pause button in controls bar and large centred overlay on video
+  - Seek/progress bar with click-to-jump and drag-to-scrub
+  - Volume slider with mute toggle and three volume state icons
+  - Current time and duration display
+  - Optional poster image via `data-video-poster`
+  - Optional title overlay via `data-video-title`
+  - Auto-hiding controls bar (fades out after 3s, configurable via `data-video-controls`)
+  - Fullscreen support with Fullscreen API and vendor prefixes
+  - Per-instance accent colour via `data-video-color`
+  - Supports MP4, WebM, OGG formats
+  - Full keyboard navigation (Space/Enter play, arrows seek/volume, F fullscreen, M mute, Escape exit)
+  - Touch support (tap overlay to play/pause, controls appear on tap)
+  - ARIA roles and labels on all interactive controls
+  - Responsive layout (volume slider hidden below 480px)
+  - Custom events: `battersea:videoPlay`, `battersea:videoPause`, `battersea:videoSeek`, `battersea:videoVolumeChange`, `battersea:videoMute`, `battersea:videoEnded`, `battersea:videoFullscreen`
+- **Video Player demo page** — `demo/components/videoplayer.html` with three live examples
+- **Navigation updated** — Video Player added to Content category in demo nav
+- **Component count** — 19 → 20 on homepage and stats
+
+---
+
 ## [2.8.0] - 2026-02-14
 
 ### Added
