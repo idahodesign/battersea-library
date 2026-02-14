@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.8.0] - 2026-02-14
+
+### Added
+- **Audio Player Component** (v1.0.0) — Fully custom audio player with stylable controls
+  - Play/pause button with CSS-only icons (no icon fonts or SVG files)
+  - Seek/progress bar with click-to-jump and drag-to-scrub
+  - Volume slider with mute toggle and three volume state icons
+  - Current time and duration display
+  - Track title and artist info (optional)
+  - Per-instance accent colour via `data-audio-color`
+  - Supports MP3, WAV, OGG, AAC formats
+  - Full keyboard navigation (arrow keys for seek and volume)
+  - ARIA roles and labels on all interactive controls
+  - Responsive layout (volume slider hidden on very small screens)
+  - Handles mobile autoplay restrictions gracefully
+  - Custom events: `battersea:audioPlay`, `battersea:audioPause`, `battersea:audioSeek`, `battersea:audioVolumeChange`, `battersea:audioMute`, `battersea:audioEnded`
+- **Audio Player demo page** — `demo/components/audioplayer.html` with three live examples
+- **Navigation updated** — Audio Player added to Content category in demo nav
+
+---
+
 ## [2.7.0] - 2026-02-11
 
 ### Added

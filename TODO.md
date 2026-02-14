@@ -106,7 +106,7 @@
 - [ ] Page navigation using Json file
 - [ ] Timeline - Vertical/horizontal timeline
 - [ ] Video player - in page video with stylable controls
-- [ ] Audio player - In page audio player with stylable controls
+- [x] Audio player - In page audio player with stylable controls (v2.8.0)
 - [ ] FormValidation - Real-time form validation
 - [ ] DataTable - Sortable, filterable tables
 
