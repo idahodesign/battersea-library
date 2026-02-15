@@ -2,13 +2,13 @@
  * Battersea Library - DragDrop Component
  * Version: 1.0.0
  *
- * Reorderable lists and multi-container sorting with localStorage persistence.
+ * Reorderable lists and multi-container sorting with sessionStorage persistence.
  * Supports mouse and touch input.
  *
  * Modes:
  *   reorder - Drag items into a specific order within one container
  *   sort    - Drag items from a source into destination containers
- *   display - Read-only rendering of saved state from localStorage
+ *   display - Read-only rendering of saved state from sessionStorage
  */
 
 (function(window, document) {
@@ -291,14 +291,14 @@
 
 			if (data) {
 				try {
-					localStorage.setItem('battersea-dragdrop-' + this.storageKey, JSON.stringify(data));
+					sessionStorage.setItem('battersea-dragdrop-' + this.storageKey, JSON.stringify(data));
 					this.lastSavedData = data;
 
 					this.el.dispatchEvent(new CustomEvent('battersea:dragSave', {
 						detail: { key: this.storageKey, mode: this.mode, data: data }
 					}));
 				} catch (e) {
-					console.warn('DragDrop: Could not save to localStorage', e);
+					console.warn('DragDrop: Could not save to sessionStorage', e);
 				}
 			}
 		}
@@ -309,7 +309,7 @@
 
 			let raw;
 			try {
-				raw = localStorage.getItem('battersea-dragdrop-' + this.storageKey);
+				raw = sessionStorage.getItem('battersea-dragdrop-' + this.storageKey);
 			} catch (e) {
 				return;
 			}
@@ -400,7 +400,7 @@
 
 			let raw;
 			try {
-				raw = localStorage.getItem('battersea-dragdrop-' + this.storageKey);
+				raw = sessionStorage.getItem('battersea-dragdrop-' + this.storageKey);
 			} catch (e) {
 				this.showEmptyMessage();
 				return;
