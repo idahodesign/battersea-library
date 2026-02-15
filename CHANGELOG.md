@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.10.0] - 2026-02-15
+
+### Added
+- **Profile Grid Component** (v1.0.0) — Staff photo grid with hover overlays, filterable tags, and detailed lightbox panels
+  - Responsive CSS grid: 4 columns desktop, 3 tablet, 2 mobile (configurable via `data-profile-grid-columns`)
+  - Hover overlay shows name and title with dark gradient fade-in
+  - Click-to-open lightbox with photo left / details right layout (stacks on mobile)
+  - Lightbox displays: name, title, position, company, university, bio, phone, email, website, social links
+  - Bio content supports rich HTML via hidden `data-profile-bio` container (paragraphs, links, lists)
+  - Configurable filter bar with clickable pill buttons (`data-profile-grid-filter="position,company,university"`)
+  - One-filter-at-a-time behaviour with "All" reset pill
+  - Social links with inline SVG icons for known platforms (LinkedIn, Twitter/X, Instagram, Facebook, GitHub) and generic link icon fallback
+  - Phone renders as `tel:` link, email as `mailto:` link, website opens in new tab
+  - Missing attributes are gracefully skipped — no empty fields or errors
+  - Close lightbox via X button, overlay click, or Escape key
+  - Body scroll lock while lightbox is open
+  - Custom events: `battersea:profileOpen`, `battersea:profileClose`
+  - CSS custom properties for full theming control
+- **Profile Grid demo page** — `demo/components/profilegrid.html` with 12 fictional staff profiles
+- **Navigation updated** — Profile Grid added to Content category in demo nav
+
+---
+
 ## [2.9.0] - 2026-02-14
 
 ### Added
@@ -335,6 +358,7 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.10.0** - Profile Grid component with hover overlays, filter pills, and detailed lightbox
 - **2.7.0** - Smooth anchor scrolling in battersea-core.js
 - **2.6.1** - All 18 demo pages, updated nav, slider/progress bar fixes
 - **2.6.0** - Accessibility component with font size slider

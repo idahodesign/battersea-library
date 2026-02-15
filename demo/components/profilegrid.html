@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Profile Grid Component - Battersea Library</title>
+		<meta name="description" content="Staff profile grid with hover overlays, filterable tags, and detailed lightbox panels - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Profile Grid Component</h1>
+						<p class="hero-subtitle">A grid of people. Hover to see who they are. Click to learn the rest.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demo" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Meet the Team</h2>
+						<p class="section-subtitle">Hover for a quick introduction, click for the full picture</p>
+
+						<div class="demo-container" data-animate="fade-up">
+							<div data-profile-grid
+								 data-profile-grid-columns="4"
+								 data-profile-grid-filter="position,company,university">
+
+								<!-- Person 1 -->
+								<div data-profile-item
+									 data-profile-name="Eleanor Whitfield"
+									 data-profile-title="Creative Director"
+									 data-profile-position="Director"
+									 data-profile-company="Meridian Design"
+									 data-profile-university="Central Saint Martins"
+									 data-profile-phone="+44 20 7946 0123"
+									 data-profile-email="eleanor@meridiandesign.co.uk"
+									 data-profile-website="https://eleanorwhitfield.com"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/eleanorwhitfield"},{"platform":"instagram","url":"https://instagram.com/eleanorwhitfield"}]'>
+									<img src="../../assets/img/portrait_01.jpg" alt="Eleanor Whitfield">
+									<div data-profile-bio>
+										<p>Eleanor has spent fifteen years shaping visual identities for brands across Europe. She started out in editorial design at a small agency in Shoreditch before moving to Amsterdam, where she led the rebrand of a Dutch cycling company that went on to win a D&AD Pencil.</p>
+										<p>She co-founded <a href="#">Meridian Design</a> in 2019 and now runs a team of eight from their studio in Bermondsey. Outside work, she collects vintage type specimens and is trying to teach herself letterpress printing.</p>
+									</div>
+								</div>
+
+								<!-- Person 2 -->
+								<div data-profile-item
+									 data-profile-name="Marcus Chen"
+									 data-profile-title="Lead Engineer"
+									 data-profile-position="Engineer"
+									 data-profile-company="Helix Systems"
+									 data-profile-university="Imperial College London"
+									 data-profile-phone="+44 20 7946 0456"
+									 data-profile-email="marcus.chen@helixsystems.io"
+									 data-profile-social='[{"platform":"github","url":"https://github.com/marcuschen"},{"platform":"linkedin","url":"https://linkedin.com/in/marcuschen"}]'>
+									<img src="../../assets/img/portrait_02.jpg" alt="Marcus Chen">
+									<div data-profile-bio>
+										<p>Marcus writes the kind of clean, efficient code that other engineers actually enjoy reading. He joined Helix Systems straight out of university and has been there for six years, working his way from junior developer to leading their infrastructure team.</p>
+										<p>He is particularly good at explaining hard technical problems in plain language. He runs an internal mentoring programme and speaks at local meetups about building resilient distributed systems.</p>
+									</div>
+								</div>
+
+								<!-- Person 3 -->
+								<div data-profile-item
+									 data-profile-name="Sofia Ramirez"
+									 data-profile-title="Head of Research"
+									 data-profile-position="Director"
+									 data-profile-company="Northbank Consulting"
+									 data-profile-university="LSE"
+									 data-profile-phone="+44 20 7946 0789"
+									 data-profile-email="s.ramirez@northbankconsulting.com"
+									 data-profile-website="https://sofiaramirez.co.uk"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/sofiaramirez"},{"platform":"twitter","url":"https://x.com/sofiaramirez"}]'>
+									<img src="../../assets/img/portrait_03.jpg" alt="Sofia Ramirez">
+									<div data-profile-bio>
+										<p>Sofia spent a decade in academia before realising she wanted her research to land somewhere other than a journal shelf. She joined Northbank in 2020 and now leads a small team that helps organisations make sense of messy, contradictory data.</p>
+										<p>Her background in behavioural economics gives her an unusual perspective on user research. She has a knack for spotting the question nobody thought to ask.</p>
+									</div>
+								</div>
+
+								<!-- Person 4 -->
+								<div data-profile-item
+									 data-profile-name="James Okoye"
+									 data-profile-title="UX Designer"
+									 data-profile-position="Designer"
+									 data-profile-company="Meridian Design"
+									 data-profile-university="Goldsmiths"
+									 data-profile-email="james@meridiandesign.co.uk"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/jamesokoye"},{"platform":"instagram","url":"https://instagram.com/jamesokoye_ux"}]'>
+									<img src="../../assets/img/portrait_04.jpg" alt="James Okoye">
+									<div data-profile-bio>
+										<p>James designs interfaces that people actually enjoy using, which is harder than it sounds. He came to UX from a psychology background and still thinks of every design problem as a human problem first.</p>
+										<p>He joined Meridian in 2021 and works mainly with their healthcare clients, where getting the details right genuinely matters. He is also an occasional illustrator and has had work featured in It's Nice That.</p>
+									</div>
+								</div>
+
+								<!-- Person 5 -->
+								<div data-profile-item
+									 data-profile-name="Amara Osei"
+									 data-profile-title="Project Manager"
+									 data-profile-position="Manager"
+									 data-profile-company="Helix Systems"
+									 data-profile-university="University of Manchester"
+									 data-profile-phone="+44 20 7946 1234"
+									 data-profile-email="amara.osei@helixsystems.io"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/amaraosei"}]'>
+									<img src="../../assets/img/portrait_05.jpg" alt="Amara Osei">
+									<div data-profile-bio>
+										<p>Amara keeps complicated projects moving without anyone feeling rushed or ignored, which is rarer than it should be. She has managed everything from six-month platform builds to last-minute website launches that somehow all came together.</p>
+										<p>Before Helix, she worked in events management, which taught her that the best plans always need a good contingency. She is calm under pressure and direct when she needs to be.</p>
+									</div>
+								</div>
+
+								<!-- Person 6 -->
+								<div data-profile-item
+									 data-profile-name="Tom Ashworth"
+									 data-profile-title="Frontend Developer"
+									 data-profile-position="Engineer"
+									 data-profile-company="Northbank Consulting"
+									 data-profile-university="University of Bath"
+									 data-profile-email="t.ashworth@northbankconsulting.com"
+									 data-profile-website="https://tomashworth.dev"
+									 data-profile-social='[{"platform":"github","url":"https://github.com/tomashworth"},{"platform":"twitter","url":"https://x.com/tomashworth"}]'>
+									<img src="../../assets/img/portrait_06.jpg" alt="Tom Ashworth">
+									<div data-profile-bio>
+										<p>Tom writes CSS that other people can actually maintain, which he considers his greatest professional achievement. He specialises in building component libraries and design systems, and has a strong opinion about spacing scales.</p>
+										<p>He contributes to open-source projects in his spare time and writes occasionally about web accessibility on his personal site.</p>
+									</div>
+								</div>
+
+								<!-- Person 7 -->
+								<div data-profile-item
+									 data-profile-name="Priya Mehta"
+									 data-profile-title="Data Analyst"
+									 data-profile-position="Analyst"
+									 data-profile-company="Northbank Consulting"
+									 data-profile-university="University of Warwick"
+									 data-profile-phone="+44 20 7946 5678"
+									 data-profile-email="p.mehta@northbankconsulting.com"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/priyamehta"}]'>
+									<img src="../../assets/img/portrait_07.jpg" alt="Priya Mehta">
+									<div data-profile-bio>
+										<p>Priya turns spreadsheets into stories. She joined Northbank after finishing her masters and quickly became the person everyone asks when a number does not look right.</p>
+										<p>She built the team's internal reporting dashboard from scratch and has a talent for finding patterns in data that others miss. She is learning Python in her evenings and says she is about 60% of the way to being dangerous with it.</p>
+									</div>
+								</div>
+
+								<!-- Person 8 -->
+								<div data-profile-item
+									 data-profile-name="Daniel Eriksson"
+									 data-profile-title="Backend Engineer"
+									 data-profile-position="Engineer"
+									 data-profile-company="Helix Systems"
+									 data-profile-university="Imperial College London"
+									 data-profile-email="daniel.eriksson@helixsystems.io"
+									 data-profile-social='[{"platform":"github","url":"https://github.com/deriksson"},{"platform":"linkedin","url":"https://linkedin.com/in/danieleriksson"}]'>
+									<img src="../../assets/img/portrait_08.jpg" alt="Daniel Eriksson">
+									<div data-profile-bio>
+										<p>Daniel is the kind of engineer who reads database documentation for fun, and it shows. He has built high-throughput APIs for clients in fintech and logistics, and is endlessly patient when debugging production issues at odd hours.</p>
+										<p>Originally from Stockholm, he moved to London in 2018 and still gets mildly annoyed about the coffee. He mentors junior developers and runs the team's fortnightly code review sessions.</p>
+									</div>
+								</div>
+
+								<!-- Person 9 -->
+								<div data-profile-item
+									 data-profile-name="Hannah Clarke"
+									 data-profile-title="Brand Strategist"
+									 data-profile-position="Strategist"
+									 data-profile-company="Meridian Design"
+									 data-profile-university="Edinburgh College of Art"
+									 data-profile-phone="+44 20 7946 9012"
+									 data-profile-email="hannah@meridiandesign.co.uk"
+									 data-profile-website="https://hannahclarke.co"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/hannahclarke"},{"platform":"instagram","url":"https://instagram.com/hannahclarke_brand"}]'>
+									<img src="../../assets/img/portrait_09.jpg" alt="Hannah Clarke">
+									<div data-profile-bio>
+										<p>Hannah helps companies work out what they actually stand for, which is usually more difficult than they expect. She came to brand strategy from copywriting and still writes most of the positioning work herself.</p>
+										<p>She has worked with startups, charities, and one surprisingly large cheese company. She believes the best brand work comes from listening more than talking.</p>
+									</div>
+								</div>
+
+								<!-- Person 10 -->
+								<div data-profile-item
+									 data-profile-name="Ryan Gallagher"
+									 data-profile-title="DevOps Lead"
+									 data-profile-position="Engineer"
+									 data-profile-company="Helix Systems"
+									 data-profile-university="University of Glasgow"
+									 data-profile-email="ryan.gallagher@helixsystems.io"
+									 data-profile-social='[{"platform":"github","url":"https://github.com/ryangallagher"},{"platform":"twitter","url":"https://x.com/ryangallagher_dev"}]'>
+									<img src="../../assets/img/portrait_10.jpg" alt="Ryan Gallagher">
+									<div data-profile-bio>
+										<p>Ryan automates things so that other people do not have to think about them, which makes him either very popular or slightly threatening depending on the team. He built Helix's deployment pipeline from the ground up and reduced their release cycle from weeks to hours.</p>
+										<p>He is passionate about reliability engineering and once gave a talk titled "Everything is on fire, and that's fine." He keeps a whiteboard next to his desk covered in architecture diagrams that only he fully understands.</p>
+									</div>
+								</div>
+
+								<!-- Person 11 -->
+								<div data-profile-item
+									 data-profile-name="Lily Nakamura"
+									 data-profile-title="Content Lead"
+									 data-profile-position="Manager"
+									 data-profile-company="Meridian Design"
+									 data-profile-university="Goldsmiths"
+									 data-profile-phone="+44 20 7946 3456"
+									 data-profile-email="lily@meridiandesign.co.uk"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/lilynakamura"},{"platform":"twitter","url":"https://x.com/lilynakamura"}]'>
+									<img src="../../assets/img/portrait_11.jpg" alt="Lily Nakamura">
+									<div data-profile-bio>
+										<p>Lily makes sure the words match the design, and the design matches the words. She leads content strategy at Meridian and works closely with the design team to keep everything coherent.</p>
+										<p>She previously ran the editorial department at a lifestyle magazine and still writes the occasional freelance piece. She has strong feelings about Oxford commas (for) and exclamation marks (against).</p>
+									</div>
+								</div>
+
+								<!-- Person 12 -->
+								<div data-profile-item
+									 data-profile-name="Oscar Petersen"
+									 data-profile-title="Solutions Architect"
+									 data-profile-position="Architect"
+									 data-profile-company="Northbank Consulting"
+									 data-profile-university="University of Bath"
+									 data-profile-phone="+44 20 7946 7890"
+									 data-profile-email="o.petersen@northbankconsulting.com"
+									 data-profile-website="https://oscarpetersen.io"
+									 data-profile-social='[{"platform":"linkedin","url":"https://linkedin.com/in/oscarpetersen"},{"platform":"github","url":"https://github.com/oscarpetersen"}]'>
+									<img src="../../assets/img/portrait_12.jpg" alt="Oscar Petersen">
+									<div data-profile-bio>
+										<p>Oscar figures out how all the pieces fit together. He has spent twelve years designing technical architectures for organisations that have outgrown their original systems, which is most of them.</p>
+										<p>He is good at translating between technical teams and business stakeholders, partly because he has been both. Before consulting, he ran the engineering team at a proptech startup that was acquired in 2017.</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">[]</div>
+								<h3>Responsive Grid</h3>
+								<p>Four columns on desktop, three on tablet, two on mobile. The column count is configurable with a single data attribute.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">~</div>
+								<h3>Hover Overlays</h3>
+								<p>Name and title appear smoothly over each photo on hover. Clean and unobtrusive until you need them.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9998;</div>
+								<h3>Detailed Lightbox</h3>
+								<p>Click any profile to open a side-by-side panel with photo, contact details, bio, and social links. Stacks vertically on mobile.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#9783;</div>
+								<h3>Filterable</h3>
+								<p>Configurable tag filters let users narrow the grid by position, company, university, or any custom field you define.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&lt;/&gt;</div>
+								<h3>Rich Bio Content</h3>
+								<p>Bios live in a hidden HTML container, so you can include paragraphs, links, lists, or any markup you need.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#10004;</div>
+								<h3>Graceful Fallbacks</h3>
+								<p>Missing a phone number or university? The component skips any field that is not provided. No empty rows, no errors.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration</h2>
+
+						<div class="config-content">
+							<h3>Grid Options</h3>
+							<p>Set these on the main container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-profile-grid</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the Profile Grid component</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-grid-columns</code></td>
+										<td>Number</td>
+										<td><code>4</code></td>
+										<td>Number of columns on desktop</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-grid-filter</code></td>
+										<td>Comma-separated field names</td>
+										<td>none</td>
+										<td>Which fields to generate filter pills for (e.g. <code>position,company</code>)</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Profile Item Attributes</h3>
+							<p>Set these on each <code>data-profile-item</code> element. All are optional except <code>data-profile-item</code> itself:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-profile-name</code></td>
+										<td>Person's full name (shown on hover and in lightbox)</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-title</code></td>
+										<td>Job title (shown on hover and in lightbox)</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-position</code></td>
+										<td>Role or position level (e.g. Director, Engineer)</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-company</code></td>
+										<td>Company or organisation name</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-university</code></td>
+										<td>University or educational institution</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-phone</code></td>
+										<td>Phone number (rendered as a clickable <code>tel:</code> link)</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-email</code></td>
+										<td>Email address (rendered as a clickable <code>mailto:</code> link)</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-website</code></td>
+										<td>Website URL (opens in new tab)</td>
+									</tr>
+									<tr>
+										<td><code>data-profile-social</code></td>
+										<td>JSON array of social links: <code>[{"platform":"linkedin","url":"..."}]</code></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Bio Content</h3>
+							<p>Place a hidden container inside each profile item for rich bio content:</p>
+
+							<pre><code>&lt;div data-profile-item data-profile-name="Jane Smith" ...&gt;
+  &lt;img src="photo.jpg" alt="Jane Smith"&gt;
+  &lt;div data-profile-bio&gt;
+    &lt;p&gt;First paragraph with &lt;a href="#"&gt;links&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Second paragraph.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">Social Platforms</h3>
+							<p>These platforms get their own icon automatically: <code>linkedin</code>, <code>twitter</code>, <code>instagram</code>, <code>facebook</code>, <code>github</code>. Anything else shows a generic link icon with the platform name as a label.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Grid (No Filters)</div>
+								<div data-accordion-content>
+									<div>
+										<p>The simplest setup. Just a grid of profiles with hover overlays and lightbox:</p>
+										<pre><code>&lt;div data-profile-grid data-profile-grid-columns="3"&gt;
+  &lt;div data-profile-item
+       data-profile-name="Jane Smith"
+       data-profile-title="Designer"
+       data-profile-email="jane@example.com"&gt;
+    &lt;img src="photo.jpg" alt="Jane Smith"&gt;
+  &lt;/div&gt;
+  &lt;!-- more items --&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>With Filters</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add the filter attribute to generate clickable pills:</p>
+										<pre><code>&lt;div data-profile-grid
+     data-profile-grid-columns="4"
+     data-profile-grid-filter="company,position"&gt;
+  &lt;div data-profile-item
+       data-profile-name="Jane Smith"
+       data-profile-company="Acme Corp"
+       data-profile-position="Director"&gt;
+    &lt;img src="photo.jpg" alt="Jane Smith"&gt;
+  &lt;/div&gt;
+  &lt;!-- more items --&gt;
+&lt;/div&gt;</code></pre>
+										<p>The component scans all items, collects unique values for each filter field, and renders pills automatically.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Rich Bio Content</div>
+								<div data-accordion-content>
+									<div>
+										<p>The bio container is hidden in the grid but cloned into the lightbox when opened. Use any HTML you like:</p>
+										<pre><code>&lt;div data-profile-item data-profile-name="Jane Smith"&gt;
+  &lt;img src="photo.jpg" alt="Jane Smith"&gt;
+  &lt;div data-profile-bio&gt;
+    &lt;p&gt;First paragraph of bio text.&lt;/p&gt;
+    &lt;p&gt;Second paragraph with a
+       &lt;a href="https://example.com"&gt;link&lt;/a&gt;.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Bullet points work too&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Social Links</div>
+								<div data-accordion-content>
+									<div>
+										<p>Pass social links as a JSON array in the data attribute:</p>
+										<pre><code>&lt;div data-profile-item
+     data-profile-name="Jane Smith"
+     data-profile-social='[
+       {"platform":"linkedin","url":"https://linkedin.com/in/jane"},
+       {"platform":"github","url":"https://github.com/jane"},
+       {"platform":"portfolio","url":"https://jane.design"}
+     ]'&gt;
+  &lt;img src="photo.jpg" alt="Jane Smith"&gt;
+&lt;/div&gt;</code></pre>
+										<p>Known platforms (linkedin, twitter, instagram, facebook, github) get SVG icons. Unknown ones get a link icon with the platform name as text.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>The component fires custom events you can listen for:</p>
+										<pre><code>const grid = document.querySelector('[data-profile-grid]');
+
+grid.addEventListener('battersea:profileOpen', (e) =&gt; {
+  console.log('Opened profile:', e.detail.name);
+});
+
+grid.addEventListener('battersea:profileClose', () =&gt; {
+  console.log('Profile lightbox closed');
+});</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>15+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses CSS Grid, <code>aspect-ratio</code>, and <code>object-fit</code>. Safari 15+ is required for <code>aspect-ratio</code> support.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-profilegrid.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			// Load all includes when DOM is ready
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				// Load includes in order - nav must load after header since demo-nav-nested is inside the header include
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>
