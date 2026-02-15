@@ -51,10 +51,13 @@
   - [x] tooltip.html
 - [x] **Updated demo-nav.html** - All 18 pages organised into 6 navigation categories (Feb 2026)
 - [x] **Smooth anchor scrolling** - Pages with hash anchors (e.g. `tabs.html#demos`) now scroll smoothly instead of jumping. Also works when clicking in-page anchor links. Added to battersea-core.js (v2.7.0)
-- [ ] Profile grid - Grid of staff photos that on rollover show their name position and company. Clicking the photo opens a light box containing a panel with thier photo, name, title, position, university, bio, telephone number, email address, website and socialmedia links.
-- [ ] DragDrop - Reorderable items, move things from one container to another and remember what choices were made on another page.
-- [ ] MiniQuiz - Small interactive quiz element that users can complete and the see the correct answer
+- [x] Video player - in page video with stylable controls (v2.9.0)
+- [x] Audio player - In page audio player with stylable controls (v2.8.0)
+- [ ] Profile grid - Grid of staff photos that on rollover show their name position and company. Clicking the photo opens a light box containing a panel with their photo, name, title, position, university, bio, telephone number, email address, website and any social media links.
+- [ ] DragDrop - Reorderable items, move things from one container to another and remember what choices were made so they can be dispalyed on on another page.
+- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer
 - [ ] Graphing - Animated graphs.
+- [ ] Timeline - Vertical/horizontal timeline
 
 ---
 
@@ -100,13 +103,10 @@
 ## 🚀 Future Features (v2.3+)
 
 ### Planned Components
-- [ ] Breadcrumbs - Navigation breadcrumb trail using Json file
-- [ ] Level 1 - Page navigation using Json file
-- [ ] Level 2 - Page navigation using Json file
-- [ ] Page navigation using Json file
-- [ ] Timeline - Vertical/horizontal timeline
-- [x] Video player - in page video with stylable controls (v2.9.0)
-- [x] Audio player - In page audio player with stylable controls (v2.8.0)
+- [ ] Breadcrumbs - Navigation breadcrumb trail using a Json file
+- [ ] Level 1 - Page navigation using a Json file
+- [ ] Level 2 - Page navigation using a Json file
+- [ ] Page navigation using a Json file
 - [ ] FormValidation - Real-time form validation
 - [ ] DataTable - Sortable, filterable tables
 
