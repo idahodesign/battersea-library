@@ -1,0 +1,195 @@
+/**
+ * Battersea Library - DragDrop Styles
+ * Version: 1.0.0
+ */
+
+/* ============================================
+   DRAG DROP - SHARED
+   ============================================ */
+
+[data-drag-drop] {
+	position: relative;
+}
+
+[data-drag-item] {
+	cursor: grab;
+	user-select: none;
+	padding: var(--battersea-dragdrop-item-padding, 16px);
+	margin-bottom: 8px;
+	background: var(--battersea-dragdrop-item-bg, #f8f9fa);
+	color: var(--battersea-dragdrop-item-text, #333);
+	border: 1px solid var(--battersea-dragdrop-item-border, #ddd);
+	border-radius: var(--battersea-dragdrop-item-radius, 8px);
+	transition: background 0.2s, opacity 0.2s, box-shadow 0.2s;
+
+	&:hover {
+		background: var(--battersea-dragdrop-item-hover, #e9ecef);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+	}
+
+	&:active {
+		cursor: grabbing;
+	}
+
+	&.battersea-dragdrop__dragging {
+		opacity: 0.35;
+	}
+}
+
+/* Ghost element (clone following cursor) */
+.battersea-dragdrop__ghost {
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+	border-radius: var(--battersea-dragdrop-item-radius, 8px);
+	background: var(--battersea-dragdrop-item-bg, #f8f9fa);
+	color: var(--battersea-dragdrop-item-text, #333);
+	border: 1px solid var(--battersea-dragdrop-item-border, #ddd);
+	padding: var(--battersea-dragdrop-item-padding, 16px);
+	transform: rotate(1.5deg);
+}
+
+/* Placeholder (insertion marker) */
+.battersea-dragdrop__placeholder {
+	background: var(--battersea-dragdrop-placeholder-bg, rgba(102, 126, 234, 0.08));
+	border: 2px dashed var(--battersea-dragdrop-placeholder-border, #667eea);
+	border-radius: var(--battersea-dragdrop-item-radius, 8px);
+	margin-bottom: 8px;
+	transition: height 0.15s ease;
+}
+
+
+/* ============================================
+   DRAG DROP - SORT MODE (multi-container)
+   ============================================ */
+
+[data-drag-drop][data-drag-drop-mode="sort"] {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 20px;
+	align-items: start;
+
+	@media (max-width: 767px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+[data-drag-container] {
+	background: var(--battersea-dragdrop-container-bg, #fff);
+	border: 1px solid var(--battersea-dragdrop-container-border, #ddd);
+	border-radius: 10px;
+	padding: var(--battersea-dragdrop-container-padding, 16px);
+	min-height: 100px;
+
+	.battersea-dragdrop__container-label {
+		font-weight: 600;
+		font-size: 0.9rem;
+		color: var(--battersea-dragdrop-label-text, #333);
+		margin-bottom: 12px;
+		padding-bottom: 8px;
+		border-bottom: 1px solid var(--battersea-dragdrop-container-border, #ddd);
+	}
+
+	/* Empty container hint */
+	&:not(:has([data-drag-item])):not(:has(.battersea-dragdrop__placeholder)) {
+		.battersea-dragdrop__container-label ~ * {
+			display: none;
+		}
+
+		&::after {
+			content: 'Drop items here';
+			display: block;
+			text-align: center;
+			padding: 24px 16px;
+			color: var(--battersea-dragdrop-hint-text, #999);
+			font-style: italic;
+			font-size: 0.9rem;
+		}
+	}
+}
+
+
+/* ============================================
+   DRAG DROP - DISPLAY MODE (read-only)
+   ============================================ */
+
+.battersea-dragdrop--display {
+	.battersea-dragdrop__display-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	ol.battersea-dragdrop__display-list {
+		counter-reset: display-counter;
+
+		.battersea-dragdrop__display-item {
+			counter-increment: display-counter;
+
+			&::before {
+				content: counter(display-counter);
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				background: var(--battersea-dragdrop-placeholder-border, #667eea);
+				color: #fff;
+				font-size: 0.8rem;
+				font-weight: 600;
+				margin-right: 12px;
+				flex-shrink: 0;
+			}
+		}
+	}
+
+	.battersea-dragdrop__display-item {
+		display: flex;
+		align-items: center;
+		padding: 12px 16px;
+		margin-bottom: 6px;
+		background: var(--battersea-dragdrop-item-bg, #f8f9fa);
+		color: var(--battersea-dragdrop-item-text, #333);
+		border: 1px solid var(--battersea-dragdrop-item-border, #ddd);
+		border-radius: var(--battersea-dragdrop-item-radius, 8px);
+	}
+
+	.battersea-dragdrop__display-groups {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 20px;
+
+		@media (max-width: 767px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.battersea-dragdrop__display-group {
+		background: var(--battersea-dragdrop-container-bg, #fff);
+		border: 1px solid var(--battersea-dragdrop-container-border, #ddd);
+		border-radius: 10px;
+		padding: var(--battersea-dragdrop-container-padding, 16px);
+	}
+
+	.battersea-dragdrop__display-group-title {
+		font-weight: 600;
+		font-size: 0.9rem;
+		color: var(--battersea-dragdrop-label-text, #333);
+		margin: 0 0 12px 0;
+		padding-bottom: 8px;
+		border-bottom: 1px solid var(--battersea-dragdrop-container-border, #ddd);
+	}
+
+	.battersea-dragdrop__empty-message {
+		color: var(--battersea-dragdrop-hint-text, #999);
+		font-style: italic;
+		text-align: center;
+		padding: 24px;
+	}
+}
+
+.battersea-dragdrop__empty-message {
+	color: var(--battersea-dragdrop-hint-text, #999);
+	font-style: italic;
+	text-align: center;
+	padding: 24px;
+}

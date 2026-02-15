@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.11.0] - 2026-02-15
+
+### Added
+- **DragDrop Component** (v1.0.0) — Reorderable lists and multi-container sorting with localStorage persistence
+  - Reorder mode: drag items into a specific order within one container
+  - Sort mode: move items between multiple named containers
+  - Display mode: read-only rendering of saved state on any page
+  - localStorage persistence with configurable key (stores item HTML for rich content support)
+  - Touch and mouse support with unified drag logic
+  - Ghost preview (semi-transparent clone) follows cursor during drag
+  - Placeholder shows insertion point with dashed border
+  - Container item limits via `data-drag-drop-max`
+  - Empty container hints
+  - Custom events: `battersea:dragStart`, `battersea:dragEnd`, `battersea:dragSave`, `battersea:dragRestore`
+  - CSS custom properties for full theming control
+- **DragDrop demo page** — `demo/components/dragdrop.html` with reorder, sort, and display examples
+- **Navigation updated** — DragDrop added to Interactive category
+
+---
+
 ## [2.10.0] - 2026-02-15
 
 ### Added

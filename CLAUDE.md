@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.10.0
+- **Current Version:** 2.11.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 23 JavaScript files (includes env-config)
+│   ├── js/           # 24 JavaScript files (includes env-config)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,28 +33,29 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (21 total)
+### Components (22 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
 4. AudioPlayer - Custom audio player with stylable controls
 5. Counter - Animated number counting
-6. Flipbox - 3D flip cards
-7. Header - Adaptive header with shrink-on-scroll
-8. HorizontalNav - Multi-level dropdown menus
-9. ImageGallery - Lightbox with masonry grid, zoom, and video
-10. MultiSlider - Multi-item carousel
-11. NestedProgress - Multi-layer circular progress
-12. Parallax - Parallax backgrounds
-13. Popup - Modal dialogs
-14. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
-15. ProgressBar - Horizontal/circular progress
-16. Slider - Image/content carousel
-17. SmoothScroll - Scroll-to-section navigation
-18. Tabs - Tabbed interface
-19. Tooltip - Hover/focus tooltips
-20. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
-21. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
+6. DragDrop - Reorderable lists and multi-container sorting with localStorage persistence
+7. Flipbox - 3D flip cards
+8. Header - Adaptive header with shrink-on-scroll
+9. HorizontalNav - Multi-level dropdown menus
+10. ImageGallery - Lightbox with masonry grid, zoom, and video
+11. MultiSlider - Multi-item carousel
+12. NestedProgress - Multi-layer circular progress
+13. Parallax - Parallax backgrounds
+14. Popup - Modal dialogs
+15. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
+16. ProgressBar - Horizontal/circular progress
+17. Slider - Image/content carousel
+18. SmoothScroll - Scroll-to-section navigation
+19. Tabs - Tabbed interface
+20. Tooltip - Hover/focus tooltips
+21. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
+22. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -118,6 +119,7 @@ battersea-library/
 - **AudioPlayer v2.8.0** (Feb 2026): Custom audio player with stylable controls, seek bar, volume, keyboard navigation
 - **VideoPlayer v2.9.0** (Feb 2026): Custom video player with overlay controls, fullscreen, auto-hiding controls bar
 - **ProfileGrid v2.10.0** (Feb 2026): Staff photo grid with hover overlays, filter pills, and detailed lightbox panels
+- **DragDrop v2.11.0** (Feb 2026): Reorderable lists and multi-container sorting with localStorage persistence, touch support, display mode
 
 ### In Progress
 - See `TODO.md` for current tasks

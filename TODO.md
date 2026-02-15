@@ -54,10 +54,12 @@
 - [x] Video player - in page video with stylable controls (v2.9.0)
 - [x] Audio player - In page audio player with stylable controls (v2.8.0)
 - [x] Profile grid - Grid of staff photos with hover overlays, filterable tag pills, and detailed lightbox panels with photo, name, title, position, company, university, bio, phone, email, website, social links (v2.10.0)
-- [ ] DragDrop - Reorderable items, move things from one container to another and remember what choices were made so they can be dispalyed on on another page.
+- [x] DragDrop - Reorderable items, move things from one container to another and remember what choices were made so they can be displayed on another page (v2.11.0)
+- [ ] Timeline - Vertical/horizontal timeline
 - [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer
 - [ ] Graphing - Animated graphs.
-- [ ] Timeline - Vertical/horizontal timeline
+- [ ] DataTable - Sortable, filterable tables
+- [ ] Json file - Auto creation and update of a Json file of the site navigation - core component
 
 ---
 
@@ -103,12 +105,12 @@
 ## 🚀 Future Features (v2.3+)
 
 ### Planned Components
+- [ ] Json file - Auto creation and update of a Json file of the site navigation
 - [ ] Breadcrumbs - Navigation breadcrumb trail using a Json file
 - [ ] Level 1 - Page navigation using a Json file
 - [ ] Level 2 - Page navigation using a Json file
 - [ ] Page navigation using a Json file
 - [ ] FormValidation - Real-time form validation
-- [ ] DataTable - Sortable, filterable tables
 
 ### Infrastructure
 - [ ] Set up automated LESS compilation
