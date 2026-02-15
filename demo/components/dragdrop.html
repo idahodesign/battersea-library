@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>DragDrop Component - Battersea Library</title>
-		<meta name="description" content="Reorderable lists and multi-container sorting with localStorage persistence - Battersea Library Component">
+		<meta name="description" content="Reorderable lists and multi-container sorting with sessionStorage persistence - Battersea Library Component">
 
 		<!-- LESS Stylesheets -->
 		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
@@ -131,7 +131,7 @@
 							<div data-drag-drop data-drag-drop-mode="display" data-drag-drop-key="programming-categories"></div>
 						</div>
 
-						<p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Display mode reads from localStorage, so it works on any page that knows the storage key. Refresh the page after making changes above to see the display update.</p>
+						<p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Display mode reads from sessionStorage, so it works on any page that knows the storage key. Refresh the page after making changes above to see the display update.</p>
 					</div>
 				</div>
 			</section>
@@ -159,8 +159,8 @@
 
 							<div class="feature-card delay-3" data-animate="fade-up">
 								<div class="feature-icon">&#128190;</div>
-								<h3>Persistent State</h3>
-								<p>Everything saves to localStorage automatically. Close the browser, come back tomorrow, and your choices are still there.</p>
+								<h3>Session State</h3>
+								<p>Everything saves to sessionStorage automatically. Your choices stick around while you browse the site but clear when you close the tab.</p>
 							</div>
 
 							<div class="feature-card delay-4" data-animate="fade-up">
@@ -223,7 +223,7 @@
 										<td><code>data-drag-drop-key</code></td>
 										<td>String</td>
 										<td>none</td>
-										<td>localStorage key for saving and loading state</td>
+										<td>sessionStorage key for saving and loading state</td>
 									</tr>
 								</tbody>
 							</table>
@@ -245,7 +245,7 @@
 									</tr>
 									<tr>
 										<td><code>data-drag-id</code></td>
-										<td>Unique identifier for the item (used in localStorage)</td>
+										<td>Unique identifier for the item (used in sessionStorage)</td>
 									</tr>
 								</tbody>
 							</table>
@@ -335,7 +335,7 @@
 										<pre><code>&lt;div data-drag-drop
      data-drag-drop-mode="display"
      data-drag-drop-key="my-list"&gt;&lt;/div&gt;</code></pre>
-										<p>The component reads localStorage and builds the output automatically. If nothing has been saved yet, it shows a placeholder message.</p>
+										<p>The component reads sessionStorage and builds the output automatically. If nothing has been saved yet, it shows a placeholder message.</p>
 									</div>
 								</div>
 							</div>
@@ -371,7 +371,7 @@ dd.addEventListener('battersea:dragEnd', (e) =&gt; {
 });
 
 dd.addEventListener('battersea:dragSave', (e) =&gt; {
-  console.log('Saved to localStorage:', e.detail.data);
+  console.log('Saved to sessionStorage:', e.detail.data);
 });</code></pre>
 									</div>
 								</div>
@@ -381,8 +381,8 @@ dd.addEventListener('battersea:dragSave', (e) =&gt; {
 								<div data-accordion-header>Clearing Saved Data</div>
 								<div data-accordion-content>
 									<div>
-										<p>Remove saved state from localStorage by key:</p>
-										<pre><code>localStorage.removeItem('battersea-dragdrop-my-list');</code></pre>
+										<p>Remove saved state from sessionStorage by key:</p>
+										<pre><code>sessionStorage.removeItem('battersea-dragdrop-my-list');</code></pre>
 										<p>The component prefixes all keys with <code>battersea-dragdrop-</code> to avoid collisions.</p>
 									</div>
 								</div>
@@ -428,7 +428,7 @@ dd.addEventListener('battersea:dragSave', (e) =&gt; {
 						</div>
 
 						<p style="margin-top: 2rem; text-align: center; color: #666;">
-							Uses <code>elementFromPoint</code>, <code>localStorage</code>, and touch events. The <code>:has()</code> selector for empty container hints requires Safari 15.4+ and Chrome 105+.
+							Uses <code>elementFromPoint</code>, <code>sessionStorage</code>, and touch events. The <code>:has()</code> selector for empty container hints requires Safari 15.4+ and Chrome 105+.
 						</p>
 					</div>
 				</div>
