@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.12.0] - 2026-02-15
+
+### Added
+- **Timeline Component** -- Vertical and horizontal timelines
+  - Vertical layout with alternating left/right cards on desktop, single-column on mobile
+  - Vertical scroll-reveal via the Animation component (`fade-right`, `fade-left`, `fade-up`)
+  - Horizontal layout with CSS scroll-snap, snap-to-centre highlighting, and content panel below
+  - `data-timeline-intro` attribute for short intro text on horizontal cards
+  - Spacer elements so first/last horizontal items can scroll to centre
+  - Active item highlighting: centred item scales up, others dim (gated by `--snap-ready` class)
+  - Content panel fades in the active item's full content below the track
+  - Mobile fallback: horizontal collapses to vertical with full content shown inline
+  - Date badges for milestone events, optional (undated items show no badge)
+  - Icon markers on the timeline line (emoji, text, or plain dot)
+  - Optional images within cards
+  - Card arrow/pointer towards the timeline line
+  - CSS custom properties for full theming control (22 variables)
+  - Custom events: `battersea:timelineReady`, `battersea:timelineItemActive`, `battersea:timelineScroll`
+  - Keyboard navigation (arrow keys for horizontal scrolling)
+- **Timeline demo page** -- `demo/components/timeline.html` with vertical alternating, vertical single-column, horizontal process flow, and mixed dated/undated examples
+- **Timeline documentation** -- `docs/TIMELINE-DOCUMENTATION.md`
+- **Navigation updated** -- Timeline added to Data Display category
+
+---
+
 ## [2.11.0] - 2026-02-15
 
 ### Added

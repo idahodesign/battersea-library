@@ -1,0 +1,525 @@
+/**
+ * Battersea Library - Timeline Component
+ * Version: 2.12.0
+ */
+
+/* =========================================
+   Timeline Container
+   ========================================= */
+
+.battersea-timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+/* =========================================
+   Central Line
+   ========================================= */
+
+.battersea-timeline__line {
+  position: absolute;
+  background: var(--battersea-timeline-line-color, #ddd);
+  z-index: 0;
+}
+
+/* Vertical alternate: line in centre */
+.battersea-timeline--alternate .battersea-timeline__line {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: var(--battersea-timeline-line-width, 3px);
+  transform: translateX(-50%);
+}
+
+/* Vertical non-alternate: line on left */
+.battersea-timeline--vertical:not(.battersea-timeline--alternate) .battersea-timeline__line {
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: var(--battersea-timeline-line-width, 3px);
+  transform: none;
+}
+
+/* Horizontal line */
+.battersea-timeline--horizontal .battersea-timeline__line {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: var(--battersea-timeline-line-width, 3px);
+  transform: translateY(-50%);
+}
+
+/* =========================================
+   Track Wrapper (horizontal only)
+   ========================================= */
+
+.battersea-timeline__track-wrapper {
+  position: relative;
+}
+
+/* =========================================
+   Track (holds all items)
+   ========================================= */
+
+.battersea-timeline__track {
+  position: relative;
+  z-index: 1;
+}
+
+.battersea-timeline--vertical .battersea-timeline__track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--battersea-timeline-gap, 40px);
+}
+
+.battersea-timeline--horizontal .battersea-timeline__track {
+  display: flex;
+  flex-direction: row;
+  gap: var(--battersea-timeline-gap-h, 30px);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 60px 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* =========================================
+   Spacers (horizontal — allow first/last to centre)
+   ========================================= */
+
+.battersea-timeline__spacer {
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* =========================================
+   Timeline Item (wrapper)
+   ========================================= */
+
+.battersea-timeline__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Vertical non-alternate: line on left, content on right */
+.battersea-timeline--vertical:not(.battersea-timeline--alternate) .battersea-timeline__item {
+  width: 100%;
+  padding-left: 50px;
+}
+
+/* Vertical alternate: items use centre line */
+.battersea-timeline--alternate .battersea-timeline__item {
+  width: 100%;
+}
+
+/* Vertical alternate: left items (content on left of line) */
+.battersea-timeline--alternate .battersea-timeline__item--left {
+  padding-left: 0;
+  padding-right: calc(50% + 30px);
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Vertical alternate: right items (content on right of line) */
+.battersea-timeline--alternate .battersea-timeline__item--right {
+  padding-left: calc(50% + 30px);
+  padding-right: 0;
+}
+
+/* Horizontal items */
+.battersea-timeline--horizontal .battersea-timeline__item {
+  flex: 0 0 var(--battersea-timeline-card-width, 300px);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  scroll-snap-align: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Active / inactive highlighting (only after reveal completes) */
+.battersea-timeline--snap-ready .battersea-timeline__item {
+  opacity: 0.45;
+}
+
+.battersea-timeline--snap-ready .battersea-timeline__item--active {
+  opacity: 1;
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/* =========================================
+   Marker (dot/icon on the line)
+   ========================================= */
+
+.battersea-timeline__marker {
+  position: absolute;
+  width: var(--battersea-timeline-marker-size, 20px);
+  height: var(--battersea-timeline-marker-size, 20px);
+  border-radius: 50%;
+  background: var(--battersea-timeline-marker-bg, #667eea);
+  border: 3px solid var(--battersea-timeline-marker-border, #fff);
+  box-shadow: 0 0 0 3px var(--battersea-timeline-line-color, #ddd);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.battersea-timeline__marker--icon {
+  width: var(--battersea-timeline-marker-icon-size, 36px);
+  height: var(--battersea-timeline-marker-icon-size, 36px);
+  font-size: 1rem;
+}
+
+/* Vertical alternate marker: centred on the line */
+.battersea-timeline--alternate .battersea-timeline__marker {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8px;
+}
+
+/* Vertical non-alternate marker: on the left line */
+.battersea-timeline--vertical:not(.battersea-timeline--alternate) .battersea-timeline__marker {
+  left: 20px;
+  transform: translateX(-50%);
+  top: 8px;
+}
+
+/* Horizontal marker: above the card */
+.battersea-timeline--horizontal .battersea-timeline__marker {
+  position: relative;
+  margin-bottom: 16px;
+  left: auto;
+  top: auto;
+  transform: none;
+}
+
+/* =========================================
+   Card (content container)
+   ========================================= */
+
+.battersea-timeline__card {
+  background: var(--battersea-timeline-card-bg, #fff);
+  border-radius: var(--battersea-timeline-card-radius, 8px);
+  padding: var(--battersea-timeline-card-padding, 20px 24px);
+  box-shadow: var(--battersea-timeline-card-shadow, 0 2px 12px rgba(0, 0, 0, 0.08));
+  max-width: var(--battersea-timeline-card-max-width, 420px);
+  width: 100%;
+  position: relative;
+}
+
+/* Card arrow pointing towards the line (vertical only) */
+.battersea-timeline--vertical .battersea-timeline__card::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  background: var(--battersea-timeline-card-bg, #fff);
+  transform: rotate(45deg);
+}
+
+/* Default (non-alternate) and right-side items: arrow on left */
+.battersea-timeline--vertical:not(.battersea-timeline--alternate) .battersea-timeline__card::before,
+.battersea-timeline--alternate .battersea-timeline__item--right .battersea-timeline__card::before {
+  left: -6px;
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Alternate left items: arrow on right */
+.battersea-timeline--alternate .battersea-timeline__item--left .battersea-timeline__card::before {
+  right: -6px;
+  left: auto;
+  box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Horizontal: no arrow */
+.battersea-timeline--horizontal .battersea-timeline__card::before {
+  display: none;
+}
+
+.battersea-timeline--horizontal .battersea-timeline__card {
+  max-width: none;
+}
+
+/* =========================================
+   Date Badge
+   ========================================= */
+
+.battersea-timeline__date {
+  display: inline-block;
+  padding: 3px 12px;
+  background: var(--battersea-timeline-date-bg, #667eea);
+  color: var(--battersea-timeline-date-text, #fff);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* =========================================
+   Intro Text (horizontal cards)
+   ========================================= */
+
+.battersea-timeline__intro {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--battersea-timeline-text-color, #555);
+  margin: 4px 0 0;
+  opacity: 0.8;
+}
+
+/* =========================================
+   Full Content (mobile fallback for horizontal)
+   ========================================= */
+
+.battersea-timeline__full-content {
+  display: none;
+}
+
+/* =========================================
+   Card Content Styling
+   ========================================= */
+
+[data-timeline-item] {
+  [data-timeline-image] {
+    display: block;
+    width: 100%;
+    border-radius: var(--battersea-timeline-card-radius, 8px);
+    margin-bottom: 12px;
+    object-fit: cover;
+    max-height: 200px;
+  }
+
+  h3, [data-timeline-title] {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--battersea-timeline-title-color, #222);
+  }
+
+  p, [data-timeline-description] {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--battersea-timeline-text-color, #555);
+    margin: 0;
+  }
+}
+
+/* =========================================
+   Content Panel (horizontal — below track)
+   ========================================= */
+
+.battersea-timeline__panel {
+  background: var(--battersea-timeline-panel-bg, #fff);
+  border-radius: var(--battersea-timeline-card-radius, 8px);
+  padding: var(--battersea-timeline-panel-padding, 24px 30px);
+  box-shadow: var(--battersea-timeline-card-shadow, 0 2px 12px rgba(0, 0, 0, 0.08));
+  margin-top: 20px;
+  min-height: 120px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  &--visible {
+    opacity: 1;
+  }
+
+  h3, [data-timeline-title] {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: var(--battersea-timeline-title-color, #222);
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--battersea-timeline-text-color, #555);
+    margin: 0 0 8px;
+  }
+
+  img, [data-timeline-image] {
+    display: block;
+    max-width: 100%;
+    border-radius: var(--battersea-timeline-card-radius, 8px);
+    margin-bottom: 12px;
+    object-fit: cover;
+    max-height: 280px;
+  }
+}
+
+/* =========================================
+   Scroll Reveal Animation (horizontal only)
+   ========================================= */
+
+.battersea-timeline__item--hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.battersea-timeline__item--visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+/* =========================================
+   Horizontal Navigation Arrows
+   ========================================= */
+
+.battersea-timeline__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--battersea-timeline-nav-bg, rgba(0, 0, 0, 0.5));
+  color: var(--battersea-timeline-nav-color, #fff);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 10;
+  transition: background 0.3s, opacity 0.3s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  &:focus {
+    outline: 2px solid var(--battersea-timeline-marker-bg, #667eea);
+    outline-offset: 2px;
+  }
+}
+
+.battersea-timeline__nav--prev {
+  left: 0;
+}
+
+.battersea-timeline__nav--next {
+  right: 0;
+}
+
+.battersea-timeline__nav--disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* =========================================
+   Responsive: Tablet (768-1023px)
+   ========================================= */
+
+@media (max-width: 1023px) {
+  .battersea-timeline--vertical .battersea-timeline__card {
+    max-width: 340px;
+  }
+}
+
+/* =========================================
+   Responsive: Mobile (< 768px)
+   ========================================= */
+
+@media (max-width: 767px) {
+  /* Vertical: collapse to single column, line on left */
+  .battersea-timeline--vertical .battersea-timeline__line {
+    left: 20px;
+    transform: none;
+  }
+
+  .battersea-timeline--vertical .battersea-timeline__item,
+  .battersea-timeline--vertical .battersea-timeline__item--left,
+  .battersea-timeline--vertical .battersea-timeline__item--right {
+    padding-left: 50px;
+    padding-right: 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .battersea-timeline--vertical .battersea-timeline__marker {
+    left: 20px;
+  }
+
+  .battersea-timeline--vertical .battersea-timeline__card::before {
+    left: -6px;
+    right: auto;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  .battersea-timeline--vertical .battersea-timeline__card {
+    max-width: none;
+  }
+
+  /* Horizontal fallback to vertical */
+  .battersea-timeline--horizontal .battersea-timeline__line {
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: var(--battersea-timeline-line-width, 3px);
+    height: auto;
+    right: auto;
+    transform: none;
+  }
+
+  .battersea-timeline--horizontal .battersea-timeline__track {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding: 20px 0;
+    padding-left: 50px;
+    gap: var(--battersea-timeline-gap, 40px);
+  }
+
+  .battersea-timeline--horizontal .battersea-timeline__item {
+    flex: none;
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    opacity: 1;
+    transform: none;
+    scroll-snap-align: none;
+  }
+
+  .battersea-timeline--horizontal .battersea-timeline__marker {
+    position: absolute;
+    left: -30px;
+    top: 8px;
+    margin-bottom: 0;
+  }
+
+  /* Hide spacers on mobile */
+  .battersea-timeline__spacer {
+    display: none;
+  }
+
+  /* Hide panel, show full content inline */
+  .battersea-timeline__panel {
+    display: none;
+  }
+
+  .battersea-timeline__intro {
+    display: none;
+  }
+
+  .battersea-timeline--horizontal .battersea-timeline__full-content {
+    display: block;
+    margin-top: 8px;
+  }
+
+  .battersea-timeline__nav {
+    display: none !important;
+  }
+}

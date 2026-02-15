@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Timeline Component - Battersea Library</title>
+		<meta name="description" content="Vertical and horizontal timelines with scroll-reveal animations - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Timeline Component</h1>
+						<p class="hero-subtitle">Vertical and horizontal timelines with scroll-reveal animations, date badges, and custom markers</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">The timeline in action across different layouts</p>
+
+						<!-- Vertical Alternating -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Vertical Alternating (Company History)</h3>
+							<p>Items zigzag left and right of a centre line. Each card can have a date badge, icon marker, image, and description. On mobile, everything stacks into a single column.</p>
+
+							<div class="demo-container">
+								<div data-timeline data-timeline-direction="vertical" data-timeline-alternate="true">
+									<div data-timeline-item data-timeline-date="2019" data-timeline-icon="&#x1F4A1;">
+										<h3>The Idea</h3>
+										<p>We needed a lightweight component library that worked without frameworks or dependencies. Nothing on the market quite fitted, so we started building one.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="2020" data-timeline-icon="&#x1F527;">
+										<h3>Early Prototypes</h3>
+										<p>The first components took shape: accordion, tabs, slider. Rough around the edges, but they worked. Pure vanilla JS from day one.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="2021" data-timeline-icon="&#x1F680;">
+										<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop" alt="Launch day" data-timeline-image>
+										<h3>Public Launch</h3>
+										<p>Version 1.0 went live on GitHub. Ten components, full documentation, and zero dependencies.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="2022" data-timeline-icon="&#x1F465;">
+										<h3>Community Growth</h3>
+										<p>Contributors started submitting pull requests. The library grew to 15 components with proper accessibility support across every one.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="2023" data-timeline-icon="&#x1F3A8;">
+										<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop" alt="Design system" data-timeline-image>
+										<h3>Design System</h3>
+										<p>CSS custom properties replaced the old variable system, making theming as easy as changing a few values in your stylesheet.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="2024" data-timeline-icon="&#x2B50;">
+										<h3>Version 2.0</h3>
+										<p>A complete rewrite with improved auto-initialisation, better event handling, and a proper destroy pattern for single-page apps.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Vertical Single Column -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Vertical Single Column</h3>
+							<p>A simpler layout with all items on one side. Good for tighter spaces or when the content needs a more linear reading flow.</p>
+
+							<div class="demo-container">
+								<div data-timeline data-timeline-direction="vertical" data-timeline-alternate="false">
+									<div data-timeline-item data-timeline-date="Phase 1">
+										<h3>Research and Discovery</h3>
+										<p>Interviews, surveys, competitor analysis. Understanding the problem before writing a single line of code.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Phase 2">
+										<h3>Design and Prototyping</h3>
+										<p>Wireframes, interactive prototypes, usability testing. Iterate until the design feels right.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Phase 3">
+										<h3>Development</h3>
+										<p>Build it properly. Clean code, tested thoroughly, accessible by default.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Phase 4">
+										<h3>Launch and Review</h3>
+										<p>Ship it, measure it, learn from it. Then start planning the next iteration.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Horizontal -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Horizontal Process Flow</h3>
+							<p>Items snap to the centre as you scroll or use the arrows. The active item highlights while others dim. A content panel below shows the full details for the centred item. On mobile, it falls back to a vertical layout with content inline.</p>
+
+							<div class="demo-container">
+								<div data-timeline data-timeline-direction="horizontal">
+									<div data-timeline-item data-timeline-date="Step 1" data-timeline-icon="1" data-timeline-intro="Define the project scope">
+										<h3>Brief</h3>
+										<p>Sit down with stakeholders and nail down what the project actually needs to achieve. Define the scope, goals, constraints, budget, and timeline. Get it in writing before anyone touches a keyboard.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Step 2" data-timeline-icon="2" data-timeline-intro="Understand the audience">
+										<h3>Research</h3>
+										<p>Talk to users. Run surveys, conduct interviews, and dig into analytics. Map out competitor products and identify gaps. The more you understand the problem now, the less you'll have to fix later.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Step 3" data-timeline-icon="3" data-timeline-intro="Sketch out the structure">
+										<h3>Wireframe</h3>
+										<img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=500&h=220&fit=crop" alt="Wireframing process" data-timeline-image>
+										<p>Low-fidelity sketches and wireframes to establish the page structure and user flow. Test these with real people before moving to high-fidelity designs. Cheap to change at this stage, expensive later.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Step 4" data-timeline-icon="4" data-timeline-intro="Create the visual language">
+										<h3>Design</h3>
+										<p>High-fidelity mockups, a consistent design system, typography choices, and colour palettes. Every pixel matters. Create a component library so the development team has clear references for every element.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Step 5" data-timeline-icon="5" data-timeline-intro="Write clean, tested code">
+										<h3>Build</h3>
+										<img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=220&fit=crop" alt="Code on screen" data-timeline-image>
+										<p>Write the code. Follow coding standards, write tests as you go, and keep the codebase clean. Regular code reviews catch issues early. Ship incremental builds to staging for ongoing QA.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="Step 6" data-timeline-icon="6" data-timeline-intro="Ship it and iterate">
+										<h3>Launch</h3>
+										<p>Deploy to production, set up monitoring, and watch the metrics. Gather user feedback, track performance, and plan the first round of improvements. A launch is the start, not the finish line.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Mixed Dated/Undated -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Mixed Content (Dated and Undated)</h3>
+							<p>Not every event needs a date. Items without a <code>data-timeline-date</code> attribute simply skip the date badge, keeping things clean.</p>
+
+							<div class="demo-container">
+								<div data-timeline data-timeline-direction="vertical" data-timeline-alternate="true">
+									<div data-timeline-item data-timeline-date="January 2024" data-timeline-icon="&#x1F4DD;">
+										<h3>Project Kickoff</h3>
+										<p>Assembled the team, set up the repository, and agreed on coding standards.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-icon="&#x2714;">
+										<h3>Environment Setup</h3>
+										<p>Local dev environments configured, CI pipeline running, staging server deployed.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="March 2024" data-timeline-icon="&#x1F3D7;">
+										<h3>MVP Complete</h3>
+										<p>Core features working end-to-end. Rough around the edges but functional.</p>
+									</div>
+
+									<div data-timeline-item>
+										<h3>Bug Fixes and Polish</h3>
+										<p>Two weeks of squashing bugs, improving performance, and tidying up the UI.</p>
+									</div>
+
+									<div data-timeline-item data-timeline-date="May 2024" data-timeline-icon="&#x1F389;">
+										<h3>Public Beta</h3>
+										<p>Opened the doors to early users. Feedback was overwhelmingly positive.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#8597;</div>
+								<h3>Dual Layout</h3>
+								<p>Vertical or horizontal, set with a single data attribute. The horizontal layout scrolls with navigation arrows.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#8644;</div>
+								<h3>Alternating</h3>
+								<p>Vertical timelines can alternate items left and right of the centre line. Collapses to single column on mobile.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9673;</div>
+								<h3>Scroll Reveal</h3>
+								<p>Vertical items animate in via the Animation component. Horizontal items reveal with a staggered entrance, then snap-scroll with active highlighting.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#9733;</div>
+								<h3>Custom Markers</h3>
+								<p>Each point on the line can show an emoji, number, or text. Leave it blank for a simple dot.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#128247;</div>
+								<h3>Media Support</h3>
+								<p>Cards can include images alongside titles and descriptions. Dates are optional too.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#9881;</div>
+								<h3>Themeable</h3>
+								<p>Full CSS custom property control over colours, sizes, spacing, and shadows. Match any design system.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Container Attributes</h3>
+							<p>Set these on the main timeline wrapper element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-timeline</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the timeline component</td>
+									</tr>
+									<tr>
+										<td><code>data-timeline-direction</code></td>
+										<td><code>vertical</code> / <code>horizontal</code></td>
+										<td><code>vertical</code></td>
+										<td>Layout direction. Horizontal falls back to vertical on mobile</td>
+									</tr>
+									<tr>
+										<td><code>data-timeline-alternate</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Alternate items left/right on vertical desktop layouts</td>
+									</tr>
+									<tr>
+										<td><code>data-timeline-animation-offset</code></td>
+										<td>Integer (px)</td>
+										<td><code>100</code></td>
+										<td>Scroll offset before items animate (horizontal only; vertical uses the Animation component)</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Item Attributes</h3>
+							<p>Set these on each timeline entry:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Element</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-timeline-item</code></td>
+										<td>Item wrapper</td>
+										<td>Marks an element as a timeline entry (required)</td>
+									</tr>
+									<tr>
+										<td><code>data-timeline-date</code></td>
+										<td>Item wrapper</td>
+										<td>Date or label text shown as a badge. Omit for undated items</td>
+									</tr>
+									<tr>
+										<td><code>data-timeline-icon</code></td>
+										<td>Item wrapper</td>
+										<td>Custom content for the marker on the line (emoji, number, text). Omit for a plain dot</td>
+									</tr>
+									<tr>
+										<td><code>data-timeline-intro</code></td>
+										<td>Item wrapper</td>
+										<td>Short intro text shown on horizontal cards. Full content appears in the panel below when active</td>
+									</tr>
+									<tr>
+										<td><code>data-timeline-image</code></td>
+										<td><code>&lt;img&gt;</code></td>
+										<td>Marks an image inside the item for card display</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Vertical Timeline</div>
+								<div data-accordion-content>
+									<div>
+										<p>The simplest setup. Add <code>data-timeline</code> to a container and <code>data-timeline-item</code> to each entry:</p>
+										<pre><code>&lt;div data-timeline&gt;
+  &lt;div data-timeline-item data-timeline-date="2024"&gt;
+    &lt;h3&gt;Event Title&lt;/h3&gt;
+    &lt;p&gt;Description of what happened.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div data-timeline-item data-timeline-date="2025"&gt;
+    &lt;h3&gt;Another Event&lt;/h3&gt;
+    &lt;p&gt;More details here.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Horizontal Process Flow</div>
+								<div data-accordion-content>
+									<div>
+										<p>Set <code>data-timeline-direction="horizontal"</code> for a snap-to-centre layout with a content panel below. Use <code>data-timeline-intro</code> for short text on the card:</p>
+										<pre><code>&lt;div data-timeline data-timeline-direction="horizontal"&gt;
+  &lt;div data-timeline-item data-timeline-date="Step 1" data-timeline-intro="Short intro"&gt;
+    &lt;h3&gt;Research&lt;/h3&gt;
+    &lt;p&gt;Full description shown in the panel below when active.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div data-timeline-item data-timeline-date="Step 2" data-timeline-intro="Another intro"&gt;
+    &lt;h3&gt;Design&lt;/h3&gt;
+    &lt;p&gt;Detailed content for the panel.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Items with Images</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add <code>data-timeline-image</code> to any <code>&lt;img&gt;</code> inside an item:</p>
+										<pre><code>&lt;div data-timeline-item data-timeline-date="2023"&gt;
+  &lt;img src="photo.jpg" alt="Description" data-timeline-image&gt;
+  &lt;h3&gt;Event with Photo&lt;/h3&gt;
+  &lt;p&gt;The image appears at the top of the card.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling with CSS Variables</div>
+								<div data-accordion-content>
+									<div>
+										<p>Override the defaults to match your design:</p>
+										<pre><code>:root {
+  --battersea-timeline-line-color: #e0e0e0;
+  --battersea-timeline-marker-bg: #ff6b6b;
+  --battersea-timeline-card-bg: #f8f9fa;
+  --battersea-timeline-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --battersea-timeline-date-bg: #ff6b6b;
+  --battersea-timeline-card-radius: 12px;
+  --battersea-timeline-gap: 60px;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>The component dispatches custom events you can listen for:</p>
+										<pre><code>const timeline = document.querySelector('[data-timeline]');
+
+// Fires when the component is ready
+timeline.addEventListener('battersea:timelineReady', (e) =&gt; {
+  console.log('Direction:', e.detail.direction);
+  console.log('Items:', e.detail.itemCount);
+});
+
+// Fires when a horizontal item becomes active (centred)
+timeline.addEventListener('battersea:timelineItemActive', (e) =&gt; {
+  console.log('Active item', e.detail.index);
+});
+
+// Fires when horizontal arrows are clicked
+timeline.addEventListener('battersea:timelineScroll', (e) =&gt; {
+  console.log('Scrolled:', e.detail.direction);
+});</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9000;</div>
+								<h3>Keyboard Navigation</h3>
+								<p>Horizontal timelines support arrow key navigation. Navigation buttons have proper aria-labels.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">[ ]</div>
+								<h3>Focus Indicators</h3>
+								<p>Visible focus outlines on all interactive elements for keyboard users.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">SR</div>
+								<h3>Screen Reader Support</h3>
+								<p>Semantic HTML structure with headings and paragraphs inside cards.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#x1F4F1;</div>
+								<h3>Responsive</h3>
+								<p>All layouts gracefully collapse to single-column on mobile devices.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses the Animation component for vertical scroll-reveal and IntersectionObserver for horizontal
+							entrance. Older browsers that lack support will show all items immediately.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-timeline.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			// Load all includes when DOM is ready
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>
