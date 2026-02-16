@@ -57,9 +57,9 @@
 - [x] DragDrop - Reorderable items, move things from one container to another and remember what choices were made so they can be displayed on another page (v2.11.0)
 - [x] Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers (v2.12.0)
 - [x] DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export (v2.13.0)
+- [ ] Json file - Auto creation and update of a Json file of the site's primary navigation - core component
 - [ ] Graphing - Animated suite of graphs. Highly configrable and customised styling
 - [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer
-- [ ] Json file - Auto creation and update of a Json file of the site navigation - core component
 
 ---
 
