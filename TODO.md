@@ -26,10 +26,6 @@
 - [x] **Fix Header logo warning** - Dynamic logo detection via MutationObserver
 - [x] **Add mobile menu to Header** - Full-screen overlay with drill-down sub-navigation panels (v2.3.0)
 - [x] **Clean up Project Files** - Removed demos/ folder, backup LESS, unused CSS, outdated docs, .DS_Store files; gitignored compiled CSS; untracked local-only files
-
-### 🔨 In Progress
-
-### 📋 Next Up
 - [x] **VerticalNav Component** - Sidebar navigation with simple, collapsible, flyout, hover-to-expand, off-canvas panel (v2.5.0 - v2.5.2)
 - [x] **ImageGallery** - Lightbox with thumbnails (v2.4.0)
 - [x] **Accessibility Component** - Font size adjustment tool with dropdown slider in pre-header (v2.6.0)
@@ -58,10 +54,20 @@
 - [x] Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers (v2.12.0)
 - [x] DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export (v2.13.0)
 - [x] NavData service - Auto-generated JSON navigation data from the primary menu DOM (v2.14.0)
+
+### 🔨 In Progress
+
+### 📋 Next Up
+- [ ] FormValidation - Real-time form validation
+- [ ] Breadcrumbs - Navigation breadcrumb trail using DOM
+- [ ] Level 1 page naviagation - Page navigation using DOM
+- [ ] Level 2 sub menu naviagation - Page navigation using DOM
 - [ ] Graphing - Animated suite of graphs. Highly configrable and customised styling
-- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer
-- [ ] Transparent header - Seeting that makes the the haders background transparent until it sticks to the top of the browser windeo when it's balcgroins fades in. The initial header tansparents means the forst section woild be visible beneath the header.
-- [ ] Background looping video - the ability to have a looking video as a section/div background.
+- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer.
+- [ ] Transparent header - Seeting that makes the the headers background transparent until it sticks to the top of the browser windeo when it's background fades in. Its transparency return when the user scrolls black to the top of the site.The initial header transparency means the first section needs to be be visible beneath the header.
+- [ ] Background looping video - the ability to have a looping video as a section/div background.
+- [ ] Back to top button - A button fades in as you scroll down the pag clicking it takes you to the top of the page.
+
 
 ---
 
@@ -107,14 +113,7 @@
 ## 🚀 Future Features (v2.3+)
 
 ### Planned Components
-- [ ] Json file - Auto creation and update of a Json file of the site navigation
-- [ ] Breadcrumbs - Navigation breadcrumb trail using a Json file
-- [ ] Level 1 - Page navigation using a Json file
-- [ ] Level 2 - Page navigation using a Json file
-- [ ] Page navigation using a Json file
-- [ ] FormValidation - Real-time form validation
-- [ ] Transaprent header option - First section visible uner the header. On scroll the header background returns
-- [ ] Background video - allow a section to have a backgroind video
+
 
 ### Infrastructure
 - [ ] Set up automated LESS compilation
