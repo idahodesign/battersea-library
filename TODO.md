@@ -57,9 +57,11 @@
 - [x] DragDrop - Reorderable items, move things from one container to another and remember what choices were made so they can be displayed on another page (v2.11.0)
 - [x] Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers (v2.12.0)
 - [x] DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export (v2.13.0)
-- [ ] Json file - Auto creation and update of a Json file of the site's primary navigation - core component
+- [x] NavData service - Auto-generated JSON navigation data from the primary menu DOM, with validation against static /data/nav.json (v2.14.0)
 - [ ] Graphing - Animated suite of graphs. Highly configrable and customised styling
 - [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer
+- [ ] Transparent header - Seeting that makes the the haders background transparent until it sticks to the top of the browser windeo when it's balcgroins fades in. The initial header tansparents means the forst section woild be visible beneath the header.
+- [ ] Background looping video - the ability to have a looking video as a section/div background.
 
 ---
 

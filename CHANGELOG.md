@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.14.0] - 2026-02-16
+
+### Added
+- **NavData Service** -- Core navigation data service that parses the primary navigation DOM and builds a structured JSON data model
+  - Self-initialising service that watches for the nav DOM to appear via MutationObserver
+  - Hierarchical `items` array mirroring the nav structure (categories with children)
+  - Flat ordered list of all navigable pages for sequential navigation
+  - Pre-computed sequential references: global prev/next, within-category prev/next, category-level prev/next
+  - Fast key-based lookup for any page by its `data-nav-link` key
+  - URL matching with path normalisation for multi-host support (GitHub Pages, Uundi, localhost)
+  - API methods: `getCurrentPage()`, `getPageByKey()`, `getSiblings()`, `getCategory()`, `getNextPage()`, `getPrevPage()`, `getNextInCategory()`, `getPrevInCategory()`, `getNextCategory()`, `getPrevCategory()`, `getBreadcrumb()`, `getData()`
+  - Custom event `battersea:navdata-ready` fired when data is available
+  - Validation against static `/data/nav.json` with console warnings if out of sync
+  - Foundation for upcoming Breadcrumbs, PageNav, and sequential navigation components
+- **Static navigation reference** -- `/data/nav.json` with full hierarchical and flat navigation data for documentation and validation
+
+---
+
 ## [2.13.0] - 2026-02-16
 
 ### Added
