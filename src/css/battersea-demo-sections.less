@@ -105,16 +105,45 @@
 
 .showcase-section {
 	& .section-box {
+		.component-category-title {
+			font-size: 1.4rem;
+			font-weight: 600;
+			color: @white;
+			margin: 3rem 0 0.5rem;
+			padding-bottom: 0.75rem;
+			border-bottom: 2px solid rgba(@white, 0.3);
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			font-size: 0.95rem;
+
+			&:first-of-type {
+				margin-top: 2rem;
+			}
+		}
+
 		.component-grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 			gap: 2rem;
-			margin-top: 2rem;
+			margin-top: 1rem;
 		}
-		
+
 		.component-card {
 		    display: grid;
 			grid-template-rows: auto 1fr auto;
+			text-decoration: none;
+			cursor: pointer;
+			transition: all 0.3s ease;
+
+			&:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+				.component-link {
+					background: rgba(@white, 0.85);
+				}
+			}
+
 			.component-preview {
 				background: linear-gradient(to bottom, rgba(255,255,255,0.4) 15%,rgba(255,255,255,0.6) 70%);
 				height: 200px;
@@ -125,24 +154,40 @@
 				color: @text-color;
 				border-bottom: 1px solid rgba(@black, 0.3);
 			}
-			
+
 			.component-info {
 				border-top: 1px solid rgba(@white, 0.75);
 				padding: 1.5rem;
 				background: rgba(@white, 0.50);
 				border-bottom: 1px solid rgba(@black, 0.3);
+				position: relative;
+
 				h3 {
 					color: @text-color;
 					margin-bottom: 0.5rem;
 					font-size: 1.3rem;
 				}
-				
+
 				p {
 					color:  rgba(@text-light, 0.75);
 					margin-bottom: 1rem;
 					font-size: 0.95rem;
 				}
 			}
+
+			.component-badge {
+				display: inline-block;
+				background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+				color: @white;
+				font-size: 0.7rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				padding: 0.2em 0.6em;
+				border-radius: 3px;
+				margin-bottom: 0.5rem;
+			}
+
 			& .component-link {
 				text-align: center;
 				padding: 0.75rem 1.5rem;
@@ -155,10 +200,24 @@
 				font-size: 0.9rem;
 				display: block;
 				text-transform: uppercase;
-				&:hover {
-					background: rgba(@white, 0.85);
-				}
 			}
+		}
+	}
+}
+
+// ============================================
+// CLOSING CTA SECTION
+// ============================================
+
+.cta-section {
+	& .section-box {
+		background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+		text-align: center;
+		padding: 5rem 2rem;
+
+		.section-subtitle {
+			max-width: 600px;
+			margin: 0 auto 2rem;
 		}
 	}
 }
@@ -728,9 +787,16 @@
 		border-radius: 6px 6px 0 0;
 		cursor: pointer;
 		font-weight: 600;
-		
+
 		&:hover {
 			background: @secondary-color;
+		}
+
+		.toggle-customizer-icon {
+			display: inline-block;
+			font-size: 0.7em;
+			margin-right: 0.25em;
+			transition: transform 0.3s ease;
 		}
 	}
 	

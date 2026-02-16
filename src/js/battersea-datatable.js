@@ -5,23 +5,28 @@
  * Sortable, filterable tables with pagination, column resizing,
  * row selection, and CSV export.
  *
- * Supports two data sources:
+ * Supports four data sources:
  * 1. Existing HTML <table> — component enhances it
- * 2. JSON data via data-table-data attribute — component builds the table
+ * 2. Inline JSON via data-table-data attribute — component builds the table
+ * 3. JSON file URL via data-table-data attribute — component fetches and builds the table
+ * 4. CSV file via data-table-csv attribute — component fetches and builds the table
  *
  * Usage (HTML table):
- * <div data-table data-table-sortable="true" data-table-filterable="true" data-table-page-size="10">
+ * <div data-table data-table-sortable="true">
  *   <table>
  *     <thead><tr><th>Name</th><th data-column-type="number">Age</th></tr></thead>
  *     <tbody><tr><td>Alice</td><td>30</td></tr></tbody>
  *   </table>
  * </div>
  *
- * Usage (JSON):
- * <div data-table
- *   data-table-data='[{"name":"Alice","age":30}]'
- *   data-table-columns='[{"key":"name","label":"Name"},{"key":"age","label":"Age","type":"number"}]'>
- * </div>
+ * Usage (inline JSON):
+ * <div data-table data-table-data='[{"name":"Alice","age":30}]'></div>
+ *
+ * Usage (JSON file):
+ * <div data-table data-table-data="data/inventory.json"></div>
+ *
+ * Usage (CSV file):
+ * <div data-table data-table-csv="data/employees.csv"></div>
  *
  * Dependencies: battersea-utils.js, battersea-core.js
  */
@@ -90,8 +95,25 @@
     }
 
     init() {
-      this.parseDataSource();
+      var csvUrl = Utils.getData(this.el, 'table-csv');
 
+      if (csvUrl) {
+        this.loadCSV(csvUrl);
+        return;
+      }
+
+      // Check if data-table-data looks like a URL rather than inline JSON
+      var jsonValue = Utils.getData(this.el, 'table-data');
+      if (jsonValue && jsonValue.charAt(0) !== '[' && jsonValue.charAt(0) !== '{') {
+        this.loadJSON(jsonValue);
+        return;
+      }
+
+      this.parseDataSource();
+      this.finishInit();
+    }
+
+    finishInit() {
       if (this.columns.length === 0 || this.originalData.length === 0) {
         console.warn('DataTable: No data or columns found');
         return;
@@ -173,6 +195,172 @@
             type: this.inferType(firstRow[key]),
             sortable: true
           };
+        }.bind(this));
+      }
+    }
+
+    loadJSON(url) {
+      var self = this;
+      fetch(url)
+        .then(function(response) {
+          if (!response.ok) {
+            throw new Error('Failed to load JSON: ' + response.status);
+          }
+          return response.json();
+        })
+        .then(function(data) {
+          self.originalData = data;
+
+          var columnsStr = Utils.getData(self.el, 'table-columns');
+          if (columnsStr) {
+            try {
+              self.columns = JSON.parse(columnsStr);
+            } catch (e) {
+              console.error('DataTable: Invalid JSON columns', e);
+            }
+          }
+
+          // Auto-detect columns from first row
+          if (self.columns.length === 0 && self.originalData.length > 0) {
+            var firstRow = self.originalData[0];
+            self.columns = Object.keys(firstRow).map(function(key) {
+              return {
+                key: key,
+                label: key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1'),
+                type: self.inferType(firstRow[key]),
+                sortable: true
+              };
+            });
+          }
+
+          self.finishInit();
+        })
+        .catch(function(err) {
+          console.error('DataTable: ' + err.message);
+        });
+    }
+
+    loadCSV(url) {
+      var self = this;
+      fetch(url)
+        .then(function(response) {
+          if (!response.ok) {
+            throw new Error('Failed to load CSV: ' + response.status);
+          }
+          return response.text();
+        })
+        .then(function(text) {
+          self.parseCSVString(text);
+          self.finishInit();
+        })
+        .catch(function(err) {
+          console.error('DataTable: ' + err.message);
+        });
+    }
+
+    parseCSVString(text) {
+      var lines = [];
+      var current = '';
+      var inQuotes = false;
+
+      // Parse respecting quoted fields that may contain commas or newlines
+      for (var i = 0; i < text.length; i++) {
+        var ch = text[i];
+
+        if (inQuotes) {
+          if (ch === '"') {
+            if (i + 1 < text.length && text[i + 1] === '"') {
+              current += '"';
+              i++;
+            } else {
+              inQuotes = false;
+            }
+          } else {
+            current += ch;
+          }
+        } else {
+          if (ch === '"') {
+            inQuotes = true;
+          } else if (ch === '\n' || (ch === '\r' && text[i + 1] === '\n')) {
+            lines.push(current);
+            current = '';
+            if (ch === '\r') i++;
+          } else {
+            current += ch;
+          }
+        }
+      }
+      if (current.length > 0) {
+        lines.push(current);
+      }
+
+      if (lines.length < 2) {
+        console.warn('DataTable: CSV has no data rows');
+        return;
+      }
+
+      // Split each line into fields
+      var splitLine = function(line) {
+        var fields = [];
+        var field = '';
+        var q = false;
+        for (var j = 0; j < line.length; j++) {
+          var c = line[j];
+          if (q) {
+            if (c === '"') {
+              if (j + 1 < line.length && line[j + 1] === '"') {
+                field += '"';
+                j++;
+              } else {
+                q = false;
+              }
+            } else {
+              field += c;
+            }
+          } else {
+            if (c === '"') {
+              q = true;
+            } else if (c === ',') {
+              fields.push(field.trim());
+              field = '';
+            } else {
+              field += c;
+            }
+          }
+        }
+        fields.push(field.trim());
+        return fields;
+      };
+
+      // First line is headers
+      var headers = splitLine(lines[0]);
+      this.columns = headers.map(function(header, i) {
+        var key = header.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'col' + i;
+        return {
+          key: key,
+          label: header,
+          type: 'string',
+          sortable: true
+        };
+      });
+
+      // Remaining lines are data
+      this.originalData = [];
+      for (var r = 1; r < lines.length; r++) {
+        var fields = splitLine(lines[r]);
+        if (fields.length === 0 || (fields.length === 1 && fields[0] === '')) continue;
+        var row = {};
+        this.columns.forEach(function(col, ci) {
+          row[col.key] = fields[ci] !== undefined ? fields[ci] : '';
+        });
+        this.originalData.push(row);
+      }
+
+      // Infer types from first data row
+      if (this.originalData.length > 0) {
+        var firstRow = this.originalData[0];
+        this.columns.forEach(function(col) {
+          col.type = this.inferType(firstRow[col.key]);
         }.bind(this));
       }
     }

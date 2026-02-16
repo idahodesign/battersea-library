@@ -162,7 +162,39 @@
 							</div>
 						</div>
 
-						<!-- Demo 4: Full-Featured -->
+						<!-- Demo 4: JSON File Source -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>JSON File Source</h3>
+							<p>Point <code>data-table-data</code> at a JSON file URL instead of inline JSON. The component fetches and builds the table automatically.</p>
+
+							<div class="demo-container">
+								<div data-table
+									data-table-data="../data/inventory.json"
+									data-table-sortable="true"
+									data-table-filterable="true"
+									data-table-page-size="7"
+									data-table-striped="true">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 5: CSV File Source -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>CSV File Source</h3>
+							<p>Point the component at a CSV file and it fetches, parses and builds the table automatically. The first row is used as column headers.</p>
+
+							<div class="demo-container">
+								<div data-table
+									data-table-csv="../data/team.csv"
+									data-table-sortable="true"
+									data-table-filterable="true"
+									data-table-page-size="6"
+									data-table-striped="true">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 6: Full-Featured -->
 						<div class="demo-subsection delay-3" data-animate="fade-up">
 							<h3>Full-Featured Table</h3>
 							<p>All features enabled: sorting, filtering, pagination, column resizing, row selection and CSV export. Drag column borders to resize. Select rows with checkboxes and export filtered data as CSV.</p>
@@ -335,10 +367,16 @@
 										<td>Alternating row background colours</td>
 									</tr>
 									<tr>
-										<td><code>data-table-data</code></td>
-										<td>JSON array</td>
+										<td><code>data-table-csv</code></td>
+										<td>URL</td>
 										<td>-</td>
-										<td>Data source as JSON (alternative to HTML table)</td>
+										<td>Path to a CSV file. The first row is used as column headers</td>
+									</tr>
+									<tr>
+										<td><code>data-table-data</code></td>
+										<td>JSON array or URL</td>
+										<td>-</td>
+										<td>Inline JSON array, or a URL to a JSON file</td>
 									</tr>
 									<tr>
 										<td><code>data-table-columns</code></td>
@@ -476,6 +514,36 @@
     {"name":"Alice","age":30},
     {"name":"Bob","age":25}
   ]'&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>JSON File Source</div>
+								<div data-accordion-content>
+									<div>
+										<p>Point <code>data-table-data</code> at a URL instead of inline JSON:</p>
+										<pre><code>&lt;div data-table
+  data-table-data="data/inventory.json"
+  data-table-sortable="true"
+  data-table-filterable="true"
+  data-table-page-size="10"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>CSV File Source</div>
+								<div data-accordion-content>
+									<div>
+										<p>Point the component at a CSV file. The first row is treated as column headers:</p>
+										<pre><code>&lt;div data-table
+  data-table-csv="data/team.csv"
+  data-table-sortable="true"
+  data-table-filterable="true"
+  data-table-page-size="10"&gt;
 &lt;/div&gt;</code></pre>
 									</div>
 								</div>
