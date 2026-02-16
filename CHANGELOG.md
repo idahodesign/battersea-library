@@ -19,9 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - URL matching with path normalisation for multi-host support (GitHub Pages, Uundi, localhost)
   - API methods: `getCurrentPage()`, `getPageByKey()`, `getSiblings()`, `getCategory()`, `getNextPage()`, `getPrevPage()`, `getNextInCategory()`, `getPrevInCategory()`, `getNextCategory()`, `getPrevCategory()`, `getBreadcrumb()`, `getData()`
   - Custom event `battersea:navdata-ready` fired when data is available
-  - Validation against static `/data/nav.json` with console warnings if out of sync
   - Foundation for upcoming Breadcrumbs, PageNav, and sequential navigation components
-- **Static navigation reference** -- `/data/nav.json` with full hierarchical and flat navigation data for documentation and validation
 
 ---
 

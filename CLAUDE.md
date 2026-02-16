@@ -26,7 +26,6 @@ battersea-library/
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
 ├── docs/             # Component documentation
-├── data/             # Static data files (nav.json)
 ├── assets/           # Images and video
 ├── CLAUDE.md         # This file - Claude Code context
 ├── TODO.md           # Active task tracking
@@ -127,7 +126,7 @@ battersea-library/
 - **DragDrop v2.11.0** (Feb 2026): Reorderable lists and multi-container sorting with localStorage persistence, touch support, display mode
 - **Timeline v2.12.0** (Feb 2026): Vertical/horizontal timelines with scroll-reveal, alternating layout, date badges, icon markers
 - **DataTable v2.13.0** (Feb 2026): Sortable, filterable tables with pagination, column resizing, row selection, CSV export
-- **NavData v2.14.0** (Feb 2026): Core navigation data service parsing nav DOM into JSON with sequential refs, breadcrumbs, and validation
+- **NavData v2.14.0** (Feb 2026): Core navigation data service parsing nav DOM into JSON with sequential refs and breadcrumbs
 
 ### In Progress
 - See `TODO.md` for current tasks

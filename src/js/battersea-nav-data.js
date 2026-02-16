@@ -98,8 +98,6 @@
       }));
 
       console.log('Battersea: NavData ready (' + flat.length + ' pages)');
-
-      this.validateAgainstStatic();
     }
 
     parseNav(navEl) {
@@ -372,41 +370,6 @@
       }
 
       return crumbs;
-    }
-
-    // =========================================
-    // Validation
-    // =========================================
-
-    validateAgainstStatic() {
-      var self = this;
-      var basePath = window.BatterseaConfig ? window.BatterseaConfig.basePath : '';
-      var url = basePath + '/data/nav.json';
-
-      fetch(url)
-        .then(function(response) {
-          if (!response.ok) return null;
-          return response.json();
-        })
-        .then(function(staticData) {
-          if (!staticData || !staticData.flat) return;
-
-          var liveKeys = self.flat.map(function(p) { return p.key; });
-          var staticKeys = staticData.flat.map(function(p) { return p.key; });
-
-          var added = liveKeys.filter(function(k) { return staticKeys.indexOf(k) === -1; });
-          var removed = staticKeys.filter(function(k) { return liveKeys.indexOf(k) === -1; });
-
-          if (added.length > 0 || removed.length > 0) {
-            console.warn('[NavData] Static nav.json is out of sync with live navigation.');
-            if (added.length) console.warn('  Pages in nav but not in JSON:', added);
-            if (removed.length) console.warn('  Pages in JSON but not in nav:', removed);
-            console.warn('  Regenerate /data/nav.json to fix.');
-          }
-        })
-        .catch(function() {
-          // Static file not found — silently ignore
-        });
     }
 
     destroy() {
