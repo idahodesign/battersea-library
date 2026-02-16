@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>DataTable Component - Battersea Library</title>
+		<meta name="description" content="Sortable, filterable tables with pagination, column resizing, row selection and CSV export - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>DataTable Component</h1>
+						<p class="hero-subtitle">Sortable, filterable tables with pagination, column resizing, row selection and CSV export</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">See the DataTable component in action</p>
+
+						<!-- Demo 1: Basic Sortable Table -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Basic Sortable Table</h3>
+							<p>Click any column header to sort. The component enhances a standard HTML table with sorting capability.</p>
+
+							<div class="demo-container">
+								<div data-table data-table-sortable="true" data-table-striped="true">
+									<table>
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Department</th>
+												<th>Role</th>
+												<th data-column-type="number">Experience (yrs)</th>
+												<th>Location</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td>Alice Chen</td><td>Engineering</td><td>Lead Developer</td><td>8</td><td>London</td></tr>
+											<tr><td>Marcus Johnson</td><td>Design</td><td>UX Designer</td><td>5</td><td>Manchester</td></tr>
+											<tr><td>Sarah Williams</td><td>Engineering</td><td>Backend Developer</td><td>3</td><td>Bristol</td></tr>
+											<tr><td>David Park</td><td>Marketing</td><td>Content Manager</td><td>6</td><td>London</td></tr>
+											<tr><td>Emma Thompson</td><td>Engineering</td><td>Frontend Developer</td><td>4</td><td>Edinburgh</td></tr>
+											<tr><td>James Wilson</td><td>Design</td><td>Visual Designer</td><td>7</td><td>London</td></tr>
+											<tr><td>Olivia Brown</td><td>Marketing</td><td>SEO Specialist</td><td>2</td><td>Leeds</td></tr>
+											<tr><td>William Taylor</td><td>Engineering</td><td>DevOps Engineer</td><td>9</td><td>Glasgow</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 2: Filtered + Paginated -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Filtered and Paginated</h3>
+							<p>Type in the search box to filter across all columns. Results are paginated at 5 rows per page.</p>
+
+							<div class="demo-container">
+								<div data-table data-table-sortable="true" data-table-filterable="true" data-table-page-size="5" data-table-striped="true">
+									<table>
+										<thead>
+											<tr>
+												<th>Product</th>
+												<th>Category</th>
+												<th data-column-type="number">Price</th>
+												<th data-column-type="number">Stock</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td>Wireless Keyboard</td><td>Electronics</td><td>49.99</td><td>142</td><td>In Stock</td></tr>
+											<tr><td>Standing Desk</td><td>Furniture</td><td>399.00</td><td>28</td><td>In Stock</td></tr>
+											<tr><td>USB-C Hub</td><td>Electronics</td><td>34.99</td><td>0</td><td>Out of Stock</td></tr>
+											<tr><td>Monitor Arm</td><td>Furniture</td><td>89.99</td><td>65</td><td>In Stock</td></tr>
+											<tr><td>Webcam HD</td><td>Electronics</td><td>59.99</td><td>91</td><td>In Stock</td></tr>
+											<tr><td>Desk Lamp</td><td>Lighting</td><td>29.99</td><td>203</td><td>In Stock</td></tr>
+											<tr><td>Ergonomic Chair</td><td>Furniture</td><td>549.00</td><td>12</td><td>Low Stock</td></tr>
+											<tr><td>Mechanical Keyboard</td><td>Electronics</td><td>129.99</td><td>47</td><td>In Stock</td></tr>
+											<tr><td>Cable Tidy</td><td>Accessories</td><td>12.99</td><td>310</td><td>In Stock</td></tr>
+											<tr><td>Mouse Pad XL</td><td>Accessories</td><td>19.99</td><td>188</td><td>In Stock</td></tr>
+											<tr><td>Noise-Cancelling Headphones</td><td>Electronics</td><td>199.99</td><td>34</td><td>In Stock</td></tr>
+											<tr><td>Footrest</td><td>Furniture</td><td>44.99</td><td>56</td><td>In Stock</td></tr>
+											<tr><td>Screen Protector</td><td>Accessories</td><td>9.99</td><td>0</td><td>Out of Stock</td></tr>
+											<tr><td>Laptop Stand</td><td>Furniture</td><td>39.99</td><td>73</td><td>In Stock</td></tr>
+											<tr><td>Wireless Mouse</td><td>Electronics</td><td>24.99</td><td>156</td><td>In Stock</td></tr>
+											<tr><td>Ring Light</td><td>Lighting</td><td>34.99</td><td>41</td><td>In Stock</td></tr>
+											<tr><td>Wrist Rest</td><td>Accessories</td><td>14.99</td><td>224</td><td>In Stock</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 3: JSON Data Source -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>JSON Data Source</h3>
+							<p>This table is built entirely from JSON. No HTML table needed in the markup.</p>
+
+							<div class="demo-container">
+								<div data-table
+									data-table-sortable="true"
+									data-table-filterable="true"
+									data-table-page-size="5"
+									data-table-striped="true"
+									data-table-columns='[{"key":"task","label":"Task","type":"string"},{"key":"assignee","label":"Assigned To","type":"string"},{"key":"priority","label":"Priority","type":"string"},{"key":"status","label":"Status","type":"string"},{"key":"due","label":"Due Date","type":"date"}]'
+									data-table-data='[{"task":"Redesign homepage","assignee":"Alice Chen","priority":"High","status":"In Progress","due":"2026-03-01"},{"task":"Fix login bug","assignee":"Sarah Williams","priority":"Critical","status":"In Progress","due":"2026-02-18"},{"task":"Write API docs","assignee":"David Park","priority":"Medium","status":"Not Started","due":"2026-03-15"},{"task":"Database migration","assignee":"William Taylor","priority":"High","status":"Complete","due":"2026-02-10"},{"task":"User testing round 2","assignee":"Marcus Johnson","priority":"Medium","status":"Not Started","due":"2026-03-20"},{"task":"Deploy staging build","assignee":"William Taylor","priority":"High","status":"Complete","due":"2026-02-12"},{"task":"Update brand colours","assignee":"James Wilson","priority":"Low","status":"Not Started","due":"2026-04-01"},{"task":"SEO audit","assignee":"Olivia Brown","priority":"Medium","status":"In Progress","due":"2026-03-10"},{"task":"Mobile nav overhaul","assignee":"Emma Thompson","priority":"High","status":"In Progress","due":"2026-02-28"},{"task":"Content migration","assignee":"David Park","priority":"Low","status":"Not Started","due":"2026-04-15"},{"task":"Performance profiling","assignee":"Alice Chen","priority":"Medium","status":"Not Started","due":"2026-03-25"},{"task":"Accessibility audit","assignee":"Marcus Johnson","priority":"High","status":"Not Started","due":"2026-03-05"}]'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 4: Full-Featured -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Full-Featured Table</h3>
+							<p>All features enabled: sorting, filtering, pagination, column resizing, row selection and CSV export. Drag column borders to resize. Select rows with checkboxes and export filtered data as CSV.</p>
+
+							<div class="demo-container">
+								<div data-table
+									data-table-sortable="true"
+									data-table-filterable="true"
+									data-table-page-size="6"
+									data-table-selectable="true"
+									data-table-resizable="true"
+									data-table-exportable="true"
+									data-table-striped="true">
+									<table>
+										<thead>
+											<tr>
+												<th data-column-key="id" data-column-type="number" style="width:60px">ID</th>
+												<th data-column-key="name">Client Name</th>
+												<th data-column-key="project">Project</th>
+												<th data-column-key="value" data-column-type="number">Value</th>
+												<th data-column-key="status">Status</th>
+												<th data-column-key="date" data-column-type="date">Start Date</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td>1</td><td>Riverside Studios</td><td>Website Redesign</td><td>12500</td><td>Active</td><td>2026-01-15</td></tr>
+											<tr><td>2</td><td>Northern Rail</td><td>Booking System</td><td>45000</td><td>Active</td><td>2025-11-01</td></tr>
+											<tr><td>3</td><td>Camden Arts</td><td>Event Platform</td><td>8200</td><td>Complete</td><td>2025-09-20</td></tr>
+											<tr><td>4</td><td>Brixton Market</td><td>E-commerce</td><td>22000</td><td>Active</td><td>2026-02-01</td></tr>
+											<tr><td>5</td><td>Thames Water</td><td>Dashboard</td><td>35000</td><td>On Hold</td><td>2025-12-10</td></tr>
+											<tr><td>6</td><td>Hackney Council</td><td>Portal</td><td>18500</td><td>Active</td><td>2026-01-20</td></tr>
+											<tr><td>7</td><td>Soho Theatre</td><td>Ticketing</td><td>15000</td><td>Complete</td><td>2025-08-15</td></tr>
+											<tr><td>8</td><td>Greenwich Park</td><td>Mobile App</td><td>28000</td><td>Active</td><td>2026-01-05</td></tr>
+											<tr><td>9</td><td>Peckham Library</td><td>Catalogue System</td><td>9800</td><td>Complete</td><td>2025-10-01</td></tr>
+											<tr><td>10</td><td>Kew Gardens</td><td>Virtual Tours</td><td>41000</td><td>Active</td><td>2025-12-01</td></tr>
+											<tr><td>11</td><td>Dulwich Gallery</td><td>Collection Portal</td><td>16200</td><td>On Hold</td><td>2026-01-28</td></tr>
+											<tr><td>12</td><td>Battersea Power</td><td>Tenant Portal</td><td>52000</td><td>Active</td><td>2025-11-15</td></tr>
+											<tr><td>13</td><td>Oval Cricket</td><td>Membership Site</td><td>19500</td><td>Complete</td><td>2025-07-10</td></tr>
+											<tr><td>14</td><td>Borough Market</td><td>Vendor Directory</td><td>11000</td><td>Active</td><td>2026-02-10</td></tr>
+											<tr><td>15</td><td>Crystal Palace FC</td><td>Fan Zone</td><td>32000</td><td>Active</td><td>2025-12-20</td></tr>
+											<tr><td>16</td><td>Wimbledon Common</td><td>Trail Map</td><td>7500</td><td>Complete</td><td>2025-06-01</td></tr>
+											<tr><td>17</td><td>Richmond Theatre</td><td>Season Planner</td><td>13800</td><td>On Hold</td><td>2026-01-10</td></tr>
+											<tr><td>18</td><td>Clapham Grand</td><td>Events Calendar</td><td>9200</td><td>Active</td><td>2026-02-05</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#8645;</div>
+								<h3>Column Sorting</h3>
+								<p>Click any header to cycle through ascending, descending and unsorted. Supports text, number and date types.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#9906;</div>
+								<h3>Global Filter</h3>
+								<p>Type to search across every column at once. Results update as you type with a debounced input for smooth performance.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#8230;</div>
+								<h3>Pagination</h3>
+								<p>Set a page size and the table splits into pages with navigation controls, page numbers and a row count summary.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#8596;</div>
+								<h3>Column Resizing</h3>
+								<p>Drag column borders to adjust widths. Uses fixed table layout with a minimum width to keep things readable.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#9745;</div>
+								<h3>Row Selection</h3>
+								<p>Checkboxes on each row with a select-all toggle. Selection state is tracked and available through custom events.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">CSV</div>
+								<h3>CSV Export</h3>
+								<p>Export the current filtered and sorted view as a CSV file. One click download with properly escaped values.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the DataTable component using these data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-table</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the DataTable component</td>
+									</tr>
+									<tr>
+										<td><code>data-table-sortable</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Enable column sorting</td>
+									</tr>
+									<tr>
+										<td><code>data-table-filterable</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show the global search input</td>
+									</tr>
+									<tr>
+										<td><code>data-table-page-size</code></td>
+										<td>Number</td>
+										<td><code>0</code></td>
+										<td>Rows per page. Set to 0 for no pagination</td>
+									</tr>
+									<tr>
+										<td><code>data-table-selectable</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show row selection checkboxes</td>
+									</tr>
+									<tr>
+										<td><code>data-table-resizable</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Enable column resize by dragging</td>
+									</tr>
+									<tr>
+										<td><code>data-table-exportable</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show the CSV export button</td>
+									</tr>
+									<tr>
+										<td><code>data-table-striped</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Alternating row background colours</td>
+									</tr>
+									<tr>
+										<td><code>data-table-data</code></td>
+										<td>JSON array</td>
+										<td>-</td>
+										<td>Data source as JSON (alternative to HTML table)</td>
+									</tr>
+									<tr>
+										<td><code>data-table-columns</code></td>
+										<td>JSON array</td>
+										<td>auto-detect</td>
+										<td>Column definitions for JSON mode</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Column Attributes</h3>
+							<p>These attributes go on individual <code>&lt;th&gt;</code> elements:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-column-key</code></td>
+										<td>String</td>
+										<td>col0, col1...</td>
+										<td>Unique key for the column (used in JSON mode)</td>
+									</tr>
+									<tr>
+										<td><code>data-column-type</code></td>
+										<td><code>string</code> / <code>number</code> / <code>date</code></td>
+										<td><code>string</code></td>
+										<td>Data type used for sorting</td>
+									</tr>
+									<tr>
+										<td><code>data-column-sortable</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Whether this specific column can be sorted</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Custom Events</h3>
+							<p>The component fires these events on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Event</th>
+										<th>Detail</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>battersea:tableSort</code></td>
+										<td><code>{ column, direction }</code></td>
+										<td>Fired when a column is sorted</td>
+									</tr>
+									<tr>
+										<td><code>battersea:tableFilter</code></td>
+										<td><code>{ query, results }</code></td>
+										<td>Fired when the filter query changes</td>
+									</tr>
+									<tr>
+										<td><code>battersea:tablePageChange</code></td>
+										<td><code>{ page, pageSize }</code></td>
+										<td>Fired when the page changes</td>
+									</tr>
+									<tr>
+										<td><code>battersea:rowSelect</code></td>
+										<td><code>{ selectedRows, row }</code></td>
+										<td>Fired when row selection changes</td>
+									</tr>
+									<tr>
+										<td><code>battersea:tableExport</code></td>
+										<td><code>{ data, format }</code></td>
+										<td>Fired when data is exported</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic HTML Table Enhancement</div>
+								<div data-accordion-content>
+									<div>
+										<p>Write a normal HTML table and the component does the rest:</p>
+										<pre><code>&lt;div data-table data-table-sortable="true"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th data-column-type="number"&gt;Age&lt;/th&gt;
+        &lt;th&gt;City&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;30&lt;/td&gt;&lt;td&gt;London&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Bob&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;td&gt;Bristol&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>JSON Data Source</div>
+								<div data-accordion-content>
+									<div>
+										<p>Pass data as JSON attributes. Column definitions are optional; if omitted, they are auto-detected from the first row:</p>
+										<pre><code>&lt;div data-table
+  data-table-sortable="true"
+  data-table-filterable="true"
+  data-table-columns='[
+    {"key":"name","label":"Name"},
+    {"key":"age","label":"Age","type":"number"}
+  ]'
+  data-table-data='[
+    {"name":"Alice","age":30},
+    {"name":"Bob","age":25}
+  ]'&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Full-Featured Configuration</div>
+								<div data-accordion-content>
+									<div>
+										<p>Enable all features at once:</p>
+										<pre><code>&lt;div data-table
+  data-table-sortable="true"
+  data-table-filterable="true"
+  data-table-page-size="10"
+  data-table-selectable="true"
+  data-table-resizable="true"
+  data-table-exportable="true"
+  data-table-striped="true"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;...&lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>Hook into table interactions with custom events:</p>
+										<pre><code>var table = document.querySelector('[data-table]');
+
+table.addEventListener('battersea:tableSort', function(e) {
+  console.log('Sorted by:', e.detail.column);
+  console.log('Direction:', e.detail.direction);
+});
+
+table.addEventListener('battersea:rowSelect', function(e) {
+  console.log('Selected rows:', e.detail.selectedRows);
+});
+
+table.addEventListener('battersea:tableFilter', function(e) {
+  console.log('Query:', e.detail.query);
+  console.log('Matches:', e.detail.results);
+});</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling with CSS Variables</div>
+								<div data-accordion-content>
+									<div>
+										<p>Override the default look with CSS custom properties:</p>
+										<pre><code>:root {
+  --datatable-border-color: #e0e0e0;
+  --datatable-header-bg: #1a1a2e;
+  --datatable-header-color: #ffffff;
+  --datatable-row-hover-bg: #f8f9fa;
+  --datatable-row-selected-bg: #fff3cd;
+  --datatable-stripe-bg: #f5f5f5;
+  --datatable-accent-color: #e94560;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">Tab</div>
+								<h3>Keyboard Navigation</h3>
+								<p>Tab to sortable headers, Enter or Space to toggle sort direction. Tab through pagination and filter controls.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">aria</div>
+								<h3>ARIA Sort</h3>
+								<p>Sortable headers use aria-sort to announce the current sort state: none, ascending or descending.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">SR</div>
+								<h3>Live Announcements</h3>
+								<p>Sort changes and filter results are announced to screen readers via an aria-live region.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">[ ]</div>
+								<h3>Focus Indicators</h3>
+								<p>Clear focus outlines on all interactive elements for keyboard and switch-device users.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses Blob API for CSV export and CSS custom properties for theming.
+							Table scrolls horizontally on smaller screens.
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-datatable.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

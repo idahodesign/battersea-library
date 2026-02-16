@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.13.0] - 2026-02-16
+
+### Added
+- **DataTable Component** -- Sortable, filterable data tables
+  - Enhances existing HTML `<table>` elements or builds from JSON data attributes
+  - Column sorting with ascending/descending/none cycle, supports string, number and date types
+  - Global text filter across all columns with debounced input
+  - Pagination with configurable page size, page numbers, prev/next controls and row count
+  - Column resizing via draggable handles with minimum width
+  - Row selection with checkboxes and select-all toggle
+  - CSV export of the current filtered and sorted view
+  - Alternating row colours (striped mode)
+  - Responsive horizontal scroll on small screens
+  - CSS custom properties for full theming (9 variables)
+  - Custom events: `battersea:tableSort`, `battersea:tableFilter`, `battersea:tablePageChange`, `battersea:rowSelect`, `battersea:tableExport`
+  - Keyboard navigation: Tab to sortable headers, Enter/Space to sort
+  - ARIA sort attributes and live region announcements for screen readers
+- **DataTable demo page** -- `demo/components/datatable.html` with basic sortable, filtered/paginated, JSON data source, and full-featured examples
+
+---
+
 ## [2.12.0] - 2026-02-15
 
 ### Added
