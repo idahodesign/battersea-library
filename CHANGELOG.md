@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Validates on blur for non-intrusive feedback; password strength on input
   - On submit: validates all fields, scrolls to and focuses first error
   - Form reset clears all validation states and strength indicators
+  - Password visibility toggle (eye icon) on all password inputs, with accessible labels
   - Accessibility: `aria-invalid`, `aria-describedby`, `role="alert"`, `aria-live="polite"` on strength bar
   - CSS custom properties for full theming (8 variables)
   - Custom events: `battersea:fieldValid`, `battersea:fieldInvalid`, `battersea:formValid`, `battersea:formInvalid`, `battersea:formSubmitted`, `battersea:formError`

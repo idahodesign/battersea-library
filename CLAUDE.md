@@ -42,7 +42,7 @@ battersea-library/
 6. DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export
 7. DragDrop - Reorderable lists and multi-container sorting with localStorage persistence
 8. Flipbox - 3D flip cards
-9. FormValidation - Real-time form validation with password strength, custom rules and AJAX submission
+9. FormValidation - Real-time form validation with password strength, visibility toggle, custom rules and AJAX submission
 10. Header - Adaptive header with shrink-on-scroll
 11. HorizontalNav - Multi-level dropdown menus
 12. ImageGallery - Lightbox with masonry grid, zoom, and video
