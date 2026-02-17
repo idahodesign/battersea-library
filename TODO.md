@@ -59,9 +59,9 @@
 ### 🔨 In Progress
 
 ### 📋 Next Up
-- [ ] Breadcrumbs - Navigation breadcrumb trail using DOM
-- [ ] Level 1 page naviagation - Page navigation using DOM
-- [ ] Level 2 sub menu naviagation - Page navigation using DOM
+- [ ] Breadcrumbs - Navigation breadcrumb trail using primary menu DOM
+- [ ] Level 1 page naviagation - Page navigation using primary menu DOM
+- [ ] Level 2 sub menu naviagation - Page navigation using primary menu DOM
 - [ ] Pagination
 - [ ] Graphing - Animated suite of graphs. Highly configrable and customised styling
 - [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer.
