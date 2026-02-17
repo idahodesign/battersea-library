@@ -54,6 +54,7 @@
       this.events = [];
       this.fields = [];
       this.strengthIndicators = [];
+      this.passwordToggles = [];
 
       // Form-level configuration
       this.ajax = Utils.parseBoolean(Utils.getData(el, 'form-ajax') || 'false');
@@ -89,6 +90,11 @@
           hasPasswordRules: this.checkPasswordRules(rules),
           strengthIndicator: null
         };
+
+        // Build password toggle for password inputs
+        if (el.type === 'password') {
+          this.buildPasswordToggle(field);
+        }
 
         // Build strength indicator for password fields
         if (field.hasPasswordRules) {
@@ -390,8 +396,8 @@
       // Link to field via aria-describedby
       field.el.setAttribute('aria-describedby', errorSpan.id);
 
-      // Insert after the field (or after strength indicator if present)
-      var insertAfter = field.strengthIndicator || field.el;
+      // Insert after strength indicator, then wrapper, then field
+      var insertAfter = field.strengthIndicator || (field.passwordToggle ? field.passwordToggle.wrapper : field.el);
       insertAfter.parentNode.insertBefore(errorSpan, insertAfter.nextSibling);
     }
 
@@ -400,10 +406,10 @@
       field.el.removeAttribute('aria-invalid');
       field.el.removeAttribute('aria-describedby');
 
-      // Remove existing error span
-      var parent = field.el.parentNode;
-      if (parent) {
-        var existing = parent.querySelector('.battersea-form-error');
+      // Remove existing error span — look in wrapper's parent if toggle exists
+      var searchRoot = field.passwordToggle ? field.passwordToggle.wrapper.parentNode : field.el.parentNode;
+      if (searchRoot) {
+        var existing = searchRoot.querySelector('.battersea-form-error');
         if (existing) {
           existing.remove();
         }
@@ -460,6 +466,53 @@
     }
 
     // ──────────────────────────────────────────────
+    // Password Toggle
+    // ──────────────────────────────────────────────
+
+    buildPasswordToggle(field) {
+      var self = this;
+      var input = field.el;
+
+      // Wrap input in a container for positioning
+      var wrapper = document.createElement('div');
+      wrapper.className = 'battersea-form-password-wrapper';
+      input.parentNode.insertBefore(wrapper, input);
+      wrapper.appendChild(input);
+
+      // Create toggle button
+      var toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'battersea-form-password-toggle';
+      toggle.setAttribute('aria-label', 'Show password');
+      toggle.setAttribute('tabindex', '-1');
+
+      // Eye icon (visible when password is hidden)
+      toggle.innerHTML = '<svg class="battersea-form-eye-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>' +
+        '<circle cx="12" cy="12" r="3"/>' +
+        '</svg>' +
+        '<svg class="battersea-form-eye-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>' +
+        '<line x1="1" y1="1" x2="23" y2="23"/>' +
+        '</svg>';
+
+      wrapper.appendChild(toggle);
+
+      // Toggle handler
+      this.events.push(
+        Utils.addEvent(toggle, 'click', function() {
+          var isHidden = input.type === 'password';
+          input.type = isHidden ? 'text' : 'password';
+          toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+          toggle.classList.toggle('battersea-form-password-toggle--visible', isHidden);
+        })
+      );
+
+      field.passwordToggle = { wrapper: wrapper, toggle: toggle };
+      this.passwordToggles.push(field.passwordToggle);
+    }
+
+    // ──────────────────────────────────────────────
     // Password Strength Indicator
     // ──────────────────────────────────────────────
 
@@ -476,8 +529,9 @@
       label.className = 'battersea-form-strength__label';
       container.appendChild(label);
 
-      // Insert after the field
-      field.el.parentNode.insertBefore(container, field.el.nextSibling);
+      // Insert after the field (or after its wrapper if it has a toggle)
+      var insertAfter = field.passwordToggle ? field.passwordToggle.wrapper : field.el;
+      insertAfter.parentNode.insertBefore(container, insertAfter.nextSibling);
       field.strengthIndicator = container;
 
       this.strengthIndicators.push(container);
@@ -643,6 +697,18 @@
     destroy() {
       this.events.forEach(function(e) { e.remove(); });
       this.events = [];
+
+      // Remove password toggles (unwrap inputs back to their original parent)
+      this.passwordToggles.forEach(function(pt) {
+        var wrapper = pt.wrapper;
+        var input = wrapper.querySelector('input');
+        if (input && wrapper.parentNode) {
+          input.type = 'password';
+          wrapper.parentNode.insertBefore(input, wrapper);
+          wrapper.parentNode.removeChild(wrapper);
+        }
+      });
+      this.passwordToggles = [];
 
       // Remove strength indicators
       this.strengthIndicators.forEach(function(el) {
