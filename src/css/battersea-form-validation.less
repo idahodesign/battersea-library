@@ -1,0 +1,148 @@
+/**
+ * Battersea Library - FormValidation Styles
+ * Version: 2.15.0
+ */
+
+:root {
+  --form-error-color: #e74c3c;
+  --form-success-color: #27ae60;
+  --form-warning-color: #f39c12;
+  --form-border-color: #ddd;
+  --form-border-radius: 4px;
+  --form-accent-color: #667eea;
+  --form-strength-weak: #e74c3c;
+  --form-strength-medium: #f39c12;
+  --form-strength-strong: #27ae60;
+}
+
+// ─── Field States ──────────────────────────────
+
+.battersea-form-field--error {
+  border-color: var(--form-error-color, #e74c3c) !important;
+  box-shadow: 0 0 0 2px fade(#e74c3c, 15%);
+
+  &:focus {
+    border-color: var(--form-error-color, #e74c3c) !important;
+    box-shadow: 0 0 0 3px fade(#e74c3c, 20%);
+  }
+}
+
+.battersea-form-field--valid {
+  border-color: var(--form-success-color, #27ae60) !important;
+  box-shadow: 0 0 0 2px fade(#27ae60, 15%);
+
+  &:focus {
+    border-color: var(--form-success-color, #27ae60) !important;
+    box-shadow: 0 0 0 3px fade(#27ae60, 20%);
+  }
+}
+
+// ─── Error Message ─────────────────────────────
+
+.battersea-form-error {
+  display: block;
+  color: var(--form-error-color, #e74c3c);
+  font-size: 0.85rem;
+  margin-top: 4px;
+  padding: 0;
+  animation: batterseaFormErrorIn 0.25s ease;
+}
+
+@keyframes batterseaFormErrorIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Form-Level Messages ───────────────────────
+
+.battersea-form-message {
+  padding: 0.85rem 1rem;
+  border-radius: var(--form-border-radius, 4px);
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  animation: batterseaFormErrorIn 0.3s ease;
+
+  &--success {
+    background: fade(#27ae60, 10%);
+    color: #1e8449;
+    border: 1px solid fade(#27ae60, 25%);
+  }
+
+  &--error {
+    background: fade(#e74c3c, 10%);
+    color: #c0392b;
+    border: 1px solid fade(#e74c3c, 25%);
+  }
+}
+
+// ─── Password Strength Indicator ───────────────
+
+.battersea-form-strength {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__bar {
+    flex: 1;
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+
+    // The fill is this element itself — width set by JS
+    width: 0%;
+    max-width: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+
+  &__label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  // Strength levels — applied to the container
+  &--weak {
+    .battersea-form-strength__bar {
+      background: var(--form-strength-weak, #e74c3c);
+    }
+    .battersea-form-strength__label {
+      color: var(--form-strength-weak, #e74c3c);
+    }
+  }
+
+  &--medium {
+    .battersea-form-strength__bar {
+      background: var(--form-strength-medium, #f39c12);
+    }
+    .battersea-form-strength__label {
+      color: var(--form-strength-medium, #f39c12);
+    }
+  }
+
+  &--strong {
+    .battersea-form-strength__bar {
+      background: var(--form-strength-strong, #27ae60);
+    }
+    .battersea-form-strength__label {
+      color: var(--form-strength-strong, #27ae60);
+    }
+  }
+}
+
+// ─── Submit Button Loading ─────────────────────
+
+.battersea-form-btn--loading {
+  opacity: 0.7;
+  cursor: wait;
+  pointer-events: none;
+}

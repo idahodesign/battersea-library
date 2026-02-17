@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.15.0] - 2026-02-17
+
+### Added
+- **FormValidation Component** -- Real-time form validation with password strength, custom rules and AJAX submission
+  - Pipe-separated validation rules via `data-validate` attribute (e.g. `required|email|min:8`)
+  - 12 built-in rules: required, email, phone, url, min, max, number, uppercase, lowercase, special, match, pattern
+  - Password strength indicator with colour-coded bar (weak/medium/strong), updates in real time as user types
+  - Field matching for confirm password fields, re-validates when source field changes
+  - Custom error messages per field or per rule via data attributes
+  - Optional AJAX submission via `data-form-ajax="true"` with fetch, loading states, and success/error messages
+  - Validates on blur for non-intrusive feedback; password strength on input
+  - On submit: validates all fields, scrolls to and focuses first error
+  - Form reset clears all validation states and strength indicators
+  - Accessibility: `aria-invalid`, `aria-describedby`, `role="alert"`, `aria-live="polite"` on strength bar
+  - CSS custom properties for full theming (8 variables)
+  - Custom events: `battersea:fieldValid`, `battersea:fieldInvalid`, `battersea:formValid`, `battersea:formInvalid`, `battersea:formSubmitted`, `battersea:formError`
+- **Demo page** -- FormValidation demo with contact form, registration form with password strength, AJAX form, and custom messages examples
+- **Navigation updated** -- Form Validation added to Interactive category
+
+---
+
 ## [2.14.0] - 2026-02-16
 
 ### Added

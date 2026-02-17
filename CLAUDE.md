@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.14.0
+- **Current Version:** 2.15.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 27 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 28 JavaScript files (includes env-config, nav-data)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (25 total)
+### Components (26 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
@@ -42,23 +42,24 @@ battersea-library/
 6. DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export
 7. DragDrop - Reorderable lists and multi-container sorting with localStorage persistence
 8. Flipbox - 3D flip cards
-9. Header - Adaptive header with shrink-on-scroll
-10. HorizontalNav - Multi-level dropdown menus
-11. ImageGallery - Lightbox with masonry grid, zoom, and video
-12. MultiSlider - Multi-item carousel
-13. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
-14. NestedProgress - Multi-layer circular progress
-15. Parallax - Parallax backgrounds
-16. Popup - Modal dialogs
-17. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
-18. ProgressBar - Horizontal/circular progress
-19. Slider - Image/content carousel
-20. SmoothScroll - Scroll-to-section navigation
-21. Tabs - Tabbed interface
-22. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
-23. Tooltip - Hover/focus tooltips
-24. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
-25. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
+9. FormValidation - Real-time form validation with password strength, custom rules and AJAX submission
+10. Header - Adaptive header with shrink-on-scroll
+11. HorizontalNav - Multi-level dropdown menus
+12. ImageGallery - Lightbox with masonry grid, zoom, and video
+13. MultiSlider - Multi-item carousel
+14. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
+15. NestedProgress - Multi-layer circular progress
+16. Parallax - Parallax backgrounds
+17. Popup - Modal dialogs
+18. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
+19. ProgressBar - Horizontal/circular progress
+20. Slider - Image/content carousel
+21. SmoothScroll - Scroll-to-section navigation
+22. Tabs - Tabbed interface
+23. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
+24. Tooltip - Hover/focus tooltips
+25. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
+26. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -127,6 +128,7 @@ battersea-library/
 - **Timeline v2.12.0** (Feb 2026): Vertical/horizontal timelines with scroll-reveal, alternating layout, date badges, icon markers
 - **DataTable v2.13.0** (Feb 2026): Sortable, filterable tables with pagination, column resizing, row selection, CSV export
 - **NavData v2.14.0** (Feb 2026): Core navigation data service parsing nav DOM into JSON with sequential refs and breadcrumbs
+- **FormValidation v2.15.0** (Feb 2026): Real-time form validation with password strength, custom rules and AJAX submission
 
 ### In Progress
 - See `TODO.md` for current tasks

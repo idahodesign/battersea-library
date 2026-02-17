@@ -54,11 +54,11 @@
 - [x] Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers (v2.12.0)
 - [x] DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export (v2.13.0)
 - [x] NavData service - Auto-generated JSON navigation data from the primary menu DOM (v2.14.0)
+- [x] FormValidation - Real-time form validation with password strength, custom rules and AJAX submission (v2.15.0)
 
 ### 🔨 In Progress
 
 ### 📋 Next Up
-- [ ] FormValidation - Real-time form validation
 - [ ] Breadcrumbs - Navigation breadcrumb trail using DOM
 - [ ] Level 1 page naviagation - Page navigation using DOM
 - [ ] Level 2 sub menu naviagation - Page navigation using DOM
