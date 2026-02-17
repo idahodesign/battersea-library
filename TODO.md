@@ -62,6 +62,7 @@
 - [ ] Breadcrumbs - Navigation breadcrumb trail using DOM
 - [ ] Level 1 page naviagation - Page navigation using DOM
 - [ ] Level 2 sub menu naviagation - Page navigation using DOM
+- [ ] Pagination
 - [ ] Graphing - Animated suite of graphs. Highly configrable and customised styling
 - [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer.
 - [ ] Transparent header - Seeting that makes the the headers background transparent until it sticks to the top of the browser windeo when it's background fades in. Its transparency return when the user scrolls black to the top of the site.The initial header transparency means the first section needs to be be visible beneath the header.
