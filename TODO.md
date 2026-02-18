@@ -55,15 +55,12 @@
 - [x] DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export (v2.13.0)
 - [x] NavData service - Auto-generated JSON navigation data from the primary menu DOM (v2.14.0)
 - [x] FormValidation - Real-time form validation with password strength, custom rules and AJAX submission (v2.15.0)
+- [x] Breadcrumbs - Auto-generated breadcrumb trail from the site navigation menu (v2.16.0)
 
 ### 🔨 In Progress
 
 ### 📋 Next Up
-- [ ] Breadcrumbs - Navigation breadcrumb trail using primary menu DOM
-- [ ] Level 1 page naviagation - Page navigation using primary menu DOM
-- [ ] Level 2 sub menu naviagation - Page navigation using primary menu DOM
-- [ ] Pagination
-- [ ] Graphing - Animated suite of graphs. Highly configrable and customised styling
+- [ ] Page naviagation - Page navigation using NavData to create a configurable navication componente that can navigate to the next page or bpervious page through top level menu pages or second level menu pages child menu items within a top level menu item or navigate through the site page by page. You need to be able to have multiple menus with differnet configuratrions on the same page. The menu links need to be synamically configured. 
 - [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer.
 - [ ] Transparent header - Seeting that makes the the headers background transparent until it sticks to the top of the browser windeo when it's background fades in. Its transparency return when the user scrolls black to the top of the site.The initial header transparency means the first section needs to be be visible beneath the header.
 - [ ] Background looping video - the ability to have a looping video as a section/div background.
