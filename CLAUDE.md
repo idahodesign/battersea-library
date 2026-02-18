@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.17.0
+- **Current Version:** 2.18.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 30 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 31 JavaScript files (includes env-config, nav-data)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (28 total)
+### Components (29 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
@@ -47,21 +47,22 @@ battersea-library/
 11. Header - Adaptive header with shrink-on-scroll
 12. HorizontalNav - Multi-level dropdown menus
 13. ImageGallery - Lightbox with masonry grid, zoom, and video
-14. MultiSlider - Multi-item carousel
-15. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
-16. NestedProgress - Multi-layer circular progress
-17. PageNav - Prev/next page navigation with three modes (sequential, within category, between categories)
-18. Parallax - Parallax backgrounds
-19. Popup - Modal dialogs
-20. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
-21. ProgressBar - Horizontal/circular progress
-22. Slider - Image/content carousel
-23. SmoothScroll - Scroll-to-section navigation
-24. Tabs - Tabbed interface
-25. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
-26. Tooltip - Hover/focus tooltips
-27. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
-28. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
+14. MiniQuiz - Interactive quiz with boolean, single-choice, and multi-select questions, timer, and scoring
+15. MultiSlider - Multi-item carousel
+16. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
+17. NestedProgress - Multi-layer circular progress
+18. PageNav - Prev/next page navigation with three modes (sequential, within category, between categories)
+19. Parallax - Parallax backgrounds
+20. Popup - Modal dialogs
+21. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
+22. ProgressBar - Horizontal/circular progress
+23. Slider - Image/content carousel
+24. SmoothScroll - Scroll-to-section navigation
+25. Tabs - Tabbed interface
+26. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
+27. Tooltip - Hover/focus tooltips
+28. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
+29. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -133,6 +134,7 @@ battersea-library/
 - **FormValidation v2.15.0** (Feb 2026): Real-time form validation with password strength, custom rules and AJAX submission
 - **Breadcrumbs v2.16.0** (Feb 2026): Auto-generated breadcrumb trail from navigation menu, added to all demo pages
 - **PageNav v2.17.0** (Feb 2026): Prev/next page navigation with three modes, added to all demo pages
+- **MiniQuiz v2.18.0** (Feb 2026): Interactive quiz with boolean, single-choice, multi-select, timer, hide-until-click, JSON/CSV data loading
 
 ### In Progress
 - See `TODO.md` for current tasks
@@ -222,4 +224,4 @@ Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
 
 ---
 
-*Last updated: 18 February 2026*
+*Last updated: 19 February 2026*

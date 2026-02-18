@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
-**Last Updated:** 15 February 2026
-**Current Version:** 2.10.0
+**Last Updated:** 19 February 2026
+**Current Version:** 2.18.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -57,11 +57,11 @@
 - [x] FormValidation - Real-time form validation with password strength, custom rules and AJAX submission (v2.15.0)
 - [x] Breadcrumbs - Auto-generated breadcrumb trail from the site navigation menu (v2.16.0)
 - [x] PageNav - Prev/next page navigation with three modes: sequential, within category, between categories (v2.17.0)
+- [x] MiniQuiz - Interactive quiz with boolean, single-choice, multi-select questions, timer, hide-until-click, JSON/CSV data loading (v2.18.0)
 
 ### 🔨 In Progress
 
 ### 📋 Next Up
-- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see their result and the correct answer. The quiz types are simple two choice, multiple choice single answer, multiple choice multiple answer, drag and drop ordering of html elements, drag and drop grouping of html elements. Optional time constraint, quiz hidden until button is clicked then the quiz fades in and the timer starts. Optional prevent navigation from page until the quiz have been attempted. Nice to have the abbiltiy to popualte with a csv or Json file
 - [ ] Background looping video - the ability to have a looping video as a article/section/div background.
 - [ ] Graphing - A graphing component that creates highly configurable and styled graphs whose data can be populated from a csv or Json file. The graphs are have the option to be animated and graph types are single line, multiline, single bar and multibar, single column and multicolum, radiating column, pie graph, donut graph.
 - [ ] Transparent header - Setting that makes the the headers background transparent until it sticks to the top of the browser window when it's background fades in. Its transparency returns when the user scrolls black to the top of the site. When set to transparent the header floats above the first content of the site. This will effect the smooth scroll compoent because it usually offsets the content to allow for the header height.

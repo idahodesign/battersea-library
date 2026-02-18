@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.18.0] - 2026-02-19
+
+### Added
+- **MiniQuiz Component** -- Interactive quiz element with instant scoring
+  - Three question types: boolean (true/false), single-choice, and multi-select
+  - Three data sources: HTML markup, JSON (inline or file URL), CSV file
+  - Optional countdown timer with visual warning at 10 seconds and auto-submit
+  - Hide-until-click reveal mode with fade-in animation
+  - Configurable results display: inline indicators, summary panel, or both
+  - Question and option shuffling via Fisher-Yates algorithm
+  - CSS custom properties for full theming (12 variables)
+  - Accessible: fieldset/legend structure, aria-live announcements, keyboard navigation
+  - Responsive layout with mobile-friendly option sizing
+- **Demo page** -- Mini Quiz demo with five live examples covering all question types, data sources, timer, and shuffle
+- **Sample data files** -- JSON and CSV quiz data in `demo/data/`
+- **Navigation updated** -- Mini Quiz added to Interactive category
+
+---
+
 ## [2.17.0] - 2026-02-18
 
 ### Added

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Mini Quiz Component - Battersea Library</title>
+		<meta name="description" content="Interactive quiz component with multiple question types, timer, and configurable results display - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumb -->
+			<div data-breadcrumb></div>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Mini Quiz Component</h1>
+						<p class="hero-subtitle">Interactive quizzes with multiple question types, countdown timers, and instant scoring</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Try out the different quiz types and features</p>
+
+						<!-- Demo 1: True/False from HTML -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>True or False</h3>
+							<p>Simple two-choice questions defined in HTML markup. Answer all four and hit submit to see your results.</p>
+
+							<div class="demo-container">
+								<div data-quiz data-quiz-title="Quick True/False">
+
+									<div data-quiz-question
+										data-quiz-type="boolean"
+										data-quiz-answer="True"
+										data-quiz-explanation="The human body contains roughly 206 bones in adulthood.">
+										<p>An adult human has 206 bones.</p>
+										<div data-quiz-option>True</div>
+										<div data-quiz-option>False</div>
+									</div>
+
+									<div data-quiz-question
+										data-quiz-type="boolean"
+										data-quiz-answer="False"
+										data-quiz-explanation="Light from the Sun takes about 8 minutes and 20 seconds to reach Earth.">
+										<p>Light from the Sun reaches Earth in under one minute.</p>
+										<div data-quiz-option>True</div>
+										<div data-quiz-option>False</div>
+									</div>
+
+									<div data-quiz-question
+										data-quiz-type="boolean"
+										data-quiz-answer="True"
+										data-quiz-explanation="Octopuses have three hearts: two pump blood to the gills, one pumps it to the rest of the body.">
+										<p>An octopus has three hearts.</p>
+										<div data-quiz-option>True</div>
+										<div data-quiz-option>False</div>
+									</div>
+
+									<div data-quiz-question
+										data-quiz-type="boolean"
+										data-quiz-answer="False"
+										data-quiz-explanation="The Great Wall of China is not visible from space with the naked eye. This is a common myth.">
+										<p>The Great Wall of China is visible from space with the naked eye.</p>
+										<div data-quiz-option>True</div>
+										<div data-quiz-option>False</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 2: Single Choice from Inline JSON -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Multiple Choice (Single Answer)</h3>
+							<p>Questions loaded from inline JSON. This quiz uses inline-only results mode, without the summary panel.</p>
+
+							<div class="demo-container">
+								<div data-quiz
+									data-quiz-results="inline"
+									data-quiz-data='[
+										{
+											"id": "s1",
+											"type": "choice",
+											"question": "What is the chemical symbol for gold?",
+											"options": ["Ag", "Fe", "Au", "Cu"],
+											"answer": "Au",
+											"explanation": "Au comes from the Latin word aurum."
+										},
+										{
+											"id": "s2",
+											"type": "choice",
+											"question": "Which country has the longest coastline in the world?",
+											"options": ["Australia", "Russia", "Canada", "Indonesia"],
+											"answer": "Canada",
+											"explanation": "Canada has over 202,000 km of coastline."
+										},
+										{
+											"id": "s3",
+											"type": "choice",
+											"question": "What is the smallest planet in our solar system?",
+											"options": ["Mars", "Mercury", "Venus", "Pluto"],
+											"answer": "Mercury",
+											"explanation": "Mercury has a diameter of about 4,880 km. Pluto is no longer classified as a planet."
+										},
+										{
+											"id": "s4",
+											"type": "choice",
+											"question": "In which year was the World Wide Web invented?",
+											"options": ["1985", "1989", "1993", "1991"],
+											"answer": "1989",
+											"explanation": "Tim Berners-Lee proposed the World Wide Web in 1989 while working at CERN."
+										},
+										{
+											"id": "s5",
+											"type": "choice",
+											"question": "Which element has the atomic number 1?",
+											"options": ["Helium", "Lithium", "Hydrogen", "Carbon"],
+											"answer": "Hydrogen",
+											"explanation": "Hydrogen is the lightest and most abundant element in the universe."
+										}
+									]'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 3: Mixed Types with Timer (JSON file) -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Mixed Types with Timer</h3>
+							<p>A mix of true/false, single-choice, and multi-select questions loaded from a JSON file. You have two minutes on the clock.</p>
+
+							<div class="demo-container">
+								<div data-quiz
+									data-quiz-data="../data/quiz-mixed.json"
+									data-quiz-timer="120"
+									data-quiz-results="both">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 4: Hidden Quiz with Timer (CSV file) -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Hidden Quiz with Countdown</h3>
+							<p>This quiz is loaded from a CSV file and hidden until you click the button. The 90-second timer starts when the quiz appears. Results show as a summary only.</p>
+
+							<div class="demo-container">
+								<div data-quiz
+									data-quiz-csv="../data/quiz-history.csv"
+									data-quiz-title="History Quiz"
+									data-quiz-description="Five questions on world history. You have 90 seconds."
+									data-quiz-timer="90"
+									data-quiz-hidden="true"
+									data-quiz-results="summary">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 5: Multi-Select with Shuffle -->
+						<div class="demo-subsection delay-4" data-animate="fade-up">
+							<h3>Multi-Select with Shuffle</h3>
+							<p>Every question has more than one correct answer. Both questions and options are shuffled on each page load.</p>
+
+							<div class="demo-container">
+								<div data-quiz
+									data-quiz-title="Web Development"
+									data-quiz-shuffle="true"
+									data-quiz-shuffle-options="true">
+
+									<div data-quiz-question
+										data-quiz-type="multi"
+										data-quiz-answer="HTML|CSS|JavaScript"
+										data-quiz-explanation="HTML, CSS, and JavaScript are the core front-end technologies. Python and SQL run on the server side.">
+										<p>Which of these are front-end web technologies?</p>
+										<div data-quiz-option>HTML</div>
+										<div data-quiz-option>Python</div>
+										<div data-quiz-option>CSS</div>
+										<div data-quiz-option>JavaScript</div>
+										<div data-quiz-option>SQL</div>
+									</div>
+
+									<div data-quiz-question
+										data-quiz-type="multi"
+										data-quiz-answer="padding|margin|border"
+										data-quiz-explanation="The CSS box model consists of content, padding, border, and margin. Opacity and display are separate properties.">
+										<p>Which of these are parts of the CSS box model?</p>
+										<div data-quiz-option>padding</div>
+										<div data-quiz-option>margin</div>
+										<div data-quiz-option>opacity</div>
+										<div data-quiz-option>border</div>
+										<div data-quiz-option>display</div>
+									</div>
+
+									<div data-quiz-question
+										data-quiz-type="multi"
+										data-quiz-answer="let|const"
+										data-quiz-explanation="let and const were introduced in ES6 (2015). var has been available since the beginning. define and dim are not JavaScript keywords.">
+										<p>Which JavaScript keywords were introduced in ES6?</p>
+										<div data-quiz-option>var</div>
+										<div data-quiz-option>let</div>
+										<div data-quiz-option>const</div>
+										<div data-quiz-option>define</div>
+									</div>
+
+									<div data-quiz-question
+										data-quiz-type="multi"
+										data-quiz-answer="Chrome|Firefox|Safari|Edge"
+										data-quiz-explanation="Chrome, Firefox, Safari, and Edge are all web browsers. Node.js is a JavaScript runtime, not a browser.">
+										<p>Which of the following are web browsers?</p>
+										<div data-quiz-option>Chrome</div>
+										<div data-quiz-option>Firefox</div>
+										<div data-quiz-option>Node.js</div>
+										<div data-quiz-option>Safari</div>
+										<div data-quiz-option>Edge</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Features</h2>
+						<p class="section-subtitle">What the Mini Quiz component can do</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">?!</div>
+								<h3>Question Types</h3>
+								<p>True/false, single-choice, and multi-select questions in one quiz.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">{}</div>
+								<h3>Data Sources</h3>
+								<p>Define questions in HTML, inline JSON, or load from JSON and CSV files.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9201;</div>
+								<h3>Countdown Timer</h3>
+								<p>Optional timer that auto-submits when time runs out. Visual warning at 10 seconds.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#9650;</div>
+								<h3>Reveal Mode</h3>
+								<p>Hide the quiz behind a button. The timer starts when the quiz appears.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#9634;</div>
+								<h3>Results Display</h3>
+								<p>Inline answer indicators, a summary score panel, or both together.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#8645;</div>
+								<h3>Shuffle</h3>
+								<p>Randomise question order and option order independently on each load.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration</h2>
+
+						<div class="config-content">
+							<h3>Container Attributes</h3>
+							<p>Configure the quiz using data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-quiz</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the Mini Quiz component</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-data</code></td>
+										<td>JSON or URL</td>
+										<td>-</td>
+										<td>Inline JSON array/object, or a URL to a .json file</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-csv</code></td>
+										<td>URL</td>
+										<td>-</td>
+										<td>Path to a CSV file with quiz questions</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-title</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>Quiz heading text</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-description</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>Short intro text below the title</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-timer</code></td>
+										<td>Number (seconds)</td>
+										<td><code>0</code></td>
+										<td>Countdown in seconds. 0 means no timer</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-hidden</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Hide quiz until a reveal button is clicked</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-results</code></td>
+										<td><code>inline</code> / <code>summary</code> / <code>both</code></td>
+										<td><code>both</code></td>
+										<td>How results are displayed after submission</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-shuffle</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Randomise question order on load</td>
+									</tr>
+									<tr>
+										<td><code>data-quiz-shuffle-options</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Randomise option order within each question</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Question Types</h3>
+							<p>Each question uses a <code>type</code> field (in JSON/CSV) or <code>data-quiz-type</code> attribute (in HTML):</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Type</th>
+										<th>Renders As</th>
+										<th>Answer Format</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>boolean</code></td>
+										<td>Two large side-by-side buttons</td>
+										<td>Single string (e.g. "True")</td>
+									</tr>
+									<tr>
+										<td><code>choice</code></td>
+										<td>Radio buttons</td>
+										<td>Single string (e.g. "Canberra")</td>
+									</tr>
+									<tr>
+										<td><code>multi</code></td>
+										<td>Checkboxes with "select all that apply"</td>
+										<td>Pipe-separated string or JSON array</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Custom Events</h3>
+							<p>The component fires these events on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Event</th>
+										<th>Detail</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>battersea:quizReady</code></td>
+										<td><code>{ questionCount, hasTimer, isHidden }</code></td>
+										<td>Fired after the quiz DOM is built</td>
+									</tr>
+									<tr>
+										<td><code>battersea:quizReveal</code></td>
+										<td><code>{ timestamp }</code></td>
+										<td>Fired when a hidden quiz is revealed</td>
+									</tr>
+									<tr>
+										<td><code>battersea:quizAnswer</code></td>
+										<td><code>{ questionId, value, type }</code></td>
+										<td>Fired when the user selects or changes an answer</td>
+									</tr>
+									<tr>
+										<td><code>battersea:quizSubmit</code></td>
+										<td><code>{ score, total, percentage }</code></td>
+										<td>Fired when the quiz is submitted</td>
+									</tr>
+									<tr>
+										<td><code>battersea:quizTimerExpired</code></td>
+										<td><code>{}</code></td>
+										<td>Fired when the countdown reaches zero</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>HTML Markup</div>
+								<div data-accordion-content>
+									<div>
+										<p>Define questions directly in your markup:</p>
+										<pre><code>&lt;div data-quiz data-quiz-title="My Quiz"&gt;
+  &lt;div data-quiz-question
+       data-quiz-type="choice"
+       data-quiz-answer="Canberra"&gt;
+    &lt;p&gt;Capital of Australia?&lt;/p&gt;
+    &lt;div data-quiz-option&gt;Sydney&lt;/div&gt;
+    &lt;div data-quiz-option&gt;Canberra&lt;/div&gt;
+    &lt;div data-quiz-option&gt;Melbourne&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>JSON File</div>
+								<div data-accordion-content>
+									<div>
+										<p>Point to a JSON file containing your questions:</p>
+										<pre><code>&lt;div data-quiz
+     data-quiz-data="path/to/questions.json"
+     data-quiz-timer="120"&gt;
+&lt;/div&gt;</code></pre>
+										<p>The JSON file structure:</p>
+										<pre><code>{
+  "title": "Quiz Title",
+  "questions": [
+    {
+      "type": "choice",
+      "question": "Your question?",
+      "options": ["A", "B", "C"],
+      "answer": "B",
+      "explanation": "Optional explanation."
+    }
+  ]
+}</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>CSV File</div>
+								<div data-accordion-content>
+									<div>
+										<p>Load questions from a CSV file:</p>
+										<pre><code>&lt;div data-quiz
+     data-quiz-csv="path/to/questions.csv"
+     data-quiz-hidden="true"
+     data-quiz-timer="90"&gt;
+&lt;/div&gt;</code></pre>
+										<p>CSV format uses pipe-separated options and answers:</p>
+										<pre><code>id,type,question,options,answer,explanation
+q1,choice,"Which is biggest?","Cat|Dog|Horse",Horse,"Horses are large."
+q2,multi,"Select mammals:","Dog|Snake|Cat","Dog|Cat","Dogs and cats."</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling with CSS Variables</div>
+								<div data-accordion-content>
+									<div>
+										<p>Override the default look with CSS custom properties:</p>
+										<pre><code>:root {
+  --quiz-accent-color: #667eea;
+  --quiz-correct-color: #27ae60;
+  --quiz-incorrect-color: #e74c3c;
+  --quiz-warning-color: #f39c12;
+  --quiz-bg: #ffffff;
+  --quiz-border-color: #e0e0e0;
+  --quiz-border-radius: 8px;
+  --quiz-option-bg: #f8f9fa;
+  --quiz-option-hover-bg: #e9ecef;
+  --quiz-option-selected-bg: #e8f0fe;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">Tab</div>
+								<h3>Keyboard Navigation</h3>
+								<p>Tab through questions, use Space or Enter to select answers, and submit with Enter on the button.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">SR</div>
+								<h3>Live Announcements</h3>
+								<p>Score results, timer warnings, and validation messages are announced to screen readers via an aria-live region.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&lt;fs&gt;</div>
+								<h3>Semantic Fieldsets</h3>
+								<p>Each question is wrapped in a fieldset with a legend, giving screen readers proper context for grouped inputs.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">[ ]</div>
+								<h3>Focus Indicators</h3>
+								<p>Clear focus outlines on all interactive elements for keyboard and switch-device users.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses Fetch API for loading external data files and CSS custom properties for theming.
+						</p>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- Page Navigation -->
+			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-mini-quiz.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

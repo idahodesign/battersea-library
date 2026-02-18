@@ -1,0 +1,46 @@
+{
+	"title": "Mixed Knowledge Quiz",
+	"description": "A mix of question types covering science, geography, and general knowledge.",
+	"questions": [
+		{
+			"id": "m1",
+			"type": "boolean",
+			"question": "Water boils at 100 degrees Celsius at sea level.",
+			"options": ["True", "False"],
+			"answer": "True",
+			"explanation": "At standard atmospheric pressure (sea level), water boils at exactly 100\u00b0C."
+		},
+		{
+			"id": "m2",
+			"type": "choice",
+			"question": "Which planet is known as the Red Planet?",
+			"options": ["Venus", "Mars", "Jupiter", "Saturn"],
+			"answer": "Mars",
+			"explanation": "Mars gets its reddish colour from iron oxide (rust) on its surface."
+		},
+		{
+			"id": "m3",
+			"type": "multi",
+			"question": "Which of these are noble gases?",
+			"options": ["Helium", "Nitrogen", "Argon", "Oxygen", "Neon"],
+			"answer": ["Helium", "Argon", "Neon"],
+			"explanation": "Noble gases occupy Group 18 of the periodic table. Nitrogen and oxygen are not noble gases."
+		},
+		{
+			"id": "m4",
+			"type": "choice",
+			"question": "What is the largest ocean on Earth?",
+			"options": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+			"answer": "Pacific Ocean",
+			"explanation": "The Pacific Ocean covers roughly 165.25 million square kilometres."
+		},
+		{
+			"id": "m5",
+			"type": "boolean",
+			"question": "Sound travels faster through water than through air.",
+			"options": ["True", "False"],
+			"answer": "True",
+			"explanation": "Sound travels at about 1,480 m/s in water versus roughly 343 m/s in air."
+		}
+	]
+}

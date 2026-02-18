@@ -1,0 +1,6 @@
+id,type,question,options,answer,explanation
+h1,choice,"In which year did the Great Fire of London occur?","1066|1666|1766|1812",1666,"The Great Fire of London burned for four days in September 1666."
+h2,boolean,"The Berlin Wall fell in 1989.","True|False",True,"The Berlin Wall was opened on 9 November 1989 after 28 years."
+h3,choice,"Which ancient civilisation built Machu Picchu?","Aztec|Maya|Inca|Olmec",Inca,"Machu Picchu was built in the 15th century by the Inca emperor Pachacuti."
+h4,choice,"Who was the first person to walk on the Moon?","Buzz Aldrin|Neil Armstrong|Yuri Gagarin|John Glenn",Neil Armstrong,"Neil Armstrong stepped onto the lunar surface on 20 July 1969."
+h5,multi,"Which of these countries were founding members of the United Nations in 1945?","France|Germany|China|Japan|United Kingdom","France|China|United Kingdom","France, China, and the UK were among the 51 founding members. Germany and Japan joined later."

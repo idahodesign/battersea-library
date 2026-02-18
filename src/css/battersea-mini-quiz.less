@@ -1,0 +1,461 @@
+/**
+ * Battersea Library - MiniQuiz Styles
+ * Version: 2.18.0
+ */
+
+:root {
+	--quiz-accent-color: #667eea;
+	--quiz-correct-color: #27ae60;
+	--quiz-incorrect-color: #e74c3c;
+	--quiz-warning-color: #f39c12;
+	--quiz-bg: #ffffff;
+	--quiz-border-color: #e0e0e0;
+	--quiz-border-radius: 8px;
+	--quiz-text-color: #333333;
+	--quiz-option-bg: #f8f9fa;
+	--quiz-option-hover-bg: #e9ecef;
+	--quiz-option-selected-bg: #e8f0fe;
+	--quiz-timer-bg: #f5f5f5;
+	--quiz-summary-bg: #f8f9fa;
+}
+
+// ─── Quiz Container ─────────────────────────────
+
+.battersea-quiz {
+	background: var(--quiz-bg, #ffffff);
+	border: 1px solid var(--quiz-border-color, #e0e0e0);
+	border-radius: var(--quiz-border-radius, 8px);
+	padding: 2rem;
+	max-width: 720px;
+
+	// Hidden state
+	&--hidden {
+		display: none;
+	}
+
+	// Revealing state (fade in)
+	&--revealing {
+		display: block;
+		animation: quizFadeIn 0.4s ease forwards;
+	}
+
+	// Revealed state
+	&--revealed {
+		display: block;
+	}
+
+	// Submitted state - disable hover effects
+	&--submitted {
+		.battersea-quiz__option-label {
+			cursor: default;
+
+			&:hover {
+				background: var(--quiz-option-bg, #f8f9fa);
+			}
+		}
+	}
+}
+
+// ─── Title & Description ────────────────────────
+
+.battersea-quiz__title {
+	font-size: 1.35rem;
+	font-weight: 600;
+	color: var(--quiz-text-color, #333333);
+	margin: 0 0 0.5rem 0;
+}
+
+.battersea-quiz__description {
+	color: #666;
+	font-size: 0.95rem;
+	margin: 0 0 1.5rem 0;
+	line-height: 1.5;
+}
+
+// ─── Timer ──────────────────────────────────────
+
+.battersea-quiz__timer {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: var(--quiz-timer-bg, #f5f5f5);
+	border: 1px solid var(--quiz-border-color, #e0e0e0);
+	border-radius: 6px;
+	padding: 0.5rem 1rem;
+	margin-bottom: 1.5rem;
+	font-variant-numeric: tabular-nums;
+
+	&--warning {
+		background: fade(#e74c3c, 10%);
+		border-color: fade(#e74c3c, 30%);
+		animation: quizPulse 1s ease infinite;
+
+		.battersea-quiz__timer-value {
+			color: #e74c3c;
+			font-weight: 700;
+		}
+
+		.battersea-quiz__timer-icon {
+			color: #e74c3c;
+		}
+	}
+}
+
+.battersea-quiz__timer-icon {
+	font-size: 1.1rem;
+	color: #888;
+}
+
+.battersea-quiz__timer-value {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--quiz-text-color, #333333);
+	min-width: 3rem;
+}
+
+// ─── Questions ──────────────────────────────────
+
+.battersea-quiz__questions {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.battersea-quiz__question {
+	border: 1px solid var(--quiz-border-color, #e0e0e0);
+	border-radius: var(--quiz-border-radius, 8px);
+	padding: 1.25rem 1.5rem;
+	margin: 0;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+	border-left-width: 4px;
+
+	// Correct answer
+	&--correct {
+		border-left-color: #27ae60;
+		background: fade(#27ae60, 4%);
+	}
+
+	// Incorrect answer
+	&--incorrect {
+		border-left-color: #e74c3c;
+		background: fade(#e74c3c, 4%);
+	}
+
+	// Unanswered highlight
+	&--unanswered {
+		border-color: #f39c12;
+		box-shadow: 0 0 0 2px fade(#f39c12, 20%);
+	}
+}
+
+.battersea-quiz__question-text {
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--quiz-text-color, #333333);
+	margin-bottom: 1rem;
+	padding: 0;
+	line-height: 1.45;
+}
+
+// ─── Options ────────────────────────────────────
+
+.battersea-quiz__options {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	// Boolean (two-choice) layout: side-by-side
+	&--boolean {
+		flex-direction: row;
+		gap: 0.75rem;
+
+		.battersea-quiz__option {
+			flex: 1;
+		}
+
+		.battersea-quiz__option-label {
+			justify-content: center;
+			padding: 0.85rem 1rem;
+			font-weight: 600;
+			font-size: 1rem;
+			text-align: center;
+		}
+
+		.battersea-quiz__option-input {
+			// Hide radio but keep accessible
+			position: absolute;
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		@media (max-width: 480px) {
+			flex-direction: column;
+		}
+	}
+}
+
+.battersea-quiz__option {
+	margin: 0;
+}
+
+.battersea-quiz__option-label {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	padding: 0.7rem 1rem;
+	background: var(--quiz-option-bg, #f8f9fa);
+	border: 2px solid transparent;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background 0.2s ease, border-color 0.2s ease;
+	line-height: 1.4;
+
+	&:hover {
+		background: var(--quiz-option-hover-bg, #e9ecef);
+	}
+
+	// Selected state
+	&--selected {
+		background: var(--quiz-option-selected-bg, #e8f0fe);
+		border-color: var(--quiz-accent-color, #667eea);
+	}
+
+	// Correct answer indicator (after submit)
+	&--correct {
+		background: fade(#27ae60, 12%);
+		border-color: #27ae60;
+
+		&::after {
+			content: '\2713';
+			margin-left: auto;
+			font-weight: 700;
+			color: #27ae60;
+			font-size: 1.1rem;
+		}
+	}
+
+	// Incorrect selection indicator (after submit)
+	&--incorrect {
+		background: fade(#e74c3c, 10%);
+		border-color: #e74c3c;
+
+		&::after {
+			content: '\2717';
+			margin-left: auto;
+			font-weight: 700;
+			color: #e74c3c;
+			font-size: 1.1rem;
+		}
+	}
+}
+
+.battersea-quiz__option-input {
+	accent-color: var(--quiz-accent-color, #667eea);
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+	margin: 0;
+}
+
+.battersea-quiz__option-text {
+	font-size: 0.95rem;
+	color: var(--quiz-text-color, #333333);
+}
+
+// ─── Explanation ────────────────────────────────
+
+.battersea-quiz__explanation {
+	margin-top: 0.85rem;
+	padding: 0.75rem 1rem;
+	background: fade(#667eea, 6%);
+	border-left: 3px solid #667eea;
+	border-radius: 0 4px 4px 0;
+	color: #555;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	animation: quizSlideDown 0.3s ease forwards;
+}
+
+// ─── Actions ────────────────────────────────────
+
+.battersea-quiz__actions {
+	margin-top: 1.5rem;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.battersea-quiz__submit-btn {
+	background: var(--quiz-accent-color, #667eea);
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 0.75rem 2rem;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s ease, opacity 0.2s ease;
+
+	&:hover {
+		opacity: 0.9;
+	}
+
+	&--disabled {
+		opacity: 0.5;
+		cursor: default;
+
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+}
+
+// ─── Reveal Button ──────────────────────────────
+
+.battersea-quiz__reveal-btn {
+	background: var(--quiz-accent-color, #667eea);
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 0.85rem 2.5rem;
+	font-size: 1.05rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+
+	&:hover {
+		opacity: 0.9;
+	}
+
+	&--hiding {
+		opacity: 0;
+		transform: scale(0.95);
+		pointer-events: none;
+	}
+}
+
+// ─── Summary Panel ──────────────────────────────
+
+.battersea-quiz__summary {
+	background: var(--quiz-summary-bg, #f8f9fa);
+	border: 1px solid var(--quiz-border-color, #e0e0e0);
+	border-radius: var(--quiz-border-radius, 8px);
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+	animation: quizFadeIn 0.4s ease forwards;
+}
+
+.battersea-quiz__summary-score {
+	font-size: 1.15rem;
+	font-weight: 600;
+	color: var(--quiz-text-color, #333333);
+	margin-bottom: 1rem;
+}
+
+.battersea-quiz__summary-bar {
+	height: 8px;
+	background: #e9ecef;
+	border-radius: 4px;
+	overflow: hidden;
+	margin-bottom: 0.75rem;
+}
+
+.battersea-quiz__summary-fill {
+	height: 100%;
+	width: 0;
+	border-radius: 4px;
+	transition: width 0.8s ease;
+
+	&--high {
+		background: #27ae60;
+	}
+
+	&--mid {
+		background: #f39c12;
+	}
+
+	&--low {
+		background: #e74c3c;
+	}
+}
+
+.battersea-quiz__summary-message {
+	color: #666;
+	font-size: 0.95rem;
+}
+
+// ─── Live Region (screen readers only) ──────────
+
+.battersea-quiz__live-region {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+// ─── Animations ─────────────────────────────────
+
+@keyframes quizFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes quizPulse {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.7;
+	}
+}
+
+@keyframes quizSlideDown {
+	from {
+		opacity: 0;
+		max-height: 0;
+		margin-top: 0;
+		padding: 0 1rem;
+	}
+	to {
+		opacity: 1;
+		max-height: 200px;
+		margin-top: 0.85rem;
+		padding: 0.75rem 1rem;
+	}
+}
+
+// ─── Responsive ─────────────────────────────────
+
+@media (max-width: 600px) {
+	.battersea-quiz {
+		padding: 1.25rem;
+	}
+
+	.battersea-quiz__question {
+		padding: 1rem;
+	}
+
+	.battersea-quiz__submit-btn {
+		width: 100%;
+	}
+
+	.battersea-quiz__actions {
+		justify-content: stretch;
+	}
+
+	.battersea-quiz__reveal-btn {
+		width: 100%;
+	}
+}
