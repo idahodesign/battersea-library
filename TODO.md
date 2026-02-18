@@ -61,7 +61,7 @@
 
 ### 📋 Next Up
 - [ ] Page naviagation - Page navigation using NavData to create a configurable navication componente that can navigate to the next page or bpervious page through top level menu pages or second level menu pages child menu items within a top level menu item or navigate through the site page by page. You need to be able to have multiple menus with differnet configuratrions on the same page. The menu links need to be synamically configured. 
-- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer.
+- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer. The quiz types are Simple two choice, multiple choice single answer, multiple choice multiple answer, drag and drop ordering, drag and drop grouping. Optional time constraint, quiz hidden until button is clicked then the quiz fades in and the timer starts. Optional prevent navigation from page until the quiz have been attempted.
 - [ ] Transparent header - Seeting that makes the the headers background transparent until it sticks to the top of the browser windeo when it's background fades in. Its transparency return when the user scrolls black to the top of the site.The initial header transparency means the first section needs to be be visible beneath the header.
 - [ ] Background looping video - the ability to have a looping video as a section/div background.
 - [ ] Back to top button - A button fades in as you scroll down the pag clicking it takes you to the top of the page.
