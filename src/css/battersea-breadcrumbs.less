@@ -1,0 +1,52 @@
+/**
+ * Battersea Library - Breadcrumbs
+ * Version: 1.0.0
+ */
+
+.battersea-breadcrumb {
+  font-size: var(--battersea-breadcrumb-font-size, 0.875rem);
+  padding: var(--battersea-breadcrumb-padding, 0.75rem 0);
+}
+
+.battersea-breadcrumb__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--battersea-breadcrumb-spacing, 0.5rem);
+}
+
+.battersea-breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--battersea-breadcrumb-spacing, 0.5rem);
+
+  & + &::before {
+    content: var(--battersea-breadcrumb-sep, "|");
+    color: var(--battersea-breadcrumb-separator-color, #999);
+    font-size: 0.8em;
+  }
+}
+
+.battersea-breadcrumb__link {
+  color: var(--battersea-breadcrumb-link, #667eea);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--battersea-breadcrumb-link-hover, #4c5fd5);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--battersea-breadcrumb-link, #667eea);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.battersea-breadcrumb__current {
+  color: var(--battersea-breadcrumb-text, #666);
+}

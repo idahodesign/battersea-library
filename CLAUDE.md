@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.15.0
+- **Current Version:** 2.16.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 28 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 29 JavaScript files (includes env-config, nav-data)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,33 +33,34 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (26 total)
+### Components (27 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
 4. AudioPlayer - Custom audio player with stylable controls
-5. Counter - Animated number counting
-6. DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export
-7. DragDrop - Reorderable lists and multi-container sorting with localStorage persistence
-8. Flipbox - 3D flip cards
-9. FormValidation - Real-time form validation with password strength, visibility toggle, custom rules and AJAX submission
-10. Header - Adaptive header with shrink-on-scroll
-11. HorizontalNav - Multi-level dropdown menus
-12. ImageGallery - Lightbox with masonry grid, zoom, and video
-13. MultiSlider - Multi-item carousel
-14. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
-15. NestedProgress - Multi-layer circular progress
-16. Parallax - Parallax backgrounds
-17. Popup - Modal dialogs
-18. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
-19. ProgressBar - Horizontal/circular progress
-20. Slider - Image/content carousel
-21. SmoothScroll - Scroll-to-section navigation
-22. Tabs - Tabbed interface
-23. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
-24. Tooltip - Hover/focus tooltips
-25. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
-26. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
+5. Breadcrumbs - Auto-generated breadcrumb trail from navigation menu via NavData
+6. Counter - Animated number counting
+7. DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export
+8. DragDrop - Reorderable lists and multi-container sorting with localStorage persistence
+9. Flipbox - 3D flip cards
+10. FormValidation - Real-time form validation with password strength, visibility toggle, custom rules and AJAX submission
+11. Header - Adaptive header with shrink-on-scroll
+12. HorizontalNav - Multi-level dropdown menus
+13. ImageGallery - Lightbox with masonry grid, zoom, and video
+14. MultiSlider - Multi-item carousel
+15. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
+16. NestedProgress - Multi-layer circular progress
+17. Parallax - Parallax backgrounds
+18. Popup - Modal dialogs
+19. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
+20. ProgressBar - Horizontal/circular progress
+21. Slider - Image/content carousel
+22. SmoothScroll - Scroll-to-section navigation
+23. Tabs - Tabbed interface
+24. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
+25. Tooltip - Hover/focus tooltips
+26. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
+27. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -129,6 +130,7 @@ battersea-library/
 - **DataTable v2.13.0** (Feb 2026): Sortable, filterable tables with pagination, column resizing, row selection, CSV export
 - **NavData v2.14.0** (Feb 2026): Core navigation data service parsing nav DOM into JSON with sequential refs and breadcrumbs
 - **FormValidation v2.15.0** (Feb 2026): Real-time form validation with password strength, custom rules and AJAX submission
+- **Breadcrumbs v2.16.0** (Feb 2026): Auto-generated breadcrumb trail from navigation menu, added to all demo pages
 
 ### In Progress
 - See `TODO.md` for current tasks
@@ -218,4 +220,4 @@ Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
 
 ---
 
-*Last updated: 16 February 2026*
+*Last updated: 18 February 2026*

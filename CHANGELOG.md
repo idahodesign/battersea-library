@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.16.0] - 2026-02-18
+
+### Added
+- **Breadcrumbs Component** -- Auto-generated breadcrumb trail from the site navigation menu via the NavData service
+  - Auto-detects current page from the URL using NavData's `getCurrentPage()` and `getBreadcrumb()` API
+  - Configurable separator character via `data-breadcrumb-separator` attribute (defaults to `|`)
+  - Separator rendered via CSS `::before` pseudo-element for clean separation of content and presentation
+  - Accessible markup: `<nav aria-label="Breadcrumb">` with `<ol>` and `aria-current="page"` on current item
+  - Focus-visible outlines on all breadcrumb links
+  - CSS custom properties for full theming (7 variables: text, link, link-hover, separator-color, font-size, spacing, padding)
+  - Hides automatically on the home page (no trail to show)
+- **Demo page** -- Breadcrumbs demo with live examples of pipe, slash, chevron, and arrow separators
+- **Breadcrumb added to all demo pages** -- Every component demo page and the homepage now shows a breadcrumb trail
+- **Navigation updated** -- Breadcrumbs added to Navigation category in demo nav
+
+---
+
 ## [2.15.0] - 2026-02-17
 
 ### Added

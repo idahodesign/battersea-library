@@ -53,6 +53,10 @@
 		data-transition-speed="0.3"></header>
   
 	<div class="content-outer">
+
+		<!-- Breadcrumb -->
+		<div data-breadcrumb></div>
+
 		<!-- ============================================ -->
 		<!-- HERO SECTION -->
 		<!-- ============================================ -->
@@ -129,7 +133,7 @@
   <section id="demos"class="showcase-section" data-scroll-section data-scroll-title="Components" data-animate="fade-up">
 	  <div class="section-box">
     <div class="container">
-      <h2 class="section-title">25 Production-Ready Components</h2>
+      <h2 class="section-title">26 Production-Ready Components</h2>
       <p class="section-subtitle">Explore our complete collection of accessible, customisable components</p>
       
       <!-- ========== Navigation & Layout ========== -->
@@ -180,7 +184,17 @@
           <span class="component-link">View Demo</span>
         </a>
 
-        <a href="components/accordion.html" class="component-card delay-6" data-animate="fade-up">
+        <a href="components/breadcrumbs.html" class="component-card component-card--new delay-6" data-animate="fade-up">
+          <div class="component-preview">&#8230;</div>
+          <div class="component-info">
+            <span class="component-badge">New</span>
+            <h3>Breadcrumbs</h3>
+            <p>Auto-generated breadcrumb trail from the site navigation menu.</p>
+          </div>
+          <span class="component-link">View Demo</span>
+        </a>
+
+        <a href="components/accordion.html" class="component-card delay-7" data-animate="fade-up">
           <div class="component-preview">&#9660;</div>
           <div class="component-info">
             <h3>Accordion</h3>
@@ -363,10 +377,9 @@
           <span class="component-link">View Demo</span>
         </a>
 
-        <a href="components/formvalidation.html" class="component-card component-card--new delay-8" data-animate="fade-up">
+        <a href="components/formvalidation.html" class="component-card delay-8" data-animate="fade-up">
           <div class="component-preview">&#10003;</div>
           <div class="component-info">
-            <span class="component-badge">New</span>
             <h3>Form Validation</h3>
             <p>Real-time form validation with password strength, custom rules and AJAX submission.</p>
           </div>
@@ -828,7 +841,7 @@ less.modifyVars({
       <div class="stats-grid">
         <div class="stat-item">
           <div class="stat-number">
-            <span data-counter data-counter-end="25" data-counter-duration="2000">0</span>
+            <span data-counter data-counter-end="26" data-counter-duration="2000">0</span>
           </div>
           <div class="stat-label">Production-Ready Components</div>
         </div>
@@ -891,6 +904,7 @@ less.modifyVars({
   <script src="../src/js/battersea-tooltip.js"></script>
   <script src="../src/js/battersea-smoothscroll.js"></script>
   <script src="../src/js/battersea-accessibility.js"></script>
+  <script src="../src/js/battersea-breadcrumbs.js"></script>
 
   <!-- Theme Customizer Script -->
   <script>

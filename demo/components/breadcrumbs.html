@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Breadcrumbs Component - Battersea Library</title>
+		<meta name="description" content="Auto-generated breadcrumb navigation trail from the site menu - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumb -->
+			<div data-breadcrumb></div>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Breadcrumbs Component</h1>
+						<p class="hero-subtitle">Auto-generated breadcrumb trail from your site's navigation menu</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">The breadcrumb at the top of this page is a working example</p>
+
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>How It Works</h3>
+							<p>The breadcrumb trail you see above the page title is generated automatically. It reads the site's navigation menu, works out where you are, and builds the trail for you. No manual configuration needed on each page.</p>
+
+							<p>For this page the trail reads: <strong>Home | Navigation | Breadcrumbs</strong> because the Breadcrumbs component sits inside the Navigation category in the main menu.</p>
+						</div>
+
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Custom Separator</h3>
+							<p>You can change the separator character using a data attribute. Here's one with a forward slash:</p>
+
+							<div class="demo-container">
+								<div data-breadcrumb data-breadcrumb-separator="/"></div>
+							</div>
+						</div>
+
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Chevron Separator</h3>
+							<p>Or use a chevron for a more traditional look:</p>
+
+							<div class="demo-container">
+								<div data-breadcrumb data-breadcrumb-separator="&#8250;"></div>
+							</div>
+						</div>
+
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Arrow Separator</h3>
+							<p>A right arrow works nicely too:</p>
+
+							<div class="demo-container">
+								<div data-breadcrumb data-breadcrumb-separator="&#8594;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9881;</div>
+								<h3>Auto-Generated</h3>
+								<p>Reads the navigation menu DOM and detects the current page from the URL. No manual breadcrumb data needed.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">|</div>
+								<h3>Configurable Separator</h3>
+								<p>Change the separator character with a single data attribute. Pipe, slash, chevron, arrow -- whatever suits your design.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">A11y</div>
+								<h3>Accessible</h3>
+								<p>Uses <code>&lt;nav aria-label="Breadcrumb"&gt;</code> with an ordered list and <code>aria-current="page"</code> on the current item.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>CSS Variables</h3>
+								<p>Every visual aspect -- colours, spacing, font size -- is controlled via CSS custom properties for easy theming.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the breadcrumbs component using these data attributes:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-breadcrumb</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the breadcrumb component on the element</td>
+									</tr>
+									<tr>
+										<td><code>data-breadcrumb-separator</code></td>
+										<td>Any string</td>
+										<td><code>|</code></td>
+										<td>The character displayed between breadcrumb items</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">CSS Custom Properties</h3>
+							<p>Override these variables to customise the appearance:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Variable</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>--battersea-breadcrumb-text</code></td>
+										<td><code>#666</code></td>
+										<td>Colour of the current page text</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-breadcrumb-link</code></td>
+										<td><code>#667eea</code></td>
+										<td>Colour of breadcrumb links</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-breadcrumb-link-hover</code></td>
+										<td><code>#4c5fd5</code></td>
+										<td>Hover colour of breadcrumb links</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-breadcrumb-separator-color</code></td>
+										<td><code>#999</code></td>
+										<td>Colour of the separator character</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-breadcrumb-font-size</code></td>
+										<td><code>0.875rem</code></td>
+										<td>Font size of the breadcrumb text</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-breadcrumb-spacing</code></td>
+										<td><code>0.5rem</code></td>
+										<td>Gap between items and separators</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-breadcrumb-padding</code></td>
+										<td><code>0.75rem 0</code></td>
+										<td>Padding around the breadcrumb trail</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Dependencies</h3>
+							<p>The Breadcrumbs component requires the NavData service, which reads the site's navigation menu. Make sure <code>battersea-nav-data.js</code> is loaded before <code>battersea-breadcrumbs.js</code>.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Breadcrumb</div>
+								<div data-accordion-content>
+									<div>
+										<p>Drop this element anywhere on the page. It auto-detects the current page and builds the trail:</p>
+										<pre><code>&lt;div data-breadcrumb&gt;&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Separator</div>
+								<div data-accordion-content>
+									<div>
+										<p>Change the separator character with the <code>data-breadcrumb-separator</code> attribute:</p>
+										<pre><code>&lt;!-- Forward slash --&gt;
+&lt;div data-breadcrumb data-breadcrumb-separator="/"&gt;&lt;/div&gt;
+
+&lt;!-- Chevron --&gt;
+&lt;div data-breadcrumb data-breadcrumb-separator="&amp;#8250;"&gt;&lt;/div&gt;
+
+&lt;!-- Arrow --&gt;
+&lt;div data-breadcrumb data-breadcrumb-separator="&amp;#8594;"&gt;&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling</div>
+								<div data-accordion-content>
+									<div>
+										<p>Override the CSS custom properties to match your design:</p>
+										<pre><code>:root {
+  --battersea-breadcrumb-link: #3498db;
+  --battersea-breadcrumb-link-hover: #2980b9;
+  --battersea-breadcrumb-text: #95a5a6;
+  --battersea-breadcrumb-separator-color: #bdc3c7;
+  --battersea-breadcrumb-font-size: 0.8rem;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Required Scripts</div>
+								<div data-accordion-content>
+									<div>
+										<p>Include the core files, NavData service, and the breadcrumbs script:</p>
+										<pre><code>&lt;script src="battersea-utils.js"&gt;&lt;/script&gt;
+&lt;script src="battersea-core.js"&gt;&lt;/script&gt;
+&lt;script src="battersea-nav-data.js"&gt;&lt;/script&gt;
+&lt;script src="battersea-breadcrumbs.js"&gt;&lt;/script&gt;</code></pre>
+										<p>The NavData service must load before the Breadcrumbs component. It parses the navigation menu and makes the data available for the breadcrumb trail.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">nav</div>
+								<h3>Landmark Navigation</h3>
+								<p>Uses <code>&lt;nav&gt;</code> with <code>aria-label="Breadcrumb"</code> so screen readers can identify it as navigation.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">ol</div>
+								<h3>Ordered List</h3>
+								<p>The trail is an <code>&lt;ol&gt;</code> element, conveying the hierarchical order to assistive technology.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Current Page</h3>
+								<p>The last item uses <code>aria-current="page"</code> to identify the current location in the trail.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">[ ]</div>
+								<h3>Focus Indicators</h3>
+								<p>Visible focus outlines on all breadcrumb links for keyboard navigation.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			// Load all includes when DOM is ready
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				// Load includes in order - nav must load after header since demo-nav-nested is inside the header include
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>
