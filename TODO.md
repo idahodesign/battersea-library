@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
 **Last Updated:** 19 February 2026
-**Current Version:** 2.18.0
+**Current Version:** 2.19.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -58,14 +58,14 @@
 - [x] Breadcrumbs - Auto-generated breadcrumb trail from the site navigation menu (v2.16.0)
 - [x] PageNav - Prev/next page navigation with three modes: sequential, within category, between categories (v2.17.0)
 - [x] MiniQuiz - Interactive quiz with boolean, single-choice, multi-select questions, timer, hide-until-click, JSON/CSV data loading (v2.18.0)
+- [x] VideoBackground - Looping background video with mobile poster fallback and configurable overlay (v2.19.0)
 
 ### 🔨 In Progress
 
 ### 📋 Next Up
 
-- [ ] Background looping video - the ability to have a looping video as a article/section/div background.
 - [ ] Graphing - A graphing component that creates highly configurable and styled graphs whose data can be populated from a csv or Json file. The graphs are have the option to be animated and graph types are single line, multiline, single bar and multibar, single column and multicolum, radiating column, pie graph, donut graph.
-- [ ] form element validation for file select element file type and file size.
+- [ ] form element validation for file select element file type and file size. New advanced form elements - date picker, tiem picker, colour swatch, toggle, slide, 
 - [ ] Transparent header - Setting that makes the the headers background transparent until it sticks to the top of the browser window when it's background fades in. Its transparency returns when the user scrolls black to the top of the site. When set to transparent the header floats above the first content of the site. This will effect the smooth scroll compoent because it usually offsets the content to allow for the header height.
 - [ ] Back to top button - A button fades in as you scroll down the page clicking it takes you to the top of the page.
 - [ ] MiniQuiz v2 - Drag-and-drop ordering of HTML elements, drag-and-drop grouping of HTML elements, optional prevent navigation from page until the quiz has been attempted

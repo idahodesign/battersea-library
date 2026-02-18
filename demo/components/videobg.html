@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Video Background Component - Battersea Library</title>
+		<meta name="description" content="Looping background video with poster fallback and configurable overlay - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumb -->
+			<div data-breadcrumb></div>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Video Background</h1>
+						<p class="hero-subtitle">Looping background video for sections, heroes and full-width banners with mobile poster fallback and overlay support</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Each section below uses a looping video as its background</p>
+
+						<!-- Basic Video Background -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Basic Video Background</h3>
+							<p>The simplest setup &mdash; just a video source and a container. The video loops silently and fills the entire section.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-videobg
+									data-videobg-src="../../assets/video/slow_motion_soft_cloudscape_01.mp4"
+									style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
+								</div>
+							</div>
+						</div>
+
+						<!-- Video Background with Dark Overlay -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Dark Overlay with Text</h3>
+							<p>Adding an overlay makes text readable over the video. This one uses a semi-transparent black.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-videobg
+									data-videobg-src="../../assets/video/slow_motion_soft_cloudscape_01.mp4"
+									data-videobg-overlay="rgba(0,0,0,0.55)"
+									style="min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+									<div style="padding: 2rem;">
+										<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Your Heading Here</h3>
+										<p style="margin-bottom: 0; max-width: 550px; font-size: 1.1rem;">The dark overlay sits between the video and your content, so text stays legible regardless of what the video is doing behind it.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Video Background with Gradient Overlay -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Gradient Overlay</h3>
+							<p>The overlay accepts any valid CSS background value, including gradients. This one fades from solid to transparent.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-videobg
+									data-videobg-src="../../assets/video/slow_motion_soft_cloudscape_01.mp4"
+									data-videobg-overlay="linear-gradient(135deg, rgba(102,126,234,0.7), rgba(118,75,162,0.4))"
+									style="min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+									<div style="padding: 2rem;">
+										<h3 style="color: white; margin-top: 0; font-size: 1.8rem;">Gradient Overlay</h3>
+										<p style="margin-bottom: 0; max-width: 550px; font-size: 1.1rem;">A gradient overlay adds colour and brand personality on top of the video. Works with any CSS gradient syntax.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Mobile Poster Fallback -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Mobile Poster Fallback</h3>
+							<p>On screens narrower than 768px (or your chosen breakpoint), the video is replaced with a static poster image. Saves bandwidth and avoids autoplay issues on mobile. Resize your browser to see the swap.</p>
+
+							<div class="demo-container" style="padding: 0; overflow: hidden; border-radius: 12px;">
+								<div data-videobg
+									data-videobg-src="../../assets/video/slow_motion_soft_cloudscape_01.mp4"
+									data-videobg-poster="../../assets/img/background-01.jpg"
+									data-videobg-overlay="rgba(0,0,0,0.4)"
+									style="min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
+									<div style="padding: 2rem;">
+										<h3 style="color: white; margin-top: 0; font-size: 1.5rem;">Poster on Mobile</h3>
+										<p style="margin-bottom: 0; max-width: 500px;">Narrow your browser window below 768px and this section switches from video to a static image. Widen it again and the video comes back.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9654;</div>
+								<h3>Auto-Play</h3>
+								<p>Videos play automatically, muted and looping. No user interaction needed. If the browser blocks autoplay, it fails gracefully.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#9724;</div>
+								<h3>Full Coverage</h3>
+								<p>The video fills the container edge to edge using object-fit cover, regardless of aspect ratio. No letterboxing, no gaps.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9641;</div>
+								<h3>Mobile Fallback</h3>
+								<p>Set a poster image and a breakpoint. Below that width, the video swaps to a static image. Saves data and avoids mobile autoplay headaches.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#9632;</div>
+								<h3>Overlay Support</h3>
+								<p>Add a colour or gradient overlay between the video and your content. Makes text readable without editing the video itself.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Zero Dependencies</h3>
+								<p>Pure vanilla JavaScript. No libraries, no frameworks, no build step required. Pair it with any stack.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Data Attributes</h3>
+								<p>Configure everything in HTML. Set the video source, poster, overlay and breakpoint without writing a line of JavaScript.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Everything is configured through data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-videobg</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the video background on this element</td>
+									</tr>
+									<tr>
+										<td><code>data-videobg-src</code></td>
+										<td>URL</td>
+										<td>required</td>
+										<td>Path to the video file (MP4 recommended for broadest support)</td>
+									</tr>
+									<tr>
+										<td><code>data-videobg-poster</code></td>
+										<td>URL</td>
+										<td>none</td>
+										<td>Poster image shown on mobile instead of the video</td>
+									</tr>
+									<tr>
+										<td><code>data-videobg-overlay</code></td>
+										<td>CSS colour/gradient</td>
+										<td>none</td>
+										<td>Overlay between video and content. Accepts any valid CSS background value</td>
+									</tr>
+									<tr>
+										<td><code>data-videobg-mobile-breakpoint</code></td>
+										<td>number (px)</td>
+										<td><code>768</code></td>
+										<td>Screen width below which the poster replaces the video</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Usage</h3>
+							<p>The minimum setup &mdash; a container with a video source:</p>
+
+							<pre><code>&lt;div data-videobg
+  data-videobg-src="path/to/video.mp4"
+  style="min-height: 400px;"&gt;
+  &lt;!-- Your content here --&gt;
+&lt;/div&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">With Overlay and Poster</h3>
+							<p>A more complete setup with overlay and mobile fallback:</p>
+
+							<pre><code>&lt;div data-videobg
+  data-videobg-src="path/to/video.mp4"
+  data-videobg-poster="path/to/poster.jpg"
+  data-videobg-overlay="rgba(0,0,0,0.5)"
+  style="min-height: 500px;"&gt;
+  &lt;h1&gt;Your heading&lt;/h1&gt;
+  &lt;p&gt;Content sits above the video and overlay&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">Tips</h3>
+							<ul>
+								<li>Use MP4 with H.264 encoding for the widest browser support</li>
+								<li>Keep videos short (10&ndash;30 seconds) and compressed &mdash; they loop, so length doesn't matter much</li>
+								<li>Set a <code>min-height</code> on the container so it has something to fill</li>
+								<li>The poster image should match the video's content reasonably well so the swap isn't jarring</li>
+								<li>Gradient overlays work well for brand-coloured hero sections</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Hero Section</div>
+								<div data-accordion-content>
+									<div>
+										<p>A full-width hero with a video background and centred text:</p>
+										<pre><code>&lt;section data-videobg
+  data-videobg-src="hero-video.mp4"
+  data-videobg-poster="hero-poster.jpg"
+  data-videobg-overlay="rgba(0,0,0,0.5)"
+  style="min-height: 600px;
+         display: flex;
+         align-items: center;
+         justify-content: center;"&gt;
+  &lt;div style="text-align: center; color: white;"&gt;
+    &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;p&gt;Your tagline here&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Content Break</div>
+								<div data-accordion-content>
+									<div>
+										<p>Use a video background to break up sections of text content:</p>
+										<pre><code>&lt;section class="content"&gt;
+  &lt;p&gt;Regular content...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;div data-videobg
+  data-videobg-src="ambient.mp4"
+  data-videobg-overlay="rgba(0,0,0,0.3)"
+  style="min-height: 300px;"&gt;
+&lt;/div&gt;
+
+&lt;section class="content"&gt;
+  &lt;p&gt;More content...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Brand-Coloured Gradient</div>
+								<div data-accordion-content>
+									<div>
+										<p>Layer your brand colours over the video with a gradient overlay:</p>
+										<pre><code>&lt;div data-videobg
+  data-videobg-src="bg-video.mp4"
+  data-videobg-overlay="linear-gradient(135deg,
+    rgba(102,126,234,0.8),
+    rgba(118,75,162,0.6))"
+  style="min-height: 500px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         color: white;"&gt;
+  &lt;h2&gt;Branded Section&lt;/h2&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Breakpoint</div>
+								<div data-accordion-content>
+									<div>
+										<p>Change the mobile breakpoint if you want the poster to kick in at a different width:</p>
+										<pre><code>&lt;div data-videobg
+  data-videobg-src="video.mp4"
+  data-videobg-poster="fallback.jpg"
+  data-videobg-mobile-breakpoint="1024"
+  style="min-height: 400px;"&gt;
+  &lt;!-- Poster shows below 1024px instead of the default 768px --&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Autoplay requires the video to be muted (which it is by default). The <code>playsinline</code> attribute ensures iOS Safari plays inline rather than going fullscreen.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Page Navigation -->
+			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-videobg.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

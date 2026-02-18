@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.19.0] - 2026-02-19
+
+### Added
+- **VideoBackground Component** -- Looping background video for sections, heroes and full-width banners
+  - Auto-playing muted looping video fills container with object-fit cover
+  - Configurable overlay via `data-videobg-overlay` -- accepts any CSS colour or gradient
+  - Mobile poster fallback via `data-videobg-poster` -- static image replaces video below breakpoint
+  - Configurable breakpoint via `data-videobg-mobile-breakpoint` (default 768px)
+  - Graceful autoplay handling -- catches browser blocking silently
+  - Content wrapper keeps child elements above video and overlay layers
+  - Proper destroy() with video cleanup, DOM restoration, and event removal
+  - `playsinline` attribute for inline playback on iOS Safari
+- **Demo page** -- Video Background demo with four live examples: basic, dark overlay, gradient overlay, and poster fallback
+- **Navigation updated** -- Video Background added to Content category
+- **Homepage updated** -- Video Background card added to Media & Galleries section
+
+---
+
 ## [2.18.0] - 2026-02-19
 
 ### Added

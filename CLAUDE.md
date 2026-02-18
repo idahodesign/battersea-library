@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.18.0
+- **Current Version:** 2.19.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 31 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 32 JavaScript files (includes env-config, nav-data)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (29 total)
+### Components (30 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
@@ -62,7 +62,8 @@ battersea-library/
 26. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
 27. Tooltip - Hover/focus tooltips
 28. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
-29. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
+29. VideoBackground - Looping background video with mobile poster fallback and configurable overlay
+30. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -135,6 +136,7 @@ battersea-library/
 - **Breadcrumbs v2.16.0** (Feb 2026): Auto-generated breadcrumb trail from navigation menu, added to all demo pages
 - **PageNav v2.17.0** (Feb 2026): Prev/next page navigation with three modes, added to all demo pages
 - **MiniQuiz v2.18.0** (Feb 2026): Interactive quiz with boolean, single-choice, multi-select, timer, hide-until-click, JSON/CSV data loading
+- **VideoBackground v2.19.0** (Feb 2026): Looping background video with mobile poster fallback and configurable overlay
 
 ### In Progress
 - See `TODO.md` for current tasks
