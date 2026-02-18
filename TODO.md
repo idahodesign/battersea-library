@@ -61,11 +61,11 @@
 ### 🔨 In Progress
 
 ### 📋 Next Up
-- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see the correct answer. The quiz types are Simple two choice, multiple choice single answer, multiple choice multiple answer, drag and drop ordering, drag and drop grouping. Optional time constraint, quiz hidden until button is clicked then the quiz fades in and the timer starts. Optional prevent navigation from page until the quiz have been attempted.
-- [ ] Transparent header - Seeting that makes the the headers background transparent until it sticks to the top of the browser windeo when it's background fades in. Its transparency return when the user scrolls black to the top of the site.The initial header transparency means the first section needs to be be visible beneath the header.
-- [ ] Background looping video - the ability to have a looping video as a section/div background.
-- [ ] Graphing - A graphing component that creates highly configurable and styled graphs whose data can be populated from a csv or Json file. The graphs are have the option to be animated and graph types are single line, multiline, single bar and multibar, single column and multicolum, radiating column, pie graph, dognut graph.
-- [ ] Back to top button - A button fades in as you scroll down the pag clicking it takes you to the top of the page.
+- [ ] MiniQuiz - Small interactive quiz element that users can complete and when submitted see their result and the correct answer. The quiz types are simple two choice, multiple choice single answer, multiple choice multiple answer, drag and drop ordering of html elements, drag and drop grouping of html elements. Optional time constraint, quiz hidden until button is clicked then the quiz fades in and the timer starts. Optional prevent navigation from page until the quiz have been attempted. Nice to have the abbiltiy to popualte with a csv or Json file
+- [ ] Background looping video - the ability to have a looping video as a article/section/div background.
+- [ ] Graphing - A graphing component that creates highly configurable and styled graphs whose data can be populated from a csv or Json file. The graphs are have the option to be animated and graph types are single line, multiline, single bar and multibar, single column and multicolum, radiating column, pie graph, donut graph.
+- [ ] Transparent header - Setting that makes the the headers background transparent until it sticks to the top of the browser window when it's background fades in. Its transparency returns when the user scrolls black to the top of the site. When set to transparent the header floats above the first content of the site. This will effect the smooth scroll compoent because it usually offsets the content to allow for the header height.
+- [ ] Back to top button - A button fades in as you scroll down the page clicking it takes you to the top of the page.
 
 
 ---
