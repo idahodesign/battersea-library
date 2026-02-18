@@ -1,0 +1,103 @@
+/**
+ * Battersea Library - PageNav
+ * Version: 1.0.0
+ */
+
+.battersea-pagenav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--battersea-pagenav-padding, 1.5rem 0);
+  border-top: var(--battersea-pagenav-border, 1px solid #e0e0e0);
+  margin-top: var(--battersea-pagenav-margin, 2rem);
+  font-family: inherit;
+}
+
+.battersea-pagenav__link {
+  display: flex;
+  align-items: center;
+  gap: var(--battersea-pagenav-gap, 0.75rem);
+  color: var(--battersea-pagenav-link, #667eea);
+  text-decoration: none;
+  padding: var(--battersea-pagenav-link-padding, 0.5rem 0);
+  transition: color 0.2s ease;
+  max-width: 45%;
+
+  &:hover {
+    color: var(--battersea-pagenav-link-hover, #4c5fd5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--battersea-pagenav-link, #667eea);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  &--prev {
+    margin-right: auto;
+  }
+
+  &--next {
+    margin-left: auto;
+    text-align: right;
+
+    .battersea-pagenav__text {
+      align-items: flex-end;
+    }
+  }
+}
+
+.battersea-pagenav__arrow {
+  font-size: var(--battersea-pagenav-arrow-size, 1.5rem);
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+
+  .battersea-pagenav__link--prev:hover & {
+    transform: translateX(-3px);
+  }
+
+  .battersea-pagenav__link--next:hover & {
+    transform: translateX(3px);
+  }
+}
+
+.battersea-pagenav__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.battersea-pagenav__category {
+  font-size: var(--battersea-pagenav-category-size, 0.75rem);
+  color: var(--battersea-pagenav-category-color, #999);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.battersea-pagenav__title {
+  font-size: var(--battersea-pagenav-title-size, 0.95rem);
+  font-weight: var(--battersea-pagenav-title-weight, 500);
+}
+
+.battersea-pagenav__label {
+  font-size: var(--battersea-pagenav-label-size, 0.85rem);
+  color: var(--battersea-pagenav-label-color, #999);
+  text-align: center;
+  flex-shrink: 0;
+  padding: 0 1rem;
+}
+
+@media (max-width: 767px) {
+  .battersea-pagenav__text {
+    display: none;
+  }
+
+  .battersea-pagenav__label {
+    display: none;
+  }
+
+  .battersea-pagenav__arrow {
+    font-size: var(--battersea-pagenav-arrow-size-mobile, 2rem);
+  }
+}

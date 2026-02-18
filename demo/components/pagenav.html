@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Breadcrumbs Component - Battersea Library</title>
-		<meta name="description" content="Auto-generated breadcrumb navigation trail from the site menu - Battersea Library Component">
+		<title>Page Navigation Component - Battersea Library</title>
+		<meta name="description" content="Prev/next page navigation links powered by your site's navigation menu - Battersea Library Component">
 
 		<!-- LESS Stylesheets -->
 		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
@@ -61,8 +61,8 @@
 			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
-						<h1>Breadcrumbs Component</h1>
-						<p class="hero-subtitle">Auto-generated breadcrumb trail from your site's navigation menu</p>
+						<h1>Page Navigation Component</h1>
+						<p class="hero-subtitle">Prev/next page links that read your site's menu and work out where to go</p>
 					</div>
 				</div>
 			</section>
@@ -74,39 +74,41 @@
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
-						<p class="section-subtitle">The breadcrumb at the top of this page is a working example</p>
+						<p class="section-subtitle">Each example below uses a different navigation mode</p>
 
 						<div class="demo-subsection" data-animate="fade-up">
-							<h3>How It Works</h3>
-							<p>The breadcrumb trail you see above the page title is generated automatically. It reads the site's navigation menu, works out where you are, and builds the trail for you. No manual configuration needed on each page.</p>
+							<h3>All Pages (Sequential)</h3>
+							<p>Moves through every page in the site, one by one. The category name appears above the page title so you can see which section you're heading into.</p>
 
-							<p>For this page the trail reads: <strong>Home | Navigation | Breadcrumbs</strong> because the Breadcrumbs component sits inside the Navigation category in the main menu.</p>
+							<div class="demo-container">
+								<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+							</div>
 						</div>
 
 						<div class="demo-subsection delay-1" data-animate="fade-up">
-							<h3>Custom Separator</h3>
-							<p>You can change the separator character using a data attribute. Here's one with a forward slash:</p>
+							<h3>Within Category</h3>
+							<p>Stays within the current category. If you're in the Navigation section, it only moves between Navigation pages. Handy when you want people to explore related content.</p>
 
 							<div class="demo-container">
-								<div data-breadcrumb data-breadcrumb-separator="/"></div>
+								<div data-pagenav data-pagenav-mode="category" data-pagenav-label="More in this section"></div>
 							</div>
 						</div>
 
 						<div class="demo-subsection delay-2" data-animate="fade-up">
-							<h3>Chevron Separator</h3>
-							<p>Or use a chevron for a more traditional look:</p>
+							<h3>Between Categories</h3>
+							<p>Jumps between top-level sections. Useful when you want to give people a way to move across major areas of the site.</p>
 
 							<div class="demo-container">
-								<div data-breadcrumb data-breadcrumb-separator="&#8250;"></div>
+								<div data-pagenav data-pagenav-mode="categories"></div>
 							</div>
 						</div>
 
 						<div class="demo-subsection delay-3" data-animate="fade-up">
-							<h3>Arrow Separator</h3>
-							<p>A right arrow works nicely too:</p>
+							<h3>Arrows Only</h3>
+							<p>A stripped-back version with no page titles. Just the arrows. On mobile, all modes look like this automatically.</p>
 
 							<div class="demo-container">
-								<div data-breadcrumb data-breadcrumb-separator="&#8594;"></div>
+								<div data-pagenav data-pagenav-show-title="false"></div>
 							</div>
 						</div>
 					</div>
@@ -125,25 +127,31 @@
 							<div class="feature-card delay-1" data-animate="fade-up">
 								<div class="feature-icon">&#9881;</div>
 								<h3>Auto-Generated</h3>
-								<p>Reads the navigation menu DOM and detects the current page from the URL. No manual breadcrumb data needed.</p>
+								<p>Reads the navigation menu and builds the prev/next links automatically. No hardcoded URLs needed.</p>
 							</div>
 
 							<div class="feature-card delay-2" data-animate="fade-up">
-								<div class="feature-icon">|</div>
-								<h3>Configurable Separator</h3>
-								<p>Change the separator character with a single data attribute. Pipe, slash, chevron, arrow -- whatever suits your design.</p>
+								<div class="feature-icon">&#8644;</div>
+								<h3>Three Modes</h3>
+								<p>Navigate all pages sequentially, move within a category, or jump between top-level sections.</p>
 							</div>
 
 							<div class="feature-card delay-3" data-animate="fade-up">
-								<div class="feature-icon">A11y</div>
-								<h3>Accessible</h3>
-								<p>Uses <code>&lt;nav aria-label="Breadcrumb"&gt;</code> with an ordered list and <code>aria-current="page"</code> on the current item.</p>
+								<div class="feature-icon">&#215;2</div>
+								<h3>Multiple Instances</h3>
+								<p>Drop several on the same page, each with a different mode. They work independently.</p>
 							</div>
 
 							<div class="feature-card delay-4" data-animate="fade-up">
 								<div class="feature-icon">{ }</div>
 								<h3>CSS Variables</h3>
-								<p>Every visual aspect -- colours, spacing, font size -- is controlled via CSS custom properties for easy theming.</p>
+								<p>Colours, spacing, font sizes -- all controlled via CSS custom properties for easy theming.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">A11y</div>
+								<h3>Accessible</h3>
+								<p>Proper <code>&lt;nav&gt;</code> landmark with descriptive aria-labels on every link.</p>
 							</div>
 						</div>
 					</div>
@@ -160,7 +168,7 @@
 
 						<div class="config-content">
 							<h3>Data Attributes</h3>
-							<p>Configure the breadcrumbs component using these data attributes:</p>
+							<p>Configure the component using these data attributes:</p>
 
 							<table class="config-table">
 								<thead>
@@ -173,16 +181,34 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>data-breadcrumb</code></td>
+										<td><code>data-pagenav</code></td>
 										<td>-</td>
 										<td>required</td>
-										<td>Initialises the breadcrumb component on the element</td>
+										<td>Initialises the page navigation component on the element</td>
 									</tr>
 									<tr>
-										<td><code>data-breadcrumb-separator</code></td>
+										<td><code>data-pagenav-mode</code></td>
+										<td><code>pages</code>, <code>category</code>, <code>categories</code></td>
+										<td><code>pages</code></td>
+										<td>Which navigation sequence to use</td>
+									</tr>
+									<tr>
+										<td><code>data-pagenav-show-title</code></td>
+										<td><code>true</code>, <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Whether to display the page name alongside the arrow</td>
+									</tr>
+									<tr>
+										<td><code>data-pagenav-show-category</code></td>
+										<td><code>true</code>, <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show the parent category name above the page title</td>
+									</tr>
+									<tr>
+										<td><code>data-pagenav-label</code></td>
 										<td>Any string</td>
-										<td><code>|</code></td>
-										<td>The character displayed between breadcrumb items</td>
+										<td>none</td>
+										<td>Optional label text displayed between the prev/next links</td>
 									</tr>
 								</tbody>
 							</table>
@@ -200,45 +226,65 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>--battersea-breadcrumb-text</code></td>
-										<td><code>#666</code></td>
-										<td>Colour of the current page text</td>
-									</tr>
-									<tr>
-										<td><code>--battersea-breadcrumb-link</code></td>
+										<td><code>--battersea-pagenav-link</code></td>
 										<td><code>#667eea</code></td>
-										<td>Colour of breadcrumb links</td>
+										<td>Link colour</td>
 									</tr>
 									<tr>
-										<td><code>--battersea-breadcrumb-link-hover</code></td>
+										<td><code>--battersea-pagenav-link-hover</code></td>
 										<td><code>#4c5fd5</code></td>
-										<td>Hover colour of breadcrumb links</td>
+										<td>Link hover colour</td>
 									</tr>
 									<tr>
-										<td><code>--battersea-breadcrumb-separator-color</code></td>
+										<td><code>--battersea-pagenav-arrow-size</code></td>
+										<td><code>1.5rem</code></td>
+										<td>Size of the arrow characters</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-pagenav-title-size</code></td>
+										<td><code>0.95rem</code></td>
+										<td>Font size of the page title</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-pagenav-title-weight</code></td>
+										<td><code>500</code></td>
+										<td>Font weight of the page title</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-pagenav-category-size</code></td>
+										<td><code>0.75rem</code></td>
+										<td>Font size of the category label</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-pagenav-category-color</code></td>
 										<td><code>#999</code></td>
-										<td>Colour of the separator character</td>
+										<td>Colour of the category label</td>
 									</tr>
 									<tr>
-										<td><code>--battersea-breadcrumb-font-size</code></td>
-										<td><code>0.875rem</code></td>
-										<td>Font size of the breadcrumb text</td>
+										<td><code>--battersea-pagenav-padding</code></td>
+										<td><code>1.5rem 0</code></td>
+										<td>Padding around the component</td>
 									</tr>
 									<tr>
-										<td><code>--battersea-breadcrumb-spacing</code></td>
-										<td><code>0.5rem</code></td>
-										<td>Gap between items and separators</td>
+										<td><code>--battersea-pagenav-border</code></td>
+										<td><code>1px solid #e0e0e0</code></td>
+										<td>Top border of the component</td>
 									</tr>
 									<tr>
-										<td><code>--battersea-breadcrumb-padding</code></td>
-										<td><code>0.75rem 0</code></td>
-										<td>Padding around the breadcrumb trail</td>
+										<td><code>--battersea-pagenav-margin</code></td>
+										<td><code>2rem</code></td>
+										<td>Top margin of the component</td>
+									</tr>
+									<tr>
+										<td><code>--battersea-pagenav-label-color</code></td>
+										<td><code>#999</code></td>
+										<td>Colour of the centre label text</td>
 									</tr>
 								</tbody>
 							</table>
 
 							<h3 style="margin-top: 2rem;">Dependencies</h3>
-							<p>The Breadcrumbs component requires the NavData service, which reads the site's navigation menu. Make sure <code>battersea-nav-data.js</code> is loaded before <code>battersea-breadcrumbs.js</code>.</p>
+							<p>The PageNav component requires the NavData service, which reads the site's navigation menu. Make sure <code>battersea-nav-data.js</code> is loaded before <code>battersea-pagenav.js</code>.</p>
 						</div>
 					</div>
 				</div>
@@ -254,44 +300,44 @@
 
 						<div data-accordion data-accordion-multiple="true">
 							<div data-accordion-item class="active">
-								<div data-accordion-header>Basic Breadcrumb</div>
+								<div data-accordion-header>Basic Page Navigation</div>
 								<div data-accordion-content>
 									<div>
-										<p>Drop this element anywhere on the page. It auto-detects the current page and builds the trail:</p>
-										<pre><code>&lt;div data-breadcrumb&gt;&lt;/div&gt;</code></pre>
+										<p>Drop this on a page and it generates prev/next links through all pages in order:</p>
+										<pre><code>&lt;div data-pagenav&gt;&lt;/div&gt;</code></pre>
 									</div>
 								</div>
 							</div>
 
 							<div data-accordion-item>
-								<div data-accordion-header>Custom Separator</div>
+								<div data-accordion-header>Within Category Navigation</div>
 								<div data-accordion-content>
 									<div>
-										<p>Change the separator character with the <code>data-breadcrumb-separator</code> attribute:</p>
-										<pre><code>&lt;!-- Forward slash --&gt;
-&lt;div data-breadcrumb data-breadcrumb-separator="/"&gt;&lt;/div&gt;
-
-&lt;!-- Chevron --&gt;
-&lt;div data-breadcrumb data-breadcrumb-separator="&amp;#8250;"&gt;&lt;/div&gt;
-
-&lt;!-- Arrow --&gt;
-&lt;div data-breadcrumb data-breadcrumb-separator="&amp;#8594;"&gt;&lt;/div&gt;</code></pre>
+										<p>Keep navigation within the current section only:</p>
+										<pre><code>&lt;div data-pagenav data-pagenav-mode="category"&gt;&lt;/div&gt;</code></pre>
 									</div>
 								</div>
 							</div>
 
 							<div data-accordion-item>
-								<div data-accordion-header>Custom Styling</div>
+								<div data-accordion-header>With Category Label and Centre Text</div>
 								<div data-accordion-content>
 									<div>
-										<p>Override the CSS custom properties to match your design:</p>
-										<pre><code>:root {
-  --battersea-breadcrumb-link: #3498db;
-  --battersea-breadcrumb-link-hover: #2980b9;
-  --battersea-breadcrumb-text: #95a5a6;
-  --battersea-breadcrumb-separator-color: #bdc3c7;
-  --battersea-breadcrumb-font-size: 0.8rem;
-}</code></pre>
+										<p>Show the category name above the page title and add a label between the links:</p>
+										<pre><code>&lt;div data-pagenav
+  data-pagenav-mode="pages"
+  data-pagenav-show-category="true"
+  data-pagenav-label="Browse pages"&gt;&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Arrows Only</div>
+								<div data-accordion-content>
+									<div>
+										<p>Hide the page titles for a minimal look:</p>
+										<pre><code>&lt;div data-pagenav data-pagenav-show-title="false"&gt;&lt;/div&gt;</code></pre>
 									</div>
 								</div>
 							</div>
@@ -300,12 +346,12 @@
 								<div data-accordion-header>Required Scripts</div>
 								<div data-accordion-content>
 									<div>
-										<p>Include the core files, NavData service, and the breadcrumbs script:</p>
+										<p>Include the core files, NavData service, and the page navigation script:</p>
 										<pre><code>&lt;script src="battersea-utils.js"&gt;&lt;/script&gt;
 &lt;script src="battersea-core.js"&gt;&lt;/script&gt;
 &lt;script src="battersea-nav-data.js"&gt;&lt;/script&gt;
-&lt;script src="battersea-breadcrumbs.js"&gt;&lt;/script&gt;</code></pre>
-										<p>The NavData service must load before the Breadcrumbs component. It parses the navigation menu and makes the data available for the breadcrumb trail.</p>
+&lt;script src="battersea-pagenav.js"&gt;&lt;/script&gt;</code></pre>
+										<p>The NavData service must load before the PageNav component. It parses the navigation menu and makes the data available for the prev/next links.</p>
 									</div>
 								</div>
 							</div>
@@ -327,25 +373,25 @@
 							<div class="feature-card delay-1" data-animate="fade-up">
 								<div class="feature-icon">nav</div>
 								<h3>Landmark Navigation</h3>
-								<p>Uses <code>&lt;nav&gt;</code> with <code>aria-label="Breadcrumb"</code> so screen readers can identify it as navigation.</p>
+								<p>Uses <code>&lt;nav&gt;</code> with <code>aria-label="Page navigation"</code> so screen readers can identify it.</p>
 							</div>
 
 							<div class="feature-card delay-2" data-animate="fade-up">
-								<div class="feature-icon">ol</div>
-								<h3>Ordered List</h3>
-								<p>The trail is an <code>&lt;ol&gt;</code> element, conveying the hierarchical order to assistive technology.</p>
+								<div class="feature-icon">&#10148;</div>
+								<h3>Descriptive Labels</h3>
+								<p>Each link has an <code>aria-label</code> like "Previous: Header" or "Next: Horizontal Navigation" so users know exactly where they'll go.</p>
 							</div>
 
 							<div class="feature-card delay-3" data-animate="fade-up">
-								<div class="feature-icon">&#10148;</div>
-								<h3>Current Page</h3>
-								<p>The last item uses <code>aria-current="page"</code> to identify the current location in the trail.</p>
+								<div class="feature-icon">Tab</div>
+								<h3>Keyboard Navigable</h3>
+								<p>Standard anchor links -- Tab to reach them, Enter to follow. Nothing unusual to learn.</p>
 							</div>
 
 							<div class="feature-card delay-4" data-animate="fade-up">
 								<div class="feature-icon">[ ]</div>
 								<h3>Focus Indicators</h3>
-								<p>Visible focus outlines on all breadcrumb links for keyboard navigation.</p>
+								<p>Visible focus outlines on all links for keyboard navigation.</p>
 							</div>
 						</div>
 					</div>
@@ -390,7 +436,6 @@
 				</div>
 			</section>
 
-
 			<!-- Page Navigation -->
 			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
@@ -421,7 +466,7 @@
 		<script src="../../src/js/battersea-smoothscroll.js"></script>
 		<script src="../../src/js/battersea-accessibility.js"></script>
 		<script src="../../src/js/battersea-breadcrumbs.js"></script>
-tt<script src="../../src/js/battersea-pagenav.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
 
 		<!-- Include Loader Script -->
 		<script>

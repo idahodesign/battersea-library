@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.16.0
+- **Current Version:** 2.17.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 29 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 30 JavaScript files (includes env-config, nav-data)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (27 total)
+### Components (28 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
@@ -50,17 +50,18 @@ battersea-library/
 14. MultiSlider - Multi-item carousel
 15. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
 16. NestedProgress - Multi-layer circular progress
-17. Parallax - Parallax backgrounds
-18. Popup - Modal dialogs
-19. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
-20. ProgressBar - Horizontal/circular progress
-21. Slider - Image/content carousel
-22. SmoothScroll - Scroll-to-section navigation
-23. Tabs - Tabbed interface
-24. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
-25. Tooltip - Hover/focus tooltips
-26. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
-27. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
+17. PageNav - Prev/next page navigation with three modes (sequential, within category, between categories)
+18. Parallax - Parallax backgrounds
+19. Popup - Modal dialogs
+20. ProfileGrid - Staff photo grid with hover overlays, filter pills, and detailed lightbox
+21. ProgressBar - Horizontal/circular progress
+22. Slider - Image/content carousel
+23. SmoothScroll - Scroll-to-section navigation
+24. Tabs - Tabbed interface
+25. Timeline - Vertical/horizontal timeline with scroll-reveal, alternating layout, date badges, icon markers
+26. Tooltip - Hover/focus tooltips
+27. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
+28. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -131,6 +132,7 @@ battersea-library/
 - **NavData v2.14.0** (Feb 2026): Core navigation data service parsing nav DOM into JSON with sequential refs and breadcrumbs
 - **FormValidation v2.15.0** (Feb 2026): Real-time form validation with password strength, custom rules and AJAX submission
 - **Breadcrumbs v2.16.0** (Feb 2026): Auto-generated breadcrumb trail from navigation menu, added to all demo pages
+- **PageNav v2.17.0** (Feb 2026): Prev/next page navigation with three modes, added to all demo pages
 
 ### In Progress
 - See `TODO.md` for current tasks

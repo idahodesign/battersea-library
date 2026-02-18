@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.17.0] - 2026-02-18
+
+### Added
+- **PageNav Component** -- Prev/next page navigation powered by the NavData service
+  - Three navigation modes: `pages` (sequential), `category` (within category), `categories` (between sections)
+  - Configurable via data attributes: mode, show-title, show-category, label
+  - Multiple instances per page with independent configuration
+  - Accessible: `<nav>` landmark with descriptive `aria-label` on every link
+  - Responsive: hides titles on mobile, shows arrows only
+  - CSS custom properties for full theming (11 variables)
+  - Hover animation on arrows for directional feedback
+- **Demo page** -- PageNav demo with live examples of all four modes
+- **PageNav added to all demo pages** -- Every component demo and homepage shows prev/next navigation
+- **Navigation updated** -- Page Navigation added to Navigation category
+
+---
+
 ## [2.16.0] - 2026-02-18
 
 ### Added
