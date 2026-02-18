@@ -351,8 +351,9 @@
 			this.liveRegion.className = 'battersea-quiz__live-region';
 			this.quizEl.appendChild(this.liveRegion);
 
-			// Hidden mode: wrap in hidden state, add reveal button
-			if (this.config.hidden) {
+			// Hidden/timer mode: wrap in hidden state, add reveal button
+			// Any quiz with a timer needs a start button so the user controls when it begins
+			if (this.config.hidden || this.config.timer > 0) {
 				this.quizEl.classList.add('battersea-quiz--hidden');
 
 				const revealBtn = document.createElement('button');
@@ -366,11 +367,6 @@
 			}
 
 			this.el.appendChild(this.quizEl);
-
-			// Start timer immediately if not hidden
-			if (this.config.timer > 0 && !this.config.hidden) {
-				this.startTimer();
-			}
 		}
 
 		buildQuestion(question) {
@@ -614,12 +610,14 @@
 				const fieldset = Utils.qs('[data-question-id="' + question.id + '"]', this.quizEl);
 				if (!fieldset) return;
 
-				// Add correct/incorrect class to fieldset
-				fieldset.classList.add(
-					result.correct
-						? 'battersea-quiz__question--correct'
-						: 'battersea-quiz__question--incorrect'
-				);
+				// Add correct/incorrect/unanswered class to fieldset
+				if (result.correct) {
+					fieldset.classList.add('battersea-quiz__question--correct');
+				} else if (result.given === null) {
+					fieldset.classList.add('battersea-quiz__question--unanswered');
+				} else {
+					fieldset.classList.add('battersea-quiz__question--incorrect');
+				}
 
 				// Mark individual options
 				const labels = Utils.qsa('.battersea-quiz__option-label', fieldset);
@@ -706,12 +704,11 @@
 			}
 			summary.appendChild(message);
 
-			// Insert after title/description, before questions
-			const questionsContainer = Utils.qs('.battersea-quiz__questions', this.quizEl);
-			this.quizEl.insertBefore(summary, questionsContainer);
+			// Insert at the bottom of the quiz (after submit button)
+			this.quizEl.appendChild(summary);
 
 			// Scroll summary into view
-			summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		}
 
 		// ============================================================
