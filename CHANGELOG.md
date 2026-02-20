@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.20.0] - 2026-02-21
+
+### Added
+- **Graph Component** -- Phase 1: SVG chart rendering with three graph types
+  - Line chart with data points, grid lines, and multi-series support
+  - Column chart with grouped bars and auto-scaling axes
+  - Pie chart with arc segments and percentage display
+  - Three data sources: inline JSON, JSON file URL, CSV file URL
+  - Animated drawing via CSS transitions (stroke-dashoffset for lines, grow-from-baseline for columns, staggered fade for pie)
+  - Hover tooltips positioned as HTML elements over the SVG
+  - Configurable legend with four positions (bottom, top, left, right)
+  - Axis labels, ticks, and nice round Y-axis values
+  - Custom colour palette via data-graph-colours attribute
+  - Responsive: redraws on window resize
+  - CSS custom properties for full theming
+  - Accessible: role="img" and aria-label on SVG
+- **Demo page** -- Graph demo with six live examples covering all chart types and data sources
+- **Sample data files** -- CSV and JSON graph data in demo/data/
+- **Navigation updated** -- Graph added to Data Display category
+- **Homepage updated** -- Graph card added to Data & Feedback section
+
+---
+
 ## [2.19.0] - 2026-02-19
 
 ### Added

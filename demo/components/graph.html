@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Graph Component - Battersea Library</title>
+		<meta name="description" content="SVG line, column, and pie charts with tooltips, animation, and CSV/JSON data sources - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumb -->
+			<div data-breadcrumb></div>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Graph Component</h1>
+						<p class="hero-subtitle">SVG line, column, and pie charts with tooltips, animation, and data loading from CSV or JSON</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">See the Graph component in action</p>
+
+						<!-- Demo 1: Basic Line Chart -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Line Chart</h3>
+							<p>A single-series line chart with data points, grid lines, and axis labels. Hover over the data points for tooltips.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="line"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-height="350"
+									data-graph-x-label="Month"
+									data-graph-y-label="Revenue (GBP)"
+									data-graph-data='{"labels":["Jan","Feb","Mar","Apr","May","Jun"],"datasets":[{"label":"Sales","values":[1200,1800,1400,2200,1900,2600]}]}'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 2: Multi-Series Line Chart from JSON file -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Multi-Series Line from JSON File</h3>
+							<p>Two data series loaded from an external JSON file. Animated drawing with a legend to identify each series.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="line"
+									data-graph-data="../data/graph-sales.json"
+									data-graph-animated="true"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-height="380"
+									data-graph-x-label="Month"
+									data-graph-y-label="Amount">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 3: Column Chart -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Column Chart</h3>
+							<p>Multiple data series shown as grouped vertical bars. Each group represents a quarter with three values side by side.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="column"
+									data-graph-animated="true"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-height="380"
+									data-graph-x-label="Quarter"
+									data-graph-y-label="Amount (GBP)"
+									data-graph-data='{"labels":["Q1","Q2","Q3","Q4"],"datasets":[{"label":"Revenue","values":[42000,51000,47000,63000]},{"label":"Expenses","values":[28000,31000,29000,35000]},{"label":"Profit","values":[14000,20000,18000,28000]}]}'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 4: Pie Chart -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Pie Chart</h3>
+							<p>Proportional data shown as circular segments. Hover for percentages. The legend sits to the right of the chart.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="pie"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-legend-position="right"
+									data-graph-title="Browser Market Share"
+									data-graph-animated="true"
+									data-graph-height="350"
+									data-graph-data='{"labels":["Chrome","Safari","Firefox","Edge","Other"],"datasets":[{"label":"Share","values":[65,18,8,5,4]}]}'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 5: Column Chart from CSV -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Column Chart from CSV File</h3>
+							<p>Data loaded from an external CSV file. The first column becomes the x-axis labels and the remaining columns become data series.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="column"
+									data-graph-csv="../data/graph-sales.csv"
+									data-graph-animated="true"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-height="400"
+									data-graph-x-label="Quarter"
+									data-graph-y-label="Amount">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 6: Custom Colours -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Custom Colour Palette</h3>
+							<p>Override the default colours with your own palette using the <code>data-graph-colours</code> attribute.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="pie"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-title="Project Allocation"
+									data-graph-animated="true"
+									data-graph-height="350"
+									data-graph-colours="#2d3436, #636e72, #b2bec3, #dfe6e9, #74b9ff"
+									data-graph-data='{"labels":["Development","Design","Testing","Documentation","Planning"],"datasets":[{"label":"Hours","values":[420,180,150,80,70]}]}'>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">SVG</div>
+								<h3>Pure SVG Rendering</h3>
+								<p>Charts are drawn with SVG for crisp rendering at any resolution. Fully scalable and stylable with CSS.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#123;&#125;</div>
+								<h3>Flexible Data Sources</h3>
+								<p>Load data from inline JSON, a JSON file URL, or a CSV file. The component handles parsing automatically.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#9654;</div>
+								<h3>Animated Drawing</h3>
+								<p>Lines draw themselves with stroke animation. Columns grow from the baseline. Pie segments fade in with a staggered effect.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#8230;</div>
+								<h3>Hover Tooltips</h3>
+								<p>Tooltips appear on hover showing the label and value. Positioned to stay within the chart container.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">&#9632;</div>
+								<h3>Configurable Legend</h3>
+								<p>Place the legend at the bottom, top, left, or right of the chart. Colour swatches match each data series.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#8596;</div>
+								<h3>Responsive</h3>
+								<p>Charts redraw on window resize. The SVG viewBox scales with the container for clean rendering on any screen.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the Graph component using these data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-graph</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the Graph component</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-type</code></td>
+										<td><code>line</code> / <code>column</code> / <code>pie</code></td>
+										<td><code>line</code></td>
+										<td>The type of chart to render</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-data</code></td>
+										<td>JSON object or URL</td>
+										<td>-</td>
+										<td>Inline JSON data or a URL to a JSON file</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-csv</code></td>
+										<td>URL</td>
+										<td>-</td>
+										<td>Path to a CSV file. First column = labels, remaining = data series</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-height</code></td>
+										<td>Number (px)</td>
+										<td><code>400</code></td>
+										<td>Height of the chart area in pixels</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-title</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>Title shown above the chart</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-animated</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Animate the chart drawing on load</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-tooltips</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show tooltips on hover</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-legend</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show the chart legend</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-legend-position</code></td>
+										<td><code>bottom</code> / <code>top</code> / <code>left</code> / <code>right</code></td>
+										<td><code>bottom</code></td>
+										<td>Where to place the legend</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-x-label</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>Label for the x-axis</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-y-label</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>Label for the y-axis</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-colours</code></td>
+										<td>Comma-separated hex values</td>
+										<td>Built-in palette</td>
+										<td>Custom colour palette for data series</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Custom Events</h3>
+							<p>The component fires these events on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Event</th>
+										<th>Detail</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>battersea:graphReady</code></td>
+										<td><code>{ type, labels, datasets }</code></td>
+										<td>Fired when data is loaded and the chart is initialised</td>
+									</tr>
+									<tr>
+										<td><code>battersea:graphRender</code></td>
+										<td><code>{ type }</code></td>
+										<td>Fired each time the chart is drawn (including on resize)</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE SECTION -->
+			<!-- ============================================ -->
+			<section id="usage" class="getting-started-section" data-scroll-section data-scroll-title="Usage" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-single-open="true" data-accordion-first-open="true" data-accordion-animate="true">
+							<div data-accordion-item>
+								<div data-accordion-header>Inline JSON</div>
+								<div data-accordion-content>
+									<div>
+										<p>Pass data directly as a JSON attribute. The <code>labels</code> array defines the x-axis, and each <code>datasets</code> entry is a series:</p>
+										<pre><code>&lt;div data-graph
+  data-graph-type="line"
+  data-graph-tooltips="true"
+  data-graph-legend="true"
+  data-graph-data='{"labels":["Jan","Feb","Mar"],
+    "datasets":[{"label":"Sales","values":[100,200,150]}]}'&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>JSON File Source</div>
+								<div data-accordion-content>
+									<div>
+										<p>Point <code>data-graph-data</code> at a URL to load data from an external JSON file:</p>
+										<pre><code>&lt;div data-graph
+  data-graph-type="column"
+  data-graph-data="data/sales.json"
+  data-graph-animated="true"
+  data-graph-legend="true"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>CSV File Source</div>
+								<div data-accordion-content>
+									<div>
+										<p>Point the component at a CSV file. The first row becomes column headers, the first column becomes labels, and the rest become data series:</p>
+										<pre><code>&lt;div data-graph
+  data-graph-type="column"
+  data-graph-csv="data/sales.csv"
+  data-graph-tooltips="true"
+  data-graph-legend="true"&gt;
+&lt;/div&gt;</code></pre>
+										<p>CSV format:</p>
+										<pre><code>Quarter,Revenue,Expenses,Profit
+Q1 2025,42000,28000,14000
+Q2 2025,51000,31000,20000</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Pie Chart</div>
+								<div data-accordion-content>
+									<div>
+										<p>For pie charts, provide a single dataset. The labels become segment names and the values determine the slice size:</p>
+										<pre><code>&lt;div data-graph
+  data-graph-type="pie"
+  data-graph-title="Market Share"
+  data-graph-legend="true"
+  data-graph-legend-position="right"
+  data-graph-data='{"labels":["Chrome","Safari","Firefox"],
+    "datasets":[{"label":"Share","values":[65,18,8]}]}'&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>Hook into chart lifecycle events:</p>
+										<pre><code>var chart = document.querySelector('[data-graph]');
+
+chart.addEventListener('battersea:graphReady', function(e) {
+  console.log('Chart type:', e.detail.type);
+  console.log('Data points:', e.detail.labels);
+});
+
+chart.addEventListener('battersea:graphRender', function(e) {
+  console.log('Chart rendered:', e.detail.type);
+});</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling with CSS Variables</div>
+								<div data-accordion-content>
+									<div>
+										<p>Override the default look with CSS custom properties:</p>
+										<pre><code>:root {
+  --graph-grid-color: #f0f0f0;
+  --graph-axis-color: #999;
+  --graph-tick-color: #555;
+  --graph-tooltip-bg: rgba(30, 30, 60, 0.95);
+  --graph-tooltip-text: #fff;
+  --graph-title-color: #222;
+  --graph-legend-text: #444;
+  --graph-animation-duration: 1.5s;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">aria</div>
+								<h3>ARIA Labels</h3>
+								<p>The SVG element has role="img" and an aria-label describing the chart. Screen readers announce the chart purpose.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">&#9632;</div>
+								<h3>Colour Contrast</h3>
+								<p>The default palette is chosen for visual distinction. White strokes between pie segments aid separation.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">&#8230;</div>
+								<h3>Tooltip Text</h3>
+								<p>Hover tooltips provide exact values for each data point, supplementing the visual representation.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">&#9733;</div>
+								<h3>Legend</h3>
+								<p>The legend uses standard HTML with colour swatches, making it readable by assistive technology.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses inline SVG and CSS custom properties. Charts scale responsively using SVG viewBox.
+						</p>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- Page Navigation -->
+			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-graph.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

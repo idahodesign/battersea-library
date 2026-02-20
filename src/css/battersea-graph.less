@@ -1,0 +1,225 @@
+/**
+ * Battersea Library - Graph Styles
+ * Version: 2.20.0
+ */
+
+:root {
+  --graph-bg: transparent;
+  --graph-text: #444;
+  --graph-grid-color: #e8e8e8;
+  --graph-axis-color: #ccc;
+  --graph-tick-color: #666;
+  --graph-tooltip-bg: rgba(0, 0, 0, 0.85);
+  --graph-tooltip-text: #fff;
+  --graph-tooltip-radius: 6px;
+  --graph-title-color: #333;
+  --graph-legend-text: #555;
+  --graph-animation-duration: 1s;
+}
+
+.battersea-graph {
+  width: 100%;
+  font-size: 0.95rem;
+  color: var(--graph-text);
+  background: var(--graph-bg);
+
+  // ─── Title ──────────────────────────────
+  &__title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--graph-title-color);
+    text-align: center;
+    padding: 1rem 1rem 0;
+  }
+
+  // ─── SVG Container ─────────────────────
+  &__svg-container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__svg {
+    display: block;
+    width: 100%;
+  }
+
+  // ─── Grid Lines ─────────────────────────
+  &__grid-line {
+    stroke: var(--graph-grid-color);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+  }
+
+  // ─── Axis Lines ─────────────────────────
+  &__axis-line {
+    stroke: var(--graph-axis-color);
+    stroke-width: 1;
+  }
+
+  // ─── Tick Labels ────────────────────────
+  &__tick-label {
+    font-size: 12px;
+    fill: var(--graph-tick-color);
+    font-family: inherit;
+  }
+
+  // ─── Axis Labels ────────────────────────
+  &__axis-label {
+    font-size: 13px;
+    fill: var(--graph-tick-color);
+    font-weight: 500;
+    font-family: inherit;
+  }
+
+  // ─── Line Chart ─────────────────────────
+  &__line {
+    &--animated {
+      transition: stroke-dashoffset var(--graph-animation-duration) ease-out;
+      stroke-dashoffset: 0 !important;
+    }
+  }
+
+  &__point {
+    cursor: pointer;
+    transition: r 0.15s ease;
+
+    &:hover {
+      r: 6;
+    }
+  }
+
+  // ─── Column Chart ──────────────────────
+  &__bar {
+    cursor: pointer;
+    transition: y var(--graph-animation-duration) ease-out,
+                height var(--graph-animation-duration) ease-out,
+                opacity 0.15s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // ─── Pie Chart ──────────────────────────
+  &__slice {
+    cursor: pointer;
+    transition: opacity 0.5s ease-out, transform 0.15s ease;
+    transform-origin: center;
+
+    &--animated {
+      opacity: 1 !important;
+    }
+
+    &:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
+    }
+  }
+
+  // ─── Tooltip ────────────────────────────
+  &__tooltip {
+    position: absolute;
+    z-index: 10;
+    background: var(--graph-tooltip-bg);
+    color: var(--graph-tooltip-text);
+    padding: 8px 12px;
+    border-radius: var(--graph-tooltip-radius);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  // ─── Legend ─────────────────────────────
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    padding: 12px 16px;
+
+    &--bottom,
+    &--top {
+      justify-content: center;
+    }
+
+    &--right,
+    &--left {
+      flex-direction: column;
+    }
+  }
+
+  &__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--graph-legend-text);
+  }
+
+  &__legend-swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  &__legend-label {
+    white-space: nowrap;
+  }
+
+  // ─── Layout modifiers for side legends ──
+  &--legend-right,
+  &--legend-left {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+
+    .battersea-graph__svg-container {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .battersea-graph__legend {
+      width: 140px;
+      flex-shrink: 0;
+      padding-top: 40px;
+    }
+  }
+
+  &--legend-left {
+    flex-direction: row-reverse;
+  }
+}
+
+// ─── Responsive ──────────────────────────
+@media (max-width: 767px) {
+  .battersea-graph {
+    &__tick-label {
+      font-size: 10px;
+    }
+
+    &__axis-label {
+      font-size: 11px;
+    }
+
+    &__legend {
+      padding: 8px 12px;
+      gap: 8px 14px;
+    }
+
+    &--legend-right,
+    &--legend-left {
+      flex-direction: column;
+
+      .battersea-graph__legend {
+        width: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 0;
+      }
+    }
+  }
+}
