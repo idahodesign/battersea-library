@@ -96,6 +96,10 @@
       this.tooltipEl = null;
       this.legendEl = null;
 
+      // Animation state — deferred until visible
+      this._hasAnimated = false;
+      this._observer = null;
+
       // Debounced resize
       this._debouncedResize = Utils.debounce(this.onResize.bind(this), 250);
 
@@ -164,12 +168,17 @@
 
       this.el.appendChild(this.wrapper);
 
-      // Render the chart
-      this.render();
+      // Render the chart — static first, animation deferred until visible
+      this.render(false);
 
       // Legend (bottom, left, right — placed after SVG)
       if (this.showLegend && this.legendPosition !== 'top') {
         this.drawLegend();
+      }
+
+      // If animated, observe when the graph scrolls into view
+      if (this.animated) {
+        this.observeVisibility();
       }
 
       // Resize listener
@@ -182,9 +191,31 @@
       }));
     }
 
+    observeVisibility() {
+      var self = this;
+      this._observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !self._hasAnimated) {
+            self._hasAnimated = true;
+            self._observer.disconnect();
+            self._observer = null;
+            // Re-render with animation now the graph is visible
+            self.render(true);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      this._observer.observe(this.el);
+    }
+
     destroy() {
       this.events.forEach(function(event) { event.remove(); });
       this.events = [];
+
+      if (this._observer) {
+        this._observer.disconnect();
+        this._observer = null;
+      }
 
       if (this.wrapper && this.wrapper.parentNode) {
         this.wrapper.parentNode.removeChild(this.wrapper);
@@ -342,7 +373,10 @@
 
     // ─── Rendering ─────────────────────────────
 
-    render() {
+    render(withAnimation) {
+      // withAnimation defaults to false — only true when triggered by observer
+      this._animating = withAnimation === true;
+
       var container = Utils.qs('.battersea-graph__svg-container', this.wrapper);
       var width = container.clientWidth;
       if (width === 0) width = 600;
@@ -451,7 +485,7 @@
         path.classList.add('battersea-graph__line');
         svg.appendChild(path);
 
-        if (self.animated) {
+        if (self._animating) {
           self.animateLine(path);
         }
 
@@ -467,7 +501,7 @@
           circle.classList.add('battersea-graph__point');
 
           // Animated markers fade in after line draws
-          if (self.animated) {
+          if (self._animating) {
             circle.classList.add('battersea-graph__point--hidden');
             var delay = self.getAnimationDuration() + (pi * 60);
             setTimeout(function() {
@@ -525,7 +559,7 @@
           rect.setAttribute('fill', colour);
           rect.classList.add('battersea-graph__bar');
 
-          if (self.animated) {
+          if (self._animating) {
             // Animate bars growing from baseline using JS animation
             rect.setAttribute('y', (area.y + area.height).toFixed(1));
             rect.setAttribute('height', '0');
@@ -570,7 +604,7 @@
       svg.appendChild(sliceGroup);
 
       // For clockwise wipe animation, use a clip-path
-      if (this.animated) {
+      if (this._animating) {
         var clipId = 'graph-pie-clip-' + Math.random().toString(36).substr(2, 6);
         var defs = document.createElementNS(SVG_NS, 'defs');
         var clipPath = document.createElementNS(SVG_NS, 'clipPath');
@@ -1048,7 +1082,7 @@
       });
       this.events = [];
       this.events.push(Utils.addEvent(window, 'resize', this._debouncedResize));
-      this.render();
+      this.render(false);
     }
   }
 
