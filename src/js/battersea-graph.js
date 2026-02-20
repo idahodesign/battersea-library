@@ -49,6 +49,7 @@
 
       // Display options
       this.animated = Utils.parseBoolean(Utils.getData(el, 'graph-animated') || 'false');
+      this.animationDelay = Utils.parseInt(Utils.getData(el, 'graph-animation-delay'), 300);
       this.tooltips = Utils.parseBoolean(Utils.getData(el, 'graph-tooltips') || 'true');
       this.showLegend = Utils.parseBoolean(Utils.getData(el, 'graph-legend') || 'true');
       this.legendPosition = Utils.getData(el, 'graph-legend-position') || 'bottom';
@@ -199,8 +200,10 @@
             self._hasAnimated = true;
             self._observer.disconnect();
             self._observer = null;
-            // Re-render with animation now the graph is visible
-            self.render(true);
+            // Re-render with animation after configurable delay
+            setTimeout(function() {
+              self.render(true);
+            }, self.animationDelay);
           }
         });
       }, { threshold: 0.15 });
@@ -485,11 +488,15 @@
         path.classList.add('battersea-graph__line');
         svg.appendChild(path);
 
+        var lineDuration = 0;
         if (self._animating) {
+          lineDuration = self.getAnimationDuration();
           self.animateLine(path);
         }
 
         // Data points
+        var totalLineLength = self._animating ? path.getTotalLength() : 0;
+
         points.forEach(function(p, pi) {
           var circle = document.createElementNS(SVG_NS, 'circle');
           circle.setAttribute('cx', p.x.toFixed(1));
@@ -500,10 +507,12 @@
           circle.setAttribute('stroke-width', '2');
           circle.classList.add('battersea-graph__point');
 
-          // Animated markers fade in after line draws
+          // Markers appear as the line reaches their position
           if (self._animating) {
             circle.classList.add('battersea-graph__point--hidden');
-            var delay = self.getAnimationDuration() + (pi * 60);
+            // Calculate when the line animation reaches this point
+            var pointFraction = points.length > 1 ? pi / (points.length - 1) : 0;
+            var delay = lineDuration * pointFraction;
             setTimeout(function() {
               circle.classList.remove('battersea-graph__point--hidden');
               circle.classList.add('battersea-graph__point--visible');
@@ -544,6 +553,9 @@
       var barGap = seriesCount > 1 ? 2 : 0;
       var barWidth = (groupWidth - barPadding * 2 - barGap * (seriesCount - 1)) / seriesCount;
 
+      // Stagger delay per group for sequential left-to-right animation
+      var barStagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
+
       this.datasets.forEach(function(ds, dsIndex) {
         var colour = self.getColour(dsIndex);
 
@@ -560,11 +572,12 @@
           rect.classList.add('battersea-graph__bar');
 
           if (self._animating) {
-            // Animate bars growing from baseline using JS animation
+            // Animate bars growing from baseline, staggered left-to-right
             rect.setAttribute('y', (area.y + area.height).toFixed(1));
             rect.setAttribute('height', '0');
             svg.appendChild(rect);
-            self.animateBar(rect, area.y + area.height, y, barHeight);
+            var delay = i * barStagger;
+            self.animateBar(rect, area.y + area.height, y, barHeight, delay);
           } else {
             rect.setAttribute('y', y.toFixed(1));
             rect.setAttribute('height', barHeight.toFixed(1));
@@ -893,29 +906,38 @@
       path.classList.add('battersea-graph__line--animated');
     }
 
-    animateBar(rect, baseline, targetY, targetHeight) {
+    animateBar(rect, baseline, targetY, targetHeight, delay) {
       var duration = this.getAnimationDuration();
-      var startTime = null;
 
-      function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        var elapsed = timestamp - startTime;
-        var progress = Math.min(elapsed / duration, 1);
+      function startAnimation() {
+        var startTime = null;
 
-        // Ease-out cubic
-        var eased = 1 - Math.pow(1 - progress, 3);
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var elapsed = timestamp - startTime;
+          var progress = Math.min(elapsed / duration, 1);
 
-        var currentHeight = targetHeight * eased;
-        var currentY = baseline - currentHeight;
-        rect.setAttribute('y', currentY.toFixed(1));
-        rect.setAttribute('height', currentHeight.toFixed(1));
+          // Ease-out cubic
+          var eased = 1 - Math.pow(1 - progress, 3);
 
-        if (progress < 1) {
-          requestAnimationFrame(step);
+          var currentHeight = targetHeight * eased;
+          var currentY = baseline - currentHeight;
+          rect.setAttribute('y', currentY.toFixed(1));
+          rect.setAttribute('height', currentHeight.toFixed(1));
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
         }
+
+        requestAnimationFrame(step);
       }
 
-      requestAnimationFrame(step);
+      if (delay > 0) {
+        setTimeout(startAnimation, delay);
+      } else {
+        startAnimation();
+      }
     }
 
     buildRoundedSlicePath(cx, cy, radius, startAngle, endAngle, cr) {
