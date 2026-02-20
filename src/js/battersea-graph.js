@@ -1000,9 +1000,8 @@
           var colour = self.getColour(dsIndex);
           var segmentHeight = (val / ticks.max) * area.height;
 
-          // Apply gap: add offset above the first segment, reduce height for gaps
-          var gapOffset = dsIndex > 0 ? stackGap : 0;
-          var drawHeight = Math.max(segmentHeight - gapOffset, 0);
+          // Add gap space before this segment (between segments, not below first)
+          if (dsIndex > 0) cumulativeHeight += stackGap;
 
           var x = area.x + i * groupWidth + barPadding;
           var y = area.y + area.height - cumulativeHeight - segmentHeight;
@@ -1024,14 +1023,14 @@
             barAnimations.push({
               rect: rect,
               baseline: area.y + area.height - cumulativeHeight,
-              targetY: y + gapOffset,
-              targetHeight: drawHeight,
+              targetY: y,
+              targetHeight: segmentHeight,
               group: i,
               segment: dsIndex
             });
           } else {
-            rect.setAttribute('y', (y + gapOffset).toFixed(1));
-            rect.setAttribute('height', Math.max(drawHeight, 0).toFixed(1));
+            rect.setAttribute('y', y.toFixed(1));
+            rect.setAttribute('height', Math.max(segmentHeight, 0).toFixed(1));
           }
           svg.appendChild(self.wrapInLink(rect, i));
 
@@ -1159,11 +1158,10 @@
           var colour = self.getColour(dsIndex);
           var segmentWidth = (val / ticks.max) * area.width;
 
-          // Apply gap: offset after the first segment, reduce width for gaps
-          var gapOffset = dsIndex > 0 ? stackGap : 0;
-          var drawWidth = Math.max(segmentWidth - gapOffset, 0);
+          // Add gap space before this segment (between segments, not before first)
+          if (dsIndex > 0) cumulativeWidth += stackGap;
 
-          var x = area.x + cumulativeWidth + gapOffset;
+          var x = area.x + cumulativeWidth;
           var y = area.y + i * groupHeight + barPadding;
 
           var rect = document.createElementNS(SVG_NS, 'rect');
@@ -1182,14 +1180,14 @@
             rect.setAttribute('width', '0');
             barAnimations.push({
               rect: rect,
-              targetWidth: drawWidth,
+              targetWidth: segmentWidth,
               startX: x,
               group: i,
               segment: dsIndex
             });
           } else {
             rect.setAttribute('x', x.toFixed(1));
-            rect.setAttribute('width', Math.max(drawWidth, 0).toFixed(1));
+            rect.setAttribute('width', Math.max(segmentWidth, 0).toFixed(1));
           }
           svg.appendChild(self.wrapInLink(rect, i));
 
