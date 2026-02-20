@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.21.1] - 2026-02-21
+
+### Fixed
+- **Donut chart** -- Segment gaps now use angular insets instead of translation, fixing visible misalignment at segment junctions
+- **Donut rounded corners** -- Symmetric angular insets based on midpoint radius for consistent rounding across all segments
+
+### Added
+- **Stacked chart sequential animation** -- Segments now animate one after another (bottom-to-top for columns, left-to-right for bars) matching the pie chart's sequential reveal
+- **Stacked chart segment gap** -- New `data-graph-stack-gap` attribute adds customisable pixel gaps between stacked segments
+- **Stacked chart corner radius logic** -- Corner radius only applied when `stack-gap` > 0; segments are flush when gap is 0
+- **Radial bar rounded corners** -- Radial bars now support `data-graph-pie-radius` for rounded segment corners
+
+---
+
 ## [2.21.0] - 2026-02-21
 
 ### Added

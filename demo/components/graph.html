@@ -224,7 +224,7 @@
 						<!-- Demo 8: Stacked Column Chart -->
 						<div class="demo-subsection delay-3" data-animate="fade-up">
 							<h3>Stacked Column Chart</h3>
-							<p>Multiple datasets stacked vertically. Each segment shows its own value and the stack total on hover.</p>
+							<p>Multiple datasets stacked vertically with sequential animation. Segments have a customisable gap via <code>data-graph-stack-gap</code>. Corner radius is only applied when gap &gt; 0.</p>
 
 							<div class="demo-container">
 								<div data-graph
@@ -233,6 +233,7 @@
 									data-graph-tooltips="true"
 									data-graph-legend="true"
 									data-graph-bar-radius="4"
+									data-graph-stack-gap="3"
 									data-graph-height="380"
 									data-graph-x-label="Quarter"
 									data-graph-y-label="Amount (GBP)"
@@ -244,7 +245,7 @@
 						<!-- Demo 9: Stacked Bar Chart -->
 						<div class="demo-subsection delay-3" data-animate="fade-up">
 							<h3>Stacked Bar Chart</h3>
-							<p>Horizontal stacked bars showing proportional breakdowns across categories. Uses <code>data-graph-type="stackedbar"</code>.</p>
+							<p>Horizontal stacked bars with sequential animation and customisable segment gaps. Uses <code>data-graph-type="stackedbar"</code>.</p>
 
 							<div class="demo-container">
 								<div data-graph
@@ -253,6 +254,7 @@
 									data-graph-tooltips="true"
 									data-graph-legend="true"
 									data-graph-bar-radius="4"
+									data-graph-stack-gap="3"
 									data-graph-height="350"
 									data-graph-colours="#667eea, #e94560, #4ecdc4"
 									data-graph-data='{"labels":["JavaScript","Python","Java","TypeScript","C#"],"datasets":[{"label":"Frontend","values":[90,20,15,75,10]},{"label":"Backend","values":[60,80,70,40,65]},{"label":"Mobile","values":[30,25,55,20,15]}]}'>
@@ -495,7 +497,13 @@
 										<td><code>data-graph-bar-radius</code></td>
 										<td>Number (px)</td>
 										<td><code>2</code></td>
-										<td>Corner radius on column bars</td>
+										<td>Corner radius on column/bar segments. On stacked charts, only applied when <code>stack-gap</code> &gt; 0</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-stack-gap</code></td>
+										<td>Number (px)</td>
+										<td><code>0</code></td>
+										<td>Gap between segments in stacked column/bar charts</td>
 									</tr>
 									<tr>
 										<td><code>data-graph-pie-gap</code></td>
@@ -706,11 +714,12 @@ chart.addEventListener('battersea:graphRender', function(e) {
 								<div data-accordion-header>Stacked Column Chart</div>
 								<div data-accordion-content>
 									<div>
-										<p>Use <code>data-graph-type="stackedcolumn"</code> to stack multiple datasets vertically. Each segment is hoverable and shows its value plus the stack total:</p>
+										<p>Use <code>data-graph-type="stackedcolumn"</code> to stack multiple datasets vertically. Each segment is hoverable and shows its value plus the stack total. Add <code>data-graph-stack-gap</code> for spacing between segments:</p>
 										<pre><code>&lt;div data-graph
   data-graph-type="stackedcolumn"
   data-graph-animated="true"
   data-graph-legend="true"
+  data-graph-stack-gap="3"
   data-graph-data='{"labels":["Q1","Q2","Q3"],
     "datasets":[
       {"label":"Revenue","values":[42000,51000,47000]},

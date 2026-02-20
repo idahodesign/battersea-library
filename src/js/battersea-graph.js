@@ -64,6 +64,7 @@
 
       // Column options
       this.barRadius = Utils.parseInt(Utils.getData(el, 'graph-bar-radius'), 2);
+      this.stackGap = Utils.parseInt(Utils.getData(el, 'graph-stack-gap'), 0);
 
       // Pie options
       this.pieGap = Utils.parseInt(Utils.getData(el, 'graph-pie-gap'), 0);
@@ -957,7 +958,7 @@
       var groupWidth = area.width / groupCount;
       var barPadding = groupWidth * 0.15;
       var barWidth = groupWidth - barPadding * 2;
-      var barStagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
+      var stackGap = this.stackGap;
       var barAnimations = [];
 
       for (var i = 0; i < groupCount; i++) {
@@ -968,6 +969,11 @@
           var val = ds.values[i] || 0;
           var colour = self.getColour(dsIndex);
           var segmentHeight = (val / ticks.max) * area.height;
+
+          // Apply gap: add offset above the first segment, reduce height for gaps
+          var gapOffset = dsIndex > 0 ? stackGap : 0;
+          var drawHeight = Math.max(segmentHeight - gapOffset, 0);
+
           var x = area.x + i * groupWidth + barPadding;
           var y = area.y + area.height - cumulativeHeight - segmentHeight;
 
@@ -977,8 +983,8 @@
           rect.setAttribute('fill', colour);
           rect.classList.add('battersea-graph__bar');
 
-          // Round corners on every segment
-          if (self.barRadius > 0) {
+          // Round corners: apply to all segments when gap > 0, none when gap is 0
+          if (self.barRadius > 0 && stackGap > 0) {
             rect.setAttribute('rx', self.barRadius);
           }
 
@@ -988,14 +994,14 @@
             barAnimations.push({
               rect: rect,
               baseline: area.y + area.height - cumulativeHeight,
-              targetY: y,
-              targetHeight: segmentHeight,
+              targetY: y + gapOffset,
+              targetHeight: drawHeight,
               group: i,
               segment: dsIndex
             });
           } else {
-            rect.setAttribute('y', y.toFixed(1));
-            rect.setAttribute('height', Math.max(segmentHeight, 0).toFixed(1));
+            rect.setAttribute('y', (y + gapOffset).toFixed(1));
+            rect.setAttribute('height', Math.max(drawHeight, 0).toFixed(1));
           }
           svg.appendChild(rect);
 
@@ -1016,11 +1022,12 @@
 
       if (this.animated && barAnimations.length > 0) {
         var segmentCount = this.datasets.length;
-        var segmentDuration = this.getAnimationDuration() / segmentCount;
+        var totalDuration = this.getAnimationDuration();
+        var segmentDuration = totalDuration / segmentCount;
         this._pendingAnimations.push(function() {
           barAnimations.forEach(function(bar) {
             var delay = bar.segment * segmentDuration;
-            self.animateBar(bar.rect, bar.baseline, bar.targetY, bar.targetHeight, delay);
+            self.animateBar(bar.rect, bar.baseline, bar.targetY, bar.targetHeight, delay, segmentDuration);
           });
         });
       }
@@ -1114,6 +1121,7 @@
 
       var barPadding = groupHeight * 0.15;
       var barHeight = groupHeight - barPadding * 2;
+      var stackGap = this.stackGap;
       var barAnimations = [];
 
       for (var i = 0; i < groupCount; i++) {
@@ -1124,7 +1132,12 @@
           var val = ds.values[i] || 0;
           var colour = self.getColour(dsIndex);
           var segmentWidth = (val / ticks.max) * area.width;
-          var x = area.x + cumulativeWidth;
+
+          // Apply gap: offset after the first segment, reduce width for gaps
+          var gapOffset = dsIndex > 0 ? stackGap : 0;
+          var drawWidth = Math.max(segmentWidth - gapOffset, 0);
+
+          var x = area.x + cumulativeWidth + gapOffset;
           var y = area.y + i * groupHeight + barPadding;
 
           var rect = document.createElementNS(SVG_NS, 'rect');
@@ -1133,8 +1146,8 @@
           rect.setAttribute('fill', colour);
           rect.classList.add('battersea-graph__bar');
 
-          // Round corners on every segment
-          if (self.barRadius > 0) {
+          // Round corners: apply to all segments when gap > 0, none when gap is 0
+          if (self.barRadius > 0 && stackGap > 0) {
             rect.setAttribute('rx', self.barRadius);
           }
 
@@ -1143,14 +1156,14 @@
             rect.setAttribute('width', '0');
             barAnimations.push({
               rect: rect,
-              targetWidth: segmentWidth,
+              targetWidth: drawWidth,
               startX: x,
               group: i,
               segment: dsIndex
             });
           } else {
             rect.setAttribute('x', x.toFixed(1));
-            rect.setAttribute('width', Math.max(segmentWidth, 0).toFixed(1));
+            rect.setAttribute('width', Math.max(drawWidth, 0).toFixed(1));
           }
           svg.appendChild(rect);
 
@@ -1217,29 +1230,36 @@
         sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
       }
 
+      // Angular gap: convert pixel gap to angular inset using midpoint radius
+      var midRadius = (outerRadius + innerRadius) / 2;
+      var halfGapAngle = gap > 0 && midRadius > 0 ? (gap / 2) / midRadius : 0;
+
       values.forEach(function(val, i) {
         var sliceAngle = (val / total) * Math.PI * 2;
         var colour = self.getColour(i);
 
-        var midAngle = startAngle + sliceAngle / 2;
-        var tx = gap > 0 ? Math.cos(midAngle) * (gap / 2) : 0;
-        var ty = gap > 0 ? Math.sin(midAngle) * (gap / 2) : 0;
+        // Inset start/end angles to create gap between segments
+        var drawStart = startAngle + halfGapAngle;
+        var drawEnd = startAngle + sliceAngle - halfGapAngle;
 
+        // Skip if gap consumes the entire slice
+        if (drawEnd <= drawStart) {
+          startAngle += sliceAngle;
+          return;
+        }
+
+        var drawAngle = drawEnd - drawStart;
         var d;
-        if (cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
-          d = self.buildRoundedDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle, cornerRadius);
+        if (cornerRadius > 0 && drawAngle < Math.PI * 2 - 0.01) {
+          d = self.buildRoundedDonutSlicePath(cx, cy, outerRadius, innerRadius, drawStart, drawEnd, cornerRadius);
         } else {
-          d = self.buildDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle);
+          d = self.buildDonutSlicePath(cx, cy, outerRadius, innerRadius, drawStart, drawEnd);
         }
 
         var path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', d);
         path.setAttribute('fill', colour);
         path.classList.add('battersea-graph__slice');
-
-        if (gap > 0) {
-          path.setAttribute('transform', 'translate(' + tx.toFixed(2) + ',' + ty.toFixed(2) + ')');
-        }
 
         if (self.pieStrokeWidth > 0) {
           path.setAttribute('stroke', self.pieStroke);
@@ -1645,8 +1665,8 @@
       path.classList.add('battersea-graph__line--animated');
     }
 
-    animateBar(rect, baseline, targetY, targetHeight, delay) {
-      var duration = this.getAnimationDuration();
+    animateBar(rect, baseline, targetY, targetHeight, delay, customDuration) {
+      var duration = customDuration || this.getAnimationDuration();
 
       function startAnimation() {
         var startTime = null;
