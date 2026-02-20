@@ -977,8 +977,8 @@
           rect.setAttribute('fill', colour);
           rect.classList.add('battersea-graph__bar');
 
-          // Only round top corners of the topmost segment
-          if (dsIndex === this.datasets.length - 1) {
+          // Round corners on every segment
+          if (self.barRadius > 0) {
             rect.setAttribute('rx', self.barRadius);
           }
 
@@ -990,7 +990,8 @@
               baseline: area.y + area.height - cumulativeHeight,
               targetY: y,
               targetHeight: segmentHeight,
-              group: i
+              group: i,
+              segment: dsIndex
             });
           } else {
             rect.setAttribute('y', y.toFixed(1));
@@ -1014,10 +1015,12 @@
       }
 
       if (this.animated && barAnimations.length > 0) {
-        var stagger = barStagger;
+        var segmentCount = this.datasets.length;
+        var segmentDuration = this.getAnimationDuration() / segmentCount;
         this._pendingAnimations.push(function() {
           barAnimations.forEach(function(bar) {
-            self.animateBar(bar.rect, bar.baseline, bar.targetY, bar.targetHeight, bar.group * stagger);
+            var delay = bar.segment * segmentDuration;
+            self.animateBar(bar.rect, bar.baseline, bar.targetY, bar.targetHeight, delay);
           });
         });
       }
@@ -1130,8 +1133,8 @@
           rect.setAttribute('fill', colour);
           rect.classList.add('battersea-graph__bar');
 
-          // Only round right end of the rightmost segment
-          if (dsIndex === this.datasets.length - 1) {
+          // Round corners on every segment
+          if (self.barRadius > 0) {
             rect.setAttribute('rx', self.barRadius);
           }
 
@@ -1142,7 +1145,8 @@
               rect: rect,
               targetWidth: segmentWidth,
               startX: x,
-              group: i
+              group: i,
+              segment: dsIndex
             });
           } else {
             rect.setAttribute('x', x.toFixed(1));
@@ -1166,12 +1170,12 @@
       }
 
       if (this.animated && barAnimations.length > 0) {
-        var stagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
-        var duration = this.getAnimationDuration();
+        var segmentCount = this.datasets.length;
+        var segmentDuration = this.getAnimationDuration() / segmentCount;
         this._pendingAnimations.push(function() {
           barAnimations.forEach(function(bar) {
-            var delay = bar.group * stagger;
-            self.animateHorizontalBar(bar.rect, bar.targetWidth, duration, delay);
+            var delay = bar.segment * segmentDuration;
+            self.animateHorizontalBar(bar.rect, bar.targetWidth, segmentDuration, delay);
           });
         });
       }
@@ -1358,7 +1362,13 @@
         var barEnd = barStart + angleStep * barAngleRatio;
         var barRadius = innerRadius + ((val / ticks.max) * (maxRadius - innerRadius));
 
-        var d = self.buildDonutSlicePath(cx, cy, barRadius, innerRadius, barStart, barEnd);
+        var cornerRadius = self.pieRadius;
+        var d;
+        if (cornerRadius > 0) {
+          d = self.buildRoundedDonutSlicePath(cx, cy, barRadius, innerRadius, barStart, barEnd, cornerRadius);
+        } else {
+          d = self.buildDonutSlicePath(cx, cy, barRadius, innerRadius, barStart, barEnd);
+        }
 
         var path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', d);
@@ -1374,6 +1384,7 @@
             barStart: barStart,
             barEnd: barEnd,
             targetRadius: barRadius,
+            cornerRadius: cornerRadius,
             group: i
           });
         }
@@ -1425,7 +1436,7 @@
         this._pendingAnimations.push(function() {
           barAnimations.forEach(function(bar) {
             var delay = bar.group * stagger;
-            self.animateRadialBar(bar.path, cx, cy, innerRadius, bar.targetRadius, bar.barStart, bar.barEnd, duration, delay);
+            self.animateRadialBar(bar.path, cx, cy, innerRadius, bar.targetRadius, bar.barStart, bar.barEnd, duration, delay, bar.cornerRadius);
           });
         });
       }
@@ -1822,15 +1833,17 @@
       var sliceAngle = endAngle - startAngle;
       var ringWidth = outerR - innerR;
 
-      var maxCr = Math.min(cr, ringWidth * 0.4, outerR * Math.sin(sliceAngle / 2) * 0.8);
+      // Use midpoint radius for consistent angular inset on both rims
+      var midR = (outerR + innerR) / 2;
+      var maxCr = Math.min(cr, ringWidth * 0.4, midR * Math.sin(sliceAngle / 2) * 0.8);
       if (maxCr < 1) {
         return this.buildDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle);
       }
 
-      // Outer corners: inset by angular equivalent of maxCr
-      var outerInset = maxCr / outerR;
-      // Inner corners: inset by angular equivalent of maxCr on inner radius
-      var innerInset = innerR > 0 ? maxCr / innerR : 0;
+      // Use a single angular inset based on midpoint radius for symmetry
+      var angularInset = maxCr / midR;
+      var outerInset = angularInset;
+      var innerInset = innerR > 0 ? angularInset : 0;
 
       // Outer arc inset points
       var oas = startAngle + outerInset;
@@ -1923,8 +1936,9 @@
       });
     }
 
-    animateRadialBar(path, cx, cy, innerRadius, targetRadius, barStart, barEnd, duration, delay) {
+    animateRadialBar(path, cx, cy, innerRadius, targetRadius, barStart, barEnd, duration, delay, cornerRadius) {
       var self = this;
+      var cr = cornerRadius || 0;
 
       function startAnimation() {
         var startTime = null;
@@ -1936,7 +1950,12 @@
           var eased = 1 - Math.pow(1 - progress, 3);
 
           var currentRadius = innerRadius + (targetRadius - innerRadius) * eased;
-          var d = self.buildDonutSlicePath(cx, cy, currentRadius, innerRadius, barStart, barEnd);
+          var d;
+          if (cr > 0 && currentRadius - innerRadius > cr * 2) {
+            d = self.buildRoundedDonutSlicePath(cx, cy, currentRadius, innerRadius, barStart, barEnd, cr);
+          } else {
+            d = self.buildDonutSlicePath(cx, cy, currentRadius, innerRadius, barStart, barEnd);
+          }
           path.setAttribute('d', d);
 
           if (progress < 1) {
