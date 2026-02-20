@@ -825,26 +825,36 @@
         sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
       }
 
+      // Angular gap: convert pixel gap to angular inset using outer radius
+      var halfGapAngle = gap > 0 && radius > 0 ? (gap / 2) / radius : 0;
+
       values.forEach(function(val, i) {
         var sliceAngle = (val / total) * Math.PI * 2;
         var colour = self.getColour(i);
 
-        // Consistent gap: translate each slice outward along its bisector
-        var midAngle = startAngle + sliceAngle / 2;
-        var tx = gap > 0 ? Math.cos(midAngle) * (gap / 2) : 0;
-        var ty = gap > 0 ? Math.sin(midAngle) * (gap / 2) : 0;
+        // Inset start/end angles to create gap between segments
+        var drawStart = startAngle + halfGapAngle;
+        var drawEnd = startAngle + sliceAngle - halfGapAngle;
+
+        // Skip if gap consumes the entire slice
+        if (drawEnd <= drawStart) {
+          startAngle += sliceAngle;
+          return;
+        }
+
+        var drawAngle = drawEnd - drawStart;
 
         // Build the slice path
         var d;
-        if (cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
-          d = self.buildRoundedSlicePath(cx, cy, radius, startAngle, startAngle + sliceAngle, cornerRadius);
+        if (cornerRadius > 0 && drawAngle < Math.PI * 2 - 0.01) {
+          d = self.buildRoundedSlicePath(cx, cy, radius, drawStart, drawEnd, cornerRadius);
         } else {
           // Standard sharp-cornered slice
-          var x1 = cx + radius * Math.cos(startAngle);
-          var y1 = cy + radius * Math.sin(startAngle);
-          var x2 = cx + radius * Math.cos(startAngle + sliceAngle);
-          var y2 = cy + radius * Math.sin(startAngle + sliceAngle);
-          var largeArc = sliceAngle > Math.PI ? 1 : 0;
+          var x1 = cx + radius * Math.cos(drawStart);
+          var y1 = cy + radius * Math.sin(drawStart);
+          var x2 = cx + radius * Math.cos(drawEnd);
+          var y2 = cy + radius * Math.sin(drawEnd);
+          var largeArc = drawAngle > Math.PI ? 1 : 0;
 
           d = [
             'M', cx.toFixed(2), cy.toFixed(2),
@@ -858,11 +868,6 @@
         path.setAttribute('d', d);
         path.setAttribute('fill', colour);
         path.classList.add('battersea-graph__slice');
-
-        // Apply gap translation
-        if (gap > 0) {
-          path.setAttribute('transform', 'translate(' + tx.toFixed(2) + ',' + ty.toFixed(2) + ')');
-        }
 
         // Stroke / outline config
         if (self.pieStrokeWidth > 0) {
@@ -1230,9 +1235,9 @@
         sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
       }
 
-      // Angular gap: convert pixel gap to angular inset using midpoint radius
-      var midRadius = (outerRadius + innerRadius) / 2;
-      var halfGapAngle = gap > 0 && midRadius > 0 ? (gap / 2) / midRadius : 0;
+      // Angular gap: convert pixel gap to angular inset using outer radius
+      // so the gap at the outer edge matches the requested pixel size
+      var halfGapAngle = gap > 0 && outerRadius > 0 ? (gap / 2) / outerRadius : 0;
 
       values.forEach(function(val, i) {
         var sliceAngle = (val / total) * Math.PI * 2;
