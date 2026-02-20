@@ -1018,12 +1018,8 @@
       if (this.animated && barAnimations.length > 0) {
         var segmentCount = this.datasets.length;
         var totalDuration = this.getAnimationDuration();
-        var segmentDuration = totalDuration / segmentCount;
         this._pendingAnimations.push(function() {
-          barAnimations.forEach(function(bar) {
-            var delay = bar.segment * segmentDuration;
-            self.animateBar(bar.rect, bar.baseline, bar.targetY, bar.targetHeight, delay, segmentDuration);
-          });
+          self.animateStackedColumns(barAnimations, segmentCount, totalDuration);
         });
       }
     }
@@ -1179,12 +1175,9 @@
 
       if (this.animated && barAnimations.length > 0) {
         var segmentCount = this.datasets.length;
-        var segmentDuration = this.getAnimationDuration() / segmentCount;
+        var totalDuration = this.getAnimationDuration();
         this._pendingAnimations.push(function() {
-          barAnimations.forEach(function(bar) {
-            var delay = bar.segment * segmentDuration;
-            self.animateHorizontalBar(bar.rect, bar.targetWidth, segmentDuration, delay);
-          });
+          self.animateStackedBars(barAnimations, segmentCount, totalDuration);
         });
       }
     }
@@ -1712,6 +1705,73 @@
       } else {
         startAnimation();
       }
+    }
+
+    /**
+     * Animate stacked column segments sequentially using a single timer.
+     * One ease-in-out curve drives all segments smoothly.
+     */
+    animateStackedColumns(barAnimations, segmentCount, duration) {
+      var startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var rawProgress = Math.min(elapsed / duration, 1);
+
+        // Single ease-in-out curve across the entire animation
+        var eased = rawProgress < 0.5
+          ? 4 * rawProgress * rawProgress * rawProgress
+          : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
+
+        // Map eased progress to sequential segments
+        var fillProgress = eased * segmentCount;
+
+        barAnimations.forEach(function(bar) {
+          var segFraction = Math.max(0, Math.min(1, fillProgress - bar.segment));
+          var currentHeight = bar.targetHeight * segFraction;
+          var currentY = bar.baseline - currentHeight;
+          bar.rect.setAttribute('y', currentY.toFixed(1));
+          bar.rect.setAttribute('height', currentHeight.toFixed(1));
+        });
+
+        if (rawProgress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    /**
+     * Animate stacked bar (horizontal) segments sequentially using a single timer.
+     */
+    animateStackedBars(barAnimations, segmentCount, duration) {
+      var startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var rawProgress = Math.min(elapsed / duration, 1);
+
+        // Single ease-in-out curve
+        var eased = rawProgress < 0.5
+          ? 4 * rawProgress * rawProgress * rawProgress
+          : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
+
+        var fillProgress = eased * segmentCount;
+
+        barAnimations.forEach(function(bar) {
+          var segFraction = Math.max(0, Math.min(1, fillProgress - bar.segment));
+          bar.rect.setAttribute('width', (bar.targetWidth * segFraction).toFixed(1));
+        });
+
+        if (rawProgress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
     }
 
     buildRoundedSlicePath(cx, cy, radius, startAngle, endAngle, cr) {
