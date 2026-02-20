@@ -6,7 +6,12 @@
 :root {
   --graph-bg: transparent;
   --graph-text: #444;
-  --graph-grid-color: #e8e8e8;
+  --graph-grid-h-color: #e8e8e8;
+  --graph-grid-h-width: 1;
+  --graph-grid-h-dasharray: 4 4;
+  --graph-grid-v-color: #e8e8e8;
+  --graph-grid-v-width: 1;
+  --graph-grid-v-dasharray: 4 4;
   --graph-axis-color: #ccc;
   --graph-tick-color: #666;
   --graph-tooltip-bg: rgba(0, 0, 0, 0.85);
@@ -45,9 +50,17 @@
 
   // ─── Grid Lines ─────────────────────────
   &__grid-line {
-    stroke: var(--graph-grid-color);
-    stroke-width: 1;
-    stroke-dasharray: 4 4;
+    &--h {
+      stroke: var(--graph-grid-h-color);
+      stroke-width: var(--graph-grid-h-width);
+      stroke-dasharray: var(--graph-grid-h-dasharray);
+    }
+
+    &--v {
+      stroke: var(--graph-grid-v-color);
+      stroke-width: var(--graph-grid-v-width);
+      stroke-dasharray: var(--graph-grid-v-dasharray);
+    }
   }
 
   // ─── Axis Lines ─────────────────────────
@@ -81,7 +94,15 @@
 
   &__point {
     cursor: pointer;
-    transition: r 0.15s ease;
+    transition: r 0.15s ease, opacity 0.3s ease;
+
+    &--hidden {
+      opacity: 0;
+    }
+
+    &--visible {
+      opacity: 1;
+    }
 
     &:hover {
       r: 6;
@@ -103,17 +124,18 @@
   // ─── Pie Chart ──────────────────────────
   &__slice {
     cursor: pointer;
-    transition: opacity 0.5s ease-out, transform 0.15s ease;
+    transition: transform 0.15s ease;
     transform-origin: center;
-
-    &--animated {
-      opacity: 1 !important;
-    }
 
     &:hover {
       transform: scale(1.03);
       filter: brightness(1.1);
     }
+  }
+
+  &__pie-clip {
+    transition: stroke-dashoffset var(--graph-animation-duration) ease-out;
+    stroke-dashoffset: 0 !important;
   }
 
   // ─── Tooltip ────────────────────────────
@@ -161,8 +183,15 @@
     display: inline-block;
     width: 12px;
     height: 12px;
-    border-radius: 2px;
     flex-shrink: 0;
+
+    &--square {
+      border-radius: 2px;
+    }
+
+    &--circle {
+      border-radius: 50%;
+    }
   }
 
   &__legend-label {

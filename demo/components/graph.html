@@ -76,16 +76,19 @@
 						<h2 class="section-title">Live Demonstrations</h2>
 						<p class="section-subtitle">See the Graph component in action</p>
 
-						<!-- Demo 1: Basic Line Chart -->
+						<!-- Demo 1: Smooth Line Chart -->
 						<div class="demo-subsection" data-animate="fade-up">
-							<h3>Line Chart</h3>
-							<p>A single-series line chart with data points, grid lines, and axis labels. Hover over the data points for tooltips.</p>
+							<h3>Smooth Line Chart</h3>
+							<p>A smooth curve through each data point using cubic bezier interpolation. The line draws in from left to right with markers fading in after.</p>
 
 							<div class="demo-container">
 								<div data-graph
 									data-graph-type="line"
+									data-graph-smooth="true"
+									data-graph-animated="true"
 									data-graph-tooltips="true"
 									data-graph-legend="true"
+									data-graph-swatch-shape="circle"
 									data-graph-height="350"
 									data-graph-x-label="Month"
 									data-graph-y-label="Revenue (GBP)"
@@ -94,10 +97,10 @@
 							</div>
 						</div>
 
-						<!-- Demo 2: Multi-Series Line Chart from JSON file -->
+						<!-- Demo 2: Straight Line with Vertical Grid -->
 						<div class="demo-subsection delay-1" data-animate="fade-up">
-							<h3>Multi-Series Line from JSON File</h3>
-							<p>Two data series loaded from an external JSON file. Animated drawing with a legend to identify each series.</p>
+							<h3>Multi-Series Line with Vertical Grid</h3>
+							<p>Two data series from a JSON file with both horizontal and vertical grid lines. Animated draw with staggered marker reveal.</p>
 
 							<div class="demo-container">
 								<div data-graph
@@ -106,6 +109,7 @@
 									data-graph-animated="true"
 									data-graph-tooltips="true"
 									data-graph-legend="true"
+									data-graph-grid-v="true"
 									data-graph-height="380"
 									data-graph-x-label="Month"
 									data-graph-y-label="Amount">
@@ -113,10 +117,10 @@
 							</div>
 						</div>
 
-						<!-- Demo 3: Column Chart -->
+						<!-- Demo 3: Column Chart with Rounded Bars -->
 						<div class="demo-subsection delay-2" data-animate="fade-up">
-							<h3>Column Chart</h3>
-							<p>Multiple data series shown as grouped vertical bars. Each group represents a quarter with three values side by side.</p>
+							<h3>Column Chart with Rounded Bars</h3>
+							<p>Grouped columns with a generous corner radius. Bars grow upward from the baseline on load.</p>
 
 							<div class="demo-container">
 								<div data-graph
@@ -124,6 +128,7 @@
 									data-graph-animated="true"
 									data-graph-tooltips="true"
 									data-graph-legend="true"
+									data-graph-bar-radius="6"
 									data-graph-height="380"
 									data-graph-x-label="Quarter"
 									data-graph-y-label="Amount (GBP)"
@@ -132,10 +137,10 @@
 							</div>
 						</div>
 
-						<!-- Demo 4: Pie Chart -->
+						<!-- Demo 4: Pie Chart with Gap and Clockwise Animation -->
 						<div class="demo-subsection delay-3" data-animate="fade-up">
-							<h3>Pie Chart</h3>
-							<p>Proportional data shown as circular segments. Hover for percentages. The legend sits to the right of the chart.</p>
+							<h3>Pie Chart with Gap</h3>
+							<p>Segments separated by a gap, with rounded corners and a clockwise reveal animation. The legend uses circle swatches.</p>
 
 							<div class="demo-container">
 								<div data-graph
@@ -143,8 +148,11 @@
 									data-graph-tooltips="true"
 									data-graph-legend="true"
 									data-graph-legend-position="right"
+									data-graph-swatch-shape="circle"
 									data-graph-title="Browser Market Share"
 									data-graph-animated="true"
+									data-graph-pie-gap="4"
+									data-graph-pie-radius="4"
 									data-graph-height="350"
 									data-graph-data='{"labels":["Chrome","Safari","Firefox","Edge","Other"],"datasets":[{"label":"Share","values":[65,18,8,5,4]}]}'>
 								</div>
@@ -154,7 +162,7 @@
 						<!-- Demo 5: Column Chart from CSV -->
 						<div class="demo-subsection delay-3" data-animate="fade-up">
 							<h3>Column Chart from CSV File</h3>
-							<p>Data loaded from an external CSV file. The first column becomes the x-axis labels and the remaining columns become data series.</p>
+							<p>Data from an external CSV file with both grid directions enabled and animated columns.</p>
 
 							<div class="demo-container">
 								<div data-graph
@@ -163,6 +171,8 @@
 									data-graph-animated="true"
 									data-graph-tooltips="true"
 									data-graph-legend="true"
+									data-graph-grid-v="true"
+									data-graph-bar-radius="4"
 									data-graph-height="400"
 									data-graph-x-label="Quarter"
 									data-graph-y-label="Amount">
@@ -170,10 +180,10 @@
 							</div>
 						</div>
 
-						<!-- Demo 6: Custom Colours -->
+						<!-- Demo 6: Pie with No Outline -->
 						<div class="demo-subsection delay-3" data-animate="fade-up">
-							<h3>Custom Colour Palette</h3>
-							<p>Override the default colours with your own palette using the <code>data-graph-colours</code> attribute.</p>
+							<h3>Pie Chart &mdash; Custom Outline and Colours</h3>
+							<p>No outline between segments, custom colour palette, and gap separation. Use <code>data-graph-pie-stroke-width="0"</code> to remove the outline entirely.</p>
 
 							<div class="demo-container">
 								<div data-graph
@@ -182,6 +192,8 @@
 									data-graph-legend="true"
 									data-graph-title="Project Allocation"
 									data-graph-animated="true"
+									data-graph-pie-gap="3"
+									data-graph-pie-stroke-width="0"
 									data-graph-height="350"
 									data-graph-colours="#2d3436, #636e72, #b2bec3, #dfe6e9, #74b9ff"
 									data-graph-data='{"labels":["Development","Design","Testing","Documentation","Planning"],"datasets":[{"label":"Hours","values":[420,180,150,80,70]}]}'>
@@ -217,7 +229,7 @@
 							<div class="feature-card delay-3" data-animate="fade-up">
 								<div class="feature-icon">&#9654;</div>
 								<h3>Animated Drawing</h3>
-								<p>Lines draw themselves with stroke animation. Columns grow from the baseline. Pie segments fade in with a staggered effect.</p>
+								<p>Lines draw from left to right with markers fading in after. Columns grow from the baseline. Pie segments reveal with a clockwise wipe.</p>
 							</div>
 
 							<div class="feature-card delay-4" data-animate="fade-up">
@@ -341,6 +353,60 @@
 										<td>Comma-separated hex values</td>
 										<td>Built-in palette</td>
 										<td>Custom colour palette for data series</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-smooth</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Use smooth cubic bezier curves for line charts</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-bar-radius</code></td>
+										<td>Number (px)</td>
+										<td><code>2</code></td>
+										<td>Corner radius on column bars</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-pie-gap</code></td>
+										<td>Number (px)</td>
+										<td><code>0</code></td>
+										<td>Gap between pie segments</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-pie-radius</code></td>
+										<td>Number (px)</td>
+										<td><code>0</code></td>
+										<td>Corner radius on pie segment edges</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-pie-stroke</code></td>
+										<td>CSS colour</td>
+										<td><code>#fff</code></td>
+										<td>Outline colour between pie segments</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-pie-stroke-width</code></td>
+										<td>Number</td>
+										<td><code>2</code></td>
+										<td>Outline thickness. Set to 0 to remove outlines</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-grid-h</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show horizontal grid lines</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-grid-v</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show vertical grid lines</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-swatch-shape</code></td>
+										<td><code>square</code> / <code>circle</code></td>
+										<td><code>square</code></td>
+										<td>Shape of legend colour swatches</td>
 									</tr>
 								</tbody>
 							</table>
@@ -475,7 +541,10 @@ chart.addEventListener('battersea:graphRender', function(e) {
 									<div>
 										<p>Override the default look with CSS custom properties:</p>
 										<pre><code>:root {
-  --graph-grid-color: #f0f0f0;
+  --graph-grid-h-color: #f0f0f0;
+  --graph-grid-h-dasharray: 2 2;
+  --graph-grid-v-color: #eee;
+  --graph-grid-v-dasharray: 4 4;
   --graph-axis-color: #999;
   --graph-tick-color: #555;
   --graph-tooltip-bg: rgba(30, 30, 60, 0.95);

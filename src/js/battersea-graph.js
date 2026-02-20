@@ -57,6 +57,25 @@
       this.title = Utils.getData(el, 'graph-title') || '';
       this.height = Utils.parseInt(Utils.getData(el, 'graph-height'), 400);
 
+      // Line options
+      this.smooth = Utils.parseBoolean(Utils.getData(el, 'graph-smooth') || 'false');
+
+      // Column options
+      this.barRadius = Utils.parseInt(Utils.getData(el, 'graph-bar-radius'), 2);
+
+      // Pie options
+      this.pieGap = Utils.parseInt(Utils.getData(el, 'graph-pie-gap'), 0);
+      this.pieRadius = Utils.parseInt(Utils.getData(el, 'graph-pie-radius'), 0);
+      this.pieStroke = Utils.getData(el, 'graph-pie-stroke') || '#fff';
+      this.pieStrokeWidth = Utils.parseFloat(Utils.getData(el, 'graph-pie-stroke-width'), 2);
+
+      // Grid options
+      this.showHGrid = Utils.parseBoolean(Utils.getData(el, 'graph-grid-h') || 'true');
+      this.showVGrid = Utils.parseBoolean(Utils.getData(el, 'graph-grid-v') || 'false');
+
+      // Legend swatch shape
+      this.swatchShape = Utils.getData(el, 'graph-swatch-shape') || 'square';
+
       // Custom colours
       var coloursAttr = Utils.getData(el, 'graph-colours') || '';
       this.colours = coloursAttr ? coloursAttr.split(',').map(function(c) { return c.trim(); }) : [];
@@ -395,7 +414,7 @@
       var dataMax = Math.max.apply(null, allValues);
       var ticks = this.calculateNiceTicks(dataMin, dataMax, 5);
 
-      this.drawGrid(svg, area, ticks);
+      this.drawGrid(svg, area, ticks, 'line');
       this.drawYAxis(svg, area, ticks);
       this.drawXAxis(svg, area, 'line');
 
@@ -412,10 +431,15 @@
           points.push({ x: x, y: y, label: self.labels[i], value: val, dsLabel: ds.label });
         });
 
-        // Draw line path
-        var pathD = points.map(function(p, i) {
-          return (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1);
-        }).join(' ');
+        // Draw line path — smooth or straight
+        var pathD;
+        if (self.smooth && points.length > 1) {
+          pathD = self.buildSmoothPath(points);
+        } else {
+          pathD = points.map(function(p, i) {
+            return (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1);
+          }).join(' ');
+        }
 
         var path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', pathD);
@@ -432,7 +456,7 @@
         }
 
         // Data points
-        points.forEach(function(p) {
+        points.forEach(function(p, pi) {
           var circle = document.createElementNS(SVG_NS, 'circle');
           circle.setAttribute('cx', p.x.toFixed(1));
           circle.setAttribute('cy', p.y.toFixed(1));
@@ -441,6 +465,17 @@
           circle.setAttribute('stroke', '#fff');
           circle.setAttribute('stroke-width', '2');
           circle.classList.add('battersea-graph__point');
+
+          // Animated markers fade in after line draws
+          if (self.animated) {
+            circle.classList.add('battersea-graph__point--hidden');
+            var delay = self.getAnimationDuration() + (pi * 60);
+            setTimeout(function() {
+              circle.classList.remove('battersea-graph__point--hidden');
+              circle.classList.add('battersea-graph__point--visible');
+            }, delay);
+          }
+
           svg.appendChild(circle);
 
           if (self.tooltips) {
@@ -464,7 +499,7 @@
       this.datasets.forEach(function(ds) { allValues = allValues.concat(ds.values); });
       var ticks = this.calculateNiceTicks(0, Math.max.apply(null, allValues), 5);
 
-      this.drawGrid(svg, area, ticks);
+      this.drawGrid(svg, area, ticks, 'column');
       this.drawYAxis(svg, area, ticks);
       this.drawXAxis(svg, area, 'column');
 
@@ -486,7 +521,7 @@
           var rect = document.createElementNS(SVG_NS, 'rect');
           rect.setAttribute('x', x.toFixed(1));
           rect.setAttribute('width', Math.max(barWidth, 1).toFixed(1));
-          rect.setAttribute('rx', '2');
+          rect.setAttribute('rx', self.barRadius);
           rect.setAttribute('fill', colour);
           rect.classList.add('battersea-graph__bar');
 
@@ -530,18 +565,62 @@
       var cx = width / 2;
       var cy = height / 2;
       var radius = Math.min(cx, cy) - 40;
+      var gap = this.pieGap;
+      var cornerRadius = this.pieRadius;
       var startAngle = -Math.PI / 2;
+
+      // For gap: shrink each slice by a small angle on both sides
+      var gapAngle = gap > 0 ? (gap / radius) : 0;
+
+      // Build all slices as a group for clockwise animation
+      var sliceGroup = document.createElementNS(SVG_NS, 'g');
+      sliceGroup.classList.add('battersea-graph__pie-group');
+      svg.appendChild(sliceGroup);
+
+      // For clockwise wipe animation, use a clip-path
+      if (this.animated) {
+        var clipId = 'graph-pie-clip-' + Math.random().toString(36).substr(2, 6);
+        var defs = document.createElementNS(SVG_NS, 'defs');
+        var clipPath = document.createElementNS(SVG_NS, 'clipPath');
+        clipPath.setAttribute('id', clipId);
+
+        // Full circle path for the clip — animated via stroke-dashoffset
+        var clipCircle = document.createElementNS(SVG_NS, 'circle');
+        clipCircle.setAttribute('cx', cx);
+        clipCircle.setAttribute('cy', cy);
+        clipCircle.setAttribute('r', radius + 10);
+        clipCircle.setAttribute('fill', 'none');
+        clipCircle.setAttribute('stroke', '#000');
+        clipCircle.setAttribute('stroke-width', (radius + 10) * 2);
+        var circumference = 2 * Math.PI * (radius + 10);
+        clipCircle.style.strokeDasharray = circumference;
+        clipCircle.style.strokeDashoffset = circumference;
+        // Rotate so the wipe starts from top (12 o'clock)
+        clipCircle.setAttribute('transform', 'rotate(-90 ' + cx + ' ' + cy + ')');
+        clipCircle.getBoundingClientRect();
+        clipCircle.classList.add('battersea-graph__pie-clip');
+
+        clipPath.appendChild(clipCircle);
+        defs.appendChild(clipPath);
+        svg.appendChild(defs);
+        sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
+      }
 
       values.forEach(function(val, i) {
         var sliceAngle = (val / total) * Math.PI * 2;
-        var endAngle = startAngle + sliceAngle;
+
+        // Apply gap
+        var adjStart = startAngle + gapAngle / 2;
+        var adjEnd = startAngle + sliceAngle - gapAngle / 2;
+        if (adjEnd <= adjStart) adjEnd = adjStart + 0.001;
+
         var colour = self.getColour(i);
 
-        var x1 = cx + radius * Math.cos(startAngle);
-        var y1 = cy + radius * Math.sin(startAngle);
-        var x2 = cx + radius * Math.cos(endAngle);
-        var y2 = cy + radius * Math.sin(endAngle);
-        var largeArc = sliceAngle > Math.PI ? 1 : 0;
+        var x1 = cx + radius * Math.cos(adjStart);
+        var y1 = cy + radius * Math.sin(adjStart);
+        var x2 = cx + radius * Math.cos(adjEnd);
+        var y2 = cy + radius * Math.sin(adjEnd);
+        var largeArc = (adjEnd - adjStart) > Math.PI ? 1 : 0;
 
         var d = [
           'M', cx.toFixed(1), cy.toFixed(1),
@@ -553,19 +632,25 @@
         var path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', d);
         path.setAttribute('fill', colour);
-        path.setAttribute('stroke', '#fff');
-        path.setAttribute('stroke-width', '2');
         path.classList.add('battersea-graph__slice');
-        svg.appendChild(path);
 
-        if (self.animated) {
-          path.style.opacity = '0';
-          path.getBoundingClientRect();
-          // Stagger each slice
-          setTimeout(function() {
-            path.classList.add('battersea-graph__slice--animated');
-          }, i * 80);
+        // Stroke / outline config
+        if (self.pieStrokeWidth > 0) {
+          path.setAttribute('stroke', self.pieStroke);
+          path.setAttribute('stroke-width', self.pieStrokeWidth);
         }
+
+        // Corner radius via stroke-linejoin
+        if (cornerRadius > 0) {
+          path.setAttribute('stroke-linejoin', 'round');
+          path.style.paintOrder = 'stroke fill';
+          if (self.pieStrokeWidth === 0) {
+            path.setAttribute('stroke', colour);
+            path.setAttribute('stroke-width', cornerRadius);
+          }
+        }
+
+        sliceGroup.appendChild(path);
 
         if (self.tooltips) {
           var pct = Math.round((val / total) * 100);
@@ -577,23 +662,52 @@
           }));
         }
 
-        startAngle = endAngle;
+        startAngle += sliceAngle;
       });
     }
 
     // ─── Shared Drawing Helpers ────────────────
 
-    drawGrid(svg, area, ticks) {
-      ticks.ticks.forEach(function(tickVal) {
-        var y = area.y + area.height - ((tickVal - ticks.min) / (ticks.max - ticks.min)) * area.height;
-        var line = document.createElementNS(SVG_NS, 'line');
-        line.setAttribute('x1', area.x);
-        line.setAttribute('y1', y.toFixed(1));
-        line.setAttribute('x2', area.x + area.width);
-        line.setAttribute('y2', y.toFixed(1));
-        line.classList.add('battersea-graph__grid-line');
-        svg.appendChild(line);
-      });
+    drawGrid(svg, area, ticks, chartType) {
+      var self = this;
+
+      // Horizontal grid lines
+      if (this.showHGrid) {
+        ticks.ticks.forEach(function(tickVal) {
+          var y = area.y + area.height - ((tickVal - ticks.min) / (ticks.max - ticks.min)) * area.height;
+          var line = document.createElementNS(SVG_NS, 'line');
+          line.setAttribute('x1', area.x);
+          line.setAttribute('y1', y.toFixed(1));
+          line.setAttribute('x2', area.x + area.width);
+          line.setAttribute('y2', y.toFixed(1));
+          line.classList.add('battersea-graph__grid-line');
+          line.classList.add('battersea-graph__grid-line--h');
+          svg.appendChild(line);
+        });
+      }
+
+      // Vertical grid lines
+      if (this.showVGrid) {
+        var count = self.labels.length;
+        self.labels.forEach(function(label, i) {
+          var x;
+          if (chartType === 'column') {
+            var groupWidth = area.width / count;
+            x = area.x + i * groupWidth + groupWidth / 2;
+          } else {
+            var step = count > 1 ? area.width / (count - 1) : 0;
+            x = area.x + i * step;
+          }
+          var line = document.createElementNS(SVG_NS, 'line');
+          line.setAttribute('x1', x.toFixed(1));
+          line.setAttribute('y1', area.y);
+          line.setAttribute('x2', x.toFixed(1));
+          line.setAttribute('y2', area.y + area.height);
+          line.classList.add('battersea-graph__grid-line');
+          line.classList.add('battersea-graph__grid-line--v');
+          svg.appendChild(line);
+        });
+      }
     }
 
     drawYAxis(svg, area, ticks) {
@@ -701,7 +815,7 @@
         legendItem.className = 'battersea-graph__legend-item';
 
         var swatch = document.createElement('span');
-        swatch.className = 'battersea-graph__legend-swatch';
+        swatch.className = 'battersea-graph__legend-swatch battersea-graph__legend-swatch--' + self.swatchShape;
         swatch.style.backgroundColor = item.colour;
 
         var label = document.createElement('span');
@@ -756,6 +870,42 @@
 
     // ─── Utilities ─────────────────────────────
 
+    buildSmoothPath(points) {
+      if (points.length < 2) {
+        return 'M' + points[0].x.toFixed(1) + ',' + points[0].y.toFixed(1);
+      }
+
+      var d = 'M' + points[0].x.toFixed(1) + ',' + points[0].y.toFixed(1);
+
+      for (var i = 0; i < points.length - 1; i++) {
+        var p0 = points[i === 0 ? 0 : i - 1];
+        var p1 = points[i];
+        var p2 = points[i + 1];
+        var p3 = points[i + 2 < points.length ? i + 2 : i + 1];
+
+        // Catmull-Rom to cubic bezier conversion
+        var tension = 0.3;
+        var cp1x = p1.x + (p2.x - p0.x) * tension;
+        var cp1y = p1.y + (p2.y - p0.y) * tension;
+        var cp2x = p2.x - (p3.x - p1.x) * tension;
+        var cp2y = p2.y - (p3.y - p1.y) * tension;
+
+        d += ' C' + cp1x.toFixed(1) + ',' + cp1y.toFixed(1) +
+             ' ' + cp2x.toFixed(1) + ',' + cp2y.toFixed(1) +
+             ' ' + p2.x.toFixed(1) + ',' + p2.y.toFixed(1);
+      }
+
+      return d;
+    }
+
+    getAnimationDuration() {
+      var style = getComputedStyle(this.wrapper);
+      var val = style.getPropertyValue('--graph-animation-duration').trim();
+      if (val.endsWith('ms')) return parseFloat(val);
+      if (val.endsWith('s')) return parseFloat(val) * 1000;
+      return 1000;
+    }
+
     calculateNiceTicks(min, max, desiredCount) {
       if (min === max) { max = min + 1; }
       if (min > 0) min = 0;
@@ -802,10 +952,7 @@
     }
 
     onResize() {
-      // Remove old event listeners for tooltip hover events (they reference old SVG elements)
-      var newEvents = [];
       this.events.forEach(function(event) {
-        // Keep the resize listener, remove the rest
         event.remove();
       });
       this.events = [];
