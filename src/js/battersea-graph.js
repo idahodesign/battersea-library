@@ -784,28 +784,18 @@
       sliceGroup.classList.add('battersea-graph__pie-group');
       svg.appendChild(sliceGroup);
 
-      // For clockwise wipe animation, use a clip-path
-      var clipCircle = null;
-      var circumference = 0;
+      // For clockwise wipe animation, use a clip-path with a growing arc
+      var clipArc = null;
       if (this.animated) {
         var clipId = 'graph-pie-clip-' + Math.random().toString(36).substr(2, 6);
         var defs = document.createElementNS(SVG_NS, 'defs');
         var clipPath = document.createElementNS(SVG_NS, 'clipPath');
         clipPath.setAttribute('id', clipId);
 
-        clipCircle = document.createElementNS(SVG_NS, 'circle');
-        clipCircle.setAttribute('cx', cx);
-        clipCircle.setAttribute('cy', cy);
-        clipCircle.setAttribute('r', radius + 10);
-        clipCircle.setAttribute('fill', 'none');
-        clipCircle.setAttribute('stroke', '#000');
-        clipCircle.setAttribute('stroke-width', (radius + 10) * 2);
-        circumference = 2 * Math.PI * (radius + 10);
-        clipCircle.style.strokeDasharray = circumference;
-        clipCircle.style.strokeDashoffset = circumference;
-        clipCircle.setAttribute('transform', 'rotate(-90 ' + cx + ' ' + cy + ')');
-
-        clipPath.appendChild(clipCircle);
+        // Arc path that will grow from 0 to full circle
+        clipArc = document.createElementNS(SVG_NS, 'path');
+        clipArc.setAttribute('d', 'M ' + cx + ' ' + cy + ' Z');
+        clipPath.appendChild(clipArc);
         defs.appendChild(clipPath);
         svg.appendChild(defs);
         sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
@@ -871,25 +861,53 @@
         startAngle += sliceAngle;
       });
 
-      // Queue pie clockwise sweep animation (JS-driven)
-      if (this.animated && clipCircle) {
-        (function(circle, circ) {
+      // Queue pie clockwise sweep animation (JS-driven arc path)
+      if (this.animated && clipArc) {
+        (function(arcEl, pieCx, pieCy, pieRadius) {
           var duration = self.getAnimationDuration();
+          var r = pieRadius + 20; // clip slightly larger than pie
           self._pendingAnimations.push(function() {
             var startTime = null;
             function step(timestamp) {
               if (!startTime) startTime = timestamp;
               var elapsed = timestamp - startTime;
               var progress = Math.min(elapsed / duration, 1);
-              var eased = 1 - Math.pow(1 - progress, 2);
-              circle.style.strokeDashoffset = circ * (1 - eased);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              var angle = eased * Math.PI * 2;
+
+              if (angle < 0.001) {
+                arcEl.setAttribute('d', 'M ' + pieCx + ' ' + pieCy + ' Z');
+              } else if (angle >= Math.PI * 2 - 0.001) {
+                // Full circle — use rect to cover everything
+                arcEl.setAttribute('d',
+                  'M ' + (pieCx - r) + ' ' + (pieCy - r) +
+                  ' h ' + (r * 2) + ' v ' + (r * 2) + ' h ' + (-(r * 2)) + ' Z'
+                );
+              } else {
+                // Build arc wedge from 12 o'clock position clockwise
+                var startA = -Math.PI / 2;
+                var endA = startA + angle;
+                var x1 = pieCx + r * Math.cos(startA);
+                var y1 = pieCy + r * Math.sin(startA);
+                var x2 = pieCx + r * Math.cos(endA);
+                var y2 = pieCy + r * Math.sin(endA);
+                var largeArc = angle > Math.PI ? 1 : 0;
+
+                arcEl.setAttribute('d',
+                  'M ' + pieCx.toFixed(2) + ' ' + pieCy.toFixed(2) +
+                  ' L ' + x1.toFixed(2) + ' ' + y1.toFixed(2) +
+                  ' A ' + r.toFixed(2) + ' ' + r.toFixed(2) + ' 0 ' + largeArc + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) +
+                  ' Z'
+                );
+              }
+
               if (progress < 1) {
                 requestAnimationFrame(step);
               }
             }
             requestAnimationFrame(step);
           });
-        })(clipCircle, circumference);
+        })(clipArc, cx, cy, radius);
       }
     }
 
