@@ -825,18 +825,19 @@
         sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
       }
 
+      var halfGap = gap / 2;
+
       values.forEach(function(val, i) {
         var sliceAngle = (val / total) * Math.PI * 2;
         var colour = self.getColour(i);
 
-        // Gap: translate each slice outward along its bisector
-        var midAngle = startAngle + sliceAngle / 2;
-        var tx = gap > 0 ? Math.cos(midAngle) * (gap / 2) : 0;
-        var ty = gap > 0 ? Math.sin(midAngle) * (gap / 2) : 0;
-
         // Build the slice path
         var d;
-        if (cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
+        if (gap > 0 && cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
+          d = self.buildGappedRoundedSlicePath(cx, cy, radius, startAngle, startAngle + sliceAngle, halfGap, cornerRadius);
+        } else if (gap > 0) {
+          d = self.buildGappedSlicePath(cx, cy, radius, startAngle, startAngle + sliceAngle, halfGap);
+        } else if (cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
           d = self.buildRoundedSlicePath(cx, cy, radius, startAngle, startAngle + sliceAngle, cornerRadius);
         } else {
           var x1 = cx + radius * Math.cos(startAngle);
@@ -857,10 +858,6 @@
         path.setAttribute('d', d);
         path.setAttribute('fill', colour);
         path.classList.add('battersea-graph__slice');
-
-        if (gap > 0) {
-          path.setAttribute('transform', 'translate(' + tx.toFixed(2) + ',' + ty.toFixed(2) + ')');
-        }
 
         // Stroke / outline config
         if (self.pieStrokeWidth > 0) {
@@ -1228,30 +1225,21 @@
         sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
       }
 
-      // Angular gap: convert pixel gap to angular inset using outer radius
-      // so the gap at the outer edge matches the requested pixel size
-      var halfGapAngle = gap > 0 && outerRadius > 0 ? (gap / 2) / outerRadius : 0;
+      var halfGap = gap / 2;
 
       values.forEach(function(val, i) {
         var sliceAngle = (val / total) * Math.PI * 2;
         var colour = self.getColour(i);
 
-        // Inset start/end angles to create gap between segments
-        var drawStart = startAngle + halfGapAngle;
-        var drawEnd = startAngle + sliceAngle - halfGapAngle;
-
-        // Skip if gap consumes the entire slice
-        if (drawEnd <= drawStart) {
-          startAngle += sliceAngle;
-          return;
-        }
-
-        var drawAngle = drawEnd - drawStart;
         var d;
-        if (cornerRadius > 0 && drawAngle < Math.PI * 2 - 0.01) {
-          d = self.buildRoundedDonutSlicePath(cx, cy, outerRadius, innerRadius, drawStart, drawEnd, cornerRadius);
+        if (gap > 0 && cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
+          d = self.buildGappedRoundedDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle, halfGap, cornerRadius);
+        } else if (gap > 0) {
+          d = self.buildGappedDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle, halfGap);
+        } else if (cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
+          d = self.buildRoundedDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle, cornerRadius);
         } else {
-          d = self.buildDonutSlicePath(cx, cy, outerRadius, innerRadius, drawStart, drawEnd);
+          d = self.buildDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle);
         }
 
         var path = document.createElementNS(SVG_NS, 'path');
@@ -1801,6 +1789,117 @@
       return d;
     }
 
+    // ─── Gapped Pie Slice Helpers ────────────────
+
+    /**
+     * Build a pie slice with constant-width gaps between segments.
+     * Each edge is offset perpendicular to the original radial by halfGap pixels,
+     * producing parallel-shifted edges with a uniform gap width from centre to rim.
+     */
+    buildGappedSlicePath(cx, cy, radius, startAngle, endAngle, halfGap) {
+      var sliceAngle = endAngle - startAngle;
+
+      // Perpendicular offset for start edge (rotate +90°)
+      var sNx = -Math.sin(startAngle);
+      var sNy = Math.cos(startAngle);
+      // Perpendicular offset for end edge (rotate -90°)
+      var eNx = Math.sin(endAngle);
+      var eNy = -Math.cos(endAngle);
+
+      // Inner points (near centre, offset perpendicular)
+      var isx = cx + sNx * halfGap;
+      var isy = cy + sNy * halfGap;
+      var iex = cx + eNx * halfGap;
+      var iey = cy + eNy * halfGap;
+
+      // Outer points (at rim, offset perpendicular)
+      var osx = cx + radius * Math.cos(startAngle) + sNx * halfGap;
+      var osy = cy + radius * Math.sin(startAngle) + sNy * halfGap;
+      var oex = cx + radius * Math.cos(endAngle) + eNx * halfGap;
+      var oey = cy + radius * Math.sin(endAngle) + eNy * halfGap;
+
+      // Arc radius stays the same; the arc is between the two offset outer points
+      var largeArc = sliceAngle > Math.PI ? 1 : 0;
+
+      return [
+        'M', isx.toFixed(2), isy.toFixed(2),
+        'L', osx.toFixed(2), osy.toFixed(2),
+        'A', radius.toFixed(2), radius.toFixed(2), 0, largeArc, 1, oex.toFixed(2), oey.toFixed(2),
+        'L', iex.toFixed(2), iey.toFixed(2),
+        'Z'
+      ].join(' ');
+    }
+
+    /**
+     * Gapped pie slice with rounded outer corners.
+     * Same perpendicular offset as buildGappedSlicePath, with Q-curves at the
+     * outer rim corners.
+     */
+    buildGappedRoundedSlicePath(cx, cy, radius, startAngle, endAngle, halfGap, cr) {
+      var sliceAngle = endAngle - startAngle;
+
+      // Limit corner radius
+      var maxCr = Math.min(cr, radius * 0.4, radius * Math.sin(sliceAngle / 2) * 0.8);
+      if (maxCr < 1) {
+        return this.buildGappedSlicePath(cx, cy, radius, startAngle, endAngle, halfGap);
+      }
+
+      // Perpendicular offset vectors
+      var sNx = -Math.sin(startAngle);
+      var sNy = Math.cos(startAngle);
+      var eNx = Math.sin(endAngle);
+      var eNy = -Math.cos(endAngle);
+
+      // Inner points (near centre, offset perpendicular + inset from centre by cr)
+      var innerInset = maxCr;
+      var isx = cx + innerInset * Math.cos(startAngle) + sNx * halfGap;
+      var isy = cy + innerInset * Math.sin(startAngle) + sNy * halfGap;
+      var iex = cx + innerInset * Math.cos(endAngle) + eNx * halfGap;
+      var iey = cy + innerInset * Math.sin(endAngle) + eNy * halfGap;
+
+      // Edge points near outer rim (inset by maxCr from rim)
+      var edgeDist = radius - maxCr;
+      var esx = cx + edgeDist * Math.cos(startAngle) + sNx * halfGap;
+      var esy = cy + edgeDist * Math.sin(startAngle) + sNy * halfGap;
+      var eex = cx + edgeDist * Math.cos(endAngle) + eNx * halfGap;
+      var eey = cy + edgeDist * Math.sin(endAngle) + eNy * halfGap;
+
+      // Sharp corner positions (Q-curve control points, offset perpendicular)
+      var scsx = cx + radius * Math.cos(startAngle) + sNx * halfGap;
+      var scsy = cy + radius * Math.sin(startAngle) + sNy * halfGap;
+      var scex = cx + radius * Math.cos(endAngle) + eNx * halfGap;
+      var scey = cy + radius * Math.sin(endAngle) + eNy * halfGap;
+
+      // Outer arc inset points
+      var outerInset = maxCr / radius;
+      var oas = startAngle + outerInset;
+      var oae = endAngle - outerInset;
+      var osx = cx + radius * Math.cos(oas) + sNx * halfGap * Math.cos(outerInset) + eNx * halfGap * (1 - Math.cos(outerInset));
+      var osy = cy + radius * Math.sin(oas) + sNy * halfGap * Math.cos(outerInset) + eNy * halfGap * (1 - Math.cos(outerInset));
+      // Simpler: the arc inset points on the actual rim
+      osx = cx + radius * Math.cos(oas);
+      osy = cy + radius * Math.sin(oas);
+      var oex2 = cx + radius * Math.cos(oae);
+      var oey2 = cy + radius * Math.sin(oae);
+      var largeArc = (oae - oas) > Math.PI ? 1 : 0;
+
+      // Centre point (offset is the average of start and end offsets — for Q curve)
+      var centreX = cx;
+      var centreY = cy;
+
+      // Build path
+      var d = 'M ' + isx.toFixed(2) + ' ' + isy.toFixed(2);
+      d += ' L ' + esx.toFixed(2) + ' ' + esy.toFixed(2);
+      d += ' Q ' + scsx.toFixed(2) + ' ' + scsy.toFixed(2) + ' ' + osx.toFixed(2) + ' ' + osy.toFixed(2);
+      d += ' A ' + radius.toFixed(2) + ' ' + radius.toFixed(2) + ' 0 ' + largeArc + ' 1 ' + oex2.toFixed(2) + ' ' + oey2.toFixed(2);
+      d += ' Q ' + scex.toFixed(2) + ' ' + scey.toFixed(2) + ' ' + eex.toFixed(2) + ' ' + eey.toFixed(2);
+      d += ' L ' + iex.toFixed(2) + ' ' + iey.toFixed(2);
+      d += ' Q ' + centreX.toFixed(2) + ' ' + centreY.toFixed(2) + ' ' + isx.toFixed(2) + ' ' + isy.toFixed(2);
+      d += ' Z';
+
+      return d;
+    }
+
     // ─── Donut Path Helpers ────────────────────
 
     buildDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle) {
@@ -1922,6 +2021,124 @@
       // Main inner arc (reverse direction)
       d += ' A ' + innerR.toFixed(2) + ' ' + innerR.toFixed(2) + ' 0 ' + innerLargeArc + ' 0 ' + iex.toFixed(2) + ' ' + iey.toFixed(2);
       // Inner-start corner: Q curve
+      d += ' Q ' + scIsx.toFixed(2) + ' ' + scIsy.toFixed(2) + ' ' + eIsx.toFixed(2) + ' ' + eIsy.toFixed(2);
+      d += ' Z';
+
+      return d;
+    }
+
+    // ─── Gapped Donut Slice Helpers ────────────
+
+    /**
+     * Donut slice with constant-width gaps. Each radial edge is offset
+     * perpendicular by halfGap pixels, producing a uniform gap from
+     * inner to outer rim.
+     */
+    buildGappedDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle, halfGap) {
+      var sliceAngle = endAngle - startAngle;
+
+      // Perpendicular offset vectors
+      var sNx = -Math.sin(startAngle);
+      var sNy = Math.cos(startAngle);
+      var eNx = Math.sin(endAngle);
+      var eNy = -Math.cos(endAngle);
+
+      // Outer arc points (offset perpendicular)
+      var ox1 = cx + outerR * Math.cos(startAngle) + sNx * halfGap;
+      var oy1 = cy + outerR * Math.sin(startAngle) + sNy * halfGap;
+      var ox2 = cx + outerR * Math.cos(endAngle) + eNx * halfGap;
+      var oy2 = cy + outerR * Math.sin(endAngle) + eNy * halfGap;
+
+      // Inner arc points (offset perpendicular)
+      var ix1 = cx + innerR * Math.cos(startAngle) + sNx * halfGap;
+      var iy1 = cy + innerR * Math.sin(startAngle) + sNy * halfGap;
+      var ix2 = cx + innerR * Math.cos(endAngle) + eNx * halfGap;
+      var iy2 = cy + innerR * Math.sin(endAngle) + eNy * halfGap;
+
+      var largeArc = sliceAngle > Math.PI ? 1 : 0;
+
+      return [
+        'M', ox1.toFixed(2), oy1.toFixed(2),
+        'A', outerR.toFixed(2), outerR.toFixed(2), 0, largeArc, 1, ox2.toFixed(2), oy2.toFixed(2),
+        'L', ix2.toFixed(2), iy2.toFixed(2),
+        'A', innerR.toFixed(2), innerR.toFixed(2), 0, largeArc, 0, ix1.toFixed(2), iy1.toFixed(2),
+        'Z'
+      ].join(' ');
+    }
+
+    /**
+     * Gapped donut slice with rounded corners at all four corners.
+     */
+    buildGappedRoundedDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle, halfGap, cr) {
+      var sliceAngle = endAngle - startAngle;
+      var ringWidth = outerR - innerR;
+
+      var midR = (outerR + innerR) / 2;
+      var maxCr = Math.min(cr, ringWidth * 0.4, midR * Math.sin(sliceAngle / 2) * 0.8);
+      if (maxCr < 1) {
+        return this.buildGappedDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle, halfGap);
+      }
+
+      // Perpendicular offset vectors
+      var sNx = -Math.sin(startAngle);
+      var sNy = Math.cos(startAngle);
+      var eNx = Math.sin(endAngle);
+      var eNy = -Math.cos(endAngle);
+
+      // Angular insets for the rounded arc portions
+      var angularInset = maxCr / midR;
+
+      // Outer arc inset points (on the actual rim, inset angularly)
+      var oas = startAngle + angularInset;
+      var oae = endAngle - angularInset;
+      var osx = cx + outerR * Math.cos(oas);
+      var osy = cy + outerR * Math.sin(oas);
+      var oex = cx + outerR * Math.cos(oae);
+      var oey = cy + outerR * Math.sin(oae);
+      var outerLargeArc = (oae - oas) > Math.PI ? 1 : 0;
+
+      // Inner arc inset points (reverse direction)
+      var ias = endAngle - angularInset;
+      var iae = startAngle + angularInset;
+      var isx = cx + innerR * Math.cos(ias);
+      var isy = cy + innerR * Math.sin(ias);
+      var iex = cx + innerR * Math.cos(iae);
+      var iey = cy + innerR * Math.sin(iae);
+      var innerLargeArc = (ias - iae) > Math.PI ? 1 : 0;
+
+      // Edge points near outer rim (offset perpendicular)
+      var edgeOuterDist = outerR - maxCr;
+      var eOsx = cx + edgeOuterDist * Math.cos(startAngle) + sNx * halfGap;
+      var eOsy = cy + edgeOuterDist * Math.sin(startAngle) + sNy * halfGap;
+      var eOex = cx + edgeOuterDist * Math.cos(endAngle) + eNx * halfGap;
+      var eOey = cy + edgeOuterDist * Math.sin(endAngle) + eNy * halfGap;
+
+      // Edge points near inner rim (offset perpendicular)
+      var edgeInnerDist = innerR + maxCr;
+      var eIsx = cx + edgeInnerDist * Math.cos(startAngle) + sNx * halfGap;
+      var eIsy = cy + edgeInnerDist * Math.sin(startAngle) + sNy * halfGap;
+      var eIex = cx + edgeInnerDist * Math.cos(endAngle) + eNx * halfGap;
+      var eIey = cy + edgeInnerDist * Math.sin(endAngle) + eNy * halfGap;
+
+      // Sharp corner control points (offset perpendicular)
+      var scOsx = cx + outerR * Math.cos(startAngle) + sNx * halfGap;
+      var scOsy = cy + outerR * Math.sin(startAngle) + sNy * halfGap;
+      var scOex = cx + outerR * Math.cos(endAngle) + eNx * halfGap;
+      var scOey = cy + outerR * Math.sin(endAngle) + eNy * halfGap;
+      var scIsx = cx + innerR * Math.cos(startAngle) + sNx * halfGap;
+      var scIsy = cy + innerR * Math.sin(startAngle) + sNy * halfGap;
+      var scIex = cx + innerR * Math.cos(endAngle) + eNx * halfGap;
+      var scIey = cy + innerR * Math.sin(endAngle) + eNy * halfGap;
+
+      // Build path
+      var d = 'M ' + eIsx.toFixed(2) + ' ' + eIsy.toFixed(2);
+      d += ' L ' + eOsx.toFixed(2) + ' ' + eOsy.toFixed(2);
+      d += ' Q ' + scOsx.toFixed(2) + ' ' + scOsy.toFixed(2) + ' ' + osx.toFixed(2) + ' ' + osy.toFixed(2);
+      d += ' A ' + outerR.toFixed(2) + ' ' + outerR.toFixed(2) + ' 0 ' + outerLargeArc + ' 1 ' + oex.toFixed(2) + ' ' + oey.toFixed(2);
+      d += ' Q ' + scOex.toFixed(2) + ' ' + scOey.toFixed(2) + ' ' + eOex.toFixed(2) + ' ' + eOey.toFixed(2);
+      d += ' L ' + eIex.toFixed(2) + ' ' + eIey.toFixed(2);
+      d += ' Q ' + scIex.toFixed(2) + ' ' + scIey.toFixed(2) + ' ' + isx.toFixed(2) + ' ' + isy.toFixed(2);
+      d += ' A ' + innerR.toFixed(2) + ' ' + innerR.toFixed(2) + ' 0 ' + innerLargeArc + ' 0 ' + iex.toFixed(2) + ' ' + iey.toFixed(2);
       d += ' Q ' + scIsx.toFixed(2) + ' ' + scIsy.toFixed(2) + ' ' + eIsx.toFixed(2) + ' ' + eIsy.toFixed(2);
       d += ' Z';
 
