@@ -328,6 +328,27 @@
 							</div>
 						</div>
 
+						<!-- Demo 13: Linked Chart -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Linked Chart Segments</h3>
+							<p>Add clickable links to segments via a <code>links</code> array in the data. Each link can be a URL string or an object with <code>url</code> and <code>target</code>. Segments without links remain normal.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="pie"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-animated="true"
+									data-graph-pie-gap="3"
+									data-graph-pie-radius="4"
+									data-graph-pie-stroke-width="0"
+									data-graph-height="350"
+									data-graph-title="Documentation (Linked)"
+									data-graph-data='{"labels":["Accordion","Slider","Tabs","Popup","Tooltip"],"links":["accordion.html",{"url":"slider.html","target":"_blank"},"tabs.html","popup.html",null],"datasets":[{"label":"Pages","values":[12,8,6,4,3]}]}'>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</section>

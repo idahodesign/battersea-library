@@ -102,6 +102,7 @@
       // Data model
       this.labels = [];
       this.datasets = [];
+      this.links = [];
 
       // DOM references
       this.wrapper = null;
@@ -286,12 +287,21 @@
     }
 
     parseJSONData(jsonStr) {
+      var self = this;
       try {
         var data = JSON.parse(jsonStr);
         this.labels = data.labels || [];
         this.datasets = (data.datasets || []).map(function(ds) {
           return { label: ds.label || '', values: ds.values || [] };
         });
+        // Parse links: each entry is a URL string, {url, target} object, or null
+        if (data.links) {
+          this.links = data.links.map(function(link) {
+            if (!link) return null;
+            if (typeof link === 'string') return { url: link, target: '_self' };
+            return { url: link.url || '', target: link.target || '_self' };
+          });
+        }
       } catch (e) {
         console.error('Graph: Invalid JSON data', e);
       }
@@ -370,11 +380,21 @@
 
       var headers = splitLine(lines[0]);
 
-      // First column = labels, remaining columns = datasets
+      // Detect Link and LinkTarget columns (case-insensitive)
+      var linkCol = -1;
+      var linkTargetCol = -1;
+      for (var c = 1; c < headers.length; c++) {
+        var hLower = headers[c].toLowerCase();
+        if (hLower === 'link') linkCol = c;
+        else if (hLower === 'linktarget') linkTargetCol = c;
+      }
+
+      // First column = labels, remaining columns = datasets (excluding link columns)
       this.labels = [];
       this.datasets = [];
 
       for (var h = 1; h < headers.length; h++) {
+        if (h === linkCol || h === linkTargetCol) continue;
         this.datasets.push({ label: headers[h], values: [] });
       }
 
@@ -382,8 +402,23 @@
         var fields = splitLine(lines[r]);
         if (fields.length === 0 || (fields.length === 1 && fields[0] === '')) continue;
         this.labels.push(fields[0]);
-        for (var d = 0; d < this.datasets.length; d++) {
-          this.datasets[d].values.push(parseFloat(fields[d + 1]) || 0);
+
+        var dsIdx = 0;
+        for (var d = 1; d < headers.length; d++) {
+          if (d === linkCol || d === linkTargetCol) continue;
+          this.datasets[dsIdx].values.push(parseFloat(fields[d]) || 0);
+          dsIdx++;
+        }
+
+        // Parse link for this row
+        if (linkCol > -1) {
+          var linkUrl = (fields[linkCol] || '').trim();
+          if (linkUrl) {
+            var linkTarget = linkTargetCol > -1 ? (fields[linkTargetCol] || '').trim() : '_self';
+            this.links.push({ url: linkUrl, target: linkTarget || '_self' });
+          } else {
+            this.links.push(null);
+          }
         }
       }
     }
@@ -543,7 +578,7 @@
             circles.push(circle);
           }
 
-          svg.appendChild(circle);
+          svg.appendChild(self.wrapInLink(circle, pi));
 
           if (self.tooltips) {
             self.events.push(Utils.addEvent(circle, 'mouseenter', function(e) {
@@ -626,7 +661,7 @@
             rect.setAttribute('y', y.toFixed(1));
             rect.setAttribute('height', barHeight.toFixed(1));
           }
-          svg.appendChild(rect);
+          svg.appendChild(self.wrapInLink(rect, i));
 
           if (self.tooltips) {
             self.events.push(Utils.addEvent(rect, 'mouseenter', function(e) {
@@ -762,7 +797,7 @@
             rect.setAttribute('x', x.toFixed(1));
             rect.setAttribute('width', barWidth.toFixed(1));
           }
-          svg.appendChild(rect);
+          svg.appendChild(self.wrapInLink(rect, i));
 
           if (self.tooltips) {
             self.events.push(Utils.addEvent(rect, 'mouseenter', function(e) {
@@ -865,7 +900,7 @@
           path.setAttribute('stroke-width', self.pieStrokeWidth);
         }
 
-        sliceGroup.appendChild(path);
+        sliceGroup.appendChild(self.wrapInLink(path, i));
 
         if (self.tooltips) {
           var pct = Math.round((val / total) * 100);
@@ -880,7 +915,7 @@
         startAngle += sliceAngle;
       });
 
-      // Queue pie clockwise sweep animation (JS-driven arc path)
+      // Queue pie clockwise sweep animation
       if (this.animated && clipArc) {
         (function(arcEl, pieCx, pieCy, pieRadius) {
           var duration = self.getAnimationDuration();
@@ -998,7 +1033,7 @@
             rect.setAttribute('y', (y + gapOffset).toFixed(1));
             rect.setAttribute('height', Math.max(drawHeight, 0).toFixed(1));
           }
-          svg.appendChild(rect);
+          svg.appendChild(self.wrapInLink(rect, i));
 
           if (self.tooltips) {
             (function(label, dsLabel, value, stackTotal) {
@@ -1156,7 +1191,7 @@
             rect.setAttribute('x', x.toFixed(1));
             rect.setAttribute('width', Math.max(drawWidth, 0).toFixed(1));
           }
-          svg.appendChild(rect);
+          svg.appendChild(self.wrapInLink(rect, i));
 
           if (self.tooltips) {
             (function(label, dsLabel, value, stackTotal) {
@@ -1245,7 +1280,7 @@
           path.setAttribute('stroke-width', self.pieStrokeWidth);
         }
 
-        sliceGroup.appendChild(path);
+        sliceGroup.appendChild(self.wrapInLink(path, i));
 
         if (self.tooltips) {
           var pct = Math.round((val / total) * 100);
@@ -1388,7 +1423,7 @@
           });
         }
 
-        svg.appendChild(path);
+        svg.appendChild(self.wrapInLink(path, i));
 
         if (self.tooltips) {
           self.events.push(Utils.addEvent(path, 'mouseenter', function(e) {
@@ -2332,6 +2367,21 @@
       }
 
       return { min: niceMin, max: niceMax, step: niceStep, ticks: ticks };
+    }
+
+    wrapInLink(svgElement, labelIndex) {
+      var link = this.links[labelIndex];
+      if (!link || !link.url) return svgElement;
+
+      var a = document.createElementNS(SVG_NS, 'a');
+      a.setAttribute('href', link.url);
+      if (link.target && link.target !== '_self') {
+        a.setAttribute('target', link.target);
+      }
+      a.setAttribute('aria-label', this.labels[labelIndex] || '');
+      a.style.cursor = 'pointer';
+      a.appendChild(svgElement);
+      return a;
     }
 
     getColour(index) {
