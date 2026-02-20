@@ -1,8 +1,9 @@
 /**
  * Battersea Library - Graph Component
- * Version: 2.20.0
+ * Version: 2.21.0
  *
- * SVG chart rendering with line, column, and pie graph types.
+ * SVG chart rendering with line, column, stacked column, bar, stacked bar,
+ * pie, donut, and radial graph types.
  *
  * Supports three data sources:
  * 1. Inline JSON via data-graph-data attribute
@@ -69,6 +70,16 @@
       this.pieRadius = Utils.parseInt(Utils.getData(el, 'graph-pie-radius'), 0);
       this.pieStroke = Utils.getData(el, 'graph-pie-stroke') || '#fff';
       this.pieStrokeWidth = Utils.parseFloat(Utils.getData(el, 'graph-pie-stroke-width'), 2);
+
+      // Donut options
+      this.donutWidth = Utils.parseInt(Utils.getData(el, 'graph-donut-width'), 60);
+      this.donutLabel = Utils.getData(el, 'graph-donut-label') || '';
+      this.donutLabelValue = Utils.parseBoolean(Utils.getData(el, 'graph-donut-label-value') || 'false');
+
+      // Radial options
+      this.radialStart = Utils.parseInt(Utils.getData(el, 'graph-radial-start'), 0);
+      this.radialGrid = Utils.parseBoolean(Utils.getData(el, 'graph-radial-grid') || 'true');
+      this.radialLabelPosition = Utils.getData(el, 'graph-radial-label-position') || 'end';
 
       // Grid options
       this.showHGrid = Utils.parseBoolean(Utils.getData(el, 'graph-grid-h') || 'true');
@@ -410,11 +421,23 @@
         case 'column':
           this.renderColumn(this.svgEl, area, width, height);
           break;
+        case 'stackedcolumn':
+          this.renderStackedColumn(this.svgEl, area, width, height);
+          break;
         case 'bar':
           this.renderBar(this.svgEl, area, width, height);
           break;
+        case 'stackedbar':
+          this.renderStackedBar(this.svgEl, area, width, height);
+          break;
         case 'pie':
           this.renderPie(this.svgEl, width, height);
+          break;
+        case 'donut':
+          this.renderDonut(this.svgEl, width, height);
+          break;
+        case 'radial':
+          this.renderRadial(this.svgEl, width, height);
           break;
         default:
           console.warn('Graph: Unknown type "' + this.type + '"');
@@ -427,7 +450,7 @@
     }
 
     getChartArea(width, height) {
-      var leftPad = this.type === 'bar' ? 90 : 55;
+      var leftPad = (this.type === 'bar' || this.type === 'stackedbar') ? 90 : 55;
       var padding = {
         top: 15,
         right: 20,
@@ -911,6 +934,503 @@
       }
     }
 
+    // ─── Stacked Column Chart ───────────────
+
+    renderStackedColumn(svg, area, width, height) {
+      var self = this;
+
+      // Calculate stacked totals per label
+      var groupCount = this.labels.length;
+      var stackTotals = [];
+      for (var g = 0; g < groupCount; g++) {
+        var total = 0;
+        this.datasets.forEach(function(ds) { total += ds.values[g] || 0; });
+        stackTotals.push(total);
+      }
+
+      var ticks = this.calculateNiceTicks(0, Math.max.apply(null, stackTotals), 5);
+
+      this.drawGrid(svg, area, ticks, 'stackedcolumn');
+      this.drawYAxis(svg, area, ticks);
+      this.drawXAxis(svg, area, 'stackedcolumn');
+
+      var groupWidth = area.width / groupCount;
+      var barPadding = groupWidth * 0.15;
+      var barWidth = groupWidth - barPadding * 2;
+      var barStagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
+      var barAnimations = [];
+
+      for (var i = 0; i < groupCount; i++) {
+        var cumulativeHeight = 0;
+
+        for (var dsIndex = 0; dsIndex < this.datasets.length; dsIndex++) {
+          var ds = this.datasets[dsIndex];
+          var val = ds.values[i] || 0;
+          var colour = self.getColour(dsIndex);
+          var segmentHeight = (val / ticks.max) * area.height;
+          var x = area.x + i * groupWidth + barPadding;
+          var y = area.y + area.height - cumulativeHeight - segmentHeight;
+
+          var rect = document.createElementNS(SVG_NS, 'rect');
+          rect.setAttribute('x', x.toFixed(1));
+          rect.setAttribute('width', Math.max(barWidth, 1).toFixed(1));
+          rect.setAttribute('fill', colour);
+          rect.classList.add('battersea-graph__bar');
+
+          // Only round top corners of the topmost segment
+          if (dsIndex === this.datasets.length - 1) {
+            rect.setAttribute('rx', self.barRadius);
+          }
+
+          if (self.animated) {
+            rect.setAttribute('y', (area.y + area.height - cumulativeHeight).toFixed(1));
+            rect.setAttribute('height', '0');
+            barAnimations.push({
+              rect: rect,
+              baseline: area.y + area.height - cumulativeHeight,
+              targetY: y,
+              targetHeight: segmentHeight,
+              group: i
+            });
+          } else {
+            rect.setAttribute('y', y.toFixed(1));
+            rect.setAttribute('height', Math.max(segmentHeight, 0).toFixed(1));
+          }
+          svg.appendChild(rect);
+
+          if (self.tooltips) {
+            (function(label, dsLabel, value, stackTotal) {
+              self.events.push(Utils.addEvent(rect, 'mouseenter', function(e) {
+                self.showTooltip(e, label, dsLabel + ': ' + self.formatNumber(value) + '<br>Total: ' + self.formatNumber(stackTotal));
+              }));
+              self.events.push(Utils.addEvent(rect, 'mouseleave', function() {
+                self.hideTooltip();
+              }));
+            })(self.labels[i], ds.label, val, stackTotals[i]);
+          }
+
+          cumulativeHeight += segmentHeight;
+        }
+      }
+
+      if (this.animated && barAnimations.length > 0) {
+        var stagger = barStagger;
+        this._pendingAnimations.push(function() {
+          barAnimations.forEach(function(bar) {
+            self.animateBar(bar.rect, bar.baseline, bar.targetY, bar.targetHeight, bar.group * stagger);
+          });
+        });
+      }
+    }
+
+    // ─── Stacked Bar Chart (Horizontal) ─────
+
+    renderStackedBar(svg, area, width, height) {
+      var self = this;
+
+      // Calculate stacked totals per label
+      var groupCount = this.labels.length;
+      var stackTotals = [];
+      for (var g = 0; g < groupCount; g++) {
+        var total = 0;
+        this.datasets.forEach(function(ds) { total += ds.values[g] || 0; });
+        stackTotals.push(total);
+      }
+
+      var maxVal = Math.max.apply(null, stackTotals);
+      var ticks = this.calculateNiceTicks(0, maxVal, 5);
+
+      // Draw vertical grid lines at tick positions
+      if (this.showHGrid || this.showVGrid) {
+        ticks.ticks.forEach(function(tickVal) {
+          var x = area.x + (tickVal / ticks.max) * area.width;
+          var line = document.createElementNS(SVG_NS, 'line');
+          line.setAttribute('x1', x.toFixed(1));
+          line.setAttribute('y1', area.y);
+          line.setAttribute('x2', x.toFixed(1));
+          line.setAttribute('y2', area.y + area.height);
+          line.classList.add('battersea-graph__grid-line');
+          line.classList.add('battersea-graph__grid-line--v');
+          svg.appendChild(line);
+        });
+      }
+
+      // Y axis line
+      var axisLine = document.createElementNS(SVG_NS, 'line');
+      axisLine.setAttribute('x1', area.x);
+      axisLine.setAttribute('y1', area.y);
+      axisLine.setAttribute('x2', area.x);
+      axisLine.setAttribute('y2', area.y + area.height);
+      axisLine.classList.add('battersea-graph__axis-line');
+      svg.appendChild(axisLine);
+
+      // X axis line
+      var xAxisLine = document.createElementNS(SVG_NS, 'line');
+      xAxisLine.setAttribute('x1', area.x);
+      xAxisLine.setAttribute('y1', area.y + area.height);
+      xAxisLine.setAttribute('x2', area.x + area.width);
+      xAxisLine.setAttribute('y2', area.y + area.height);
+      xAxisLine.classList.add('battersea-graph__axis-line');
+      svg.appendChild(xAxisLine);
+
+      // X-axis tick labels
+      ticks.ticks.forEach(function(tickVal) {
+        var x = area.x + (tickVal / ticks.max) * area.width;
+        var text = document.createElementNS(SVG_NS, 'text');
+        text.setAttribute('x', x.toFixed(1));
+        text.setAttribute('y', area.y + area.height + 20);
+        text.setAttribute('text-anchor', 'middle');
+        text.classList.add('battersea-graph__tick-label');
+        text.textContent = self.formatTickLabel(tickVal);
+        svg.appendChild(text);
+      });
+
+      // Y-axis category labels
+      var groupHeight = area.height / groupCount;
+      this.labels.forEach(function(label, i) {
+        var y = area.y + i * groupHeight + groupHeight / 2;
+        var text = document.createElementNS(SVG_NS, 'text');
+        text.setAttribute('x', area.x - 8);
+        text.setAttribute('y', (y + 4).toFixed(1));
+        text.setAttribute('text-anchor', 'end');
+        text.classList.add('battersea-graph__tick-label');
+        text.textContent = label;
+        svg.appendChild(text);
+      });
+
+      // X-axis label
+      if (this.xLabel) {
+        var xLabelEl = document.createElementNS(SVG_NS, 'text');
+        xLabelEl.setAttribute('x', (area.x + area.width / 2).toFixed(1));
+        xLabelEl.setAttribute('y', area.y + area.height + 42);
+        xLabelEl.setAttribute('text-anchor', 'middle');
+        xLabelEl.classList.add('battersea-graph__axis-label');
+        xLabelEl.textContent = this.xLabel;
+        svg.appendChild(xLabelEl);
+      }
+
+      var barPadding = groupHeight * 0.15;
+      var barHeight = groupHeight - barPadding * 2;
+      var barAnimations = [];
+
+      for (var i = 0; i < groupCount; i++) {
+        var cumulativeWidth = 0;
+
+        for (var dsIndex = 0; dsIndex < this.datasets.length; dsIndex++) {
+          var ds = this.datasets[dsIndex];
+          var val = ds.values[i] || 0;
+          var colour = self.getColour(dsIndex);
+          var segmentWidth = (val / ticks.max) * area.width;
+          var x = area.x + cumulativeWidth;
+          var y = area.y + i * groupHeight + barPadding;
+
+          var rect = document.createElementNS(SVG_NS, 'rect');
+          rect.setAttribute('y', y.toFixed(1));
+          rect.setAttribute('height', Math.max(barHeight, 1).toFixed(1));
+          rect.setAttribute('fill', colour);
+          rect.classList.add('battersea-graph__bar');
+
+          // Only round right end of the rightmost segment
+          if (dsIndex === this.datasets.length - 1) {
+            rect.setAttribute('rx', self.barRadius);
+          }
+
+          if (self.animated) {
+            rect.setAttribute('x', x.toFixed(1));
+            rect.setAttribute('width', '0');
+            barAnimations.push({
+              rect: rect,
+              targetWidth: segmentWidth,
+              startX: x,
+              group: i
+            });
+          } else {
+            rect.setAttribute('x', x.toFixed(1));
+            rect.setAttribute('width', Math.max(segmentWidth, 0).toFixed(1));
+          }
+          svg.appendChild(rect);
+
+          if (self.tooltips) {
+            (function(label, dsLabel, value, stackTotal) {
+              self.events.push(Utils.addEvent(rect, 'mouseenter', function(e) {
+                self.showTooltip(e, label, dsLabel + ': ' + self.formatNumber(value) + '<br>Total: ' + self.formatNumber(stackTotal));
+              }));
+              self.events.push(Utils.addEvent(rect, 'mouseleave', function() {
+                self.hideTooltip();
+              }));
+            })(self.labels[i], ds.label, val, stackTotals[i]);
+          }
+
+          cumulativeWidth += segmentWidth;
+        }
+      }
+
+      if (this.animated && barAnimations.length > 0) {
+        var stagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
+        var duration = this.getAnimationDuration();
+        this._pendingAnimations.push(function() {
+          barAnimations.forEach(function(bar) {
+            var delay = bar.group * stagger;
+            self.animateHorizontalBar(bar.rect, bar.targetWidth, duration, delay);
+          });
+        });
+      }
+    }
+
+    // ─── Donut Chart ────────────────────────
+
+    renderDonut(svg, width, height) {
+      var self = this;
+      var values = this.datasets[0].values;
+      var total = values.reduce(function(sum, v) { return sum + v; }, 0);
+      if (total === 0) return;
+
+      var cx = width / 2;
+      var cy = height / 2;
+      var outerRadius = Math.min(cx, cy) - 40;
+      var innerRadius = Math.max(outerRadius - this.donutWidth, 0);
+      var gap = this.pieGap;
+      var cornerRadius = Math.min(this.pieRadius, (outerRadius - innerRadius) * 0.4);
+      var startAngle = -Math.PI / 2;
+
+      var sliceGroup = document.createElementNS(SVG_NS, 'g');
+      sliceGroup.classList.add('battersea-graph__pie-group');
+      svg.appendChild(sliceGroup);
+
+      // Clip-path for clockwise sweep animation
+      var clipArc = null;
+      if (this.animated) {
+        var clipId = 'graph-donut-clip-' + Math.random().toString(36).substr(2, 6);
+        var defs = document.createElementNS(SVG_NS, 'defs');
+        var clipPath = document.createElementNS(SVG_NS, 'clipPath');
+        clipPath.setAttribute('id', clipId);
+
+        clipArc = document.createElementNS(SVG_NS, 'path');
+        clipArc.setAttribute('d', 'M ' + cx + ' ' + cy + ' Z');
+        clipPath.appendChild(clipArc);
+        defs.appendChild(clipPath);
+        svg.appendChild(defs);
+        sliceGroup.setAttribute('clip-path', 'url(#' + clipId + ')');
+      }
+
+      values.forEach(function(val, i) {
+        var sliceAngle = (val / total) * Math.PI * 2;
+        var colour = self.getColour(i);
+
+        var midAngle = startAngle + sliceAngle / 2;
+        var tx = gap > 0 ? Math.cos(midAngle) * (gap / 2) : 0;
+        var ty = gap > 0 ? Math.sin(midAngle) * (gap / 2) : 0;
+
+        var d;
+        if (cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
+          d = self.buildRoundedDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle, cornerRadius);
+        } else {
+          d = self.buildDonutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, startAngle + sliceAngle);
+        }
+
+        var path = document.createElementNS(SVG_NS, 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('fill', colour);
+        path.classList.add('battersea-graph__slice');
+
+        if (gap > 0) {
+          path.setAttribute('transform', 'translate(' + tx.toFixed(2) + ',' + ty.toFixed(2) + ')');
+        }
+
+        if (self.pieStrokeWidth > 0) {
+          path.setAttribute('stroke', self.pieStroke);
+          path.setAttribute('stroke-width', self.pieStrokeWidth);
+        }
+
+        sliceGroup.appendChild(path);
+
+        if (self.tooltips) {
+          var pct = Math.round((val / total) * 100);
+          self.events.push(Utils.addEvent(path, 'mouseenter', function(e) {
+            self.showTooltip(e, self.labels[i], self.formatNumber(val) + ' (' + pct + '%)');
+          }));
+          self.events.push(Utils.addEvent(path, 'mouseleave', function() {
+            self.hideTooltip();
+          }));
+        }
+
+        startAngle += sliceAngle;
+      });
+
+      // Centre label
+      var labelText = '';
+      if (this.donutLabelValue) {
+        labelText = this.formatNumber(total);
+      } else if (this.donutLabel) {
+        labelText = this.donutLabel;
+      }
+
+      if (labelText) {
+        var labelEl = document.createElementNS(SVG_NS, 'text');
+        labelEl.setAttribute('x', cx.toFixed(1));
+        labelEl.setAttribute('y', cy.toFixed(1));
+        labelEl.setAttribute('text-anchor', 'middle');
+        labelEl.setAttribute('dominant-baseline', 'central');
+        labelEl.classList.add('battersea-graph__donut-label');
+        labelEl.textContent = labelText;
+        svg.appendChild(labelEl);
+      }
+
+      // Queue pie clockwise sweep animation
+      if (this.animated && clipArc) {
+        (function(arcEl, pieCx, pieCy, pieOuterRadius) {
+          var duration = self.getAnimationDuration();
+          var r = pieOuterRadius + 20;
+          self._pendingAnimations.push(function() {
+            var startTime = null;
+            function step(timestamp) {
+              if (!startTime) startTime = timestamp;
+              var elapsed = timestamp - startTime;
+              var progress = Math.min(elapsed / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              var angle = eased * Math.PI * 2;
+
+              if (angle < 0.001) {
+                arcEl.setAttribute('d', 'M ' + pieCx + ' ' + pieCy + ' Z');
+              } else if (angle >= Math.PI * 2 - 0.001) {
+                arcEl.setAttribute('d',
+                  'M ' + (pieCx - r) + ' ' + (pieCy - r) +
+                  ' h ' + (r * 2) + ' v ' + (r * 2) + ' h ' + (-(r * 2)) + ' Z'
+                );
+              } else {
+                var startA = -Math.PI / 2;
+                var endA = startA + angle;
+                var x1 = pieCx + r * Math.cos(startA);
+                var y1 = pieCy + r * Math.sin(startA);
+                var x2 = pieCx + r * Math.cos(endA);
+                var y2 = pieCy + r * Math.sin(endA);
+                var largeArc = angle > Math.PI ? 1 : 0;
+
+                arcEl.setAttribute('d',
+                  'M ' + pieCx.toFixed(2) + ' ' + pieCy.toFixed(2) +
+                  ' L ' + x1.toFixed(2) + ' ' + y1.toFixed(2) +
+                  ' A ' + r.toFixed(2) + ' ' + r.toFixed(2) + ' 0 ' + largeArc + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) +
+                  ' Z'
+                );
+              }
+
+              if (progress < 1) {
+                requestAnimationFrame(step);
+              }
+            }
+            requestAnimationFrame(step);
+          });
+        })(clipArc, cx, cy, outerRadius);
+      }
+    }
+
+    // ─── Radial Bar Chart ───────────────────
+
+    renderRadial(svg, width, height) {
+      var self = this;
+      var values = this.datasets[0].values;
+      var barCount = this.labels.length;
+      if (barCount === 0) return;
+
+      var cx = width / 2;
+      var cy = height / 2;
+      var maxRadius = Math.min(cx, cy) - 40;
+      var innerRadius = maxRadius * 0.15;
+      var maxVal = Math.max.apply(null, values);
+      var ticks = this.calculateNiceTicks(0, maxVal, 4);
+
+      var angleStep = (2 * Math.PI) / barCount;
+      var barAngleRatio = 0.7;
+      var gapAngleRatio = 1 - barAngleRatio;
+      var startOffset = (this.radialStart * Math.PI / 180) - Math.PI / 2;
+
+      // Draw concentric grid circles
+      if (this.radialGrid) {
+        this.drawRadialGrid(svg, cx, cy, innerRadius, maxRadius, ticks);
+      }
+
+      // Collect bar animations
+      var barAnimations = [];
+
+      values.forEach(function(val, i) {
+        var colour = self.getColour(i);
+        var barStart = startOffset + i * angleStep + (angleStep * gapAngleRatio / 2);
+        var barEnd = barStart + angleStep * barAngleRatio;
+        var barRadius = innerRadius + ((val / ticks.max) * (maxRadius - innerRadius));
+
+        var d = self.buildDonutSlicePath(cx, cy, barRadius, innerRadius, barStart, barEnd);
+
+        var path = document.createElementNS(SVG_NS, 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('fill', colour);
+        path.classList.add('battersea-graph__radial-bar');
+
+        if (self.animated) {
+          // Start with zero-length bar (all at inner radius)
+          var startD = self.buildDonutSlicePath(cx, cy, innerRadius + 0.5, innerRadius, barStart, barEnd);
+          path.setAttribute('d', startD);
+          barAnimations.push({
+            path: path,
+            barStart: barStart,
+            barEnd: barEnd,
+            targetRadius: barRadius,
+            group: i
+          });
+        }
+
+        svg.appendChild(path);
+
+        if (self.tooltips) {
+          self.events.push(Utils.addEvent(path, 'mouseenter', function(e) {
+            self.showTooltip(e, self.labels[i], self.formatNumber(val));
+          }));
+          self.events.push(Utils.addEvent(path, 'mouseleave', function() {
+            self.hideTooltip();
+          }));
+        }
+
+        // Draw label
+        var labelAngle = (barStart + barEnd) / 2;
+        var labelRadius;
+        if (self.radialLabelPosition === 'outside') {
+          labelRadius = maxRadius + 14;
+        } else {
+          labelRadius = barRadius + 10;
+        }
+
+        var lx = cx + labelRadius * Math.cos(labelAngle);
+        var ly = cy + labelRadius * Math.sin(labelAngle);
+
+        var textEl = document.createElementNS(SVG_NS, 'text');
+        textEl.setAttribute('x', lx.toFixed(1));
+        textEl.setAttribute('y', ly.toFixed(1));
+        textEl.classList.add('battersea-graph__radial-label');
+
+        // Adjust text-anchor based on angle
+        var angleDeg = ((labelAngle * 180 / Math.PI) + 360) % 360;
+        if (angleDeg > 90 && angleDeg < 270) {
+          textEl.setAttribute('text-anchor', 'end');
+        } else {
+          textEl.setAttribute('text-anchor', 'start');
+        }
+        textEl.setAttribute('dominant-baseline', 'central');
+        textEl.textContent = self.labels[i];
+        svg.appendChild(textEl);
+      });
+
+      // Queue radial bar growth animation
+      if (this.animated && barAnimations.length > 0) {
+        var duration = this.getAnimationDuration();
+        var stagger = barCount > 1 ? duration / barCount : 0;
+        this._pendingAnimations.push(function() {
+          barAnimations.forEach(function(bar) {
+            var delay = bar.group * stagger;
+            self.animateRadialBar(bar.path, cx, cy, innerRadius, bar.targetRadius, bar.barStart, bar.barEnd, duration, delay);
+          });
+        });
+      }
+    }
+
     // ─── Shared Drawing Helpers ────────────────
 
     drawGrid(svg, area, ticks, chartType) {
@@ -936,7 +1456,7 @@
         var count = self.labels.length;
         self.labels.forEach(function(label, i) {
           var x;
-          if (chartType === 'column') {
+          if (chartType === 'column' || chartType === 'stackedcolumn') {
             var groupWidth = area.width / count;
             x = area.x + i * groupWidth + groupWidth / 2;
           } else {
@@ -1006,7 +1526,7 @@
 
       self.labels.forEach(function(label, i) {
         var x;
-        if (chartType === 'column') {
+        if (chartType === 'column' || chartType === 'stackedcolumn') {
           var groupWidth = area.width / count;
           x = area.x + i * groupWidth + groupWidth / 2;
         } else {
@@ -1051,7 +1571,8 @@
       this.legendEl.className = 'battersea-graph__legend battersea-graph__legend--' + this.legendPosition;
 
       var self = this;
-      var items = this.type === 'pie'
+      var useLabelLegend = (this.type === 'pie' || this.type === 'donut' || this.type === 'radial');
+      var items = useLabelLegend
         ? this.labels.map(function(label, i) { return { label: label, colour: self.getColour(i) }; })
         : this.datasets.map(function(ds, i) { return { label: ds.label, colour: self.getColour(i) }; });
 
@@ -1249,6 +1770,188 @@
       d += ' Z';
 
       return d;
+    }
+
+    // ─── Donut Path Helpers ────────────────────
+
+    buildDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle) {
+      var sliceAngle = endAngle - startAngle;
+
+      // Outer arc points
+      var ox1 = cx + outerR * Math.cos(startAngle);
+      var oy1 = cy + outerR * Math.sin(startAngle);
+      var ox2 = cx + outerR * Math.cos(endAngle);
+      var oy2 = cy + outerR * Math.sin(endAngle);
+
+      // Inner arc points
+      var ix1 = cx + innerR * Math.cos(startAngle);
+      var iy1 = cy + innerR * Math.sin(startAngle);
+      var ix2 = cx + innerR * Math.cos(endAngle);
+      var iy2 = cy + innerR * Math.sin(endAngle);
+
+      var largeArc = sliceAngle > Math.PI ? 1 : 0;
+
+      // Full circle case
+      if (sliceAngle >= Math.PI * 2 - 0.01) {
+        // Two half-arcs for outer, two half-arcs for inner
+        var omx = cx + outerR * Math.cos(startAngle + Math.PI);
+        var omy = cy + outerR * Math.sin(startAngle + Math.PI);
+        var imx = cx + innerR * Math.cos(startAngle + Math.PI);
+        var imy = cy + innerR * Math.sin(startAngle + Math.PI);
+        return [
+          'M', ox1.toFixed(2), oy1.toFixed(2),
+          'A', outerR.toFixed(2), outerR.toFixed(2), 0, 1, 1, omx.toFixed(2), omy.toFixed(2),
+          'A', outerR.toFixed(2), outerR.toFixed(2), 0, 1, 1, ox1.toFixed(2), oy1.toFixed(2),
+          'M', ix1.toFixed(2), iy1.toFixed(2),
+          'A', innerR.toFixed(2), innerR.toFixed(2), 0, 1, 0, imx.toFixed(2), imy.toFixed(2),
+          'A', innerR.toFixed(2), innerR.toFixed(2), 0, 1, 0, ix1.toFixed(2), iy1.toFixed(2),
+          'Z'
+        ].join(' ');
+      }
+
+      return [
+        'M', ox1.toFixed(2), oy1.toFixed(2),
+        'A', outerR.toFixed(2), outerR.toFixed(2), 0, largeArc, 1, ox2.toFixed(2), oy2.toFixed(2),
+        'L', ix2.toFixed(2), iy2.toFixed(2),
+        'A', innerR.toFixed(2), innerR.toFixed(2), 0, largeArc, 0, ix1.toFixed(2), iy1.toFixed(2),
+        'Z'
+      ].join(' ');
+    }
+
+    buildRoundedDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle, cr) {
+      var sliceAngle = endAngle - startAngle;
+      var ringWidth = outerR - innerR;
+
+      var maxCr = Math.min(cr, ringWidth * 0.4, outerR * Math.sin(sliceAngle / 2) * 0.8);
+      if (maxCr < 1) {
+        return this.buildDonutSlicePath(cx, cy, outerR, innerR, startAngle, endAngle);
+      }
+
+      // Outer corners: inset by angular equivalent of maxCr
+      var outerInset = maxCr / outerR;
+      // Inner corners: inset by angular equivalent of maxCr on inner radius
+      var innerInset = innerR > 0 ? maxCr / innerR : 0;
+
+      // Outer arc inset points
+      var oas = startAngle + outerInset;
+      var oae = endAngle - outerInset;
+      var osx = cx + outerR * Math.cos(oas);
+      var osy = cy + outerR * Math.sin(oas);
+      var oex = cx + outerR * Math.cos(oae);
+      var oey = cy + outerR * Math.sin(oae);
+      var outerLargeArc = (oae - oas) > Math.PI ? 1 : 0;
+
+      // Inner arc inset points (reverse direction)
+      var ias = endAngle - innerInset;
+      var iae = startAngle + innerInset;
+      var isx = cx + innerR * Math.cos(ias);
+      var isy = cy + innerR * Math.sin(ias);
+      var iex = cx + innerR * Math.cos(iae);
+      var iey = cy + innerR * Math.sin(iae);
+      var innerLargeArc = (ias - iae) > Math.PI ? 1 : 0;
+
+      // Edge points near outer rim (start and end edges)
+      var edgeOuterDist = outerR - maxCr;
+      var eOsx = cx + edgeOuterDist * Math.cos(startAngle);
+      var eOsy = cy + edgeOuterDist * Math.sin(startAngle);
+      var eOex = cx + edgeOuterDist * Math.cos(endAngle);
+      var eOey = cy + edgeOuterDist * Math.sin(endAngle);
+
+      // Edge points near inner rim (start and end edges)
+      var edgeInnerDist = innerR + maxCr;
+      var eIsx = cx + edgeInnerDist * Math.cos(startAngle);
+      var eIsy = cy + edgeInnerDist * Math.sin(startAngle);
+      var eIex = cx + edgeInnerDist * Math.cos(endAngle);
+      var eIey = cy + edgeInnerDist * Math.sin(endAngle);
+
+      // Sharp corner positions (control points for Q curves)
+      var scOsx = cx + outerR * Math.cos(startAngle);
+      var scOsy = cy + outerR * Math.sin(startAngle);
+      var scOex = cx + outerR * Math.cos(endAngle);
+      var scOey = cy + outerR * Math.sin(endAngle);
+      var scIsx = cx + innerR * Math.cos(startAngle);
+      var scIsy = cy + innerR * Math.sin(startAngle);
+      var scIex = cx + innerR * Math.cos(endAngle);
+      var scIey = cy + innerR * Math.sin(endAngle);
+
+      // Build path
+      var d = 'M ' + eIsx.toFixed(2) + ' ' + eIsy.toFixed(2);
+      // Start edge: line from near inner to near outer
+      d += ' L ' + eOsx.toFixed(2) + ' ' + eOsy.toFixed(2);
+      // Outer-start corner: Q curve
+      d += ' Q ' + scOsx.toFixed(2) + ' ' + scOsy.toFixed(2) + ' ' + osx.toFixed(2) + ' ' + osy.toFixed(2);
+      // Main outer arc
+      d += ' A ' + outerR.toFixed(2) + ' ' + outerR.toFixed(2) + ' 0 ' + outerLargeArc + ' 1 ' + oex.toFixed(2) + ' ' + oey.toFixed(2);
+      // Outer-end corner: Q curve
+      d += ' Q ' + scOex.toFixed(2) + ' ' + scOey.toFixed(2) + ' ' + eOex.toFixed(2) + ' ' + eOey.toFixed(2);
+      // End edge: line from near outer to near inner
+      d += ' L ' + eIex.toFixed(2) + ' ' + eIey.toFixed(2);
+      // Inner-end corner: Q curve
+      d += ' Q ' + scIex.toFixed(2) + ' ' + scIey.toFixed(2) + ' ' + isx.toFixed(2) + ' ' + isy.toFixed(2);
+      // Main inner arc (reverse direction)
+      d += ' A ' + innerR.toFixed(2) + ' ' + innerR.toFixed(2) + ' 0 ' + innerLargeArc + ' 0 ' + iex.toFixed(2) + ' ' + iey.toFixed(2);
+      // Inner-start corner: Q curve
+      d += ' Q ' + scIsx.toFixed(2) + ' ' + scIsy.toFixed(2) + ' ' + eIsx.toFixed(2) + ' ' + eIsy.toFixed(2);
+      d += ' Z';
+
+      return d;
+    }
+
+    // ─── Radial Helpers ─────────────────────────
+
+    drawRadialGrid(svg, cx, cy, innerRadius, maxRadius, ticks) {
+      var self = this;
+      ticks.ticks.forEach(function(tickVal) {
+        if (tickVal === 0) return;
+        var r = innerRadius + ((tickVal / ticks.max) * (maxRadius - innerRadius));
+        var circle = document.createElementNS(SVG_NS, 'circle');
+        circle.setAttribute('cx', cx.toFixed(1));
+        circle.setAttribute('cy', cy.toFixed(1));
+        circle.setAttribute('r', r.toFixed(1));
+        circle.classList.add('battersea-graph__grid-circle');
+        svg.appendChild(circle);
+
+        // Tick label at 12 o'clock position
+        var labelY = cy - r - 4;
+        var text = document.createElementNS(SVG_NS, 'text');
+        text.setAttribute('x', cx.toFixed(1));
+        text.setAttribute('y', labelY.toFixed(1));
+        text.setAttribute('text-anchor', 'middle');
+        text.classList.add('battersea-graph__radial-tick-label');
+        text.textContent = self.formatTickLabel(tickVal);
+        svg.appendChild(text);
+      });
+    }
+
+    animateRadialBar(path, cx, cy, innerRadius, targetRadius, barStart, barEnd, duration, delay) {
+      var self = this;
+
+      function startAnimation() {
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var elapsed = timestamp - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+
+          var currentRadius = innerRadius + (targetRadius - innerRadius) * eased;
+          var d = self.buildDonutSlicePath(cx, cy, currentRadius, innerRadius, barStart, barEnd);
+          path.setAttribute('d', d);
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      if (delay > 0) {
+        setTimeout(startAnimation, delay);
+      } else {
+        startAnimation();
+      }
     }
 
     // ─── Utilities ─────────────────────────────

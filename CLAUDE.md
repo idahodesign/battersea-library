@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.20.0
+- **Current Version:** 2.21.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -64,7 +64,7 @@ battersea-library/
 28. VerticalNav - Sidebar navigation (simple, collapsible, flyout, hover-to-expand, off-canvas)
 29. VideoBackground - Looping background video with mobile poster fallback and configurable overlay
 30. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
-31. Graph - SVG charts: line, column, and pie with data loading, animation, tooltips, and legends
+31. Graph - SVG charts: line, column, stacked column, bar, stacked bar, pie, donut, and radial with data loading, animation, tooltips, and legends
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -139,6 +139,7 @@ battersea-library/
 - **MiniQuiz v2.18.0** (Feb 2026): Interactive quiz with boolean, single-choice, multi-select, timer, hide-until-click, JSON/CSV data loading
 - **VideoBackground v2.19.0** (Feb 2026): Looping background video with mobile poster fallback and configurable overlay
 - **Graph v2.20.0** (Feb 2026): SVG charts Phase 1 -- line, column, and pie with CSV/JSON data, animation, tooltips, legends
+- **Graph Phase 2 v2.21.0** (Feb 2026): Four new chart types -- stacked column, stacked bar, donut, and radial bar
 
 ### In Progress
 - See `TODO.md` for current tasks

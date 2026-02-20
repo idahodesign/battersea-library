@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Graph Component - Battersea Library</title>
-		<meta name="description" content="SVG line, column, bar, and pie charts with tooltips, animation, and CSV/JSON data sources - Battersea Library Component">
+		<meta name="description" content="SVG line, column, stacked column, bar, stacked bar, pie, donut, and radial charts with tooltips, animation, and CSV/JSON data sources - Battersea Library Component">
 
 		<!-- LESS Stylesheets -->
 		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
@@ -62,7 +62,7 @@
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Graph Component</h1>
-						<p class="hero-subtitle">SVG line, column, and pie charts with tooltips, animation, and data loading from CSV or JSON</p>
+						<p class="hero-subtitle">SVG line, column, stacked, bar, pie, donut, and radial charts with tooltips, animation, and data loading from CSV or JSON</p>
 					</div>
 				</div>
 			</section>
@@ -221,6 +221,111 @@
 							</div>
 						</div>
 
+						<!-- Demo 8: Stacked Column Chart -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Stacked Column Chart</h3>
+							<p>Multiple datasets stacked vertically. Each segment shows its own value and the stack total on hover.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="stackedcolumn"
+									data-graph-animated="true"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-bar-radius="4"
+									data-graph-height="380"
+									data-graph-x-label="Quarter"
+									data-graph-y-label="Amount (GBP)"
+									data-graph-data='{"labels":["Q1","Q2","Q3","Q4"],"datasets":[{"label":"Revenue","values":[42000,51000,47000,63000]},{"label":"Expenses","values":[28000,31000,29000,35000]},{"label":"Profit","values":[14000,20000,18000,28000]}]}'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 9: Stacked Bar Chart -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Stacked Bar Chart</h3>
+							<p>Horizontal stacked bars showing proportional breakdowns across categories. Uses <code>data-graph-type="stackedbar"</code>.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="stackedbar"
+									data-graph-animated="true"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-bar-radius="4"
+									data-graph-height="350"
+									data-graph-colours="#667eea, #e94560, #4ecdc4"
+									data-graph-data='{"labels":["JavaScript","Python","Java","TypeScript","C#"],"datasets":[{"label":"Frontend","values":[90,20,15,75,10]},{"label":"Backend","values":[60,80,70,40,65]},{"label":"Mobile","values":[30,25,55,20,15]}]}'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 10: Donut Chart with Total -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Donut Chart</h3>
+							<p>A pie chart with a hollow centre. The total value is displayed in the middle automatically with <code>data-graph-donut-label-value="true"</code>.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="donut"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-legend-position="right"
+									data-graph-swatch-shape="circle"
+									data-graph-title="Browser Market Share"
+									data-graph-animated="true"
+									data-graph-donut-width="60"
+									data-graph-donut-label-value="true"
+									data-graph-pie-gap="3"
+									data-graph-height="350"
+									data-graph-data='{"labels":["Chrome","Safari","Firefox","Edge","Other"],"datasets":[{"label":"Share","values":[65,18,8,5,4]}]}'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 11: Donut Chart with Custom Label -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Donut Chart with Centre Label</h3>
+							<p>Custom text in the centre, rounded corners on each segment, and no outline between slices.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="donut"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-title="Project Allocation"
+									data-graph-animated="true"
+									data-graph-donut-width="55"
+									data-graph-donut-label="Projects"
+									data-graph-pie-gap="4"
+									data-graph-pie-radius="4"
+									data-graph-pie-stroke-width="0"
+									data-graph-height="350"
+									data-graph-colours="#2d3436, #636e72, #b2bec3, #dfe6e9, #74b9ff"
+									data-graph-data='{"labels":["Development","Design","Testing","Documentation","Planning"],"datasets":[{"label":"Hours","values":[420,180,150,80,70]}]}'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 12: Radial Bar Chart -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Radial Bar Chart</h3>
+							<p>Bars radiate outward from a central point. Each category is a spoke extending from the centre, with concentric grid circles showing value intervals.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="radial"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-animated="true"
+									data-graph-radial-grid="true"
+									data-graph-height="420"
+									data-graph-title="Skill Proficiency"
+									data-graph-data='{"labels":["JavaScript","CSS","Python","Design","DevOps","Testing","SQL"],"datasets":[{"label":"Score","values":[92,88,65,78,55,70,60]}]}'>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</section>
@@ -304,7 +409,7 @@
 									</tr>
 									<tr>
 										<td><code>data-graph-type</code></td>
-										<td><code>line</code> / <code>column</code> / <code>bar</code> / <code>pie</code></td>
+										<td><code>line</code> / <code>column</code> / <code>stackedcolumn</code> / <code>bar</code> / <code>stackedbar</code> / <code>pie</code> / <code>donut</code> / <code>radial</code></td>
 										<td><code>line</code></td>
 										<td>The type of chart to render</td>
 									</tr>
@@ -415,6 +520,42 @@
 										<td>Number</td>
 										<td><code>2</code></td>
 										<td>Outline thickness. Set to 0 to remove outlines</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-donut-width</code></td>
+										<td>Number (px)</td>
+										<td><code>60</code></td>
+										<td>Thickness of the donut ring</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-donut-label</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>Text displayed in the centre of the donut</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-donut-label-value</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Auto-display the total of all values as the centre label</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-radial-start</code></td>
+										<td>Number (degrees)</td>
+										<td><code>0</code></td>
+										<td>Starting angle for radial bars (0 = 12 o'clock)</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-radial-grid</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show concentric grid circles on radial charts</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-radial-label-position</code></td>
+										<td><code>end</code> / <code>outside</code></td>
+										<td><code>end</code></td>
+										<td>Where to place category labels on radial charts</td>
 									</tr>
 									<tr>
 										<td><code>data-graph-grid-h</code></td>
@@ -557,6 +698,59 @@ chart.addEventListener('battersea:graphReady', function(e) {
 chart.addEventListener('battersea:graphRender', function(e) {
   console.log('Chart rendered:', e.detail.type);
 });</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Stacked Column Chart</div>
+								<div data-accordion-content>
+									<div>
+										<p>Use <code>data-graph-type="stackedcolumn"</code> to stack multiple datasets vertically. Each segment is hoverable and shows its value plus the stack total:</p>
+										<pre><code>&lt;div data-graph
+  data-graph-type="stackedcolumn"
+  data-graph-animated="true"
+  data-graph-legend="true"
+  data-graph-data='{"labels":["Q1","Q2","Q3"],
+    "datasets":[
+      {"label":"Revenue","values":[42000,51000,47000]},
+      {"label":"Expenses","values":[28000,31000,29000]}
+    ]}'&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Donut Chart</div>
+								<div data-accordion-content>
+									<div>
+										<p>A pie chart with a hollow centre. Control the ring thickness with <code>data-graph-donut-width</code> and optionally show a centre label:</p>
+										<pre><code>&lt;div data-graph
+  data-graph-type="donut"
+  data-graph-donut-width="60"
+  data-graph-donut-label-value="true"
+  data-graph-legend="true"
+  data-graph-data='{"labels":["Chrome","Safari","Firefox"],
+    "datasets":[{"label":"Share","values":[65,18,8]}]}'&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Radial Bar Chart</div>
+								<div data-accordion-content>
+									<div>
+										<p>Bars radiate outward from a central point. Each category gets its own spoke with concentric grid circles for scale:</p>
+										<pre><code>&lt;div data-graph
+  data-graph-type="radial"
+  data-graph-animated="true"
+  data-graph-radial-grid="true"
+  data-graph-legend="true"
+  data-graph-data='{"labels":["JS","CSS","Python"],
+    "datasets":[{"label":"Score","values":[92,88,65]}]}'&gt;
+&lt;/div&gt;</code></pre>
 									</div>
 								</div>
 							</div>

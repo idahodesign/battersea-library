@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.21.0] - 2026-02-21
+
+### Added
+- **Graph Phase 2** -- Four new chart types added to the Graph component
+  - Stacked column chart (`stackedcolumn`) -- multiple datasets stacked vertically with segment + total tooltips
+  - Stacked bar chart (`stackedbar`) -- horizontal stacked bars for proportional breakdowns
+  - Donut chart (`donut`) -- pie chart with hollow centre, configurable ring thickness, optional centre label
+  - Radial bar chart (`radial`) -- bars radiating outward from a central point with concentric grid circles
+  - New data attributes: `data-graph-donut-width`, `data-graph-donut-label`, `data-graph-donut-label-value`, `data-graph-radial-start`, `data-graph-radial-grid`, `data-graph-radial-label-position`
+  - All new types support animation, tooltips, legend, and responsive resize
+  - New CSS custom properties: `--graph-donut-label-color`, `--graph-donut-label-size`
+- **Demo page updated** -- Five new live demos for stacked column, stacked bar, donut (x2), and radial charts
+- **Usage accordion expanded** -- Stacked column, donut, and radial usage examples added
+
+---
+
 ## [2.20.0] - 2026-02-21
 
 ### Added

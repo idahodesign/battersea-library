@@ -1,6 +1,6 @@
 /**
  * Battersea Library - Graph Styles
- * Version: 2.20.0
+ * Version: 2.21.0
  */
 
 :root {
@@ -20,6 +20,8 @@
   --graph-title-color: #333;
   --graph-legend-text: #555;
   --graph-animation-duration: 1.5s;
+  --graph-donut-label-color: #333;
+  --graph-donut-label-size: 1.4rem;
 }
 
 .battersea-graph {
@@ -109,7 +111,7 @@
     }
   }
 
-  // ─── Column Chart ──────────────────────
+  // ─── Column / Bar Chart ─────────────────
   &__bar {
     cursor: pointer;
     transition: opacity 0.15s;
@@ -119,7 +121,7 @@
     }
   }
 
-  // ─── Pie Chart ──────────────────────────
+  // ─── Pie / Donut Chart ──────────────────
   &__slice {
     cursor: pointer;
     transition: filter 0.15s ease;
@@ -127,6 +129,43 @@
     &:hover {
       filter: brightness(1.1);
     }
+  }
+
+  // ─── Donut Centre Label ─────────────────
+  &__donut-label {
+    font-size: var(--graph-donut-label-size);
+    font-weight: 600;
+    fill: var(--graph-donut-label-color);
+    font-family: inherit;
+  }
+
+  // ─── Radial Bar Chart ───────────────────
+  &__radial-bar {
+    cursor: pointer;
+    transition: opacity 0.15s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__radial-label {
+    font-size: 11px;
+    fill: var(--graph-tick-color);
+    font-family: inherit;
+  }
+
+  &__radial-tick-label {
+    font-size: 10px;
+    fill: var(--graph-tick-color);
+    font-family: inherit;
+  }
+
+  &__grid-circle {
+    fill: none;
+    stroke: var(--graph-grid-h-color);
+    stroke-width: var(--graph-grid-h-width);
+    stroke-dasharray: var(--graph-grid-h-dasharray);
   }
 
   // ─── Tooltip ────────────────────────────
@@ -222,6 +261,14 @@
 
     &__axis-label {
       font-size: 11px;
+    }
+
+    &__radial-label {
+      font-size: 9px;
+    }
+
+    &__radial-tick-label {
+      font-size: 8px;
     }
 
     &__legend {

@@ -60,12 +60,11 @@
 - [x] MiniQuiz - Interactive quiz with boolean, single-choice, multi-select questions, timer, hide-until-click, JSON/CSV data loading (v2.18.0)
 - [x] VideoBackground - Looping background video with mobile poster fallback and configurable overlay (v2.19.0)
 - [x] Graph Phase 1 - SVG chart component with line, column, and pie charts, CSV/JSON data sources, animation, tooltips, legends (v2.20.0)
+- [x] Graph Phase 2 - Stacked column, stacked bar, donut, and radial bar chart types (v2.21.0)
 
 ### 🔨 In Progress
 
 ### 📋 Next Up
-
-- [ ] Graph Phase 2 - Additional graph types: multibar, multicolumn, radiating column, bar (horizontal), donut graph.
 - [ ] Update form element validation to include for file select element (allowed file types and maximum file size). 
 - [ ] New advanced form elements - date picker, time picker, colour swatch, toggle, slide. Please suggest any otheres that you thin kwould be helpful, 
 - [ ] Transparent header - Setting that makes the the headers background transparent until it sticks to the top of the browser window when it's background fades in. Its transparency returns when the user scrolls black to the top of the site. When set to transparent the header floats above the first content of the site. This will effect the smooth scroll compoent because it usually offsets the content to allow for the header height.

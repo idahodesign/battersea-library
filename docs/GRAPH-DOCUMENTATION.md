@@ -1,23 +1,26 @@
 # Battersea Library - Graph Component Documentation
 
-## Added in v2.20.0
+## Added in v2.20.0, updated in v2.21.0
 
 ---
 
 ## Graph
 
-**New in v2.20.0** - SVG charts with line, column, bar (horizontal), and pie types. Supports inline JSON, external JSON files, and CSV files as data sources.
+**New in v2.20.0, expanded in v2.21.0** - SVG charts with eight chart types: line, column, stacked column, bar (horizontal), stacked bar, pie, donut, and radial. Supports inline JSON, external JSON files, and CSV files as data sources.
 
 ### Features
-- **Four chart types** - Line, column, bar (horizontal), and pie, set with a single data attribute
+- **Eight chart types** - Line, column, stacked column, bar, stacked bar, pie, donut, and radial, set with a single data attribute
 - **Flexible data sources** - Inline JSON, JSON file URL, or CSV file
 - **Smooth lines** - Optional cubic bezier interpolation for line charts (Catmull-Rom splines)
-- **Animated drawing** - Lines draw left-to-right, columns grow from baseline, bars extend from left, pie sweeps clockwise
+- **Animated drawing** - Lines draw left-to-right, columns grow from baseline, bars extend from left, pie and donut sweep clockwise, radial bars grow outward
 - **Scroll-triggered** - Animations deferred until the chart scrolls into view via IntersectionObserver
 - **Sequential stagger** - Column bars animate left-to-right, bar chart top-to-bottom, line markers appear as the line reaches them
-- **Tooltips** - Hover tooltips show label and value, positioned to stay within the container
+- **Tooltips** - Hover tooltips show label and value; stacked charts show segment value and total
 - **Configurable legend** - Place at bottom, top, left, or right with square or circle swatches
+- **Stacked charts** - Datasets stacked vertically (stacked column) or horizontally (stacked bar) with per-segment tooltips
+- **Donut options** - Configurable ring width, optional centre label (custom text or auto-total)
 - **Pie options** - Gap between segments, rounded corners, configurable stroke outline
+- **Radial options** - Concentric grid circles, configurable start angle, label positioning
 - **Custom colours** - Override the built-in palette with a comma-separated list of hex values
 - **Grid lines** - Independent horizontal and vertical grid lines with CSS-customisable style
 - **Axis labels** - Optional x-axis and y-axis labels
@@ -50,13 +53,17 @@
   data-graph-bar-radius="6">
 </div>
 
-<!-- Column Chart (CSV file) -->
+<!-- Stacked Column Chart -->
 <div data-graph
-  data-graph-type="column"
-  data-graph-csv="data/sales.csv"
+  data-graph-type="stackedcolumn"
   data-graph-animated="true"
   data-graph-legend="true"
-  data-graph-grid-v="true">
+  data-graph-bar-radius="4"
+  data-graph-data='{"labels":["Q1","Q2","Q3","Q4"],
+    "datasets":[
+      {"label":"Revenue","values":[42000,51000,47000,63000]},
+      {"label":"Expenses","values":[28000,31000,29000,35000]}
+    ]}'>
 </div>
 
 <!-- Bar Chart (horizontal) -->
@@ -72,6 +79,19 @@
     "datasets":[{"label":"Popularity","values":[65,52,35,28,22]}]}'>
 </div>
 
+<!-- Stacked Bar Chart -->
+<div data-graph
+  data-graph-type="stackedbar"
+  data-graph-animated="true"
+  data-graph-legend="true"
+  data-graph-bar-radius="4"
+  data-graph-data='{"labels":["JavaScript","Python","Java"],
+    "datasets":[
+      {"label":"Frontend","values":[90,20,15]},
+      {"label":"Backend","values":[60,80,70]}
+    ]}'>
+</div>
+
 <!-- Pie Chart -->
 <div data-graph
   data-graph-type="pie"
@@ -85,6 +105,29 @@
   data-graph-data='{"labels":["Chrome","Safari","Firefox","Edge","Other"],
     "datasets":[{"label":"Share","values":[65,18,8,5,4]}]}'>
 </div>
+
+<!-- Donut Chart -->
+<div data-graph
+  data-graph-type="donut"
+  data-graph-animated="true"
+  data-graph-legend="true"
+  data-graph-donut-width="60"
+  data-graph-donut-label-value="true"
+  data-graph-pie-gap="3"
+  data-graph-data='{"labels":["Chrome","Safari","Firefox","Edge","Other"],
+    "datasets":[{"label":"Share","values":[65,18,8,5,4]}]}'>
+</div>
+
+<!-- Radial Bar Chart -->
+<div data-graph
+  data-graph-type="radial"
+  data-graph-animated="true"
+  data-graph-legend="true"
+  data-graph-radial-grid="true"
+  data-graph-title="Skill Proficiency"
+  data-graph-data='{"labels":["JavaScript","CSS","Python","Design","DevOps"],
+    "datasets":[{"label":"Score","values":[92,88,65,78,55]}]}'>
+</div>
 ```
 
 ### Data Attributes
@@ -92,7 +135,7 @@
 | Attribute | Values | Default | Description |
 |-----------|--------|---------|-------------|
 | `data-graph` | - | required | Initialises the Graph component |
-| `data-graph-type` | `line` / `column` / `bar` / `pie` | `line` | The type of chart to render |
+| `data-graph-type` | `line` / `column` / `stackedcolumn` / `bar` / `stackedbar` / `pie` / `donut` / `radial` | `line` | The type of chart to render |
 | `data-graph-data` | JSON object or URL | - | Inline JSON data or a URL to a JSON file |
 | `data-graph-csv` | URL | - | Path to a CSV file. First column = labels, remaining = data series |
 | `data-graph-height` | Number (px) | `400` | Height of the chart area in pixels |
@@ -110,10 +153,16 @@
 | `data-graph-bar-radius` | Number (px) | `2` | Corner radius on column/bar rectangles |
 | `data-graph-grid-h` | `true` / `false` | `true` | Show horizontal grid lines |
 | `data-graph-grid-v` | `true` / `false` | `false` | Show vertical grid lines |
-| `data-graph-pie-gap` | Number (px) | `0` | Gap between pie segments |
-| `data-graph-pie-radius` | Number (px) | `0` | Corner radius on pie segment edges |
-| `data-graph-pie-stroke` | CSS colour | `#fff` | Outline colour between pie segments |
+| `data-graph-pie-gap` | Number (px) | `0` | Gap between pie/donut segments |
+| `data-graph-pie-radius` | Number (px) | `0` | Corner radius on pie/donut segment edges |
+| `data-graph-pie-stroke` | CSS colour | `#fff` | Outline colour between pie/donut segments |
 | `data-graph-pie-stroke-width` | Number | `2` | Outline thickness. Set to 0 to remove outlines |
+| `data-graph-donut-width` | Number (px) | `60` | Thickness of the donut ring |
+| `data-graph-donut-label` | String | - | Text displayed in the centre of the donut |
+| `data-graph-donut-label-value` | `true` / `false` | `false` | Auto-display the total of all values as the centre label |
+| `data-graph-radial-start` | Number (degrees) | `0` | Starting angle for radial bars (0 = 12 o'clock) |
+| `data-graph-radial-grid` | `true` / `false` | `true` | Show concentric grid circles on radial charts |
+| `data-graph-radial-label-position` | `end` / `outside` | `end` | Where to place category labels on radial charts |
 
 ### Data Formats
 
@@ -152,11 +201,25 @@ Q4 2025,63000,35000,28000
 - Animation: bars grow upward from the baseline, staggered left-to-right by group
 - Corner radius via `data-graph-bar-radius`
 
+**Stacked Column** (`data-graph-type="stackedcolumn"`):
+- Multiple datasets stacked vertically on top of each other (one bar per label)
+- Y-axis max is calculated from the stacked totals, not individual values
+- Tooltips show the segment label, segment value, and stack total
+- Animation: bars grow upward from baseline, staggered left-to-right
+- Only the topmost segment receives corner rounding via `data-graph-bar-radius`
+
 **Bar** (`data-graph-type="bar"`):
 - Horizontal bars, ideal for categories with long labels
 - Category labels shown on the y-axis, values on the x-axis
 - Animation: bars extend from left, staggered top-to-bottom
 - Corner radius via `data-graph-bar-radius`
+
+**Stacked Bar** (`data-graph-type="stackedbar"`):
+- Multiple datasets stacked horizontally (one bar per label)
+- X-axis max is calculated from the stacked totals
+- Tooltips show the segment label, segment value, and stack total
+- Animation: segments extend from left, staggered top-to-bottom
+- Only the rightmost segment receives corner rounding
 
 **Pie** (`data-graph-type="pie"`):
 - Single dataset only; labels become segment names
@@ -164,6 +227,21 @@ Q4 2025,63000,35000,28000
 - Gap between segments via `data-graph-pie-gap` (translates slices outward along bisector for uniform parallel-sided gaps)
 - Rounded corners via `data-graph-pie-radius` (quadratic bezier curves)
 - Configurable outline via `data-graph-pie-stroke` and `data-graph-pie-stroke-width`
+
+**Donut** (`data-graph-type="donut"`):
+- Same as pie but with a hollow centre
+- Ring thickness controlled by `data-graph-donut-width` (default 60px)
+- Optional centre label: custom text via `data-graph-donut-label` or auto-total via `data-graph-donut-label-value="true"`
+- Supports all pie options: gap, rounded corners, stroke outline
+- Animation: clockwise sweep reveal (same as pie)
+
+**Radial Bar** (`data-graph-type="radial"`):
+- Single dataset; bars radiate outward from a central point in a circular layout
+- Each category is a bar extending from a small inner radius to a proportional outer radius
+- Concentric grid circles at value intervals via `data-graph-radial-grid`
+- Labels placed at bar ends (`end`) or around the outer perimeter (`outside`)
+- Starting angle configurable via `data-graph-radial-start` (0 = 12 o'clock)
+- Animation: bars grow outward from centre, staggered by index
 
 ### Animation
 
@@ -201,6 +279,10 @@ When `data-graph-animated="true"` is set:
   --graph-tooltip-bg: rgba(0, 0, 0, 0.85);
   --graph-tooltip-text: #fff;
   --graph-tooltip-radius: 6px;
+
+  /* Donut */
+  --graph-donut-label-color: #333;
+  --graph-donut-label-size: 1.4rem;
 
   /* Animation */
   --graph-animation-duration: 1.5s;
@@ -244,7 +326,7 @@ chart.addEventListener('battersea:graphRender', function(e) {
 
 ### DOM Structure (after initialisation)
 
-**Line / Column / Bar:**
+**Line / Column / Stacked Column / Bar / Stacked Bar:**
 ```
 .battersea-graph
   .battersea-graph__title (if data-graph-title set)
@@ -258,7 +340,7 @@ chart.addEventListener('battersea:graphRender', function(e) {
       .battersea-graph__axis-label (axis labels)
       .battersea-graph__line (line chart paths)
       .battersea-graph__point (line chart data markers)
-      .battersea-graph__bar (column/bar chart rectangles)
+      .battersea-graph__bar (column/bar/stacked chart rectangles)
     .battersea-graph__tooltip (positioned absolutely)
   .battersea-graph__legend.battersea-graph__legend--bottom (default)
     .battersea-graph__legend-item
@@ -266,7 +348,7 @@ chart.addEventListener('battersea:graphRender', function(e) {
       .battersea-graph__legend-label
 ```
 
-**Pie:**
+**Pie / Donut:**
 ```
 .battersea-graph
   .battersea-graph__title
@@ -274,7 +356,22 @@ chart.addEventListener('battersea:graphRender', function(e) {
     svg.battersea-graph__svg
       defs > clipPath (for animation)
       g.battersea-graph__pie-group
-        .battersea-graph__slice (pie segment paths)
+        .battersea-graph__slice (pie/donut segment paths)
+      .battersea-graph__donut-label (donut centre text, if set)
+    .battersea-graph__tooltip
+  .battersea-graph__legend
+```
+
+**Radial:**
+```
+.battersea-graph
+  .battersea-graph__title
+  .battersea-graph__svg-container
+    svg.battersea-graph__svg
+      .battersea-graph__grid-circle (concentric grid circles)
+      .battersea-graph__radial-tick-label (grid value labels)
+      .battersea-graph__radial-bar (bar segment paths)
+      .battersea-graph__radial-label (category labels)
     .battersea-graph__tooltip
   .battersea-graph__legend
 ```
@@ -291,7 +388,7 @@ chart.addEventListener('battersea:graphRender', function(e) {
 | Breakpoint | Behaviour |
 |-----------|----------|
 | Desktop (768px+) | Full layout with side legends, standard font sizes |
-| Mobile (below 768px) | Smaller tick/axis labels, side legends collapse to horizontal row below chart |
+| Mobile (below 768px) | Smaller tick/axis/radial labels, side legends collapse to horizontal row below chart |
 
 ### Default Colour Palette
 
