@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Graph Component - Battersea Library</title>
-		<meta name="description" content="SVG line, column, and pie charts with tooltips, animation, and CSV/JSON data sources - Battersea Library Component">
+		<meta name="description" content="SVG line, column, bar, and pie charts with tooltips, animation, and CSV/JSON data sources - Battersea Library Component">
 
 		<!-- LESS Stylesheets -->
 		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
@@ -201,6 +201,26 @@
 							</div>
 						</div>
 
+						<!-- Demo 7: Horizontal Bar Chart -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Horizontal Bar Chart</h3>
+							<p>Bars extend horizontally from left to right. Great for comparing categories with long labels. Uses <code>data-graph-type="bar"</code>.</p>
+
+							<div class="demo-container">
+								<div data-graph
+									data-graph-type="bar"
+									data-graph-tooltips="true"
+									data-graph-legend="true"
+									data-graph-animated="true"
+									data-graph-bar-radius="4"
+									data-graph-height="350"
+									data-graph-title="Programming Languages"
+									data-graph-colours="#667eea, #e94560, #4ecdc4, #f9ca24, #6c5ce7"
+									data-graph-data='{"labels":["JavaScript","Python","Java","TypeScript","C#"],"datasets":[{"label":"Popularity","values":[65,52,35,28,22]}]}'>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</section>
@@ -284,7 +304,7 @@
 									</tr>
 									<tr>
 										<td><code>data-graph-type</code></td>
-										<td><code>line</code> / <code>column</code> / <code>pie</code></td>
+										<td><code>line</code> / <code>column</code> / <code>bar</code> / <code>pie</code></td>
 										<td><code>line</code></td>
 										<td>The type of chart to render</td>
 									</tr>
@@ -316,7 +336,13 @@
 										<td><code>data-graph-animated</code></td>
 										<td><code>true</code> / <code>false</code></td>
 										<td><code>false</code></td>
-										<td>Animate the chart drawing on load</td>
+										<td>Animate the chart when it scrolls into view</td>
+									</tr>
+									<tr>
+										<td><code>data-graph-animation-delay</code></td>
+										<td>Milliseconds</td>
+										<td><code>300</code></td>
+										<td>Delay before animation starts after the chart becomes visible</td>
 									</tr>
 									<tr>
 										<td><code>data-graph-tooltips</code></td>

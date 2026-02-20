@@ -100,6 +100,7 @@
       // Animation state — deferred until visible
       this._hasAnimated = false;
       this._observer = null;
+      this._pendingAnimations = [];
 
       // Debounced resize
       this._debouncedResize = Utils.debounce(this.onResize.bind(this), 250);
@@ -169,15 +170,15 @@
 
       this.el.appendChild(this.wrapper);
 
-      // Render the chart — static first, animation deferred until visible
-      this.render(false);
+      // Render the chart — elements are placed in animation-ready start state
+      this.render();
 
       // Legend (bottom, left, right — placed after SVG)
       if (this.showLegend && this.legendPosition !== 'top') {
         this.drawLegend();
       }
 
-      // If animated, observe when the graph scrolls into view
+      // If animated, observe when the graph scrolls into view to trigger
       if (this.animated) {
         this.observeVisibility();
       }
@@ -200,9 +201,10 @@
             self._hasAnimated = true;
             self._observer.disconnect();
             self._observer = null;
-            // Re-render with animation after configurable delay
+            // Trigger all queued animations after delay
             setTimeout(function() {
-              self.render(true);
+              self._pendingAnimations.forEach(function(fn) { fn(); });
+              self._pendingAnimations = [];
             }, self.animationDelay);
           }
         });
@@ -376,9 +378,8 @@
 
     // ─── Rendering ─────────────────────────────
 
-    render(withAnimation) {
-      // withAnimation defaults to false — only true when triggered by observer
-      this._animating = withAnimation === true;
+    render() {
+      this._pendingAnimations = [];
 
       var container = Utils.qs('.battersea-graph__svg-container', this.wrapper);
       var width = container.clientWidth;
@@ -409,6 +410,9 @@
         case 'column':
           this.renderColumn(this.svgEl, area, width, height);
           break;
+        case 'bar':
+          this.renderBar(this.svgEl, area, width, height);
+          break;
         case 'pie':
           this.renderPie(this.svgEl, width, height);
           break;
@@ -423,11 +427,12 @@
     }
 
     getChartArea(width, height) {
+      var leftPad = this.type === 'bar' ? 90 : 55;
       var padding = {
         top: 15,
         right: 20,
         bottom: 40 + (this.xLabel ? 25 : 0),
-        left: 55 + (this.yLabel ? 25 : 0)
+        left: leftPad + (this.yLabel ? 25 : 0)
       };
       return {
         x: padding.left,
@@ -488,15 +493,16 @@
         path.classList.add('battersea-graph__line');
         svg.appendChild(path);
 
-        var lineDuration = 0;
-        if (self._animating) {
-          lineDuration = self.getAnimationDuration();
-          self.animateLine(path);
+        // Set up line in hidden state for animation
+        var lineLength = 0;
+        if (self.animated) {
+          lineLength = path.getTotalLength();
+          path.style.strokeDasharray = lineLength;
+          path.style.strokeDashoffset = lineLength;
         }
 
         // Data points
-        var totalLineLength = self._animating ? path.getTotalLength() : 0;
-
+        var circles = [];
         points.forEach(function(p, pi) {
           var circle = document.createElementNS(SVG_NS, 'circle');
           circle.setAttribute('cx', p.x.toFixed(1));
@@ -507,16 +513,10 @@
           circle.setAttribute('stroke-width', '2');
           circle.classList.add('battersea-graph__point');
 
-          // Markers appear as the line reaches their position
-          if (self._animating) {
+          // Hide markers initially for animation
+          if (self.animated) {
             circle.classList.add('battersea-graph__point--hidden');
-            // Calculate when the line animation reaches this point
-            var pointFraction = points.length > 1 ? pi / (points.length - 1) : 0;
-            var delay = lineDuration * pointFraction;
-            setTimeout(function() {
-              circle.classList.remove('battersea-graph__point--hidden');
-              circle.classList.add('battersea-graph__point--visible');
-            }, delay);
+            circles.push(circle);
           }
 
           svg.appendChild(circle);
@@ -530,6 +530,25 @@
             }));
           }
         });
+
+        // Queue line animation trigger
+        if (self.animated) {
+          (function(linePath, markerCircles, len) {
+            var duration = self.getAnimationDuration();
+            self._pendingAnimations.push(function() {
+              // Trigger line draw
+              linePath.classList.add('battersea-graph__line--animated');
+              // Reveal markers as the line reaches each position
+              markerCircles.forEach(function(c, ci) {
+                var fraction = markerCircles.length > 1 ? ci / (markerCircles.length - 1) : 0;
+                setTimeout(function() {
+                  c.classList.remove('battersea-graph__point--hidden');
+                  c.classList.add('battersea-graph__point--visible');
+                }, duration * fraction);
+              });
+            });
+          })(path, circles, lineLength);
+        }
       });
     }
 
@@ -556,6 +575,9 @@
       // Stagger delay per group for sequential left-to-right animation
       var barStagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
 
+      // Collect bar animation data
+      var barAnimations = [];
+
       this.datasets.forEach(function(ds, dsIndex) {
         var colour = self.getColour(dsIndex);
 
@@ -571,18 +593,16 @@
           rect.setAttribute('fill', colour);
           rect.classList.add('battersea-graph__bar');
 
-          if (self._animating) {
-            // Animate bars growing from baseline, staggered left-to-right
+          if (self.animated) {
+            // Start at zero height — animation triggered later
             rect.setAttribute('y', (area.y + area.height).toFixed(1));
             rect.setAttribute('height', '0');
-            svg.appendChild(rect);
-            var delay = i * barStagger;
-            self.animateBar(rect, area.y + area.height, y, barHeight, delay);
+            barAnimations.push({ rect: rect, baseline: area.y + area.height, targetY: y, targetHeight: barHeight, group: i });
           } else {
             rect.setAttribute('y', y.toFixed(1));
             rect.setAttribute('height', barHeight.toFixed(1));
-            svg.appendChild(rect);
           }
+          svg.appendChild(rect);
 
           if (self.tooltips) {
             self.events.push(Utils.addEvent(rect, 'mouseenter', function(e) {
@@ -594,6 +614,154 @@
           }
         });
       });
+
+      // Queue staggered bar animations
+      if (this.animated && barAnimations.length > 0) {
+        var stagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
+        this._pendingAnimations.push(function() {
+          barAnimations.forEach(function(bar) {
+            self.animateBar(bar.rect, bar.baseline, bar.targetY, bar.targetHeight, bar.group * stagger);
+          });
+        });
+      }
+    }
+
+    // ─── Bar Chart (Horizontal) ────────────────
+
+    renderBar(svg, area, width, height) {
+      var self = this;
+
+      var allValues = [];
+      this.datasets.forEach(function(ds) { allValues = allValues.concat(ds.values); });
+      var maxVal = Math.max.apply(null, allValues);
+      var ticks = this.calculateNiceTicks(0, maxVal, 5);
+
+      var groupCount = this.labels.length;
+      var seriesCount = this.datasets.length;
+      var groupHeight = area.height / groupCount;
+      var barPadding = groupHeight * 0.15;
+      var barGap = seriesCount > 1 ? 2 : 0;
+      var barHeight = (groupHeight - barPadding * 2 - barGap * (seriesCount - 1)) / seriesCount;
+
+      // Draw horizontal grid lines at tick positions along X axis
+      if (this.showHGrid || this.showVGrid) {
+        ticks.ticks.forEach(function(tickVal) {
+          var x = area.x + (tickVal / ticks.max) * area.width;
+          var line = document.createElementNS(SVG_NS, 'line');
+          line.setAttribute('x1', x.toFixed(1));
+          line.setAttribute('y1', area.y);
+          line.setAttribute('x2', x.toFixed(1));
+          line.setAttribute('y2', area.y + area.height);
+          line.classList.add('battersea-graph__grid-line');
+          line.classList.add('battersea-graph__grid-line--v');
+          svg.appendChild(line);
+        });
+      }
+
+      // Y axis (left side)
+      var axisLine = document.createElementNS(SVG_NS, 'line');
+      axisLine.setAttribute('x1', area.x);
+      axisLine.setAttribute('y1', area.y);
+      axisLine.setAttribute('x2', area.x);
+      axisLine.setAttribute('y2', area.y + area.height);
+      axisLine.classList.add('battersea-graph__axis-line');
+      svg.appendChild(axisLine);
+
+      // X axis (bottom)
+      var xAxisLine = document.createElementNS(SVG_NS, 'line');
+      xAxisLine.setAttribute('x1', area.x);
+      xAxisLine.setAttribute('y1', area.y + area.height);
+      xAxisLine.setAttribute('x2', area.x + area.width);
+      xAxisLine.setAttribute('y2', area.y + area.height);
+      xAxisLine.classList.add('battersea-graph__axis-line');
+      svg.appendChild(xAxisLine);
+
+      // X-axis tick labels (values)
+      ticks.ticks.forEach(function(tickVal) {
+        var x = area.x + (tickVal / ticks.max) * area.width;
+        var text = document.createElementNS(SVG_NS, 'text');
+        text.setAttribute('x', x.toFixed(1));
+        text.setAttribute('y', area.y + area.height + 20);
+        text.setAttribute('text-anchor', 'middle');
+        text.classList.add('battersea-graph__tick-label');
+        text.textContent = self.formatTickLabel(tickVal);
+        svg.appendChild(text);
+      });
+
+      // Y-axis category labels
+      this.labels.forEach(function(label, i) {
+        var y = area.y + i * groupHeight + groupHeight / 2;
+        var text = document.createElementNS(SVG_NS, 'text');
+        text.setAttribute('x', area.x - 8);
+        text.setAttribute('y', (y + 4).toFixed(1));
+        text.setAttribute('text-anchor', 'end');
+        text.classList.add('battersea-graph__tick-label');
+        text.textContent = label;
+        svg.appendChild(text);
+      });
+
+      // X-axis label
+      if (this.xLabel) {
+        var xLabelEl = document.createElementNS(SVG_NS, 'text');
+        xLabelEl.setAttribute('x', (area.x + area.width / 2).toFixed(1));
+        xLabelEl.setAttribute('y', area.y + area.height + 42);
+        xLabelEl.setAttribute('text-anchor', 'middle');
+        xLabelEl.classList.add('battersea-graph__axis-label');
+        xLabelEl.textContent = this.xLabel;
+        svg.appendChild(xLabelEl);
+      }
+
+      // Collect bar animation data
+      var barAnimations = [];
+
+      this.datasets.forEach(function(ds, dsIndex) {
+        var colour = self.getColour(dsIndex);
+
+        ds.values.forEach(function(val, i) {
+          var barWidth = (val / ticks.max) * area.width;
+          var x = area.x;
+          var y = area.y + i * groupHeight + barPadding + dsIndex * (barHeight + barGap);
+
+          var rect = document.createElementNS(SVG_NS, 'rect');
+          rect.setAttribute('y', y.toFixed(1));
+          rect.setAttribute('height', Math.max(barHeight, 1).toFixed(1));
+          rect.setAttribute('rx', self.barRadius);
+          rect.setAttribute('fill', colour);
+          rect.classList.add('battersea-graph__bar');
+
+          if (self.animated) {
+            // Start at zero width — animation triggered later
+            rect.setAttribute('x', area.x.toFixed(1));
+            rect.setAttribute('width', '0');
+            barAnimations.push({ rect: rect, targetWidth: barWidth, group: i });
+          } else {
+            rect.setAttribute('x', x.toFixed(1));
+            rect.setAttribute('width', barWidth.toFixed(1));
+          }
+          svg.appendChild(rect);
+
+          if (self.tooltips) {
+            self.events.push(Utils.addEvent(rect, 'mouseenter', function(e) {
+              self.showTooltip(e, self.labels[i], ds.label + ': ' + self.formatNumber(val));
+            }));
+            self.events.push(Utils.addEvent(rect, 'mouseleave', function() {
+              self.hideTooltip();
+            }));
+          }
+        });
+      });
+
+      // Queue staggered horizontal bar animations (top-to-bottom)
+      if (this.animated && barAnimations.length > 0) {
+        var stagger = groupCount > 1 ? this.getAnimationDuration() / groupCount : 0;
+        var duration = this.getAnimationDuration();
+        this._pendingAnimations.push(function() {
+          barAnimations.forEach(function(bar) {
+            var delay = bar.group * stagger;
+            self.animateHorizontalBar(bar.rect, bar.targetWidth, duration, delay);
+          });
+        });
+      }
     }
 
     // ─── Pie Chart ─────────────────────────────
@@ -617,25 +785,25 @@
       svg.appendChild(sliceGroup);
 
       // For clockwise wipe animation, use a clip-path
-      if (this._animating) {
+      var clipCircle = null;
+      var circumference = 0;
+      if (this.animated) {
         var clipId = 'graph-pie-clip-' + Math.random().toString(36).substr(2, 6);
         var defs = document.createElementNS(SVG_NS, 'defs');
         var clipPath = document.createElementNS(SVG_NS, 'clipPath');
         clipPath.setAttribute('id', clipId);
 
-        var clipCircle = document.createElementNS(SVG_NS, 'circle');
+        clipCircle = document.createElementNS(SVG_NS, 'circle');
         clipCircle.setAttribute('cx', cx);
         clipCircle.setAttribute('cy', cy);
         clipCircle.setAttribute('r', radius + 10);
         clipCircle.setAttribute('fill', 'none');
         clipCircle.setAttribute('stroke', '#000');
         clipCircle.setAttribute('stroke-width', (radius + 10) * 2);
-        var circumference = 2 * Math.PI * (radius + 10);
+        circumference = 2 * Math.PI * (radius + 10);
         clipCircle.style.strokeDasharray = circumference;
         clipCircle.style.strokeDashoffset = circumference;
         clipCircle.setAttribute('transform', 'rotate(-90 ' + cx + ' ' + cy + ')');
-        clipCircle.getBoundingClientRect();
-        clipCircle.classList.add('battersea-graph__pie-clip');
 
         clipPath.appendChild(clipCircle);
         defs.appendChild(clipPath);
@@ -702,6 +870,27 @@
 
         startAngle += sliceAngle;
       });
+
+      // Queue pie clockwise sweep animation (JS-driven)
+      if (this.animated && clipCircle) {
+        (function(circle, circ) {
+          var duration = self.getAnimationDuration();
+          self._pendingAnimations.push(function() {
+            var startTime = null;
+            function step(timestamp) {
+              if (!startTime) startTime = timestamp;
+              var elapsed = timestamp - startTime;
+              var progress = Math.min(elapsed / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 2);
+              circle.style.strokeDashoffset = circ * (1 - eased);
+              if (progress < 1) {
+                requestAnimationFrame(step);
+              }
+            }
+            requestAnimationFrame(step);
+          });
+        })(clipCircle, circumference);
+      }
     }
 
     // ─── Shared Drawing Helpers ────────────────
@@ -940,6 +1129,35 @@
       }
     }
 
+    animateHorizontalBar(rect, targetWidth, duration, delay) {
+      function startAnimation() {
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var elapsed = timestamp - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+
+          // Ease-out cubic
+          var eased = 1 - Math.pow(1 - progress, 3);
+
+          rect.setAttribute('width', (targetWidth * eased).toFixed(1));
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      if (delay > 0) {
+        setTimeout(startAnimation, delay);
+      } else {
+        startAnimation();
+      }
+    }
+
     buildRoundedSlicePath(cx, cy, radius, startAngle, endAngle, cr) {
       var sliceAngle = endAngle - startAngle;
 
@@ -1104,7 +1322,13 @@
       });
       this.events = [];
       this.events.push(Utils.addEvent(window, 'resize', this._debouncedResize));
-      this.render(false);
+      // On resize after animation has played, render without animation start states
+      var wasAnimated = this.animated;
+      if (this._hasAnimated) {
+        this.animated = false;
+      }
+      this.render();
+      this.animated = wasAnimated;
     }
   }
 
