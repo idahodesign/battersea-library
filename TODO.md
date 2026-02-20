@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
 **Last Updated:** 21 February 2026
-**Current Version:** 2.20.0
+**Current Version:** 2.21.1
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -61,6 +61,7 @@
 - [x] VideoBackground - Looping background video with mobile poster fallback and configurable overlay (v2.19.0)
 - [x] Graph Phase 1 - SVG chart component with line, column, and pie charts, CSV/JSON data sources, animation, tooltips, legends (v2.20.0)
 - [x] Graph Phase 2 - Stacked column, stacked bar, donut, and radial bar chart types (v2.21.0)
+- [x] Graph fixes - Clickable segment links, constant-width pie/donut gaps, smooth stacked animation, segment gap attribute (v2.21.1)
 
 ### 🔨 In Progress
 

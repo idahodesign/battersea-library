@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.21.0
+- **Current Version:** 2.21.1
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -140,6 +140,7 @@ battersea-library/
 - **VideoBackground v2.19.0** (Feb 2026): Looping background video with mobile poster fallback and configurable overlay
 - **Graph v2.20.0** (Feb 2026): SVG charts Phase 1 -- line, column, and pie with CSV/JSON data, animation, tooltips, legends
 - **Graph Phase 2 v2.21.0** (Feb 2026): Four new chart types -- stacked column, stacked bar, donut, and radial bar
+- **Graph fixes v2.21.1** (Feb 2026): Clickable segment links, constant-width pie/donut gaps, smooth stacked animation, segment gap attribute
 
 ### In Progress
 - See `TODO.md` for current tasks

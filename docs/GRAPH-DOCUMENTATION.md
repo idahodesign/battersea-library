@@ -1,12 +1,12 @@
 # Battersea Library - Graph Component Documentation
 
-## Added in v2.20.0, updated in v2.21.0
+## Added in v2.20.0, updated in v2.21.1
 
 ---
 
 ## Graph
 
-**New in v2.20.0, expanded in v2.21.0** - SVG charts with eight chart types: line, column, stacked column, bar (horizontal), stacked bar, pie, donut, and radial. Supports inline JSON, external JSON files, and CSV files as data sources.
+**New in v2.20.0, expanded in v2.21.1** - SVG charts with eight chart types: line, column, stacked column, bar (horizontal), stacked bar, pie, donut, and radial. Supports inline JSON, external JSON files, and CSV files as data sources. Segments can include clickable URL links.
 
 ### Features
 - **Eight chart types** - Line, column, stacked column, bar, stacked bar, pie, donut, and radial, set with a single data attribute
@@ -17,9 +17,10 @@
 - **Sequential stagger** - Column bars animate left-to-right, bar chart top-to-bottom, line markers appear as the line reaches them
 - **Tooltips** - Hover tooltips show label and value; stacked charts show segment value and total
 - **Configurable legend** - Place at bottom, top, left, or right with square or circle swatches
-- **Stacked charts** - Datasets stacked vertically (stacked column) or horizontally (stacked bar) with per-segment tooltips
+- **Clickable segments** - Optional URL links on any chart segment via a `links` array in the data
+- **Stacked charts** - Datasets stacked vertically (stacked column) or horizontally (stacked bar) with per-segment tooltips, customisable gap between segments, and smooth sequential animation
 - **Donut options** - Configurable ring width, optional centre label (custom text or auto-total)
-- **Pie options** - Gap between segments, rounded corners, configurable stroke outline
+- **Pie options** - Constant-width gap between segments, rounded corners, configurable stroke outline
 - **Radial options** - Concentric grid circles, configurable start angle, label positioning
 - **Custom colours** - Override the built-in palette with a comma-separated list of hex values
 - **Grid lines** - Independent horizontal and vertical grid lines with CSS-customisable style
@@ -59,6 +60,7 @@
   data-graph-animated="true"
   data-graph-legend="true"
   data-graph-bar-radius="4"
+  data-graph-stack-gap="3"
   data-graph-data='{"labels":["Q1","Q2","Q3","Q4"],
     "datasets":[
       {"label":"Revenue","values":[42000,51000,47000,63000]},
@@ -85,6 +87,7 @@
   data-graph-animated="true"
   data-graph-legend="true"
   data-graph-bar-radius="4"
+  data-graph-stack-gap="3"
   data-graph-data='{"labels":["JavaScript","Python","Java"],
     "datasets":[
       {"label":"Frontend","values":[90,20,15]},
@@ -153,7 +156,8 @@
 | `data-graph-bar-radius` | Number (px) | `2` | Corner radius on column/bar rectangles |
 | `data-graph-grid-h` | `true` / `false` | `true` | Show horizontal grid lines |
 | `data-graph-grid-v` | `true` / `false` | `false` | Show vertical grid lines |
-| `data-graph-pie-gap` | Number (px) | `0` | Gap between pie/donut segments |
+| `data-graph-stack-gap` | Number (px) | `0` | Gap between stacked column/bar segments. Corner radius only applies when gap > 0 |
+| `data-graph-pie-gap` | Number (px) | `0` | Gap between pie/donut segments (constant-width channels from rim to centre) |
 | `data-graph-pie-radius` | Number (px) | `0` | Corner radius on pie/donut segment edges |
 | `data-graph-pie-stroke` | CSS colour | `#fff` | Outline colour between pie/donut segments |
 | `data-graph-pie-stroke-width` | Number | `2` | Outline thickness. Set to 0 to remove outlines |
@@ -188,6 +192,41 @@ Q3 2025,47000,29000,18000
 Q4 2025,63000,35000,28000
 ```
 
+### Segment Links
+
+Segments across all chart types can include clickable URL links. Add a `links` array to the JSON data, with one entry per label. Each entry can be a URL string, an object with `url` and `target`, or `null` for no link.
+
+**JSON with links:**
+
+```json
+{
+  "labels": ["Accordion", "Slider", "Tabs", "Popup", "Tooltip"],
+  "links": [
+    "accordion.html",
+    { "url": "slider.html", "target": "_blank" },
+    "tabs.html",
+    "popup.html",
+    null
+  ],
+  "datasets": [
+    { "label": "Pages", "values": [12, 8, 6, 4, 3] }
+  ]
+}
+```
+
+**CSV with links** (add `Link` and optional `LinkTarget` columns):
+
+```
+Label,Value,Link,LinkTarget
+Accordion,12,accordion.html,
+Slider,8,slider.html,_blank
+Tabs,6,tabs.html,
+Popup,4,popup.html,
+Tooltip,3,,
+```
+
+Segments with links render as SVG `<a>` elements with `cursor: pointer`. Segments without links remain as standard elements.
+
 ### Chart Type Behaviour
 
 **Line** (`data-graph-type="line"`):
@@ -205,8 +244,9 @@ Q4 2025,63000,35000,28000
 - Multiple datasets stacked vertically on top of each other (one bar per label)
 - Y-axis max is calculated from the stacked totals, not individual values
 - Tooltips show the segment label, segment value, and stack total
-- Animation: bars grow upward from baseline, staggered left-to-right
-- Only the topmost segment receives corner rounding via `data-graph-bar-radius`
+- Animation: segments animate sequentially bottom-to-top with a single smooth ease-in-out curve
+- Customisable gap between segments via `data-graph-stack-gap` (default 0)
+- Corner radius applied to all segments when gap > 0; segments are flush when gap is 0
 
 **Bar** (`data-graph-type="bar"`):
 - Horizontal bars, ideal for categories with long labels
@@ -218,13 +258,14 @@ Q4 2025,63000,35000,28000
 - Multiple datasets stacked horizontally (one bar per label)
 - X-axis max is calculated from the stacked totals
 - Tooltips show the segment label, segment value, and stack total
-- Animation: segments extend from left, staggered top-to-bottom
-- Only the rightmost segment receives corner rounding
+- Animation: segments animate sequentially left-to-right with a single smooth ease-in-out curve
+- Customisable gap between segments via `data-graph-stack-gap` (default 0)
+- Corner radius applied to all segments when gap > 0; segments are flush when gap is 0
 
 **Pie** (`data-graph-type="pie"`):
 - Single dataset only; labels become segment names
 - Animation: clockwise sweep reveal from 12 o'clock
-- Gap between segments via `data-graph-pie-gap` (translates slices outward along bisector for uniform parallel-sided gaps)
+- Constant-width gap between segments via `data-graph-pie-gap` (perpendicular offset creates uniform channels from rim to centre)
 - Rounded corners via `data-graph-pie-radius` (quadratic bezier curves)
 - Configurable outline via `data-graph-pie-stroke` and `data-graph-pie-stroke-width`
 
