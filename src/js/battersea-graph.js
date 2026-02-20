@@ -526,16 +526,11 @@
           rect.classList.add('battersea-graph__bar');
 
           if (self.animated) {
-            // Start from zero height at baseline
+            // Animate bars growing from baseline using JS animation
             rect.setAttribute('y', (area.y + area.height).toFixed(1));
             rect.setAttribute('height', '0');
             svg.appendChild(rect);
-            // Force reflow then animate
-            rect.getBoundingClientRect();
-            requestAnimationFrame(function() {
-              rect.setAttribute('y', y.toFixed(1));
-              rect.setAttribute('height', barHeight.toFixed(1));
-            });
+            self.animateBar(rect, area.y + area.height, y, barHeight);
           } else {
             rect.setAttribute('y', y.toFixed(1));
             rect.setAttribute('height', barHeight.toFixed(1));
@@ -566,11 +561,8 @@
       var cy = height / 2;
       var radius = Math.min(cx, cy) - 40;
       var gap = this.pieGap;
-      var cornerRadius = this.pieRadius;
+      var cornerRadius = Math.min(this.pieRadius, radius * 0.3);
       var startAngle = -Math.PI / 2;
-
-      // For gap: shrink each slice by a small angle on both sides
-      var gapAngle = gap > 0 ? (gap / radius) : 0;
 
       // Build all slices as a group for clockwise animation
       var sliceGroup = document.createElementNS(SVG_NS, 'g');
@@ -584,7 +576,6 @@
         var clipPath = document.createElementNS(SVG_NS, 'clipPath');
         clipPath.setAttribute('id', clipId);
 
-        // Full circle path for the clip — animated via stroke-dashoffset
         var clipCircle = document.createElementNS(SVG_NS, 'circle');
         clipCircle.setAttribute('cx', cx);
         clipCircle.setAttribute('cy', cy);
@@ -595,7 +586,6 @@
         var circumference = 2 * Math.PI * (radius + 10);
         clipCircle.style.strokeDasharray = circumference;
         clipCircle.style.strokeDashoffset = circumference;
-        // Rotate so the wipe starts from top (12 o'clock)
         clipCircle.setAttribute('transform', 'rotate(-90 ' + cx + ' ' + cy + ')');
         clipCircle.getBoundingClientRect();
         clipCircle.classList.add('battersea-graph__pie-clip');
@@ -608,46 +598,47 @@
 
       values.forEach(function(val, i) {
         var sliceAngle = (val / total) * Math.PI * 2;
-
-        // Apply gap
-        var adjStart = startAngle + gapAngle / 2;
-        var adjEnd = startAngle + sliceAngle - gapAngle / 2;
-        if (adjEnd <= adjStart) adjEnd = adjStart + 0.001;
-
         var colour = self.getColour(i);
 
-        var x1 = cx + radius * Math.cos(adjStart);
-        var y1 = cy + radius * Math.sin(adjStart);
-        var x2 = cx + radius * Math.cos(adjEnd);
-        var y2 = cy + radius * Math.sin(adjEnd);
-        var largeArc = (adjEnd - adjStart) > Math.PI ? 1 : 0;
+        // Consistent gap: translate each slice outward along its bisector
+        var midAngle = startAngle + sliceAngle / 2;
+        var tx = gap > 0 ? Math.cos(midAngle) * (gap / 2) : 0;
+        var ty = gap > 0 ? Math.sin(midAngle) * (gap / 2) : 0;
 
-        var d = [
-          'M', cx.toFixed(1), cy.toFixed(1),
-          'L', x1.toFixed(1), y1.toFixed(1),
-          'A', radius.toFixed(1), radius.toFixed(1), 0, largeArc, 1, x2.toFixed(1), y2.toFixed(1),
-          'Z'
-        ].join(' ');
+        // Build the slice path
+        var d;
+        if (cornerRadius > 0 && sliceAngle < Math.PI * 2 - 0.01) {
+          d = self.buildRoundedSlicePath(cx, cy, radius, startAngle, startAngle + sliceAngle, cornerRadius);
+        } else {
+          // Standard sharp-cornered slice
+          var x1 = cx + radius * Math.cos(startAngle);
+          var y1 = cy + radius * Math.sin(startAngle);
+          var x2 = cx + radius * Math.cos(startAngle + sliceAngle);
+          var y2 = cy + radius * Math.sin(startAngle + sliceAngle);
+          var largeArc = sliceAngle > Math.PI ? 1 : 0;
+
+          d = [
+            'M', cx.toFixed(2), cy.toFixed(2),
+            'L', x1.toFixed(2), y1.toFixed(2),
+            'A', radius.toFixed(2), radius.toFixed(2), 0, largeArc, 1, x2.toFixed(2), y2.toFixed(2),
+            'Z'
+          ].join(' ');
+        }
 
         var path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', d);
         path.setAttribute('fill', colour);
         path.classList.add('battersea-graph__slice');
 
+        // Apply gap translation
+        if (gap > 0) {
+          path.setAttribute('transform', 'translate(' + tx.toFixed(2) + ',' + ty.toFixed(2) + ')');
+        }
+
         // Stroke / outline config
         if (self.pieStrokeWidth > 0) {
           path.setAttribute('stroke', self.pieStroke);
           path.setAttribute('stroke-width', self.pieStrokeWidth);
-        }
-
-        // Corner radius via stroke-linejoin
-        if (cornerRadius > 0) {
-          path.setAttribute('stroke-linejoin', 'round');
-          path.style.paintOrder = 'stroke fill';
-          if (self.pieStrokeWidth === 0) {
-            path.setAttribute('stroke', colour);
-            path.setAttribute('stroke-width', cornerRadius);
-          }
         }
 
         sliceGroup.appendChild(path);
@@ -866,6 +857,106 @@
       path.style.strokeDashoffset = length;
       path.getBoundingClientRect();
       path.classList.add('battersea-graph__line--animated');
+    }
+
+    animateBar(rect, baseline, targetY, targetHeight) {
+      var duration = this.getAnimationDuration();
+      var startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+
+        // Ease-out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+
+        var currentHeight = targetHeight * eased;
+        var currentY = baseline - currentHeight;
+        rect.setAttribute('y', currentY.toFixed(1));
+        rect.setAttribute('height', currentHeight.toFixed(1));
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    buildRoundedSlicePath(cx, cy, radius, startAngle, endAngle, cr) {
+      var sliceAngle = endAngle - startAngle;
+
+      // Limit corner radius to fit the slice
+      var maxCr = Math.min(cr, radius * 0.4, radius * Math.sin(sliceAngle / 2) * 0.8);
+      if (maxCr < 1) {
+        // Too small for rounding — standard sharp path
+        var px1 = cx + radius * Math.cos(startAngle);
+        var py1 = cy + radius * Math.sin(startAngle);
+        var px2 = cx + radius * Math.cos(endAngle);
+        var py2 = cy + radius * Math.sin(endAngle);
+        return [
+          'M', cx.toFixed(2), cy.toFixed(2),
+          'L', px1.toFixed(2), py1.toFixed(2),
+          'A', radius.toFixed(2), radius.toFixed(2), 0, (sliceAngle > Math.PI ? 1 : 0), 1, px2.toFixed(2), py2.toFixed(2),
+          'Z'
+        ].join(' ');
+      }
+
+      // Outer corners: inset the arc start/end by the angular equivalent of maxCr
+      var outerInset = maxCr / radius;
+
+      // Inner corners: inset from centre along each edge
+      var innerInset = maxCr;
+
+      // Inner-start: point on start edge, maxCr from centre
+      var isx = cx + innerInset * Math.cos(startAngle);
+      var isy = cy + innerInset * Math.sin(startAngle);
+      // Inner-end: point on end edge, maxCr from centre
+      var iex = cx + innerInset * Math.cos(endAngle);
+      var iey = cy + innerInset * Math.sin(endAngle);
+
+      // Edge-start: point on start edge, maxCr from the outer rim
+      var edgeDist = radius - maxCr;
+      var esx = cx + edgeDist * Math.cos(startAngle);
+      var esy = cy + edgeDist * Math.sin(startAngle);
+      // Edge-end: point on end edge, maxCr from the outer rim
+      var eex = cx + edgeDist * Math.cos(endAngle);
+      var eey = cy + edgeDist * Math.sin(endAngle);
+
+      // Outer arc, inset from sharp corners
+      var oas = startAngle + outerInset;
+      var oae = endAngle - outerInset;
+      var osx = cx + radius * Math.cos(oas);
+      var osy = cy + radius * Math.sin(oas);
+      var oex = cx + radius * Math.cos(oae);
+      var oey = cy + radius * Math.sin(oae);
+      var largeArc = (oae - oas) > Math.PI ? 1 : 0;
+
+      // Sharp corner positions (for the quadratic bezier control points)
+      var scsx = cx + radius * Math.cos(startAngle);
+      var scsy = cy + radius * Math.sin(startAngle);
+      var scex = cx + radius * Math.cos(endAngle);
+      var scey = cy + radius * Math.sin(endAngle);
+
+      // Build path:
+      // 1. Start at inner-start
+      var d = 'M ' + isx.toFixed(2) + ' ' + isy.toFixed(2);
+      // 2. Line along start edge to near outer rim
+      d += ' L ' + esx.toFixed(2) + ' ' + esy.toFixed(2);
+      // 3. Outer-start corner: Q curve (control = sharp corner, end = arc start)
+      d += ' Q ' + scsx.toFixed(2) + ' ' + scsy.toFixed(2) + ' ' + osx.toFixed(2) + ' ' + osy.toFixed(2);
+      // 4. Main outer arc
+      d += ' A ' + radius.toFixed(2) + ' ' + radius.toFixed(2) + ' 0 ' + largeArc + ' 1 ' + oex.toFixed(2) + ' ' + oey.toFixed(2);
+      // 5. Outer-end corner: Q curve (control = sharp corner, end = edge-end point)
+      d += ' Q ' + scex.toFixed(2) + ' ' + scey.toFixed(2) + ' ' + eex.toFixed(2) + ' ' + eey.toFixed(2);
+      // 6. Line back toward centre on end edge
+      d += ' L ' + iex.toFixed(2) + ' ' + iey.toFixed(2);
+      // 7. Inner corner: Q curve through the centre point
+      d += ' Q ' + cx.toFixed(2) + ' ' + cy.toFixed(2) + ' ' + isx.toFixed(2) + ' ' + isy.toFixed(2);
+      d += ' Z';
+
+      return d;
     }
 
     // ─── Utilities ─────────────────────────────

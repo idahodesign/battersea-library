@@ -112,9 +112,7 @@
   // ─── Column Chart ──────────────────────
   &__bar {
     cursor: pointer;
-    transition: y var(--graph-animation-duration) ease-out,
-                height var(--graph-animation-duration) ease-out,
-                opacity 0.15s;
+    transition: opacity 0.15s;
 
     &:hover {
       opacity: 0.8;
@@ -124,11 +122,9 @@
   // ─── Pie Chart ──────────────────────────
   &__slice {
     cursor: pointer;
-    transition: transform 0.15s ease;
-    transform-origin: center;
+    transition: filter 0.15s ease;
 
     &:hover {
-      transform: scale(1.03);
       filter: brightness(1.1);
     }
   }

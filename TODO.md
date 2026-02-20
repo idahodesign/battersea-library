@@ -66,8 +66,8 @@
 ### 📋 Next Up
 
 - [ ] Graph Phase 2 - Additional graph types: multiline, multibar, multicolumn, radiating column, bar (horizontal), donut graph.
-- [ ] Form element validation for file select element (allowed file types and maximum file size). 
-- [ ] New advanced form elements - date picker, time picker, colour swatch, toggle, slide, 
+- [ ] Update form element validation to include for file select element (allowed file types and maximum file size). 
+- [ ] New advanced form elements - date picker, time picker, colour swatch, toggle, slide. Please suggest any otheres that you thin kwould be helpful, 
 - [ ] Transparent header - Setting that makes the the headers background transparent until it sticks to the top of the browser window when it's background fades in. Its transparency returns when the user scrolls black to the top of the site. When set to transparent the header floats above the first content of the site. This will effect the smooth scroll compoent because it usually offsets the content to allow for the header height.
 - [ ] Back to top button - A button fades in as you scroll down the page clicking it scrolles smoothly to the top of the page.
 - [ ] MiniQuiz v2 - Drag-and-drop ordering of HTML elements, drag-and-drop grouping of HTML elements, optional prevent navigation from page until the quiz has been attempted
