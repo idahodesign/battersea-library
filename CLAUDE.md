@@ -203,6 +203,7 @@ battersea-library/
 | ImageGallery docs | `docs/IMAGEGALLERY-DOCUMENTATION.md` |
 | ProfileGrid docs | `docs/PROFILEGRID-DOCUMENTATION.md` |
 | Timeline docs | `docs/TIMELINE-DOCUMENTATION.md` |
+| Graph docs | `docs/GRAPH-DOCUMENTATION.md` |
 
 ---
 
