@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
-**Last Updated:** 21 February 2026
-**Current Version:** 2.23.0
+**Last Updated:** 22 February 2026
+**Current Version:** 2.25.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -72,7 +72,7 @@
 - [x] Back to top button - A circular button fades in as you scroll down, clicking it smoothly scrolls to the top (v2.25.0)
 - [ ] MiniQuiz v2 - Drag-and-drop ordering of HTML elements, drag-and-drop grouping of HTML elements, optional prevent navigation from page until the quiz has been attempted
 - [ ] Pagination
-- [ ] Ticker tape animation for text. Each letter in a box with this animation setting is appears on after another.
+- [ ] Ticker tape animation for text. Each letter in a box with this animation setting is appears one after another.
 
 ---
 

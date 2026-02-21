@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **BackToTop component** -- A circular button with an upward chevron that fades in as you scroll down the page. Clicking it smoothly scrolls back to the top. Configurable scroll threshold, animation duration, and corner offset via data attributes. Added to all demo pages and the homepage.
+- **Homepage hero banner** -- Added background image to the hero section with transparent header enabled, 40% white overlay for readability
+
+### Fixed
+- **Transparent header content overlap** -- Content now correctly slides under the transparent header using negative margin-top on the sibling element (margin-bottom on sticky elements has no effect). Added ResizeObserver to recalculate when includes load asynchronously
+- **Pre-header visibility** -- Pre-header now has `position: sticky` with `z-index: 101` so it stays above content in transparent header mode
+- **Accessibility panel z-index** -- Bumped pre-header z-index above the main header so the accessibility dropdown appears above the navigation menu
 
 ---
 

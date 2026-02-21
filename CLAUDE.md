@@ -147,6 +147,8 @@ battersea-library/
 - **FormElements v2.23.0** (Feb 2026): Advanced form inputs -- toggle switch, range slider, date picker (custom calendar + native), time picker (24h/12h), colour swatch (preset grid + full picker)
 - **Transparent header v2.24.0** (Feb 2026): Optional transparent background mode for Header component, fades in on scroll, works alongside sticky and shrink
 - **BackToTop v2.25.0** (Feb 2026): Circular button with chevron arrow, fades in on scroll, smooth scroll to top, added to all demo pages
+- **Homepage hero banner** (Feb 2026): Background image on hero section with transparent header, 40% white overlay
+- **Transparent header fixes** (Feb 2026): Content slides under header correctly (margin-top on sibling), pre-header sticky with z-index 101, accessibility panel z-index fix
 
 ### In Progress
 - See `TODO.md` for current tasks
