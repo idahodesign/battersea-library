@@ -73,6 +73,7 @@
 - [x] MiniQuiz v2 - Drag-and-drop ordering, matching pairs, grouping into categories, and navigation prevention (v2.26.0)
 - [ ] Pagination - Standard pagination layout but incldue the ability to type in a page number. Also provide the ability to have it build dynamically from a database (mySQL, SQL and any other dynamic option you think would be popular).
 - [ ] Ticker tape animation for text. Each letter in a box with this animation setting is appears one after another.
+- [ ] Create a single or multiple pages that display the coponents using only thier base styling. I want to be able to confirm they can be used out of the box. To ensure the pages are tidy you can use a style sheet for the page structure and lables. Please use this site https://uundi.david-haworth.com/shortcode-reference as a reference for the page design. 
 
 ---
 
@@ -101,8 +102,7 @@
 - [ ] Create unified demo page with all components
 
 ### Components
-- [ ] Review all components for consistency
-- [ ] Ensure all follow same naming conventions
+- [ ] Review all components for consistency and ensure all follow same naming conventions
 - [ ] Test all components on mobile
 - [ ] Add accessibility audit
 
