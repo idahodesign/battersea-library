@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.23.0
+- **Current Version:** 2.24.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -45,7 +45,7 @@ battersea-library/
 9. Flipbox - 3D flip cards
 10. FormElements - Advanced form inputs: toggle switch, range slider, date picker, time picker, colour swatch
 11. FormValidation - Real-time form validation with password strength, visibility toggle, file upload validation with styled drop zone, custom rules and AJAX submission
-12. Header - Adaptive header with shrink-on-scroll
+12. Header - Adaptive header with transparent mode, shrink-on-scroll
 13. HorizontalNav - Multi-level dropdown menus
 14. ImageGallery - Lightbox with masonry grid, zoom, and video
 15. MiniQuiz - Interactive quiz with boolean, single-choice, and multi-select questions, timer, and scoring
@@ -144,6 +144,7 @@ battersea-library/
 - **Graph fixes v2.21.1** (Feb 2026): Clickable segment links, constant-width pie/donut gaps, smooth stacked animation, segment gap attribute
 - **FormValidation file upload v2.22.0** (Feb 2026): File type and size validation rules, styled drag-and-drop upload area, single and multi-file support
 - **FormElements v2.23.0** (Feb 2026): Advanced form inputs -- toggle switch, range slider, date picker (custom calendar + native), time picker (24h/12h), colour swatch (preset grid + full picker)
+- **Transparent header v2.24.0** (Feb 2026): Optional transparent background mode for Header component, fades in on scroll, works alongside sticky and shrink
 
 ### In Progress
 - See `TODO.md` for current tasks

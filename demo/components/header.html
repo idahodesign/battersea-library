@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Header Component - Battersea Library</title>
-		<meta name="description" content="Adaptive header with shrink-on-scroll, mobile menu, and pre-header bar - Battersea Library Component">
+		<meta name="description" content="Adaptive header with transparent mode, shrink-on-scroll, mobile menu, and pre-header bar - Battersea Library Component">
 
 		<!-- LESS Stylesheets -->
 		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
@@ -48,21 +48,19 @@
 			data-shrink-offset="100"
 			data-shrink-height="60"
 			data-layout="right-align"
-			data-transition-speed="0.3"></header>
+			data-transition-speed="0.3"
+			data-transparent="true"></header>
 
 		<div class="content-outer">
-
-			<!-- Breadcrumb -->
-			<div data-breadcrumb></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up" style="padding-top: 12rem;">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Header Component</h1>
-						<p class="hero-subtitle">Adaptive header with shrink-on-scroll, pre-header bar, logo swapping, and a mobile menu that actually works</p>
+						<p class="hero-subtitle">Adaptive header with transparent mode, shrink-on-scroll, pre-header bar, logo swapping, and a mobile menu that actually works</p>
 					</div>
 				</div>
 			</section>
@@ -85,6 +83,7 @@
 								<div style="padding: 1.5rem;">
 									<h4 style="margin-bottom: 1rem;">Try these out:</h4>
 									<ul style="line-height: 1.8;">
+										<li><strong>Transparent mode</strong> &mdash; Look at the header right now. The background is see-through and the hero content sits behind it. Scroll down a few pixels and the background fades in.</li>
 										<li><strong>Shrink-on-scroll</strong> &mdash; Scroll down the page and watch the header get smaller. It kicks in after 100px of scrolling and shrinks to 60px tall.</li>
 										<li><strong>Sticky positioning</strong> &mdash; The header stays pinned to the top as you scroll. It's not going anywhere.</li>
 										<li><strong>Pre-header bar</strong> &mdash; That smaller bar above the main header? That's the pre-header. It holds the accessibility controls and any extra bits you want up top.</li>
@@ -183,36 +182,42 @@ header.addEventListener('battersea:mobileMenuClose', (e) =&gt; {
 
 						<div class="features-grid">
 							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">&#9671;</div>
+								<h3>Transparent Mode</h3>
+								<p>The header starts see-through, letting the hero content show through. Scroll down and the background smoothly fades in.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
 								<div class="feature-icon">&#8597;</div>
 								<h3>Shrink-on-Scroll</h3>
 								<p>The header smoothly transitions to a compact height as you scroll down, giving your content more room. Scroll back up and it expands again.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animate="fade-up">
 								<div class="feature-icon">&#9776;</div>
 								<h3>Mobile Menu</h3>
 								<p>Full-screen overlay with drill-down panels for nested navigation. Not just a basic toggle &mdash; it handles complex menu structures properly.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animate="fade-up">
 								<div class="feature-icon">&#8679;</div>
 								<h3>Sticky Positioning</h3>
 								<p>The header stays pinned to the top of the viewport as you scroll. Always accessible, never in the way.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-5" data-animate="fade-up">
 								<div class="feature-icon">&#9881;</div>
 								<h3>Pre-header Bar</h3>
 								<p>An optional bar above the main header for accessibility tools, contact info, language selectors, or whatever else you need up there.</p>
 							</div>
 
-							<div class="feature-card delay-5" data-animate="fade-up">
+							<div class="feature-card delay-6" data-animate="fade-up">
 								<div class="feature-icon">A11y</div>
 								<h3>Focus Trapping</h3>
 								<p>When the mobile menu is open, keyboard focus is trapped inside it. Press Esc to close. Fully accessible for keyboard and screen reader users.</p>
 							</div>
 
-							<div class="feature-card delay-6" data-animate="fade-up">
+							<div class="feature-card delay-7" data-animate="fade-up">
 								<div class="feature-icon">&#8644;</div>
 								<h3>Logo Swapping</h3>
 								<p>Automatically swap to a different logo on mobile devices. Set a mobile logo URL and the header handles the switch at the right breakpoint.</p>
@@ -255,6 +260,12 @@ header.addEventListener('battersea:mobileMenuClose', (e) =&gt; {
 										<td><code>true</code> / <code>false</code></td>
 										<td><code>false</code></td>
 										<td>Keep the header fixed at the top of the viewport when scrolling</td>
+									</tr>
+									<tr>
+										<td><code>data-transparent</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Start with a transparent background that fades in on scroll. Content floats up behind the header.</td>
 									</tr>
 									<tr>
 										<td><code>data-shrink</code></td>
@@ -329,6 +340,10 @@ header.addEventListener('battersea:mobileMenuClose', (e) =&gt; {
 										<td>Fired when the header becomes sticky</td>
 									</tr>
 									<tr>
+										<td><code>battersea:headerTransparent</code></td>
+										<td>Fired when the header toggles between transparent and opaque. Detail includes <code>isTransparent</code> boolean.</td>
+									</tr>
+									<tr>
 										<td><code>battersea:headerShrink</code></td>
 										<td>Fired when the header shrinks to its compact height</td>
 									</tr>
@@ -365,6 +380,25 @@ header.addEventListener('battersea:mobileMenuClose', (e) =&gt; {
 
 						<div data-accordion data-accordion-multiple="true">
 							<div data-accordion-item class="active">
+								<div data-accordion-header>Transparent Header</div>
+								<div data-accordion-content>
+									<div>
+										<p>A transparent header that floats over the page content. The background fades in as the user scrolls, and fades out when they return to the top. Works alongside sticky and shrink.</p>
+										<pre><code>&lt;header class="battersea-header"
+  data-header
+  data-sticky="true"
+  data-transparent="true"
+  data-shrink="true"
+  data-shrink-offset="100"
+  data-shrink-height="60"&gt;
+  &lt;!-- Header content --&gt;
+&lt;/header&gt;</code></pre>
+										<p>The first content section needs extra top padding so its text isn't hidden behind the header.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
 								<div data-accordion-header>Basic Sticky Header</div>
 								<div data-accordion-content>
 									<div>

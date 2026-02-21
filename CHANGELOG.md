@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.24.0] - 2026-02-22
+
+### Added
+- **Transparent header mode** -- New `data-transparent="true"` attribute makes the header background transparent at the top of the page. Content floats up behind the header. The background smoothly fades in as the user scrolls down, and fades back out when they return to the top. Works alongside sticky and shrink-on-scroll. Pre-header bar also goes transparent when enabled.
+- **New event** -- `battersea:headerTransparent` fires when the header toggles between transparent and opaque states, with `isTransparent` boolean in the event detail
+
+---
+
 ## [2.23.0] - 2026-02-21
 
 ### Added

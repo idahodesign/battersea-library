@@ -1,7 +1,7 @@
 /**
  * Battersea Library - Header Component
- * Version: 2.3.0
- * Adaptive header with shrink-on-scroll, pre-header bar, logo swapping, and mobile menu
+ * Version: 2.4.0
+ * Adaptive header with shrink-on-scroll, transparent mode, pre-header bar, logo swapping, and mobile menu
  */
 
 (function(window, document) {
@@ -29,7 +29,8 @@
       this.transitionSpeed = Utils.parseFloat(Utils.getData(el, 'transition-speed'), 0.3);
       this.headerHeight = Utils.parseInt(Utils.getData(el, 'header-height'), 0); // 0 = auto
       this.mobileLogoHeight = Utils.parseInt(Utils.getData(el, 'mobile-logo-height'), 0); // 0 = auto
-      
+      this.transparent = Utils.parseBoolean(Utils.getData(el, 'transparent') || 'false');
+
       // Find elements
       this.brand = Utils.qs('.battersea-header__brand', this.el);
       this.logo = Utils.qs('.battersea-header__logo', this.el);
@@ -45,6 +46,7 @@
       this.lastScrollY = 0;
       this.ticking = false;
       this.logoFound = !!this.logo;
+      this.isTransparentActive = false;
 
       // Mobile logo handling
       this.desktopLogoSrc = this.logo ? this.logo.src : null;
@@ -142,6 +144,11 @@
         this.setupPreHeader();
       }
       
+      // Setup transparent mode if enabled
+      if (this.transparent) {
+        this.setupTransparent();
+      }
+
       // Setup mobile menu if enabled
       if (this.mobileMenuEnabled) {
         this.setupMobileMenu();
@@ -178,6 +185,11 @@
       
       // Store initial height for shrink calculations
       this.initialHeight = this.currentHeight;
+
+      // Recalculate transparent margin if active
+      if (this.transparent) {
+        this.updateTransparentMargin();
+      }
     }
 
     updateResponsive() {
@@ -297,9 +309,28 @@
       this.preHeaderHeight = preHeight;
     }
 
+    setupTransparent() {
+      this.el.classList.add('battersea-header--transparent');
+      this.el.classList.add('battersea-header--transparent-active');
+      this.isTransparentActive = true;
+
+      if (this.preHeader) {
+        this.preHeader.classList.add('battersea-header-pre--transparent-active');
+      }
+
+      this.updateTransparentMargin();
+    }
+
+    updateTransparentMargin() {
+      const headerHeight = this.el.offsetHeight;
+      const preHeaderHeight = this.preHeader ? this.preHeader.offsetHeight : 0;
+      const totalPull = headerHeight + preHeaderHeight;
+      this.el.style.marginBottom = -totalPull + 'px';
+    }
+
     attachEvents() {
-      // Scroll handler for shrink and pre-header hide
-      if (this.shrink || this.preHeader) {
+      // Scroll handler for shrink, pre-header hide, and transparent toggle
+      if (this.shrink || this.preHeader || this.transparent) {
         this.events.push(
           Utils.addEvent(window, 'scroll', () => this.onScroll(), { passive: true })
         );
@@ -350,6 +381,29 @@
         }
       }
       
+      // Handle transparent background toggle
+      if (this.transparent) {
+        if (scrollY > 10 && this.isTransparentActive) {
+          this.isTransparentActive = false;
+          this.el.classList.remove('battersea-header--transparent-active');
+          if (this.preHeader) {
+            this.preHeader.classList.remove('battersea-header-pre--transparent-active');
+          }
+          this.el.dispatchEvent(new CustomEvent('battersea:headerTransparent', {
+            detail: { isTransparent: false }
+          }));
+        } else if (scrollY <= 10 && !this.isTransparentActive) {
+          this.isTransparentActive = true;
+          this.el.classList.add('battersea-header--transparent-active');
+          if (this.preHeader) {
+            this.preHeader.classList.add('battersea-header-pre--transparent-active');
+          }
+          this.el.dispatchEvent(new CustomEvent('battersea:headerTransparent', {
+            detail: { isTransparent: true }
+          }));
+        }
+      }
+
       // Handle shrink behavior (desktop/tablet only) with hysteresis
       if (this.shrink && !this.isMobile) {
         // Add buffer zones: shrink at offset+20, unshrink at offset-20
@@ -858,10 +912,13 @@
       this.el.classList.remove('battersea-header--sticky');
       this.el.classList.remove('battersea-header--shrunk');
       this.el.classList.remove('battersea-header--shrink-enabled');
+      this.el.classList.remove('battersea-header--transparent');
+      this.el.classList.remove('battersea-header--transparent-active');
       this.el.classList.remove(`battersea-header--${this.layout}`);
-      
+
       // Reset inline styles
       this.el.style.height = '';
+      this.el.style.marginBottom = '';
       if (this.logo) {
         this.logo.style.transform = '';
         this.logo.style.transition = '';
@@ -871,6 +928,7 @@
       // Reset pre-header if present
       if (this.preHeader) {
         this.preHeader.classList.remove('battersea-header-pre--hidden');
+        this.preHeader.classList.remove('battersea-header-pre--transparent-active');
         this.preHeader.style.height = '';
       }
     }
