@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.27.0] - 2026-02-22
+
+### Added
+- **Pagination component** -- Standalone pagination with two modes: client-side (show/hide children of a target container) and server-side (fire events for AJAX data fetching). Features include smart page range with ellipsis, go-to-page number input, first/last buttons, page size selector dropdown, "Showing X--Y of Z" info text, scroll-to-top on page change, and screen reader announcements via ARIA live region. Public API methods: `setTotalItems()`, `setPage()`, `refresh()`
+
+---
+
 ## [2.26.0] - 2026-02-22
 
 ### Added

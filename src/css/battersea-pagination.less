@@ -1,0 +1,212 @@
+/**
+ * Battersea Library - Pagination Styles
+ * Version: 1.0.0
+ */
+
+:root {
+  --pagination-border-color: #ddd;
+  --pagination-accent-color: #667eea;
+  --pagination-text-color: #444;
+  --pagination-info-color: #666;
+  --pagination-btn-bg: #fff;
+  --pagination-btn-hover-bg: #f5f5f5;
+  --pagination-disabled-opacity: 0.4;
+}
+
+.battersea-pagination {
+  font-size: 0.95rem;
+  color: var(--pagination-text-color);
+  margin-top: 1.25rem;
+
+  // ─── Layout Rows ────────────────────────
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    &--secondary {
+      margin-top: 0.75rem;
+    }
+  }
+
+  // ─── Info Text ──────────────────────────
+  &__info {
+    font-size: 0.85rem;
+    color: var(--pagination-info-color);
+  }
+
+  // ─── Page Controls ──────────────────────
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  // ─── Buttons ────────────────────────────
+  &__btn {
+    padding: 0.4rem 0.65rem;
+    border: 1px solid var(--pagination-border-color);
+    background: var(--pagination-btn-bg);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: inherit;
+    min-width: 32px;
+    text-align: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    border-radius: 3px;
+    line-height: 1.4;
+
+    &:hover:not(:disabled) {
+      background: var(--pagination-btn-hover-bg);
+      border-color: #ccc;
+    }
+
+    &:focus {
+      outline: 2px solid var(--pagination-accent-color);
+      outline-offset: 1px;
+    }
+
+    &:disabled {
+      opacity: var(--pagination-disabled-opacity);
+      cursor: not-allowed;
+    }
+
+    &--active {
+      background: var(--pagination-accent-color);
+      color: #fff;
+      border-color: var(--pagination-accent-color);
+      font-weight: 600;
+
+      &:hover:not(:disabled) {
+        background: var(--pagination-accent-color);
+        border-color: var(--pagination-accent-color);
+      }
+    }
+
+    &--first,
+    &--last {
+      font-size: 1rem;
+    }
+
+    &--prev,
+    &--next {
+      font-size: 1.1rem;
+    }
+  }
+
+  // ─── Ellipsis ───────────────────────────
+  &__ellipsis {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  // ─── Go-to-Page Input ───────────────────
+  &__input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__input-label {
+    font-size: 0.85rem;
+    color: var(--pagination-info-color);
+  }
+
+  &__input {
+    width: 4rem;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--pagination-border-color);
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    text-align: center;
+    background: #fff;
+    transition: border-color 0.2s;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--pagination-accent-color);
+    }
+  }
+
+  &__input-btn {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--pagination-border-color);
+    background: var(--pagination-btn-bg);
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+
+    &:hover {
+      background: var(--pagination-btn-hover-bg);
+      border-color: #ccc;
+    }
+
+    &:focus {
+      outline: 2px solid var(--pagination-accent-color);
+      outline-offset: 1px;
+    }
+  }
+
+  // ─── Page Size Selector ─────────────────
+  &__sizes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__sizes-label {
+    font-size: 0.85rem;
+    color: var(--pagination-info-color);
+  }
+
+  &__sizes-select {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--pagination-border-color);
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--pagination-accent-color);
+    }
+  }
+}
+
+// ─── Responsive ───────────────────────────
+@media (max-width: 767px) {
+  .battersea-pagination {
+    &__row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__controls {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &__row--secondary {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+}

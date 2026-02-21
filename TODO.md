@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
 **Last Updated:** 22 February 2026
-**Current Version:** 2.26.0
+**Current Version:** 2.27.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -71,7 +71,7 @@
 - [x] Transparent header - Setting that makes the header background transparent until the user scrolls, when the background fades in. Transparency returns when user scrolls back to the top. Content floats up behind the header. Works with sticky and shrink. (v2.24.0)
 - [x] Back to top button - A circular button fades in as you scroll down, clicking it smoothly scrolls to the top (v2.25.0)
 - [x] MiniQuiz v2 - Drag-and-drop ordering, matching pairs, grouping into categories, and navigation prevention (v2.26.0)
-- [ ] Pagination - Standard pagination layout but incldue the ability to type in a page number. Also provide the ability to have it build dynamically from a database (mySQL, SQL and any other dynamic option you think would be popular).
+- [x] Pagination - Standalone pagination with client-side and server-side modes, go-to-page input, page size selector, smart page range with ellipsis (v2.27.0)
 - [ ] Ticker tape animation for text. Each letter in a box with this animation setting is appears one after another.
 - [ ] Create a single or multiple pages that display the coponents using only thier base styling. I want to be able to confirm they can be used out of the box. To ensure the pages are tidy you can use a style sheet for the page structure and lables. Please use this site https://uundi.david-haworth.com/shortcode-reference as a reference for the page design. 
 

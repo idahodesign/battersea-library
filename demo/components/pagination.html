@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Pagination Component - Battersea Library</title>
+		<meta name="description" content="Standalone pagination with client-side and server-side modes - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+			/* Demo card styles */
+			.demo-card-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+				gap: 1rem;
+			}
+			.demo-card {
+				background: #fff;
+				border: 1px solid #e0e0e0;
+				border-radius: 6px;
+				padding: 1.25rem;
+				text-align: center;
+				font-size: 0.9rem;
+				color: #444;
+				transition: box-shadow 0.2s;
+			}
+			.demo-card:hover {
+				box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+			}
+			.demo-card strong {
+				display: block;
+				font-size: 1.5rem;
+				color: #667eea;
+				margin-bottom: 0.25rem;
+			}
+			.demo-list-item {
+				padding: 0.75rem 1rem;
+				border-bottom: 1px solid #eee;
+				font-size: 0.9rem;
+				color: #444;
+			}
+			.demo-list-item:last-child {
+				border-bottom: none;
+			}
+			.ajax-loading {
+				text-align: center;
+				padding: 2rem;
+				color: #999;
+				font-style: italic;
+			}
+			.ajax-results-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+				gap: 0.75rem;
+			}
+			.ajax-result-item {
+				background: #f9f9f9;
+				border: 1px solid #e0e0e0;
+				border-radius: 4px;
+				padding: 1rem;
+				font-size: 0.85rem;
+			}
+			.ajax-result-item strong {
+				color: #667eea;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumb -->
+			<div data-breadcrumb></div>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Pagination Component</h1>
+						<p class="hero-subtitle">Page through content with numbered controls, jump-to-page input, and server-side support</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">See the pagination component in action</p>
+
+						<!-- Demo 1: Basic Client-Side -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Basic Client-Side Pagination</h3>
+							<p>Paginating a grid of 30 cards, 6 per page. The component shows and hides children of the target container automatically.</p>
+
+							<div class="demo-container">
+								<div id="basic-cards" class="demo-card-grid">
+									<div class="demo-card"><strong>1</strong>Mercury</div>
+									<div class="demo-card"><strong>2</strong>Venus</div>
+									<div class="demo-card"><strong>3</strong>Earth</div>
+									<div class="demo-card"><strong>4</strong>Mars</div>
+									<div class="demo-card"><strong>5</strong>Jupiter</div>
+									<div class="demo-card"><strong>6</strong>Saturn</div>
+									<div class="demo-card"><strong>7</strong>Uranus</div>
+									<div class="demo-card"><strong>8</strong>Neptune</div>
+									<div class="demo-card"><strong>9</strong>Pluto</div>
+									<div class="demo-card"><strong>10</strong>Ceres</div>
+									<div class="demo-card"><strong>11</strong>Eris</div>
+									<div class="demo-card"><strong>12</strong>Haumea</div>
+									<div class="demo-card"><strong>13</strong>Makemake</div>
+									<div class="demo-card"><strong>14</strong>Sedna</div>
+									<div class="demo-card"><strong>15</strong>Quaoar</div>
+									<div class="demo-card"><strong>16</strong>Orcus</div>
+									<div class="demo-card"><strong>17</strong>Gonggong</div>
+									<div class="demo-card"><strong>18</strong>Varuna</div>
+									<div class="demo-card"><strong>19</strong>Ixion</div>
+									<div class="demo-card"><strong>20</strong>Salacia</div>
+									<div class="demo-card"><strong>21</strong>Vesta</div>
+									<div class="demo-card"><strong>22</strong>Pallas</div>
+									<div class="demo-card"><strong>23</strong>Hygiea</div>
+									<div class="demo-card"><strong>24</strong>Interamnia</div>
+									<div class="demo-card"><strong>25</strong>Europa</div>
+									<div class="demo-card"><strong>26</strong>Davida</div>
+									<div class="demo-card"><strong>27</strong>Sylvia</div>
+									<div class="demo-card"><strong>28</strong>Cybele</div>
+									<div class="demo-card"><strong>29</strong>Bamberga</div>
+									<div class="demo-card"><strong>30</strong>Juno</div>
+								</div>
+
+								<div data-pagination
+									data-pagination-target="#basic-cards"
+									data-pagination-page-size="6"
+									data-pagination-show-info="true">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 2: Server-Side (AJAX Simulation) -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Server-Side Pagination (AJAX)</h3>
+							<p>The component fires an event on page change. Your code fetches data from an API and renders it. This demo simulates a 500ms network delay.</p>
+
+							<div class="demo-container">
+								<div id="ajax-results">
+									<p class="ajax-loading">Click a page number to load results...</p>
+								</div>
+
+								<div id="ajax-pagination"
+									data-pagination
+									data-pagination-mode="server"
+									data-pagination-total-items="95"
+									data-pagination-page-size="10"
+									data-pagination-show-info="true"
+									data-pagination-show-input="true">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 3: Full-Featured -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Full-Featured</h3>
+							<p>Every option enabled: info text, go-to-page input, first/last buttons, page size selector, and scroll-to-top on page change.</p>
+
+							<div class="demo-container">
+								<div id="full-cards" class="demo-card-grid">
+								</div>
+
+								<div data-pagination
+									data-pagination-target="#full-cards"
+									data-pagination-page-size="10"
+									data-pagination-show-info="true"
+									data-pagination-show-input="true"
+									data-pagination-show-first-last="true"
+									data-pagination-show-sizes="5,10,25,50"
+									data-pagination-scroll-top="true">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 4: Compact -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Compact / Minimal</h3>
+							<p>Just the page buttons with previous and next arrows. No info text, no extras.</p>
+
+							<div class="demo-container">
+								<div id="compact-list" style="border: 1px solid #eee; border-radius: 6px; overflow: hidden;">
+									<div class="demo-list-item">Item 1 &mdash; First batch of records</div>
+									<div class="demo-list-item">Item 2 &mdash; Processing queue entry</div>
+									<div class="demo-list-item">Item 3 &mdash; Archived document</div>
+									<div class="demo-list-item">Item 4 &mdash; Pending review</div>
+									<div class="demo-list-item">Item 5 &mdash; Completed task</div>
+									<div class="demo-list-item">Item 6 &mdash; Draft submission</div>
+									<div class="demo-list-item">Item 7 &mdash; Approved request</div>
+									<div class="demo-list-item">Item 8 &mdash; Flagged entry</div>
+									<div class="demo-list-item">Item 9 &mdash; Scheduled update</div>
+									<div class="demo-list-item">Item 10 &mdash; New registration</div>
+									<div class="demo-list-item">Item 11 &mdash; Account verified</div>
+									<div class="demo-list-item">Item 12 &mdash; Password reset</div>
+									<div class="demo-list-item">Item 13 &mdash; Email notification</div>
+									<div class="demo-list-item">Item 14 &mdash; System log entry</div>
+									<div class="demo-list-item">Item 15 &mdash; Backup completed</div>
+									<div class="demo-list-item">Item 16 &mdash; Maintenance window</div>
+									<div class="demo-list-item">Item 17 &mdash; Configuration change</div>
+									<div class="demo-list-item">Item 18 &mdash; Security alert</div>
+									<div class="demo-list-item">Item 19 &mdash; Performance report</div>
+									<div class="demo-list-item">Item 20 &mdash; Final audit record</div>
+								</div>
+
+								<div data-pagination
+									data-pagination-target="#compact-list"
+									data-pagination-page-size="5"
+									data-pagination-show-info="false">
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">1..n</div>
+								<h3>Smart Page Range</h3>
+								<p>Shows all pages when there are 7 or fewer. For larger sets, it displays the current page with neighbours and ellipsis gaps.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">#</div>
+								<h3>Jump to Page</h3>
+								<p>Optional number input lets users type a page number and jump straight to it. Handy for large data sets.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Server-Side Mode</h3>
+								<p>Fires a custom event on page change so you can fetch data from any backend &mdash; PHP, .NET, Node, or a REST API.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">A11y</div>
+								<h3>Accessible</h3>
+								<p>ARIA labels, aria-current on the active page, a live region for screen reader announcements, and full keyboard support.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animate="fade-up">
+								<div class="feature-icon">10|25</div>
+								<h3>Page Size Selector</h3>
+								<p>Optional dropdown lets users choose how many items to show per page. Resets to page 1 when changed.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animate="fade-up">
+								<div class="feature-icon">&#10148;</div>
+								<h3>Auto-Initialisation</h3>
+								<p>Add data attributes to your HTML and pagination works immediately. No JavaScript configuration required for client-side mode.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the pagination component using these data attributes:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-pagination</code></td>
+										<td>&mdash;</td>
+										<td>required</td>
+										<td>Activates the pagination component</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-target</code></td>
+										<td>CSS selector</td>
+										<td>&mdash;</td>
+										<td>Content container whose children are paginated (enables client-side mode)</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-total-items</code></td>
+										<td>number</td>
+										<td><code>0</code></td>
+										<td>Total item count (required for server-side mode; auto-calculated in client mode)</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-page-size</code></td>
+										<td>number</td>
+										<td><code>10</code></td>
+										<td>Items shown per page</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-mode</code></td>
+										<td><code>client</code> / <code>server</code></td>
+										<td>auto</td>
+										<td>Explicit mode override. Auto-detects based on whether a target container exists</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-show-info</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show "Showing X&ndash;Y of Z" info text</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-show-input</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show the go-to-page number input</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-show-first-last</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show first and last page buttons</td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-show-sizes</code></td>
+										<td>comma-separated numbers</td>
+										<td>&mdash;</td>
+										<td>Page size options for a dropdown selector, e.g. <code>"5,10,25,50"</code></td>
+									</tr>
+									<tr>
+										<td><code>data-pagination-scroll-top</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Scroll the target container into view when the page changes</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Custom Events</h3>
+							<p>The component dispatches this event on every page change:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Event</th>
+										<th>Detail</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>battersea:pagination:change</code></td>
+										<td><code>{ page, pageSize, totalPages, totalItems }</code></td>
+										<td>Fires on the host element when the current page changes. Listen to this for server-side data fetching.</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Public Methods</h3>
+							<p>Access the component instance via <code>Battersea.getInstance(el)</code>:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Method</th>
+										<th>Parameters</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>setTotalItems(total)</code></td>
+										<td>number</td>
+										<td>Update the total item count (useful after an AJAX response)</td>
+									</tr>
+									<tr>
+										<td><code>setPage(page)</code></td>
+										<td>number</td>
+										<td>Jump to a specific page programmatically</td>
+									</tr>
+									<tr>
+										<td><code>refresh()</code></td>
+										<td>&mdash;</td>
+										<td>Re-collect items and re-render (call after adding/removing content in client mode)</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Client-Side Pagination</div>
+								<div data-accordion-content>
+									<div>
+<pre><code>&lt;!-- Content container --&gt;
+&lt;div id="my-cards"&gt;
+  &lt;div&gt;Card 1&lt;/div&gt;
+  &lt;div&gt;Card 2&lt;/div&gt;
+  &lt;!-- ... more items --&gt;
+&lt;/div&gt;
+
+&lt;!-- Pagination control --&gt;
+&lt;div data-pagination
+     data-pagination-target="#my-cards"
+     data-pagination-page-size="6"
+     data-pagination-show-info="true"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Server-Side with AJAX</div>
+								<div data-accordion-content>
+									<div>
+<pre><code>&lt;div id="results"&gt;&lt;/div&gt;
+
+&lt;div id="my-pagination"
+     data-pagination
+     data-pagination-mode="server"
+     data-pagination-total-items="250"
+     data-pagination-page-size="20"
+     data-pagination-show-info="true"
+     data-pagination-show-input="true"&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var paginationEl = document.getElementById('my-pagination');
+
+paginationEl.addEventListener('battersea:pagination:change', function(e) {
+  var page = e.detail.page;
+  var size = e.detail.pageSize;
+
+  // Fetch from your API
+  fetch('/api/items?page=' + page + '&amp;size=' + size)
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      // Render your results
+      document.getElementById('results').innerHTML = data.html;
+
+      // Update total if it changed
+      var instance = Battersea.getInstance(paginationEl);
+      if (instance) instance.setTotalItems(data.total);
+    });
+});
+&lt;/script&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Full Options</div>
+								<div data-accordion-content>
+									<div>
+<pre><code>&lt;div data-pagination
+     data-pagination-target="#content"
+     data-pagination-page-size="10"
+     data-pagination-show-info="true"
+     data-pagination-show-input="true"
+     data-pagination-show-first-last="true"
+     data-pagination-show-sizes="5,10,25,50"
+     data-pagination-scroll-top="true"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animate="fade-up">
+								<div class="feature-icon">Tab</div>
+								<h3>Keyboard Navigation</h3>
+								<p>All buttons are native HTML elements, focusable with Tab and activated with Enter or Space.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animate="fade-up">
+								<div class="feature-icon">[ ]</div>
+								<h3>Focus Indicators</h3>
+								<p>Clear, visible focus outlines on every interactive element for keyboard users.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animate="fade-up">
+								<div class="feature-icon">SR</div>
+								<h3>Screen Reader Support</h3>
+								<p>ARIA labels on navigation buttons, aria-current on the active page, and a live region that announces page changes.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animate="fade-up">
+								<div class="feature-icon">nav</div>
+								<h3>Semantic Markup</h3>
+								<p>The pagination renders inside a nav element with role="navigation" and aria-label="Pagination".</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses standard DOM APIs and CustomEvent. No polyfills required for modern browsers.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Page Navigation -->
+			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smoothscroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Back to Top -->
+		<div data-backtotop></div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+		<script src="../../src/js/battersea-backtotop.js"></script>
+		<script src="../../src/js/battersea-pagination.js"></script>
+
+		<!-- Generate cards for full-featured demo -->
+		<script>
+			(function() {
+				var container = document.getElementById('full-cards');
+				if (!container) return;
+				var names = [
+					'Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron',
+					'Carbon', 'Nitrogen', 'Oxygen', 'Fluorine', 'Neon',
+					'Sodium', 'Magnesium', 'Aluminium', 'Silicon', 'Phosphorus',
+					'Sulphur', 'Chlorine', 'Argon', 'Potassium', 'Calcium',
+					'Scandium', 'Titanium', 'Vanadium', 'Chromium', 'Manganese',
+					'Iron', 'Cobalt', 'Nickel', 'Copper', 'Zinc',
+					'Gallium', 'Germanium', 'Arsenic', 'Selenium', 'Bromine',
+					'Krypton', 'Rubidium', 'Strontium', 'Yttrium', 'Zirconium',
+					'Niobium', 'Molybdenum', 'Technetium', 'Ruthenium', 'Rhodium',
+					'Palladium', 'Silver', 'Cadmium', 'Indium', 'Tin'
+				];
+				for (var i = 0; i < names.length; i++) {
+					var card = document.createElement('div');
+					card.className = 'demo-card';
+					card.innerHTML = '<strong>' + (i + 1) + '</strong>' + names[i];
+					container.appendChild(card);
+				}
+			})();
+		</script>
+
+		<!-- AJAX simulation for server-side demo -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				var ajaxEl = document.getElementById('ajax-pagination');
+				if (!ajaxEl) return;
+
+				ajaxEl.addEventListener('battersea:pagination:change', function(e) {
+					var container = document.getElementById('ajax-results');
+					var page = e.detail.page;
+					var size = e.detail.pageSize;
+					var total = e.detail.totalItems;
+
+					container.innerHTML = '<p class="ajax-loading">Loading page ' + page + '...</p>';
+
+					// Simulate network delay
+					setTimeout(function() {
+						var start = (page - 1) * size + 1;
+						var end = Math.min(start + size - 1, total);
+						var html = '<div class="ajax-results-grid">';
+						for (var i = start; i <= end; i++) {
+							html += '<div class="ajax-result-item"><strong>Record #' + i + '</strong><br>Fetched from API endpoint</div>';
+						}
+						html += '</div>';
+						container.innerHTML = html;
+					}, 500);
+				});
+			});
+		</script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>
