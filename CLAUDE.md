@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.25.0
+- **Current Version:** 2.26.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -48,7 +48,7 @@ battersea-library/
 12. Header - Adaptive header with transparent mode, shrink-on-scroll
 13. HorizontalNav - Multi-level dropdown menus
 14. ImageGallery - Lightbox with masonry grid, zoom, and video
-15. MiniQuiz - Interactive quiz with boolean, single-choice, and multi-select questions, timer, and scoring
+15. MiniQuiz - Interactive quiz with boolean, single-choice, multi-select, drag-and-drop ordering, matching pairs, and grouping questions, timer, scoring, and navigation prevention
 16. MultiSlider - Multi-item carousel
 17. NavData - Core navigation data service with JSON model, sequential refs, and breadcrumb API
 18. NestedProgress - Multi-layer circular progress
@@ -117,7 +117,7 @@ battersea-library/
 - Repository structure and GitHub Pages deployment
 - Homepage with component showcase
 - Include system for reusable HTML
-- 32 components fully functional
+- 33 components fully functional
 - **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` (old redirects removed)
 - **Project file cleanup** (Feb 2026): Removed redundant files, gitignored compiled CSS
 - **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
@@ -149,6 +149,7 @@ battersea-library/
 - **BackToTop v2.25.0** (Feb 2026): Circular button with chevron arrow, fades in on scroll, smooth scroll to top, added to all demo pages
 - **Homepage hero banner** (Feb 2026): Background image on hero section with transparent header, 40% white overlay
 - **Transparent header fixes** (Feb 2026): Content slides under header correctly (margin-top on sibling), pre-header sticky with z-index 101, accessibility panel z-index fix
+- **MiniQuiz v2 v2.26.0** (Feb 2026): Drag-and-drop ordering, matching pairs, grouping into categories, mobile select fallback for match type, keyboard accessibility, navigation prevention with beforeunload and custom modal
 
 ### In Progress
 - See `TODO.md` for current tasks
@@ -239,4 +240,4 @@ Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
 
 ---
 
-*Last updated: 21 February 2026*
+*Last updated: 22 February 2026*

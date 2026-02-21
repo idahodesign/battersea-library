@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
 **Last Updated:** 22 February 2026
-**Current Version:** 2.25.0
+**Current Version:** 2.26.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -70,7 +70,7 @@
 - [x] New advanced form elements - toggle switch, range slider, date picker (custom calendar + native), time picker (24h/12h), colour swatch (preset grid + full picker) (v2.23.0)
 - [x] Transparent header - Setting that makes the header background transparent until the user scrolls, when the background fades in. Transparency returns when user scrolls back to the top. Content floats up behind the header. Works with sticky and shrink. (v2.24.0)
 - [x] Back to top button - A circular button fades in as you scroll down, clicking it smoothly scrolls to the top (v2.25.0)
-- [ ] MiniQuiz v2 - Drag-and-drop ordering of HTML elements, drag-and-drop grouping of HTML elements, optional prevent navigation from page until the quiz has been attempted
+- [x] MiniQuiz v2 - Drag-and-drop ordering, matching pairs, grouping into categories, and navigation prevention (v2.26.0)
 - [ ] Pagination - Standard pagination layout but incldue the ability to type in a page number. Also provide the ability to have it build dynamically from a database (mySQL, SQL and any other dynamic option you think would be popular).
 - [ ] Ticker tape animation for text. Each letter in a box with this animation setting is appears one after another.
 

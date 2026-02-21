@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.26.0] - 2026-02-22
+
+### Added
+- **MiniQuiz v2 -- Drag-and-drop question types** -- Three new interactive question types: `order` (arrange items in correct sequence), `match` (drag items to matching pairs), and `group` (sort items into categories). Full mouse, touch, and keyboard support. Works with all data sources (HTML, JSON, CSV). Match type uses select-dropdown fallback on mobile screens
+- **Navigation prevention** -- New `data-quiz-require-attempt="true"` attribute prevents page navigation before quiz submission. Uses browser beforeunload dialog for tab close and a custom modal for in-page link clicks. Both guards are removed after submission
+- **New demo data file** -- `demo/data/quiz-drag.json` with a mixed quiz combining drag-and-drop and standard question types
+
+---
+
 ## [2.25.0] - 2026-02-22
 
 ### Added

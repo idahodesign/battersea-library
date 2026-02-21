@@ -62,7 +62,7 @@
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Mini Quiz Component</h1>
-						<p class="hero-subtitle">Interactive quizzes with multiple question types, countdown timers, and instant scoring</p>
+						<p class="hero-subtitle">Interactive quizzes with drag-and-drop, multiple question types, countdown timers, and instant scoring</p>
 					</div>
 				</div>
 			</section>
@@ -277,6 +277,132 @@
 			</section>
 
 			<!-- ============================================ -->
+			<!-- DRAG & DROP DEMOS SECTION -->
+			<!-- ============================================ -->
+			<section id="drag-demos" class="showcase-section" data-scroll-section data-scroll-title="Drag & Drop" data-animate="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Drag & Drop Questions</h2>
+						<p class="section-subtitle">Three new question types that use drag-and-drop interaction</p>
+
+						<!-- Demo 6: Order (HTML markup) -->
+						<div class="demo-subsection" data-animate="fade-up">
+							<h3>Drag to Order</h3>
+							<p>Drag the items into the correct sequence. The items are shuffled on each page load.</p>
+
+							<div class="demo-container">
+								<div data-quiz data-quiz-title="Solar System">
+									<div data-quiz-question data-quiz-type="order">
+										<p>Arrange these planets from closest to farthest from the Sun</p>
+										<div data-quiz-option>Mercury</div>
+										<div data-quiz-option>Venus</div>
+										<div data-quiz-option>Earth</div>
+										<div data-quiz-option>Mars</div>
+										<div data-quiz-option>Jupiter</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 7: Match (inline JSON) -->
+						<div class="demo-subsection delay-1" data-animate="fade-up">
+							<h3>Match Pairs</h3>
+							<p>Drag each country from the left column to its matching capital on the right. On mobile, this falls back to select dropdowns.</p>
+
+							<div class="demo-container">
+								<div data-quiz
+									data-quiz-title="Capitals of Europe"
+									data-quiz-results="inline"
+									data-quiz-data='[
+										{
+											"id": "m1",
+											"type": "match",
+											"question": "Match each country to its capital city",
+											"items": ["France", "Germany", "Italy", "Spain", "Poland"],
+											"pairs": ["Paris", "Berlin", "Rome", "Madrid", "Warsaw"],
+											"answer": [0, 1, 2, 3, 4],
+											"explanation": "These are the current capital cities of each country."
+										}
+									]'>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 8: Group (HTML markup) -->
+						<div class="demo-subsection delay-2" data-animate="fade-up">
+							<h3>Sort into Groups</h3>
+							<p>Drag each item from the pool at the top into the correct category below.</p>
+
+							<div class="demo-container">
+								<div data-quiz data-quiz-title="Animal Classification">
+									<div data-quiz-question data-quiz-type="group"
+										data-quiz-categories="Mammals|Birds|Reptiles"
+										data-quiz-answer="0|1|2|0|1|2"
+										data-quiz-explanation="Dogs and whales are mammals, eagles and penguins are birds, crocodiles and snakes are reptiles.">
+										<p>Sort these animals into the correct group</p>
+										<div data-quiz-item>Dog</div>
+										<div data-quiz-item>Eagle</div>
+										<div data-quiz-item>Crocodile</div>
+										<div data-quiz-item>Whale</div>
+										<div data-quiz-item>Penguin</div>
+										<div data-quiz-item>Snake</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 9: Mixed (JSON file) -->
+						<div class="demo-subsection delay-3" data-animate="fade-up">
+							<h3>Mixed Drag & Standard</h3>
+							<p>Drag-and-drop questions can be combined with standard radio and checkbox questions in the same quiz. This one loads from a JSON file.</p>
+
+							<div class="demo-container">
+								<div data-quiz
+									data-quiz-data="../data/quiz-drag.json"
+									data-quiz-results="both">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 10: Navigation Prevention -->
+						<div class="demo-subsection delay-4" data-animate="fade-up">
+							<h3>Navigation Guard</h3>
+							<p>This quiz prevents you from leaving the page before submitting. Try clicking a link in the navigation while the quiz is incomplete -- you will see a warning. The guard is removed once you submit.</p>
+
+							<div class="demo-container">
+								<div data-quiz
+									data-quiz-title="Quick Check"
+									data-quiz-require-attempt="true"
+									data-quiz-results="both">
+
+									<div data-quiz-question
+										data-quiz-type="boolean"
+										data-quiz-answer="True"
+										data-quiz-explanation="Water freezes at 0 degrees Celsius (32 degrees Fahrenheit).">
+										<p>Water freezes at 0 degrees Celsius.</p>
+										<div data-quiz-option>True</div>
+										<div data-quiz-option>False</div>
+									</div>
+
+									<div data-quiz-question
+										data-quiz-type="choice"
+										data-quiz-answer="Mars"
+										data-quiz-explanation="Mars is known as the Red Planet due to iron oxide on its surface.">
+										<p>Which planet is known as the Red Planet?</p>
+										<div data-quiz-option>Venus</div>
+										<div data-quiz-option>Mars</div>
+										<div data-quiz-option>Jupiter</div>
+										<div data-quiz-option>Saturn</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
 			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
@@ -289,7 +415,7 @@
 							<div class="feature-card delay-1" data-animate="fade-up">
 								<div class="feature-icon">?!</div>
 								<h3>Question Types</h3>
-								<p>True/false, single-choice, and multi-select questions in one quiz.</p>
+								<p>True/false, single-choice, multi-select, drag-to-order, match pairs, and sort into groups.</p>
 							</div>
 
 							<div class="feature-card delay-2" data-animate="fade-up">
@@ -320,6 +446,18 @@
 								<div class="feature-icon">&#8645;</div>
 								<h3>Shuffle</h3>
 								<p>Randomise question order and option order independently on each load.</p>
+							</div>
+
+							<div class="feature-card delay-7" data-animate="fade-up">
+								<div class="feature-icon">&#9995;</div>
+								<h3>Drag & Drop</h3>
+								<p>Order items, match pairs, and sort into groups with touch-friendly drag interactions.</p>
+							</div>
+
+							<div class="feature-card delay-8" data-animate="fade-up">
+								<div class="feature-icon">&#128274;</div>
+								<h3>Navigation Guard</h3>
+								<p>Optionally prevent users from leaving the page before submitting their answers.</p>
 							</div>
 						</div>
 					</div>
@@ -408,6 +546,12 @@
 										<td><code>false</code></td>
 										<td>Randomise option order within each question</td>
 									</tr>
+									<tr>
+										<td><code>data-quiz-require-attempt</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Prevent page navigation until quiz is submitted</td>
+									</tr>
 								</tbody>
 							</table>
 
@@ -437,6 +581,21 @@
 										<td><code>multi</code></td>
 										<td>Checkboxes with "select all that apply"</td>
 										<td>Pipe-separated string or JSON array</td>
+									</tr>
+									<tr>
+										<td><code>order</code></td>
+										<td>Draggable list (reorder items)</td>
+										<td>Auto-generated from option order</td>
+									</tr>
+									<tr>
+										<td><code>match</code></td>
+										<td>Drag items to matching drop zones</td>
+										<td>Index array mapping items to pairs</td>
+									</tr>
+									<tr>
+										<td><code>group</code></td>
+										<td>Drag items into category zones</td>
+										<td>Index array mapping items to categories</td>
 									</tr>
 								</tbody>
 							</table>
