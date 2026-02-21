@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.23.0] - 2026-02-21
+
+### Added
+- **FormElements component** -- Five advanced form input types in a single component, all vanilla JS with keyboard and touch support
+- **Toggle switch** (`data-toggle`) -- Styled on/off switch wrapping a standard checkbox, with customisable labels and `role="switch"` accessibility
+- **Range slider** (`data-slider-input`) -- Custom track, fill and draggable handle with step snapping, value label templates, and arrow key control
+- **Date picker** (`data-datepicker`) -- Custom calendar dropdown with month navigation, today highlight, min/max date constraints, and configurable format (DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD). Optional `data-datepicker-native="true"` for browser native input
+- **Time picker** (`data-timepicker`) -- Scrollable hour and minute columns with 24h or 12h AM/PM format, configurable minute step intervals, and min/max time constraints
+- **Colour swatch** (`data-colourswatch`) -- Preset colour grid with checkmark selection. Optional full colour picker via `data-colourswatch-picker="true"` with hue bar, saturation/brightness area, and hex input
+- **FormValidation integration** -- All elements store values in real inputs and dispatch native `change`/`blur` events, so `data-validate="required"` works without modification
+- **CSS custom properties** -- Full theming via `--form-toggle-*`, `--form-slider-*`, `--form-datepicker-*`, `--form-timepicker-*`, `--form-swatch-*` variables
+- **Demo page** with live demos for all five elements, integration form, configuration tables, and usage examples
+
+---
+
 ## [2.22.0] - 2026-02-21
 
 ### Added

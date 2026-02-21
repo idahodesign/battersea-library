@@ -1,0 +1,635 @@
+/**
+ * Battersea Library - FormElements Styles
+ * Version: 2.23.0
+ */
+
+:root {
+  /* Toggle */
+  --form-toggle-width: 48px;
+  --form-toggle-height: 24px;
+  --form-toggle-bg: #ccc;
+  --form-toggle-active: #667eea;
+
+  /* Slider */
+  --form-slider-track-height: 6px;
+  --form-slider-track-bg: #e0e0e0;
+  --form-slider-fill-bg: #667eea;
+  --form-slider-handle-size: 18px;
+  --form-slider-handle-bg: #fff;
+  --form-slider-handle-border: #667eea;
+
+  /* Date Picker */
+  --form-datepicker-radius: 8px;
+  --form-datepicker-bg: #fff;
+  --form-datepicker-border: #ddd;
+  --form-datepicker-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --form-datepicker-today: #667eea;
+  --form-datepicker-selected: #667eea;
+
+  /* Time Picker */
+  --form-timepicker-col-height: 200px;
+  --form-timepicker-bg: #fff;
+  --form-timepicker-border: #ddd;
+  --form-timepicker-selected: #667eea;
+
+  /* Colour Swatch */
+  --form-swatch-size: 32px;
+  --form-swatch-gap: 8px;
+  --form-swatch-selected-border: #333;
+  --form-picker-height: 150px;
+}
+
+
+/* ──────────────────────────────────────────────
+   Toggle Switch
+   ────────────────────────────────────────────── */
+
+.battersea-toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.battersea-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.battersea-toggle__track {
+  position: relative;
+  width: var(--form-toggle-width);
+  height: var(--form-toggle-height);
+  background: var(--form-toggle-bg);
+  border-radius: calc(var(--form-toggle-height) / 2);
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.battersea-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(var(--form-toggle-height) - 4px);
+  height: calc(var(--form-toggle-height) - 4px);
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.battersea-toggle--checked .battersea-toggle__track {
+  background: var(--form-toggle-active);
+}
+
+.battersea-toggle--checked .battersea-toggle__thumb {
+  transform: translateX(calc(var(--form-toggle-width) - var(--form-toggle-height)));
+}
+
+.battersea-toggle__label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Focus ring on the track when checkbox is focused */
+.battersea-toggle__input:focus-visible ~ .battersea-toggle__track {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+
+/* ──────────────────────────────────────────────
+   Range Slider
+   ────────────────────────────────────────────── */
+
+.battersea-slider-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.battersea-slider-input__track {
+  position: relative;
+  flex: 1;
+  height: var(--form-slider-track-height);
+  background: var(--form-slider-track-bg);
+  border-radius: calc(var(--form-slider-track-height) / 2);
+  cursor: pointer;
+}
+
+.battersea-slider-input__track:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 4px;
+}
+
+.battersea-slider-input__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--form-slider-fill-bg);
+  border-radius: calc(var(--form-slider-track-height) / 2);
+  pointer-events: none;
+}
+
+.battersea-slider-input__handle {
+  position: absolute;
+  top: 50%;
+  width: var(--form-slider-handle-size);
+  height: var(--form-slider-handle-size);
+  background: var(--form-slider-handle-bg);
+  border: 2px solid var(--form-slider-handle-border);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.2s ease;
+}
+
+.battersea-slider-input--dragging .battersea-slider-input__handle {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.battersea-slider-input__value {
+  min-width: 36px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+
+/* ──────────────────────────────────────────────
+   Date Picker
+   ────────────────────────────────────────────── */
+
+.battersea-datepicker {
+  position: relative;
+  display: inline-block;
+}
+
+.battersea-datepicker__input {
+  cursor: pointer;
+  padding-right: 36px !important;
+}
+
+.battersea-datepicker__icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  cursor: pointer;
+  pointer-events: auto;
+  line-height: 1;
+}
+
+.battersea-datepicker__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 50;
+  background: var(--form-datepicker-bg);
+  border: 1px solid var(--form-datepicker-border);
+  border-radius: var(--form-datepicker-radius);
+  box-shadow: var(--form-datepicker-shadow);
+  padding: 12px;
+  min-width: 280px;
+  display: none;
+}
+
+.battersea-datepicker--open .battersea-datepicker__dropdown {
+  display: block;
+}
+
+.battersea-fe--flip .battersea-datepicker__dropdown,
+.battersea-fe--flip .battersea-timepicker__dropdown,
+.battersea-fe--flip .battersea-colourswatch__dropdown {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+
+.battersea-datepicker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.battersea-datepicker__prev,
+.battersea-datepicker__next {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #555;
+  line-height: 1;
+}
+
+.battersea-datepicker__prev:hover,
+.battersea-datepicker__next:hover {
+  background: #f0f0f0;
+}
+
+.battersea-datepicker__month-year {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.battersea-datepicker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 4px;
+
+  span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #999;
+    padding: 4px 0;
+  }
+}
+
+.battersea-datepicker__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.battersea-datepicker__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: #333;
+  transition: background 0.15s ease;
+}
+
+.battersea-datepicker__day:hover {
+  background: #f0f0f0;
+}
+
+.battersea-datepicker__day--today {
+  font-weight: 700;
+  color: var(--form-datepicker-today);
+}
+
+.battersea-datepicker__day--selected {
+  background: var(--form-datepicker-selected) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.battersea-datepicker__day--outside {
+  opacity: 0.35;
+}
+
+.battersea-datepicker__day--disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.battersea-datepicker__day--disabled:hover {
+  background: none;
+}
+
+/* Native mode */
+.battersea-datepicker--native {
+  display: inline-block;
+
+  input[type="date"] {
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ──────────────────────────────────────────────
+   Time Picker
+   ────────────────────────────────────────────── */
+
+.battersea-timepicker {
+  position: relative;
+  display: inline-block;
+}
+
+.battersea-timepicker__input {
+  cursor: pointer;
+  padding-right: 36px !important;
+}
+
+.battersea-timepicker__icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  cursor: pointer;
+  pointer-events: auto;
+  line-height: 1;
+}
+
+.battersea-timepicker__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 50;
+  background: var(--form-timepicker-bg);
+  border: 1px solid var(--form-timepicker-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: none;
+  padding: 8px;
+}
+
+.battersea-timepicker--open .battersea-timepicker__dropdown {
+  display: block;
+}
+
+.battersea-timepicker__columns {
+  display: flex;
+  align-items: stretch;
+}
+
+.battersea-timepicker__col {
+  height: var(--form-timepicker-col-height);
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  padding: 4px;
+  min-width: 52px;
+
+  /* Custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 2px;
+  }
+}
+
+.battersea-timepicker__separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #999;
+  padding: 0 2px;
+}
+
+.battersea-timepicker__option {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  text-align: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #333;
+  scroll-snap-align: center;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+
+.battersea-timepicker__option:hover {
+  background: #f0f0f0;
+}
+
+.battersea-timepicker__option--selected {
+  background: var(--form-timepicker-selected) !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.battersea-timepicker__option--disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.battersea-timepicker__period {
+  border-left: 1px solid #eee;
+  margin-left: 4px;
+  padding-left: 4px;
+  height: auto;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+
+/* ──────────────────────────────────────────────
+   Colour Swatch
+   ────────────────────────────────────────────── */
+
+.battersea-colourswatch {
+  position: relative;
+  display: inline-block;
+}
+
+.battersea-colourswatch__preview {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  padding: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.battersea-colourswatch__preview:hover {
+  border-color: #999;
+}
+
+.battersea-colourswatch__preview:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.battersea-colourswatch__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 50;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  display: none;
+  min-width: 200px;
+}
+
+.battersea-colourswatch--open .battersea-colourswatch__dropdown {
+  display: block;
+}
+
+.battersea-colourswatch__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--form-swatch-gap);
+}
+
+.battersea-colourswatch__swatch {
+  width: var(--form-swatch-size);
+  height: var(--form-swatch-size);
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.battersea-colourswatch__swatch:hover {
+  transform: scale(1.1);
+}
+
+.battersea-colourswatch__swatch:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.battersea-colourswatch__swatch--selected {
+  border-color: var(--form-swatch-selected-border);
+}
+
+.battersea-colourswatch__check {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.battersea-colourswatch__swatch--selected .battersea-colourswatch__check {
+  display: block;
+}
+
+.battersea-colourswatch__custom-btn {
+  width: var(--form-swatch-size);
+  height: var(--form-swatch-size);
+  border-radius: 50%;
+  border: 2px dashed #ccc;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #999;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.battersea-colourswatch__custom-btn:hover {
+  border-color: #999;
+  color: #666;
+}
+
+
+/* ──────────────────────────────────────────────
+   Colour Picker (full picker panel)
+   ────────────────────────────────────────────── */
+
+.battersea-colourswatch__picker {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.battersea-colourswatch__satval {
+  width: 100%;
+  height: var(--form-picker-height);
+  position: relative;
+  cursor: crosshair;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-image:
+    linear-gradient(to right, #fff, transparent),
+    linear-gradient(to top, #000, transparent);
+  background-size: 100% 100%;
+}
+
+.battersea-colourswatch__pointer {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.battersea-colourswatch__hue {
+  width: 100%;
+  height: 14px;
+  background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  border-radius: 7px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.battersea-colourswatch__hue-handle {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.battersea-colourswatch__hex {
+  width: 90px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.battersea-colourswatch__hex:focus {
+  outline: none;
+  border-color: #667eea;
+}
