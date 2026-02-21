@@ -1,6 +1,6 @@
 /**
  * Battersea Library - FormValidation Styles
- * Version: 2.15.0
+ * Version: 2.22.0
  */
 
 :root {
@@ -13,6 +13,13 @@
   --form-strength-weak: #e74c3c;
   --form-strength-medium: #f39c12;
   --form-strength-strong: #27ae60;
+  --form-file-border: #ddd;
+  --form-file-bg: #fafafa;
+  --form-file-dragover-bg: #f0f4ff;
+  --form-file-dragover-border: #667eea;
+  --form-file-icon-color: #999;
+  --form-file-text-color: #666;
+  --form-file-browse-color: #667eea;
 }
 
 // ─── Field States ──────────────────────────────
@@ -190,6 +197,119 @@
     .battersea-form-strength__label {
       color: var(--form-strength-strong, #27ae60);
     }
+  }
+}
+
+// ─── File Upload ──────────────────────────────
+
+.battersea-form-file-wrapper {
+  position: relative;
+
+  input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+}
+
+.battersea-form-file-dropzone {
+  border: 2px dashed var(--form-file-border, #ddd);
+  border-radius: var(--form-border-radius, 4px);
+  background: var(--form-file-bg, #fafafa);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--form-file-dragover-border, #667eea);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--form-file-dragover-border, #667eea);
+    outline-offset: 2px;
+  }
+
+  &--dragover {
+    border-color: var(--form-file-dragover-border, #667eea);
+    background: var(--form-file-dragover-bg, #f0f4ff);
+  }
+
+  // Error state (applied to dropzone instead of hidden input)
+  &.battersea-form-field--error {
+    border-color: var(--form-error-color, #e74c3c) !important;
+    background: fade(#e74c3c, 3%);
+  }
+
+  &.battersea-form-field--valid {
+    border-color: var(--form-success-color, #27ae60) !important;
+  }
+}
+
+.battersea-form-file-icon {
+  display: block;
+  margin: 0 auto 0.75rem;
+  color: var(--form-file-icon-color, #999);
+  transition: color 0.2s ease;
+
+  .battersea-form-file-dropzone--dragover & {
+    color: var(--form-file-dragover-border, #667eea);
+  }
+}
+
+.battersea-form-file-text {
+  color: var(--form-file-text-color, #666);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.battersea-form-file-browse {
+  background: none;
+  border: none;
+  color: var(--form-file-browse-color, #667eea);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--form-file-browse-color, #667eea);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.battersea-form-file-list {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.battersea-form-file-item {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.battersea-form-file-dropzone--has-files {
+  .battersea-form-file-icon,
+  .battersea-form-file-text {
+    display: none;
   }
 }
 

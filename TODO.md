@@ -1,7 +1,7 @@
 # Battersea Library - TODO
 
 **Last Updated:** 21 February 2026
-**Current Version:** 2.21.1
+**Current Version:** 2.22.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -66,7 +66,7 @@
 ### 🔨 In Progress
 
 ### 📋 Next Up
-- [ ] Update form element validation to include for file select element (allowed file types and maximum file size). 
+- [x] Update form element validation to include for file select element (allowed file types and maximum file size) (v2.22.0)
 - [ ] New advanced form elements - date picker, time picker, colour swatch, toggle, slide. Please suggest any otheres that you thin kwould be helpful, 
 - [ ] Transparent header - Setting that makes the the headers background transparent until it sticks to the top of the browser window when it's background fades in. Its transparency returns when the user scrolls black to the top of the site. When set to transparent the header floats above the first content of the site. This will effect the smooth scroll compoent because it usually offsets the content to allow for the header height.
 - [ ] Back to top button - A button fades in as you scroll down the page clicking it scrolles smoothly to the top of the page.

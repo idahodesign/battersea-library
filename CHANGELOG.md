@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.22.0] - 2026-02-21
+
+### Added
+- **File upload validation** -- Two new validation rules for file inputs: `filetypes` (allowed extensions) and `maxsize` (max file size in MB)
+- **Styled file drop zone** -- File inputs are automatically wrapped in a drag-and-drop upload area with browse button, upload icon, and selected file list with sizes
+- **Multi-file support** -- Works with the native `multiple` attribute; each file is validated individually against type and size rules
+- **File input required rule** -- The `required` rule now works with file inputs (checks that at least one file is selected)
+- **Demo page updated** -- Two new live demos for single and multi-file upload with validation
+- **New CSS custom properties** -- `--form-file-border`, `--form-file-bg`, `--form-file-dragover-bg`, `--form-file-dragover-border`, `--form-file-icon-color`, `--form-file-text-color`, `--form-file-browse-color`
+
+---
+
 ## [2.21.1] - 2026-02-21
 
 ### Added

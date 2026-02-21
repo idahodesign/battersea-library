@@ -1,15 +1,16 @@
 /**
  * Battersea Library - FormValidation Component
- * Version: 2.15.0
+ * Version: 2.22.0
  *
  * Real-time form validation with password strength indicators,
- * custom rules, and optional AJAX submission.
+ * file upload validation, custom rules, and optional AJAX submission.
  *
  * Usage:
  * <form data-form-validation>
  *   <input type="text" name="email" data-validate="required|email">
  *   <input type="password" name="password" data-validate="required|min:8|uppercase|lowercase|number|special">
  *   <input type="password" name="confirm" data-validate="required|match:password">
+ *   <input type="file" name="document" data-validate="required|filetypes:pdf,doc|maxsize:5">
  *   <button type="submit">Submit</button>
  * </form>
  *
@@ -42,7 +43,9 @@
     lowercase: 'Must contain at least one lowercase letter.',
     special: 'Must contain at least one special character.',
     match: 'Fields do not match.',
-    pattern: 'Invalid format.'
+    pattern: 'Invalid format.',
+    filetypes: 'Allowed file types: {param}.',
+    maxsize: 'File must be under {param} MB.'
   };
 
   // Password-related rules (trigger strength indicator)
@@ -55,6 +58,7 @@
       this.fields = [];
       this.strengthIndicators = [];
       this.passwordToggles = [];
+      this.fileUploads = [];
 
       // Form-level configuration
       this.ajax = Utils.parseBoolean(Utils.getData(el, 'form-ajax') || 'false');
@@ -101,6 +105,11 @@
           this.buildStrengthIndicator(field);
         }
 
+        // Build styled upload area for file inputs
+        if (el.type === 'file') {
+          this.buildFileUpload(field);
+        }
+
         return field;
       }.bind(this));
     }
@@ -133,13 +142,23 @@
     bindEvents() {
       var self = this;
 
-      // Blur validation on each field
+      // Field-level validation
       this.fields.forEach(function(field) {
-        self.events.push(
-          Utils.addEvent(field.el, 'blur', function() {
-            self.validateField(field);
-          })
-        );
+        // File inputs validate on change, everything else on blur
+        if (field.el.type === 'file') {
+          self.events.push(
+            Utils.addEvent(field.el, 'change', function() {
+              self.updateFileDisplay(field);
+              self.validateField(field);
+            })
+          );
+        } else {
+          self.events.push(
+            Utils.addEvent(field.el, 'blur', function() {
+              self.validateField(field);
+            })
+          );
+        }
 
         // Real-time input for password strength
         if (field.hasPasswordRules) {
@@ -191,13 +210,21 @@
     // ──────────────────────────────────────────────
 
     validateField(field) {
-      var value = field.el.value;
+      var isFile = field.el.type === 'file';
+      var value = isFile ? '' : field.el.value;
+      var files = isFile ? field.el.files : null;
       var isRequired = field.rules.some(function(r) { return r.rule === 'required'; });
 
       // Optional fields: skip other rules if empty
-      if (!isRequired && !value) {
-        this.clearError(field);
-        return { valid: true, errors: [] };
+      if (!isRequired) {
+        if (isFile && (!files || files.length === 0)) {
+          this.clearError(field);
+          return { valid: true, errors: [] };
+        }
+        if (!isFile && !value) {
+          this.clearError(field);
+          return { valid: true, errors: [] };
+        }
       }
 
       var errors = [];
@@ -259,6 +286,8 @@
         case 'special':   return this.ruleSpecial(value);
         case 'match':     return this.ruleMatch(value, param);
         case 'pattern':   return this.rulePattern(value, param);
+        case 'filetypes': return this.ruleFiletypes(param, fieldEl);
+        case 'maxsize':   return this.ruleMaxsize(param, fieldEl);
         default:
           console.warn('FormValidation: Unknown rule "' + rule + '"');
           return { valid: true };
@@ -271,6 +300,11 @@
 
     ruleRequired(value, fieldEl) {
       var type = fieldEl.type;
+
+      // File input: at least one file selected
+      if (type === 'file') {
+        return { valid: fieldEl.files && fieldEl.files.length > 0 };
+      }
 
       // Checkbox: must be checked
       if (type === 'checkbox') {
@@ -355,6 +389,38 @@
       }
     }
 
+    ruleFiletypes(param, fieldEl) {
+      var files = fieldEl.files;
+      if (!files || files.length === 0) return { valid: true };
+
+      var allowed = param.split(',').map(function(ext) {
+        return ext.trim().toLowerCase().replace(/^\./, '');
+      });
+
+      for (var i = 0; i < files.length; i++) {
+        var name = files[i].name;
+        var ext = name.substring(name.lastIndexOf('.') + 1).toLowerCase();
+        if (allowed.indexOf(ext) === -1) {
+          return { valid: false, message: 'Allowed file types: ' + allowed.join(', ') + '.' };
+        }
+      }
+      return { valid: true };
+    }
+
+    ruleMaxsize(param, fieldEl) {
+      var files = fieldEl.files;
+      if (!files || files.length === 0) return { valid: true };
+
+      var maxBytes = parseFloat(param) * 1024 * 1024;
+
+      for (var i = 0; i < files.length; i++) {
+        if (files[i].size > maxBytes) {
+          return { valid: false, message: files[i].name + ' exceeds ' + param + ' MB.' };
+        }
+      }
+      return { valid: true };
+    }
+
     // ──────────────────────────────────────────────
     // Error Message Resolution
     // ──────────────────────────────────────────────
@@ -382,8 +448,15 @@
 
     showError(field, message) {
       this.clearError(field);
-      field.el.classList.add('battersea-form-field--error');
-      field.el.classList.remove('battersea-form-field--valid');
+
+      // For file inputs, apply error class to drop zone instead of hidden input
+      if (field.fileUpload) {
+        field.fileUpload.dropzone.classList.add('battersea-form-field--error');
+        field.fileUpload.dropzone.classList.remove('battersea-form-field--valid');
+      } else {
+        field.el.classList.add('battersea-form-field--error');
+        field.el.classList.remove('battersea-form-field--valid');
+      }
       field.el.setAttribute('aria-invalid', 'true');
 
       // Create error span
@@ -396,18 +469,27 @@
       // Link to field via aria-describedby
       field.el.setAttribute('aria-describedby', errorSpan.id);
 
-      // Insert after strength indicator, then wrapper, then field
-      var insertAfter = field.strengthIndicator || (field.passwordToggle ? field.passwordToggle.wrapper : field.el);
+      // Insert after the outermost wrapper element
+      var insertAfter = field.strengthIndicator ||
+                        (field.passwordToggle ? field.passwordToggle.wrapper : null) ||
+                        (field.fileUpload ? field.fileUpload.wrapper : null) ||
+                        field.el;
       insertAfter.parentNode.insertBefore(errorSpan, insertAfter.nextSibling);
     }
 
     clearError(field) {
-      field.el.classList.remove('battersea-form-field--error');
+      if (field.fileUpload) {
+        field.fileUpload.dropzone.classList.remove('battersea-form-field--error');
+      } else {
+        field.el.classList.remove('battersea-form-field--error');
+      }
       field.el.removeAttribute('aria-invalid');
       field.el.removeAttribute('aria-describedby');
 
-      // Remove existing error span — look in wrapper's parent if toggle exists
-      var searchRoot = field.passwordToggle ? field.passwordToggle.wrapper.parentNode : field.el.parentNode;
+      // Remove existing error span — look in wrapper's parent if wrapper exists
+      var searchRoot = field.passwordToggle ? field.passwordToggle.wrapper.parentNode :
+                       field.fileUpload ? field.fileUpload.wrapper.parentNode :
+                       field.el.parentNode;
       if (searchRoot) {
         var existing = searchRoot.querySelector('.battersea-form-error');
         if (existing) {
@@ -417,7 +499,11 @@
     }
 
     showValid(field) {
-      field.el.classList.add('battersea-form-field--valid');
+      if (field.fileUpload) {
+        field.fileUpload.dropzone.classList.add('battersea-form-field--valid');
+      } else {
+        field.el.classList.add('battersea-form-field--valid');
+      }
       field.el.setAttribute('aria-invalid', 'false');
     }
 
@@ -425,7 +511,12 @@
       var self = this;
       this.fields.forEach(function(field) {
         self.clearError(field);
-        field.el.classList.remove('battersea-form-field--valid');
+        if (field.fileUpload) {
+          field.fileUpload.dropzone.classList.remove('battersea-form-field--valid');
+          self.updateFileDisplay(field);
+        } else {
+          field.el.classList.remove('battersea-form-field--valid');
+        }
         field.el.removeAttribute('aria-invalid');
         if (field.hasPasswordRules) {
           self.updateStrengthIndicator(field);
@@ -438,7 +529,13 @@
       var firstError = this.el.querySelector('.battersea-form-field--error');
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        firstError.focus();
+        // For file fields, focus the browse button instead of hidden input
+        var browseBtn = firstError.querySelector('.battersea-form-file-browse');
+        if (browseBtn) {
+          browseBtn.focus();
+        } else {
+          firstError.focus();
+        }
       }
     }
 
@@ -587,6 +684,154 @@
     }
 
     // ──────────────────────────────────────────────
+    // File Upload
+    // ──────────────────────────────────────────────
+
+    buildFileUpload(field) {
+      var self = this;
+      var input = field.el;
+
+      // Wrap input in a container
+      var wrapper = document.createElement('div');
+      wrapper.className = 'battersea-form-file-wrapper';
+      input.parentNode.insertBefore(wrapper, input);
+      wrapper.appendChild(input);
+
+      // Create drop zone
+      var dropzone = document.createElement('div');
+      dropzone.className = 'battersea-form-file-dropzone';
+      dropzone.setAttribute('role', 'button');
+      dropzone.setAttribute('tabindex', '0');
+      dropzone.setAttribute('aria-label', 'File upload area. Click or drag files here.');
+
+      // Upload icon
+      var icon = document.createElement('div');
+      icon.className = 'battersea-form-file-icon';
+      icon.innerHTML = '<svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>' +
+        '<polyline points="17 8 12 3 7 8"/>' +
+        '<line x1="12" y1="3" x2="12" y2="15"/>' +
+        '</svg>';
+      dropzone.appendChild(icon);
+
+      // Text
+      var text = document.createElement('p');
+      text.className = 'battersea-form-file-text';
+      text.innerHTML = 'Drag files here or <button type="button" class="battersea-form-file-browse">browse</button>';
+      dropzone.appendChild(text);
+
+      // File list container
+      var fileList = document.createElement('div');
+      fileList.className = 'battersea-form-file-list';
+      dropzone.appendChild(fileList);
+
+      wrapper.appendChild(dropzone);
+
+      // Browse button triggers native file picker
+      var browseBtn = text.querySelector('.battersea-form-file-browse');
+      this.events.push(
+        Utils.addEvent(browseBtn, 'click', function(e) {
+          e.stopPropagation();
+          input.click();
+        })
+      );
+
+      // Clicking the drop zone also triggers file picker
+      this.events.push(
+        Utils.addEvent(dropzone, 'click', function(e) {
+          if (e.target === browseBtn) return;
+          input.click();
+        })
+      );
+
+      // Keyboard: Enter/Space on drop zone triggers file picker
+      this.events.push(
+        Utils.addEvent(dropzone, 'keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            input.click();
+          }
+        })
+      );
+
+      // Drag-and-drop handling
+      var dragCounter = 0;
+
+      this.events.push(
+        Utils.addEvent(dropzone, 'dragenter', function(e) {
+          e.preventDefault();
+          dragCounter++;
+          if (dragCounter === 1) {
+            dropzone.classList.add('battersea-form-file-dropzone--dragover');
+          }
+        })
+      );
+
+      this.events.push(
+        Utils.addEvent(dropzone, 'dragover', function(e) {
+          e.preventDefault();
+        })
+      );
+
+      this.events.push(
+        Utils.addEvent(dropzone, 'dragleave', function(e) {
+          e.preventDefault();
+          dragCounter--;
+          if (dragCounter === 0) {
+            dropzone.classList.remove('battersea-form-file-dropzone--dragover');
+          }
+        })
+      );
+
+      this.events.push(
+        Utils.addEvent(dropzone, 'drop', function(e) {
+          e.preventDefault();
+          dragCounter = 0;
+          dropzone.classList.remove('battersea-form-file-dropzone--dragover');
+
+          var dt = e.dataTransfer;
+          if (dt && dt.files && dt.files.length > 0) {
+            input.files = dt.files;
+            self.updateFileDisplay(field);
+            self.validateField(field);
+          }
+        })
+      );
+
+      field.fileUpload = { wrapper: wrapper, dropzone: dropzone, fileList: fileList, browseBtn: browseBtn };
+      this.fileUploads.push(field.fileUpload);
+    }
+
+    updateFileDisplay(field) {
+      if (!field.fileUpload) return;
+
+      var fileList = field.fileUpload.fileList;
+      var files = field.el.files;
+      fileList.innerHTML = '';
+
+      if (!files || files.length === 0) {
+        field.fileUpload.dropzone.classList.remove('battersea-form-file-dropzone--has-files');
+        return;
+      }
+
+      field.fileUpload.dropzone.classList.add('battersea-form-file-dropzone--has-files');
+
+      for (var i = 0; i < files.length; i++) {
+        var item = document.createElement('div');
+        item.className = 'battersea-form-file-item';
+        item.textContent = files[i].name + ' (' + this.formatFileSize(files[i].size) + ')';
+        fileList.appendChild(item);
+      }
+    }
+
+    formatFileSize(bytes) {
+      if (bytes === 0) return '0 B';
+      var units = ['B', 'KB', 'MB', 'GB'];
+      var i = Math.floor(Math.log(bytes) / Math.log(1024));
+      return parseFloat((bytes / Math.pow(1024, i)).toFixed(1)) + ' ' + units[i];
+    }
+
+    // ──────────────────────────────────────────────
     // Form Submission
     // ──────────────────────────────────────────────
 
@@ -709,6 +954,17 @@
         }
       });
       this.passwordToggles = [];
+
+      // Remove file upload wrappers (unwrap inputs back to their original parent)
+      this.fileUploads.forEach(function(fu) {
+        var wrapper = fu.wrapper;
+        var input = wrapper.querySelector('input[type="file"]');
+        if (input && wrapper.parentNode) {
+          wrapper.parentNode.insertBefore(input, wrapper);
+          wrapper.parentNode.removeChild(wrapper);
+        }
+      });
+      this.fileUploads = [];
 
       // Remove strength indicators
       this.strengthIndicators.forEach(function(el) {

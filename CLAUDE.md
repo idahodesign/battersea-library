@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.21.1
+- **Current Version:** 2.22.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -43,7 +43,7 @@ battersea-library/
 7. DataTable - Sortable, filterable tables with pagination, column resizing, row selection, CSV export
 8. DragDrop - Reorderable lists and multi-container sorting with localStorage persistence
 9. Flipbox - 3D flip cards
-10. FormValidation - Real-time form validation with password strength, visibility toggle, custom rules and AJAX submission
+10. FormValidation - Real-time form validation with password strength, visibility toggle, file upload validation with styled drop zone, custom rules and AJAX submission
 11. Header - Adaptive header with shrink-on-scroll
 12. HorizontalNav - Multi-level dropdown menus
 13. ImageGallery - Lightbox with masonry grid, zoom, and video
@@ -141,6 +141,7 @@ battersea-library/
 - **Graph v2.20.0** (Feb 2026): SVG charts Phase 1 -- line, column, and pie with CSV/JSON data, animation, tooltips, legends
 - **Graph Phase 2 v2.21.0** (Feb 2026): Four new chart types -- stacked column, stacked bar, donut, and radial bar
 - **Graph fixes v2.21.1** (Feb 2026): Clickable segment links, constant-width pie/donut gaps, smooth stacked animation, segment gap attribute
+- **FormValidation file upload v2.22.0** (Feb 2026): File type and size validation rules, styled drag-and-drop upload area, single and multi-file support
 
 ### In Progress
 - See `TODO.md` for current tasks

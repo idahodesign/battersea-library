@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Form Validation Component - Battersea Library</title>
-		<meta name="description" content="Real-time form validation with password strength, custom rules and AJAX submission - Battersea Library Component">
+		<meta name="description" content="Real-time form validation with password strength, file upload validation, custom rules and AJAX submission - Battersea Library Component">
 
 		<!-- LESS Stylesheets -->
 		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
@@ -134,7 +134,7 @@
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Form Validation Component</h1>
-						<p class="hero-subtitle">Real-time form validation with password strength, custom rules and AJAX submission</p>
+						<p class="hero-subtitle">Real-time form validation with password strength, file upload validation, custom rules and AJAX submission</p>
 					</div>
 				</div>
 			</section>
@@ -254,6 +254,48 @@
 								</form>
 							</div>
 						</div>
+
+						<!-- File Upload Demo -->
+						<div class="demo-subsection delay-4" data-animate="fade-up">
+							<h3>File Upload</h3>
+							<p>File inputs get a styled drop zone automatically. Drag and drop files onto the area or click to browse. The validation checks file types and sizes before the form submits.</p>
+
+							<div class="demo-container">
+								<form data-form-validation class="demo-form">
+									<div class="form-group">
+										<label for="file-single">Upload a document</label>
+										<input type="file" id="file-single" name="document"
+											data-validate="required|filetypes:pdf,doc,docx|maxsize:5"
+											data-validate-message-filetypes="Only PDF and Word documents, please."
+											data-validate-message-maxsize="Keep it under 5 MB.">
+									</div>
+									<div class="form-actions">
+										<button type="submit">Upload</button>
+										<button type="reset">Clear</button>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- Multi-File Upload Demo -->
+						<div class="demo-subsection delay-5" data-animate="fade-up">
+							<h3>Multi-File Upload</h3>
+							<p>Add the <code>multiple</code> attribute and each selected file is validated individually. If any file breaks the rules, the whole selection gets flagged.</p>
+
+							<div class="demo-container">
+								<form data-form-validation class="demo-form">
+									<div class="form-group">
+										<label for="file-multi">Upload images</label>
+										<input type="file" id="file-multi" name="images" multiple
+											data-validate="required|filetypes:jpg,jpeg,png,gif,webp|maxsize:10">
+									</div>
+									<div class="form-actions">
+										<button type="submit">Upload</button>
+										<button type="reset">Clear</button>
+									</div>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -301,6 +343,12 @@
 								<div class="feature-icon">&lt;</div>
 								<h3>No Dependencies</h3>
 								<p>Pure vanilla JS. Works with any backend, any framework, any setup.</p>
+							</div>
+
+							<div class="feature-card delay-7" data-animate="fade-up">
+								<div class="feature-icon">&#8593;</div>
+								<h3>File Upload</h3>
+								<p>Styled drop zone with drag-and-drop, file type and size validation. Works with single or multiple files.</p>
 							</div>
 						</div>
 					</div>
@@ -421,6 +469,8 @@
 									<tr><td><code>special</code></td><td><code>special</code></td><td>Must contain at least one special character.</td></tr>
 									<tr><td><code>match</code></td><td><code>match:fieldname</code></td><td>Fields do not match.</td></tr>
 									<tr><td><code>pattern</code></td><td><code>pattern:regex</code></td><td>Invalid format.</td></tr>
+									<tr><td><code>filetypes</code></td><td><code>filetypes:jpg,png,pdf</code></td><td>Allowed file types: jpg, png, pdf.</td></tr>
+									<tr><td><code>maxsize</code></td><td><code>maxsize:5</code></td><td>File must be under 5 MB.</td></tr>
 								</tbody>
 							</table>
 
@@ -559,6 +609,21 @@ form.addEventListener('battersea:formInvalid', (e) =&gt; {
 form.addEventListener('battersea:formSubmitted', (e) =&gt; {
   console.log('AJAX response:', e.detail.response);
 });</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>File Upload with Validation</div>
+								<div data-accordion-content>
+									<div>
+										<p>File inputs are automatically wrapped in a styled drop zone. Just add validation rules as normal:</p>
+										<pre><code>&lt;input type="file" name="document"
+  data-validate="required|filetypes:pdf,doc|maxsize:5"&gt;
+
+&lt;!-- Multi-file: --&gt;
+&lt;input type="file" name="images" multiple
+  data-validate="required|filetypes:jpg,png|maxsize:10"&gt;</code></pre>
 									</div>
 								</div>
 							</div>
