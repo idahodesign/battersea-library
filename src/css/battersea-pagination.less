@@ -105,27 +105,26 @@
 
   // ─── Go-to-Page Input ───────────────────
   &__input-group {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-  }
-
-  &__input-label {
-    font-size: 0.85rem;
-    color: var(--pagination-info-color);
+    margin-left: 0.5rem;
   }
 
   &__input {
-    width: 4rem;
+    width: 6.5rem;
     padding: 0.35rem 0.5rem;
     border: 1px solid var(--pagination-border-color);
     border-radius: 3px;
     font-size: 0.85rem;
     font-family: inherit;
-    text-align: center;
     background: #fff;
     transition: border-color 0.2s;
     -moz-appearance: textfield;
+
+    &::placeholder {
+      color: #aaa;
+      font-size: 0.8rem;
+    }
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -136,27 +135,6 @@
     &:focus {
       outline: none;
       border-color: var(--pagination-accent-color);
-    }
-  }
-
-  &__input-btn {
-    padding: 0.35rem 0.75rem;
-    border: 1px solid var(--pagination-border-color);
-    background: var(--pagination-btn-bg);
-    border-radius: 3px;
-    font-size: 0.85rem;
-    font-family: inherit;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-
-    &:hover {
-      background: var(--pagination-btn-hover-bg);
-      border-color: #ccc;
-    }
-
-    &:focus {
-      outline: 2px solid var(--pagination-accent-color);
-      outline-offset: 1px;
     }
   }
 

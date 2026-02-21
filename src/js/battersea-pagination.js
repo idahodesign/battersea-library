@@ -180,28 +180,24 @@
       }
 
       if (totalPages > 1) {
-        row.appendChild(this.renderControls(totalPages));
+        var controls = this.renderControls(totalPages);
+
+        // Go-to-page input sits inline after the page buttons
+        if (this.showInput) {
+          controls.appendChild(this.renderInput(totalPages));
+        }
+
+        row.appendChild(controls);
       }
 
       this.wrapper.insertBefore(row, this.liveRegion);
 
-      // Secondary row: input + sizes
-      if (this.showInput || this.showSizes) {
+      // Secondary row: sizes only
+      if (this.showSizes) {
         var row2 = document.createElement('div');
         row2.className = 'battersea-pagination__row battersea-pagination__row--secondary';
-
-        if (this.showInput && totalPages > 1) {
-          row2.appendChild(this.renderInput(totalPages));
-        }
-
-        if (this.showSizes) {
-          row2.appendChild(this.renderSizes());
-        }
-
-        // Only add secondary row if it has content
-        if (row2.children.length > 0) {
-          this.wrapper.insertBefore(row2, this.liveRegion);
-        }
+        row2.appendChild(this.renderSizes());
+        this.wrapper.insertBefore(row2, this.liveRegion);
       }
 
       // Client-side: show/hide items
@@ -271,42 +267,27 @@
       var group = document.createElement('div');
       group.className = 'battersea-pagination__input-group';
 
-      var label = document.createElement('label');
-      label.className = 'battersea-pagination__input-label';
-      label.textContent = 'Go to page';
-
       var input = document.createElement('input');
       input.type = 'number';
       input.className = 'battersea-pagination__input';
       input.min = '1';
       input.max = String(totalPages);
-      input.setAttribute('aria-label', 'Page number');
-
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'battersea-pagination__input-btn';
-      btn.textContent = 'Go';
+      input.placeholder = 'Go to page';
+      input.setAttribute('aria-label', 'Go to page');
 
       var self = this;
-      var goHandler = function() {
-        var val = parseInt(input.value, 10);
-        if (!isNaN(val)) {
-          self.goToPage(val);
-          input.value = '';
-        }
-      };
-
-      this.events.push(Utils.addEvent(btn, 'click', goHandler));
       this.events.push(Utils.addEvent(input, 'keydown', function(e) {
         if (e.key === 'Enter') {
           e.preventDefault();
-          goHandler();
+          var val = parseInt(input.value, 10);
+          if (!isNaN(val)) {
+            self.goToPage(val);
+            input.value = '';
+          }
         }
       }));
 
-      group.appendChild(label);
       group.appendChild(input);
-      group.appendChild(btn);
 
       return group;
     }
