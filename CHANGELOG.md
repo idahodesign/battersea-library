@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.25.0] - 2026-02-22
+
+### Added
+- **BackToTop component** -- A circular button with an upward chevron that fades in as you scroll down the page. Clicking it smoothly scrolls back to the top. Configurable scroll threshold, animation duration, and corner offset via data attributes. Added to all demo pages and the homepage.
+
+---
+
 ## [2.24.0] - 2026-02-22
 
 ### Added

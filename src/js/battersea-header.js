@@ -382,22 +382,17 @@
       }
       
       // Handle transparent background toggle
+      // Note: pre-header stays permanently transparent when transparent mode is active
       if (this.transparent) {
         if (scrollY > 10 && this.isTransparentActive) {
           this.isTransparentActive = false;
           this.el.classList.remove('battersea-header--transparent-active');
-          if (this.preHeader) {
-            this.preHeader.classList.remove('battersea-header-pre--transparent-active');
-          }
           this.el.dispatchEvent(new CustomEvent('battersea:headerTransparent', {
             detail: { isTransparent: false }
           }));
         } else if (scrollY <= 10 && !this.isTransparentActive) {
           this.isTransparentActive = true;
           this.el.classList.add('battersea-header--transparent-active');
-          if (this.preHeader) {
-            this.preHeader.classList.add('battersea-header-pre--transparent-active');
-          }
           this.el.dispatchEvent(new CustomEvent('battersea:headerTransparent', {
             detail: { isTransparent: true }
           }));

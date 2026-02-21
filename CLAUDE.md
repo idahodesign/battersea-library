@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.24.0
+- **Current Version:** 2.25.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 35 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 36 JavaScript files (includes env-config, nav-data)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (32 total)
+### Components (33 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations
@@ -66,6 +66,7 @@ battersea-library/
 30. VideoBackground - Looping background video with mobile poster fallback and configurable overlay
 31. VideoPlayer - Custom video player with overlay controls, fullscreen, seek bar and auto-hiding controls
 32. Graph - SVG charts: line, column, stacked column, bar, stacked bar, pie, donut, and radial with data loading, animation, tooltips, and legends
+33. BackToTop - Scroll-to-top button that fades in as you scroll down the page
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -145,6 +146,7 @@ battersea-library/
 - **FormValidation file upload v2.22.0** (Feb 2026): File type and size validation rules, styled drag-and-drop upload area, single and multi-file support
 - **FormElements v2.23.0** (Feb 2026): Advanced form inputs -- toggle switch, range slider, date picker (custom calendar + native), time picker (24h/12h), colour swatch (preset grid + full picker)
 - **Transparent header v2.24.0** (Feb 2026): Optional transparent background mode for Header component, fades in on scroll, works alongside sticky and shrink
+- **BackToTop v2.25.0** (Feb 2026): Circular button with chevron arrow, fades in on scroll, smooth scroll to top, added to all demo pages
 
 ### In Progress
 - See `TODO.md` for current tasks

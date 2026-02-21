@@ -69,7 +69,7 @@
 - [x] Update form element validation to include for file select element (allowed file types and maximum file size) (v2.22.0)
 - [x] New advanced form elements - toggle switch, range slider, date picker (custom calendar + native), time picker (24h/12h), colour swatch (preset grid + full picker) (v2.23.0)
 - [x] Transparent header - Setting that makes the header background transparent until the user scrolls, when the background fades in. Transparency returns when user scrolls back to the top. Content floats up behind the header. Works with sticky and shrink. (v2.24.0)
-- [ ] Back to top button - A button fades in as you scroll down the page clicking it scrolles smoothly to the top of the page.
+- [x] Back to top button - A circular button fades in as you scroll down, clicking it smoothly scrolls to the top (v2.25.0)
 - [ ] MiniQuiz v2 - Drag-and-drop ordering of HTML elements, drag-and-drop grouping of HTML elements, optional prevent navigation from page until the quiz has been attempted
 - [ ] Pagination
 - [ ] Ticker tape animation for text. Each letter in a box with this animation setting is appears on after another.

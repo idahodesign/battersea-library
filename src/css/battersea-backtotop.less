@@ -1,0 +1,62 @@
+/**
+ * Battersea Library - BackToTop Component
+ * Version: 1.0.0
+ */
+
+.battersea-backtotop {
+  position: fixed;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background 0.2s ease;
+  padding: 0;
+  outline: none;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+  }
+
+  &__arrow {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-top: 2.5px solid #fff;
+    border-right: 2.5px solid #fff;
+    transform: rotate(-45deg);
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 767px) {
+  .battersea-backtotop {
+    width: 40px;
+    height: 40px;
+
+    &__arrow {
+      width: 10px;
+      height: 10px;
+      border-width: 2px;
+      margin-top: 3px;
+    }
+  }
+}
