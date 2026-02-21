@@ -319,13 +319,32 @@
       }
 
       this.updateTransparentMargin();
+
+      // Watch for size changes (e.g. includes loading) and recalculate margin
+      this.transparentResizeObserver = new ResizeObserver(() => {
+        this.updateTransparentMargin();
+      });
+      this.transparentResizeObserver.observe(this.el);
+      if (this.preHeader) {
+        this.transparentResizeObserver.observe(this.preHeader);
+      }
     }
 
     updateTransparentMargin() {
       const headerHeight = this.el.offsetHeight;
       const preHeaderHeight = this.preHeader ? this.preHeader.offsetHeight : 0;
       const totalPull = headerHeight + preHeaderHeight;
-      this.el.style.marginBottom = -totalPull + 'px';
+      // Apply negative margin-top to the content after the header — margin-bottom
+      // on sticky elements does not pull siblings up in all browsers.
+      // Skip any header-owned elements (e.g. mobile overlay) to find the real content.
+      let target = this.el.nextElementSibling;
+      while (target && target.className.indexOf('battersea-header') === 0) {
+        target = target.nextElementSibling;
+      }
+      if (target) {
+        this.transparentTarget = target;
+        target.style.marginTop = -totalPull + 'px';
+      }
     }
 
     attachEvents() {
@@ -893,10 +912,14 @@
         this.destroyMobileMenu();
       }
 
-      // Disconnect logo observer if active
+      // Disconnect observers
       if (this.logoObserver) {
         this.logoObserver.disconnect();
         this.logoObserver = null;
+      }
+      if (this.transparentResizeObserver) {
+        this.transparentResizeObserver.disconnect();
+        this.transparentResizeObserver = null;
       }
 
       // Remove all event listeners
@@ -913,7 +936,9 @@
 
       // Reset inline styles
       this.el.style.height = '';
-      this.el.style.marginBottom = '';
+      if (this.transparentTarget) {
+        this.transparentTarget.style.marginTop = '';
+      }
       if (this.logo) {
         this.logo.style.transform = '';
         this.logo.style.transition = '';
