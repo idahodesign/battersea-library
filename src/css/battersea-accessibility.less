@@ -31,11 +31,12 @@
   }
 }
 
-/* Pre-header needs positioned ancestor for the panel — sticky works like relative */
+/* Pre-header needs positioned ancestor for the panel — sticky works like relative.
+   z-index 101 so the accessibility dropdown appears above the main header (100). */
 .battersea-header-pre {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 101;
 }
 
 /* Slide-down panel */
