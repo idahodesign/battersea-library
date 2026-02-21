@@ -615,7 +615,23 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.23.0** - FormElements component with toggle, range slider, date picker, time picker, colour swatch
+- **2.22.0** - FormValidation file upload validation with styled drop zone
+- **2.21.1** - Graph fixes: clickable segments, constant-width gaps, smooth stacked animation
+- **2.21.0** - Graph Phase 2: stacked column, stacked bar, donut, and radial bar charts
+- **2.20.0** - Graph component with line, column, and pie charts
+- **2.19.0** - VideoBackground component with mobile poster fallback
+- **2.18.0** - MiniQuiz component with multiple question types and timer
+- **2.17.0** - PageNav component with three navigation modes
+- **2.16.0** - Breadcrumbs component auto-generated from site navigation
+- **2.15.0** - FormValidation component with password strength and custom rules
+- **2.14.0** - NavData service for structured navigation data
+- **2.13.0** - DataTable component with sorting, filtering, pagination
+- **2.12.0** - Timeline component with vertical and horizontal layouts
+- **2.11.0** - DragDrop component with reorder, sort, and display modes
 - **2.10.0** - Profile Grid component with hover overlays, filter pills, and detailed lightbox
+- **2.9.0** - VideoPlayer component with custom controls and fullscreen
+- **2.8.0** - AudioPlayer component with stylable controls
 - **2.7.0** - Smooth anchor scrolling in battersea-core.js
 - **2.6.1** - All 18 demo pages, updated nav, slider/progress bar fixes
 - **2.6.0** - Accessibility component with font size slider

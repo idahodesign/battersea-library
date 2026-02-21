@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 33 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 35 JavaScript files (includes env-config, nav-data)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -116,7 +116,7 @@ battersea-library/
 - Repository structure and GitHub Pages deployment
 - Homepage with component showcase
 - Include system for reusable HTML
-- 21 components fully functional
+- 32 components fully functional
 - **Demo folder consolidation** (Feb 2026): `demos/` → `demo/` (old redirects removed)
 - **Project file cleanup** (Feb 2026): Removed redundant files, gitignored compiled CSS
 - **Multi-host deployment**: Same codebase works on GitHub Pages and Uundi
