@@ -31,9 +31,11 @@
   }
 }
 
-/* Pre-header needs relative positioning for the panel */
+/* Pre-header needs positioned ancestor for the panel — sticky works like relative */
 .battersea-header-pre {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 /* Slide-down panel */
