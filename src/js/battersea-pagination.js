@@ -315,16 +315,25 @@
         select.appendChild(option);
       });
 
+      // "All" option
+      var allOption = document.createElement('option');
+      allOption.value = 'all';
+      allOption.textContent = 'All';
+      if (this.pageSize >= this.totalItems) {
+        allOption.selected = true;
+      }
+      select.appendChild(allOption);
+
       var labelAfter = document.createElement('span');
       labelAfter.className = 'battersea-pagination__sizes-label';
       labelAfter.textContent = 'per page';
 
       this.events.push(Utils.addEvent(select, 'change', function() {
-        self.pageSize = parseInt(select.value, 10);
+        self.pageSize = select.value === 'all' ? self.totalItems : parseInt(select.value, 10);
         self.currentPage = 1;
         self.render();
         self.dispatchChange();
-        self.announce('Showing ' + self.pageSize + ' per page');
+        self.announce(select.value === 'all' ? 'Showing all items' : 'Showing ' + self.pageSize + ' per page');
       }));
 
       group.appendChild(labelBefore);
