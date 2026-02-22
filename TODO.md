@@ -73,7 +73,7 @@
 - [x] MiniQuiz v2 - Drag-and-drop ordering, matching pairs, grouping into categories, and navigation prevention (v2.26.0)
 - [x] Pagination - Standalone pagination with client-side and server-side modes, go-to-page input, page size selector, smart page range with ellipsis (v2.27.0)
 - [x] Ticker tape animation for text -- each letter appears one after another with natural word pauses (v2.28.0)
-- [ ] Create a single or multiple pages that display the coponents using only thier base styling. I want to be able to confirm they can be used out of the box. To ensure the pages are tidy you can use a style sheet for the page structure and lables. Please use this site https://uundi.david-haworth.com/shortcode-reference as a reference for the page design. 
+- [ ] Create a single or multiple test web pages that display the cmpoonents using only thier base styling and the base variables less file. I want to be able to confirm the comonents can be used out of the box without any additional styling. To ensure the test pages are orgnaised you can use a style sheet for the page structure. Please use this site https://uundi.david-haworth.com/shortcode-reference as a reference for the page design. 
 
 ---
 
