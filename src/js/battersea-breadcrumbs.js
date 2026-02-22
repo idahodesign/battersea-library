@@ -9,8 +9,8 @@
  * Dependencies: battersea-utils.js, battersea-core.js, battersea-nav-data.js
  *
  * Usage:
- *   <div data-breadcrumb></div>
- *   <div data-breadcrumb data-breadcrumb-separator="/">Home / Section / Page</div>
+ *   <div data-breadcrumbs></div>
+ *   <div data-breadcrumbs data-breadcrumb-separator="/">Home / Section / Page</div>
  */
 
 (function(window, document) {
@@ -39,8 +39,8 @@
 
       // Wait for NavData
       var self = this;
-      document.addEventListener('battersea:navdata-ready', function handler() {
-        document.removeEventListener('battersea:navdata-ready', handler);
+      document.addEventListener('battersea:navDataReady', function handler() {
+        document.removeEventListener('battersea:navDataReady', handler);
         self.render();
       });
     }
@@ -102,6 +102,6 @@
     }
   }
 
-  window.Battersea.register('breadcrumbs', Breadcrumbs, '[data-breadcrumb]');
+  window.Battersea.register('breadcrumbs', Breadcrumbs, '[data-breadcrumbs]');
 
 })(window, document);

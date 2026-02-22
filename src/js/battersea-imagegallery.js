@@ -590,6 +590,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('imagegallery', ImageGallery, '[data-image-gallery]');
+  window.Battersea.register('imageGallery', ImageGallery, '[data-image-gallery]');
 
 })(window, document);

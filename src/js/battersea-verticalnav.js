@@ -1506,6 +1506,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('verticalnav', VerticalNav, '[data-vertical-nav]');
+  window.Battersea.register('verticalNav', VerticalNav, '[data-vertical-nav]');
 
 })(window, document);

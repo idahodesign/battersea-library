@@ -5,14 +5,14 @@
  * Multi-item carousel slider (shows multiple items at once)
  * 
  * Usage:
- * <div data-multislider data-multislider-items="4" data-multislider-items-md="2" data-multislider-items-sm="1" data-multislider-gap="20">
- *   <div data-multislider-track>
- *     <div data-multislider-item>Item 1</div>
- *     <div data-multislider-item>Item 2</div>
- *     <div data-multislider-item>Item 3</div>
+ * <div data-multi-slider data-multislider-items="4" data-multislider-items-md="2" data-multislider-items-sm="1" data-multislider-gap="20">
+ *   <div data-multi-slider-track>
+ *     <div data-multi-slider-item>Item 1</div>
+ *     <div data-multi-slider-item>Item 2</div>
+ *     <div data-multi-slider-item>Item 3</div>
  *   </div>
- *   <button data-multislider-prev>â€¹</button>
- *   <button data-multislider-next>â€º</button>
+ *   <button data-multi-slider-prev>â€¹</button>
+ *   <button data-multi-slider-next>â€º</button>
  * </div>
  * 
  * Dependencies: battersea-utils.js, battersea-core.js
@@ -33,10 +33,10 @@
       if (!el) return;
       
       this.el = el;
-      this.track = Utils.qs('[data-multislider-track]', el);
-      this.items = this.track ? Utils.qsa('[data-multislider-item]', el) : [];
-      this.prevBtn = Utils.qs('[data-multislider-prev]', el);
-      this.nextBtn = Utils.qs('[data-multislider-next]', el);
+      this.track = Utils.qs('[data-multi-slider-track]', el);
+      this.items = this.track ? Utils.qsa('[data-multi-slider-item]', el) : [];
+      this.prevBtn = Utils.qs('[data-multi-slider-prev]', el);
+      this.nextBtn = Utils.qs('[data-multi-slider-next]', el);
       
       // Get settings from data attributes
       this.itemsPerView = Utils.parseInt(Utils.getData(el, 'multislider-items'), 3);
@@ -127,7 +127,7 @@
       }
       
       // Update allItems to include clones
-      this.allItems = Utils.qsa('[data-multislider-item]', this.track);
+      this.allItems = Utils.qsa('[data-multi-slider-item]', this.track);
     }
 
     setupItems() {
@@ -294,6 +294,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('multislider', MultiSlider, '[data-multislider]');
+  window.Battersea.register('multiSlider', MultiSlider, '[data-multi-slider]');
 
 })(window, document);

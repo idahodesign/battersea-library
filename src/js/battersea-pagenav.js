@@ -9,8 +9,8 @@
  * Dependencies: battersea-utils.js, battersea-core.js, battersea-nav-data.js
  *
  * Usage:
- *   <div data-pagenav></div>
- *   <div data-pagenav data-pagenav-mode="category" data-pagenav-show-category="true"></div>
+ *   <div data-page-nav></div>
+ *   <div data-page-nav data-pagenav-mode="category" data-pagenav-show-category="true"></div>
  */
 
 (function(window, document) {
@@ -41,8 +41,8 @@
       }
 
       var self = this;
-      document.addEventListener('battersea:navdata-ready', function handler() {
-        document.removeEventListener('battersea:navdata-ready', handler);
+      document.addEventListener('battersea:navDataReady', function handler() {
+        document.removeEventListener('battersea:navDataReady', handler);
         self.render();
       });
     }
@@ -167,6 +167,6 @@
     }
   }
 
-  window.Battersea.register('pageNav', PageNav, '[data-pagenav]');
+  window.Battersea.register('pageNav', PageNav, '[data-page-nav]');
 
 })(window, document);

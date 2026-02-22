@@ -53,12 +53,12 @@
 		<div class="content-outer">
 
 			<!-- Breadcrumb -->
-			<div data-breadcrumb></div>
+			<div data-breadcrumbs></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>SmoothScroll Component</h1>
@@ -70,13 +70,13 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demo" data-animate="fade-up">
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demo" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">It's Already Running</h2>
 						<p class="section-subtitle">The SmoothScroll component is active on this very page</p>
 
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>Look to the right</h3>
 							<p>See those small dots running down the right-hand side of the page? That's the SmoothScroll component in action. Each dot represents one of the sections on this page. Try clicking a dot &mdash; you'll be scrolled smoothly to that section. Hover over a dot and you'll see a tooltip with the section name.</p>
 
@@ -92,7 +92,7 @@
 							</div>
 						</div>
 
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>How sections are defined</h3>
 							<p>Every section on this page follows the same pattern. Here's what the markup looks like:</p>
 
@@ -112,12 +112,12 @@
 							</div>
 						</div>
 
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>The SmoothScroll container</h3>
 							<p>The component is initialised by a single <code>div</code> with data attributes. On this page, it sits just before the closing <code>&lt;/body&gt;</code> tag:</p>
 
 							<div class="demo-container" style="text-align: left;">
-<pre><code>&lt;div data-smoothscroll
+<pre><code>&lt;div data-smooth-scroll
      data-smoothscroll-header-selector="#mainHeader"
      data-smoothscroll-position="right"
      data-smoothscroll-duration="800"
@@ -134,43 +134,43 @@
 			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
-			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Key Features</h2>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">IO</div>
 								<h3>IntersectionObserver Tracking</h3>
 								<p>Uses the IntersectionObserver API to detect which section is in view. No scroll event polling &mdash; just efficient, browser-native observation.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">~</div>
 								<h3>Smooth Easing</h3>
 								<p>Four easing functions built in &mdash; linear, ease-in, ease-out, and ease-in-out. Each uses cubic curves for a natural feel.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">H</div>
 								<h3>Dynamic Header Compensation</h3>
 								<p>Recalculates the header height on every animation frame. Even if the header shrinks mid-scroll, you'll land in exactly the right spot.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">&#10148;</div>
 								<h3>Auto Dot Creation</h3>
 								<p>Dots are generated automatically from your section markup. Add a new <code>data-scroll-section</code> and a new dot appears &mdash; no extra configuration needed.</p>
 							</div>
 
-							<div class="feature-card delay-5" data-animate="fade-up">
+							<div class="feature-card delay-5" data-animation="fade-up">
 								<div class="feature-icon">Tab</div>
 								<h3>Keyboard Navigation</h3>
 								<p>Arrow keys move focus between dots. Enter or Space scrolls to the focused section. Fully accessible for keyboard-only users.</p>
 							</div>
 
-							<div class="feature-card delay-6" data-animate="fade-up">
+							<div class="feature-card delay-6" data-animation="fade-up">
 								<div class="feature-icon">{ }</div>
 								<h3>Custom Events</h3>
 								<p>Dispatches <code>battersea:scrollSectionChange</code> whenever the active section changes &mdash; whether from clicking a dot or scrolling naturally.</p>
@@ -183,7 +183,7 @@
 			<!-- ============================================ -->
 			<!-- CONFIGURATION SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Configuration &amp; Options</h2>
@@ -203,7 +203,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>data-smoothscroll</code></td>
+										<td><code>data-smooth-scroll</code></td>
 										<td>-</td>
 										<td>required</td>
 										<td>Initialises the SmoothScroll component on the container element</td>
@@ -290,7 +290,7 @@
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -315,7 +315,7 @@
 &lt;/section&gt;
 
 &lt;!-- SmoothScroll container --&gt;
-&lt;div data-smoothscroll
+&lt;div data-smooth-scroll
      data-smoothscroll-offset="80"
      data-smoothscroll-position="right"&gt;
 &lt;/div&gt;</code></pre>
@@ -334,7 +334,7 @@
 &lt;/header&gt;
 
 &lt;!-- SmoothScroll with dynamic header detection --&gt;
-&lt;div data-smoothscroll
+&lt;div data-smooth-scroll
      data-smoothscroll-header-selector="#mainHeader"
      data-smoothscroll-duration="600"
      data-smoothscroll-easing="ease-out"&gt;
@@ -349,7 +349,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Place the navigation dots on the left side of the viewport:</p>
-<pre><code>&lt;div data-smoothscroll
+<pre><code>&lt;div data-smooth-scroll
      data-smoothscroll-position="left"
      data-smoothscroll-hide-mobile="true"&gt;
 &lt;/div&gt;</code></pre>
@@ -363,7 +363,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>React to section changes in your own code:</p>
-<pre><code>const scrollNav = document.querySelector('[data-smoothscroll]');
+<pre><code>const scrollNav = document.querySelector('[data-smooth-scroll]');
 
 scrollNav.addEventListener('battersea:scrollSectionChange', (e) =&gt; {
   console.log('Active section:', e.detail.section.title);
@@ -384,16 +384,16 @@ scrollNav.addEventListener('battersea:scrollSectionChange', (e) =&gt; {
 									<div>
 										<p>Choose the easing that suits your project's feel:</p>
 <pre><code>&lt;!-- Constant speed, no acceleration --&gt;
-&lt;div data-smoothscroll data-smoothscroll-easing="linear"&gt;&lt;/div&gt;
+&lt;div data-smooth-scroll data-smoothscroll-easing="linear"&gt;&lt;/div&gt;
 
 &lt;!-- Starts slow, accelerates --&gt;
-&lt;div data-smoothscroll data-smoothscroll-easing="ease-in"&gt;&lt;/div&gt;
+&lt;div data-smooth-scroll data-smoothscroll-easing="ease-in"&gt;&lt;/div&gt;
 
 &lt;!-- Starts fast, decelerates (this page uses this one) --&gt;
-&lt;div data-smoothscroll data-smoothscroll-easing="ease-out"&gt;&lt;/div&gt;
+&lt;div data-smooth-scroll data-smoothscroll-easing="ease-out"&gt;&lt;/div&gt;
 
 &lt;!-- Starts slow, speeds up, then slows down --&gt;
-&lt;div data-smoothscroll data-smoothscroll-easing="ease-in-out"&gt;&lt;/div&gt;</code></pre>
+&lt;div data-smooth-scroll data-smoothscroll-easing="ease-in-out"&gt;&lt;/div&gt;</code></pre>
 										<p>All four use cubic curves under the hood for a smooth, natural motion.</p>
 									</div>
 								</div>
@@ -406,7 +406,7 @@ scrollNav.addEventListener('battersea:scrollSectionChange', (e) =&gt; {
 			<!-- ============================================ -->
 			<!-- BROWSER SUPPORT SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Browser Support</h2>
@@ -449,7 +449,7 @@ scrollNav.addEventListener('battersea:scrollSectionChange', (e) =&gt; {
 
 
 			<!-- Page Navigation -->
-			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
 		</div>
 
@@ -457,7 +457,7 @@ scrollNav.addEventListener('battersea:scrollSectionChange', (e) =&gt; {
 		<div id="demo-footer-placeholder"></div>
 
 		<!-- SmoothScroll Navigation -->
-		<div data-smoothscroll
+		<div data-smooth-scroll
 			data-smoothscroll-header-selector="#mainHeader"
 			data-smoothscroll-position="right"
 			data-smoothscroll-duration="800"
@@ -466,7 +466,7 @@ scrollNav.addEventListener('battersea:scrollSectionChange', (e) =&gt; {
 		</div>
 
 		<!-- Back to Top -->
-		<div data-backtotop></div>
+		<div data-back-to-top></div>
 
 		<!-- Battersea Library JavaScript -->
 		<script src="../../src/js/battersea-utils.js"></script>

@@ -9,37 +9,37 @@
  * FEATURES:
  * - data-animate-children="true" - Enable cascading child animations
  * - data-animate-children=".selector" - Only animate specific children
- * - Individual children can override with their own data-animate
- * - data-animate="ticker" - Ticker tape text reveal (NEW in v2.3.0)
+ * - Individual children can override with their own data-animation
+ * - data-animation="ticker" - Ticker tape text reveal (NEW in v2.3.0)
  *
  * Usage:
  *
  * Basic (children appear immediately):
- * <section data-animate="fade-up">
+ * <section data-animation="fade-up">
  *   <div>Appears immediately</div>
  * </section>
  *
  * With child cascade:
- * <section data-animate="fade-up" data-animate-children="true">
+ * <section data-animation="fade-up" data-animate-children="true">
  *   <div>Fades in after parent</div>
  *   <div>Fades in with stagger</div>
  * </section>
  *
  * Animate specific children only:
- * <section data-animate="fade-up" data-animate-children=".animate-me">
+ * <section data-animation="fade-up" data-animate-children=".animate-me">
  *   <div class="animate-me">Animated</div>
  *   <div>Not animated</div>
  * </section>
  *
  * Individual child override:
- * <section data-animate="fade-up">
+ * <section data-animation="fade-up">
  *   <div>Appears immediately</div>
- *   <button data-animate="fade-up" class="delay-2">Animates independently!</button>
+ *   <button data-animation="fade-up" class="delay-2">Animates independently!</button>
  * </section>
  *
  * Ticker tape (text reveals letter by letter):
- * <h1 data-animate="ticker">Hello World</h1>
- * <h2 data-animate="ticker" data-ticker-speed="60">Slower reveal</h2>
+ * <h1 data-animation="ticker">Hello World</h1>
+ * <h2 data-animation="ticker" data-ticker-speed="60">Slower reveal</h2>
  *
  * Available animations: fade-in, fade-up, fade-down, fade-left, fade-right, ticker
  * Delay classes: delay-1 through delay-10 (delay-5 = 0.5 seconds)
@@ -60,7 +60,7 @@
   class Animation {
     constructor(el) {
       this.el = el;
-      this.animation = Utils.getData(el, 'animate');
+      this.animation = Utils.getData(el, 'animation');
       this.animateChildren = Utils.getData(el, 'animate-children'); // NEW: Control child animation
       this.observer = null;
       this.isAnimating = false;
@@ -68,7 +68,7 @@
       this.isTicker = this.animation === 'ticker';
 
       if (!this.animation) {
-        console.warn('Animation element missing data-animate attribute');
+        console.warn('Animation element missing data-animation attribute');
         return;
       }
 
@@ -94,7 +94,7 @@
         // It's a selector - only hide elements matching this selector
         const targetChildren = element.querySelectorAll(this.animateChildren);
         targetChildren.forEach(child => {
-          if (!Utils.getData(child, 'animate')) {
+          if (!Utils.getData(child, 'animation')) {
             child.style.opacity = '0';
             child.style.visibility = 'hidden';
           }
@@ -102,10 +102,10 @@
         return;
       }
 
-      // Default behavior: hide all children without data-animate
+      // Default behavior: hide all children without data-animation
       const children = Array.from(element.children);
       children.forEach(child => {
-        if (!Utils.getData(child, 'animate')) {
+        if (!Utils.getData(child, 'animation')) {
           child.style.opacity = '0';
           child.style.visibility = 'hidden';
           
@@ -121,7 +121,7 @@
     hideChildrenRecursive(element) {
       const children = Array.from(element.children);
       children.forEach(child => {
-        if (!Utils.getData(child, 'animate')) {
+        if (!Utils.getData(child, 'animation')) {
           child.style.opacity = '0';
           child.style.visibility = 'hidden';
           this.hideChildrenRecursive(child);
@@ -240,7 +240,7 @@
     showChildren(element) {
       const children = Array.from(element.children);
       children.forEach((child, index) => {
-        if (!Utils.getData(child, 'animate')) {
+        if (!Utils.getData(child, 'animation')) {
           const childDelay = this.getDelay(child);
           // Add stagger delay based on index (100ms per child)
           const staggerDelay = childDelay + (index * 100);
@@ -260,8 +260,8 @@
     showAllChildren(element) {
       const allElements = element.querySelectorAll('*');
       allElements.forEach(el => {
-        const hasOwnAnimation = Utils.getData(el, 'animate');
-        // Skip elements with their own data-animate (they'll animate themselves)
+        const hasOwnAnimation = Utils.getData(el, 'animation');
+        // Skip elements with their own data-animation (they'll animate themselves)
         if (el.style.visibility === 'hidden' && !hasOwnAnimation) {
           el.style.visibility = 'visible';
           el.style.opacity = '1';
@@ -290,6 +290,6 @@
   }
 
   // Register with Battersea Core
-  window.Battersea.register('animation', Animation, '[data-animate]');
+  window.Battersea.register('animation', Animation, '[data-animation]');
 
 })(window, document);

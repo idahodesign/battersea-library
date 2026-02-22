@@ -53,12 +53,12 @@
 		<div class="content-outer">
 
 			<!-- Breadcrumb -->
-			<div data-breadcrumb></div>
+			<div data-breadcrumbs></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Breadcrumbs Component</h1>
@@ -70,43 +70,43 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
 						<p class="section-subtitle">The breadcrumb at the top of this page is a working example</p>
 
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>How It Works</h3>
 							<p>The breadcrumb trail you see above the page title is generated automatically. It reads the site's navigation menu, works out where you are, and builds the trail for you. No manual configuration needed on each page.</p>
 
 							<p>For this page the trail reads: <strong>Home | Navigation | Breadcrumbs</strong> because the Breadcrumbs component sits inside the Navigation category in the main menu.</p>
 						</div>
 
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>Custom Separator</h3>
 							<p>You can change the separator character using a data attribute. Here's one with a forward slash:</p>
 
 							<div class="demo-container">
-								<div data-breadcrumb data-breadcrumb-separator="/"></div>
+								<div data-breadcrumbs data-breadcrumb-separator="/"></div>
 							</div>
 						</div>
 
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>Chevron Separator</h3>
 							<p>Or use a chevron for a more traditional look:</p>
 
 							<div class="demo-container">
-								<div data-breadcrumb data-breadcrumb-separator="&#8250;"></div>
+								<div data-breadcrumbs data-breadcrumb-separator="&#8250;"></div>
 							</div>
 						</div>
 
-						<div class="demo-subsection delay-3" data-animate="fade-up">
+						<div class="demo-subsection delay-3" data-animation="fade-up">
 							<h3>Arrow Separator</h3>
 							<p>A right arrow works nicely too:</p>
 
 							<div class="demo-container">
-								<div data-breadcrumb data-breadcrumb-separator="&#8594;"></div>
+								<div data-breadcrumbs data-breadcrumb-separator="&#8594;"></div>
 							</div>
 						</div>
 					</div>
@@ -116,31 +116,31 @@
 			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
-			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Key Features</h2>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">&#9881;</div>
 								<h3>Auto-Generated</h3>
 								<p>Reads the navigation menu DOM and detects the current page from the URL. No manual breadcrumb data needed.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">|</div>
 								<h3>Configurable Separator</h3>
 								<p>Change the separator character with a single data attribute. Pipe, slash, chevron, arrow -- whatever suits your design.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">A11y</div>
 								<h3>Accessible</h3>
 								<p>Uses <code>&lt;nav aria-label="Breadcrumb"&gt;</code> with an ordered list and <code>aria-current="page"</code> on the current item.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">{ }</div>
 								<h3>CSS Variables</h3>
 								<p>Every visual aspect -- colours, spacing, font size -- is controlled via CSS custom properties for easy theming.</p>
@@ -153,7 +153,7 @@
 			<!-- ============================================ -->
 			<!-- CONFIGURATION SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Configuration &amp; Options</h2>
@@ -173,7 +173,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>data-breadcrumb</code></td>
+										<td><code>data-breadcrumbs</code></td>
 										<td>-</td>
 										<td>required</td>
 										<td>Initialises the breadcrumb component on the element</td>
@@ -247,7 +247,7 @@
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -258,7 +258,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Drop this element anywhere on the page. It auto-detects the current page and builds the trail:</p>
-										<pre><code>&lt;div data-breadcrumb&gt;&lt;/div&gt;</code></pre>
+										<pre><code>&lt;div data-breadcrumbs&gt;&lt;/div&gt;</code></pre>
 									</div>
 								</div>
 							</div>
@@ -269,13 +269,13 @@
 									<div>
 										<p>Change the separator character with the <code>data-breadcrumb-separator</code> attribute:</p>
 										<pre><code>&lt;!-- Forward slash --&gt;
-&lt;div data-breadcrumb data-breadcrumb-separator="/"&gt;&lt;/div&gt;
+&lt;div data-breadcrumbs data-breadcrumb-separator="/"&gt;&lt;/div&gt;
 
 &lt;!-- Chevron --&gt;
-&lt;div data-breadcrumb data-breadcrumb-separator="&amp;#8250;"&gt;&lt;/div&gt;
+&lt;div data-breadcrumbs data-breadcrumb-separator="&amp;#8250;"&gt;&lt;/div&gt;
 
 &lt;!-- Arrow --&gt;
-&lt;div data-breadcrumb data-breadcrumb-separator="&amp;#8594;"&gt;&lt;/div&gt;</code></pre>
+&lt;div data-breadcrumbs data-breadcrumb-separator="&amp;#8594;"&gt;&lt;/div&gt;</code></pre>
 									</div>
 								</div>
 							</div>
@@ -317,32 +317,32 @@
 			<!-- ============================================ -->
 			<!-- ACCESSIBILITY SECTION -->
 			<!-- ============================================ -->
-			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Accessibility Features</h2>
 						<p class="section-subtitle">Built with inclusivity in mind</p>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">nav</div>
 								<h3>Landmark Navigation</h3>
 								<p>Uses <code>&lt;nav&gt;</code> with <code>aria-label="Breadcrumb"</code> so screen readers can identify it as navigation.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">ol</div>
 								<h3>Ordered List</h3>
 								<p>The trail is an <code>&lt;ol&gt;</code> element, conveying the hierarchical order to assistive technology.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">&#10148;</div>
 								<h3>Current Page</h3>
 								<p>The last item uses <code>aria-current="page"</code> to identify the current location in the trail.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">[ ]</div>
 								<h3>Focus Indicators</h3>
 								<p>Visible focus outlines on all breadcrumb links for keyboard navigation.</p>
@@ -355,7 +355,7 @@
 			<!-- ============================================ -->
 			<!-- BROWSER SUPPORT SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Browser Support</h2>
@@ -392,7 +392,7 @@
 
 
 			<!-- Page Navigation -->
-			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
 		</div>
 
@@ -400,7 +400,7 @@
 		<div id="demo-footer-placeholder"></div>
 
 		<!-- SmoothScroll Navigation -->
-		<div data-smoothscroll
+		<div data-smooth-scroll
 			data-smoothscroll-header-selector="#mainHeader"
 			data-smoothscroll-position="right"
 			data-smoothscroll-duration="800"
@@ -410,7 +410,7 @@
 
 
 		<!-- Back to Top -->
-		<div data-backtotop></div>
+		<div data-back-to-top></div>
 
 		<!-- Battersea Library JavaScript -->
 		<script src="../../src/js/battersea-utils.js"></script>

@@ -817,6 +817,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('horizontalnav', HorizontalNav, '[data-horizontal-nav]');
+  window.Battersea.register('horizontalNav', HorizontalNav, '[data-horizontal-nav]');
 
 })(window, document);

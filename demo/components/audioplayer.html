@@ -53,12 +53,12 @@
 		<div class="content-outer">
 
 			<!-- Breadcrumb -->
-			<div data-breadcrumb></div>
+			<div data-breadcrumbs></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Audio Player Component</h1>
@@ -70,31 +70,31 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
 						<p class="section-subtitle">See the audio player in action with different configurations</p>
 
 						<!-- Basic Player -->
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>Basic Player</h3>
 							<p>The simplest setup &mdash; just point it at an audio file and the player builds itself. All controls are fully functional out of the box.</p>
 
 							<div class="demo-container" style="display: flex; justify-content: center; padding: 2rem;">
-								<div data-audio
+								<div data-audio-player
 									data-audio-src="../../assets/audio/Audio-sample.mp3">
 								</div>
 							</div>
 						</div>
 
 						<!-- Player with Track Info -->
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>Player with Track Info</h3>
 							<p>Add a title and artist name to display above the controls. This version also uses a custom accent colour via <code>data-audio-color</code>.</p>
 
 							<div class="demo-container" style="display: flex; justify-content: center; padding: 2rem;">
-								<div data-audio
+								<div data-audio-player
 									data-audio-src="../../assets/audio/Audio-sample.mp3"
 									data-audio-title="Audio Sample"
 									data-audio-artist="Battersea Library"
@@ -104,12 +104,12 @@
 						</div>
 
 						<!-- Looping Player -->
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>Looping Player</h3>
 							<p>This player loops continuously and starts at half volume. Useful for background audio or ambient sound effects.</p>
 
 							<div class="demo-container" style="display: flex; justify-content: center; padding: 2rem;">
-								<div data-audio
+								<div data-audio-player
 									data-audio-src="../../assets/audio/Audio-sample.mp3"
 									data-audio-title="Ambient Loop"
 									data-audio-artist="Battersea Library"
@@ -121,12 +121,12 @@
 						</div>
 
 						<!-- Minimal Player (No Progress Bar) -->
-						<div class="demo-subsection delay-3" data-animate="fade-up">
+						<div class="demo-subsection delay-3" data-animation="fade-up">
 							<h3>Minimal Player</h3>
 							<p>Set <code>data-audio-progress="false"</code> to hide the seek bar. You still get play/pause, time display, and volume &mdash; just a cleaner, more compact layout.</p>
 
 							<div class="demo-container" style="display: flex; justify-content: center; padding: 2rem;">
-								<div data-audio
+								<div data-audio-player
 									data-audio-src="../../assets/audio/Audio-sample.mp3"
 									data-audio-title="Compact Mode"
 									data-audio-artist="Battersea Library"
@@ -142,43 +142,43 @@
 			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
-			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Key Features</h2>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">&#9654;</div>
 								<h3>Custom Controls</h3>
 								<p>Every control is a real HTML element you can style with CSS. The native audio element is hidden &mdash; you're in full control of the look.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">&#8596;</div>
 								<h3>Seek &amp; Scrub</h3>
 								<p>Click anywhere on the progress bar to jump to that point, or drag the handle to scrub through the track in real time.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">&#9835;</div>
 								<h3>Volume Control</h3>
 								<p>Adjustable volume slider with a mute toggle. Three volume icons reflect the current level &mdash; muted, low, and full.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">A11y</div>
 								<h3>Accessible</h3>
 								<p>ARIA roles on all slider controls, keyboard navigation with arrow keys, and visible focus indicators throughout.</p>
 							</div>
 
-							<div class="feature-card delay-5" data-animate="fade-up">
+							<div class="feature-card delay-5" data-animation="fade-up">
 								<div class="feature-icon">&#9638;</div>
 								<h3>Responsive</h3>
 								<p>On very small screens the volume slider tucks away to save space. The mute button stays, so volume control is never lost.</p>
 							</div>
 
-							<div class="feature-card delay-6" data-animate="fade-up">
+							<div class="feature-card delay-6" data-animation="fade-up">
 								<div class="feature-icon">&#123;&#125;</div>
 								<h3>Data Attributes</h3>
 								<p>Configure source, title, artist, volume, looping, and accent colour all from the HTML. No JavaScript setup needed.</p>
@@ -191,7 +191,7 @@
 			<!-- ============================================ -->
 			<!-- CONFIGURATION SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Configuration &amp; Options</h2>
@@ -211,7 +211,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>data-audio</code></td>
+										<td><code>data-audio-player</code></td>
 										<td>-</td>
 										<td>required</td>
 										<td>Initialises the audio player on the container element</td>
@@ -282,7 +282,7 @@
 							<h3 style="margin-top: 2rem;">Basic Markup</h3>
 							<p>The minimum markup to get an audio player running:</p>
 
-							<pre><code>&lt;div data-audio data-audio-src="path/to/track.mp3"&gt;&lt;/div&gt;</code></pre>
+							<pre><code>&lt;div data-audio-player data-audio-src="path/to/track.mp3"&gt;&lt;/div&gt;</code></pre>
 
 							<h3 style="margin-top: 2rem;">Custom Events</h3>
 							<p>Listen for these events to hook into playback:</p>
@@ -336,7 +336,7 @@
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -347,7 +347,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>The simplest possible setup &mdash; one element, one attribute:</p>
-										<pre><code>&lt;div data-audio
+										<pre><code>&lt;div data-audio-player
   data-audio-src="path/to/track.mp3"&gt;
 &lt;/div&gt;</code></pre>
 									</div>
@@ -359,7 +359,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Display the track title and artist, with a teal accent:</p>
-										<pre><code>&lt;div data-audio
+										<pre><code>&lt;div data-audio-player
   data-audio-src="path/to/track.mp3"
   data-audio-title="My Track"
   data-audio-artist="The Artist"
@@ -374,7 +374,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>A looping player at reduced volume:</p>
-										<pre><code>&lt;div data-audio
+										<pre><code>&lt;div data-audio-player
   data-audio-src="ambient.mp3"
   data-audio-loop="true"
   data-audio-volume="30"&gt;
@@ -388,7 +388,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Hook into playback events for custom behaviour:</p>
-										<pre><code>const player = document.querySelector('[data-audio]');
+										<pre><code>const player = document.querySelector('[data-audio-player]');
 
 player.addEventListener('battersea:audioPlay', (e) =&gt; {
   console.log('Playing at:', e.detail.currentTime);
@@ -412,7 +412,7 @@ player.addEventListener('battersea:audioVolumeChange', (e) =&gt; {
 			<!-- ============================================ -->
 			<!-- BROWSER SUPPORT SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Browser Support</h2>
@@ -454,7 +454,7 @@ player.addEventListener('battersea:audioVolumeChange', (e) =&gt; {
 
 
 			<!-- Page Navigation -->
-			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
 		</div>
 
@@ -462,7 +462,7 @@ player.addEventListener('battersea:audioVolumeChange', (e) =&gt; {
 		<div id="demo-footer-placeholder"></div>
 
 		<!-- SmoothScroll Navigation -->
-		<div data-smoothscroll
+		<div data-smooth-scroll
 			data-smoothscroll-header-selector="#mainHeader"
 			data-smoothscroll-position="right"
 			data-smoothscroll-duration="800"
@@ -471,7 +471,7 @@ player.addEventListener('battersea:audioVolumeChange', (e) =&gt; {
 		</div>
 
 		<!-- Back to Top -->
-		<div data-backtotop></div>
+		<div data-back-to-top></div>
 
 		<!-- Battersea Library JavaScript -->
 		<script src="../../src/js/battersea-utils.js"></script>

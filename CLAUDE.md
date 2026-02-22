@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.28.0
+- **Current Version:** 2.29.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -84,10 +84,13 @@ battersea-library/
 - ES6+ syntax
 - Component registration pattern:
   ```javascript
-  window.Battersea.register('componentName', ComponentClass, '[data-selector]');
+  window.Battersea.register('componentName', ComponentClass, '[data-component-name]');
   ```
-- Custom events use `battersea:` prefix
-- All components support auto-initialization via data attributes
+- Registration names use **camelCase** (e.g. `'backToTop'`, `'smoothScroll'`, `'imageGallery'`)
+- Initialisation selectors use **kebab-case** matching the component name (e.g. `[data-back-to-top]`, `[data-smooth-scroll]`, `[data-image-gallery]`)
+- Config sub-attributes are hyphenated extensions of the selector (e.g. `data-backtotop-threshold`, `data-smoothscroll-offset`)
+- Custom events use `battersea:` prefix with **camelCase** (e.g. `battersea:navDataReady`, `battersea:paginationChange`)
+- All components support auto-initialisation via data attributes
 
 ### CSS/LESS Conventions
 - One LESS file per component: `battersea-[component].less`
@@ -152,7 +155,8 @@ battersea-library/
 - **Transparent header fixes** (Feb 2026): Content slides under header correctly (margin-top on sibling), pre-header sticky with z-index 101, accessibility panel z-index fix
 - **MiniQuiz v2 v2.26.0** (Feb 2026): Drag-and-drop ordering, matching pairs, grouping into categories, mobile select fallback for match type, keyboard accessibility, navigation prevention with beforeunload and custom modal
 - **Pagination v2.27.0** (Feb 2026): Standalone pagination with client-side and server-side modes, go-to-page input, page size selector, smart ellipsis, ARIA live region
-- **Ticker tape animation v2.28.0** (Feb 2026): New `data-animate="ticker"` option reveals text one character at a time with configurable speed and natural word pauses
+- **Ticker tape animation v2.28.0** (Feb 2026): New `data-animation="ticker"` option reveals text one character at a time with configurable speed and natural word pauses
+- **Naming consistency v2.29.0** (Feb 2026): Standardised all registration names (camelCase), event names (camelCase after `battersea:` prefix), and initialisation selectors (kebab-case) across all 34 components
 
 ### In Progress
 - See `TODO.md` for current tasks

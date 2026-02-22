@@ -6,7 +6,7 @@
  * Supports MP4, WebM, OGG.
  *
  * Usage:
- * <div data-video data-video-src="clip.mp4"></div>
+ * <div data-video-player data-video-src="clip.mp4"></div>
  *
  * Dependencies: battersea-utils.js, battersea-core.js
  */
@@ -795,6 +795,6 @@
     }
   }
 
-  window.Battersea.register('videoPlayer', VideoPlayer, '[data-video]');
+  window.Battersea.register('videoPlayer', VideoPlayer, '[data-video-player]');
 
 })(window, document);

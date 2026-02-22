@@ -1927,6 +1927,6 @@
 		}
 	}
 
-	window.Battersea.register('miniQuiz', MiniQuiz, '[data-quiz]');
+	window.Battersea.register('miniQuiz', MiniQuiz, '[data-mini-quiz]');
 
 })(window, document);

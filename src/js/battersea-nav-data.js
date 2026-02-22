@@ -93,7 +93,7 @@
       window.Battersea.navData = this;
       this.ready = true;
 
-      document.dispatchEvent(new CustomEvent('battersea:navdata-ready', {
+      document.dispatchEvent(new CustomEvent('battersea:navDataReady', {
         detail: { navData: this }
       }));
 

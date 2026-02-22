@@ -6,7 +6,7 @@
  * Supports MP3, WAV, OGG, AAC.
  *
  * Usage:
- * <div data-audio data-audio-src="track.mp3"></div>
+ * <div data-audio-player data-audio-src="track.mp3"></div>
  *
  * Dependencies: battersea-utils.js, battersea-core.js
  */
@@ -568,6 +568,6 @@
     }
   }
 
-  window.Battersea.register('audioPlayer', AudioPlayer, '[data-audio]');
+  window.Battersea.register('audioPlayer', AudioPlayer, '[data-audio-player]');
 
 })(window, document);

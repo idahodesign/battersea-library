@@ -175,6 +175,6 @@
 		}
 	}
 
-	window.Battersea.register('videoBg', VideoBg, '[data-videobg]');
+	window.Battersea.register('videoBg', VideoBg, '[data-video-bg]');
 
 })(window, document);

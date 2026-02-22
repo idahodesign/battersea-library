@@ -5,7 +5,7 @@
  * Smooth scroll-to-section with visual navigation dots
  * 
  * Usage:
- * <div data-smoothscroll 
+ * <div data-smooth-scroll
  *      data-smoothscroll-offset="80"
  *      data-smoothscroll-header-selector="#header"
  *      data-smoothscroll-position="right"
@@ -450,6 +450,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('smoothscroll', SmoothScroll, '[data-smoothscroll]');
+  window.Battersea.register('smoothScroll', SmoothScroll, '[data-smooth-scroll]');
 
 })(window, document);

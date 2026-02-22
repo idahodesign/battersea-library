@@ -4,10 +4,10 @@
  * 
  * Usage:
  * <!-- Horizontal Progress Bar -->
- * <div data-progress data-progress-value="75" data-progress-label="Loading..."></div>
+ * <div data-progress-bar data-progress-value="75" data-progress-label="Loading..."></div>
  * 
  * <!-- Circular Progress Bar -->
- * <div data-progress data-progress-type="circular" data-progress-value="85" data-progress-size="120" data-progress-stroke="8"></div>
+ * <div data-progress-bar data-progress-type="circular" data-progress-value="85" data-progress-size="120" data-progress-stroke="8"></div>
  * 
  * Dependencies: battersea-utils.js, battersea-core.js
  */
@@ -207,6 +207,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('progressbar', ProgressBar, '[data-progress]');
+  window.Battersea.register('progressBar', ProgressBar, '[data-progress-bar]');
 
 })(window, document);

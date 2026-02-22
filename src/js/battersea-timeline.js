@@ -157,9 +157,9 @@
         // Vertical: delegate to Animation component
         if (this.alternate) {
           var animType = (index % 2 === 0) ? 'fade-right' : 'fade-left';
-          wrapper.setAttribute('data-animate', animType);
+          wrapper.setAttribute('data-animation', animType);
         } else {
-          wrapper.setAttribute('data-animate', 'fade-up');
+          wrapper.setAttribute('data-animation', 'fade-up');
         }
       } else {
         // Horizontal: custom reveal (handled in setupScrollReveal)

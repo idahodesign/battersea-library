@@ -5,7 +5,7 @@
  * Nested circular progress bars
  * 
  * Usage:
- * <div data-progress-nested data-progress-circles='[
+ * <div data-nested-progress data-progress-circles='[
  *   {"label":"HTML","value":90,"color":"#e34c26"},
  *   {"label":"CSS","value":85,"color":"#264de4"},
  *   {"label":"JS","value":75,"color":"#f0db4f"}
@@ -230,6 +230,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('nestedprogress', NestedProgress, '[data-progress-nested]');
+  window.Battersea.register('nestedProgress', NestedProgress, '[data-nested-progress]');
 
 })(window, document);

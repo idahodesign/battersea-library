@@ -6,7 +6,7 @@
  * Clicking it smoothly scrolls back to the top.
  *
  * Usage:
- * <div data-backtotop
+ * <div data-back-to-top
  *      data-backtotop-threshold="300"
  *      data-backtotop-duration="500"
  *      data-backtotop-offset="30">
@@ -136,6 +136,6 @@
     }
   }
 
-  window.Battersea.register('backtotop', BackToTop, '[data-backtotop]');
+  window.Battersea.register('backToTop', BackToTop, '[data-back-to-top]');
 
 })(window, document);

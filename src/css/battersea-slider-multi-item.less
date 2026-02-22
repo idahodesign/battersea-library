@@ -2,22 +2,22 @@
  * Battersea Library - Multi Item Slider Styles Version: 2.0.4
 */
 
-[data-multislider] {
+[data-multi-slider] {
   position: relative;
   overflow: hidden;
-  
-  [data-multislider-track] {
+
+  [data-multi-slider-track] {
     display: flex;
     transition: transform 0.5s ease-in-out;
   }
-  
-  [data-multislider-item] {
+
+  [data-multi-slider-item] {
     flex-shrink: 0;
     transition: opacity 0.3s ease-in-out;
   }
-  
-  [data-multislider-prev],
-  [data-multislider-next] {
+
+  [data-multi-slider-prev],
+  [data-multi-slider-next] {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -44,7 +44,7 @@
     }
   }
   
-  [data-multislider-prev] {
+  [data-multi-slider-prev] {
     left: 16px;
 
     &::before {
@@ -53,7 +53,7 @@
     }
   }
 
-  [data-multislider-next] {
+  [data-multi-slider-next] {
     right: 16px;
 
     &::before {

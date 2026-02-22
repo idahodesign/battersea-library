@@ -32,7 +32,7 @@
  * - data-pagination-scroll-top:      Scroll target into view on page change (default: false)
  *
  * Events:
- * - battersea:pagination:change  { page, pageSize, totalPages, totalItems }
+ * - battersea:paginationChange  { page, pageSize, totalPages, totalItems }
  *
  * Dependencies: battersea-utils.js, battersea-core.js
  */
@@ -428,7 +428,7 @@
     }
 
     dispatchChange() {
-      this.el.dispatchEvent(new CustomEvent('battersea:pagination:change', {
+      this.el.dispatchEvent(new CustomEvent('battersea:paginationChange', {
         bubbles: true,
         detail: {
           page: this.currentPage,

@@ -93,6 +93,6 @@
   }
 
   // Register component with Battersea
-  window.Battersea.register('flipbox', Flipbox, '[data-flipbox]');
+  window.Battersea.register('flipBox', Flipbox, '[data-flipbox]');
 
 })(window, document);

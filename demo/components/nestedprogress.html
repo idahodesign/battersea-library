@@ -53,12 +53,12 @@
 		<div class="content-outer">
 
 			<!-- Breadcrumb -->
-			<div data-breadcrumb></div>
+			<div data-breadcrumbs></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>NestedProgress Component</h1>
@@ -70,20 +70,20 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
 						<p class="section-subtitle">Scroll down to see the rings animate</p>
 
 						<!-- Skills Chart -->
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>Skills Chart</h3>
 							<p>Three concentric rings showing different skill levels. Each ring has its own colour and value, all rendered inside one SVG. It's a compact way to show multiple data points at once.</p>
 
 							<div class="demo-container">
 								<div style="padding: 2rem; display: flex; justify-content: center;">
-									<div data-progress-nested
+									<div data-nested-progress
 										data-progress-circles='[{"label":"HTML","value":90,"color":"#e34c26"},{"label":"CSS","value":85,"color":"#264de4"},{"label":"JavaScript","value":75,"color":"#f0db4f"}]'
 										data-progress-duration="1500">
 									</div>
@@ -92,13 +92,13 @@
 						</div>
 
 						<!-- Project Progress with Legend -->
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>Project Progress with Legend</h3>
 							<p>Enable the legend and you get a key underneath showing what each ring represents. Useful when the chart is part of a larger dashboard and people need to know what they're looking at without guessing.</p>
 
 							<div class="demo-container">
 								<div style="padding: 2rem; display: flex; justify-content: center;">
-									<div data-progress-nested
+									<div data-nested-progress
 										data-progress-circles='[{"label":"Design","value":100,"color":"#667eea"},{"label":"Development","value":72,"color":"#764ba2"},{"label":"Testing","value":45,"color":"#4ecdc4"}]'
 										data-progress-legend="true"
 										data-progress-duration="1500">
@@ -108,13 +108,13 @@
 						</div>
 
 						<!-- With Centre Title -->
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>With Centre Title</h3>
 							<p>Add a title in the middle of the rings to give the whole chart a label. The text sits right in the centre of the SVG, so it's clear what the data is about.</p>
 
 							<div class="demo-container">
 								<div style="padding: 2rem; display: flex; justify-content: center;">
-									<div data-progress-nested
+									<div data-nested-progress
 										data-progress-circles='[{"label":"Frontend","value":88,"color":"#667eea"},{"label":"Backend","value":65,"color":"#764ba2"},{"label":"DevOps","value":40,"color":"#4ecdc4"}]'
 										data-progress-title="Stats"
 										data-progress-legend="true"
@@ -125,13 +125,13 @@
 						</div>
 
 						<!-- Minimal Two-Ring -->
-						<div class="demo-subsection delay-3" data-animate="fade-up">
+						<div class="demo-subsection delay-3" data-animation="fade-up">
 							<h3>Two-Ring Chart</h3>
 							<p>You don't have to use three rings. Two works just fine for simpler comparisons &mdash; like budget spent vs. budget remaining, or tasks done vs. total.</p>
 
 							<div class="demo-container">
 								<div style="padding: 2rem; display: flex; justify-content: center;">
-									<div data-progress-nested
+									<div data-nested-progress
 										data-progress-circles='[{"label":"Completed","value":68,"color":"#667eea"},{"label":"Remaining","value":32,"color":"#e0e0e0"}]'
 										data-progress-title="Tasks"
 										data-progress-legend="true"
@@ -147,43 +147,43 @@
 			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
-			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Key Features</h2>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">&#9711;</div>
 								<h3>Stacked Rings</h3>
 								<p>Multiple progress rings rendered concentrically in one SVG. Each ring has its own value, colour, and label.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">{ }</div>
 								<h3>JSON Configuration</h3>
 								<p>Define your rings with a simple JSON array in a data attribute. Label, value, and colour for each ring &mdash; that's all you need.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">~</div>
 								<h3>Animated on Scroll</h3>
 								<p>Rings animate from zero to their target value when they scroll into view. The animation duration is configurable.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">&#9776;</div>
 								<h3>Optional Legend</h3>
 								<p>Turn on the legend to show a colour-coded key beneath the chart. Makes it clear what each ring represents.</p>
 							</div>
 
-							<div class="feature-card delay-5" data-animate="fade-up">
+							<div class="feature-card delay-5" data-animation="fade-up">
 								<div class="feature-icon">Aa</div>
 								<h3>Centre Title</h3>
 								<p>Drop a title right in the middle of the rings to label the whole chart. Keeps things tidy and self-explanatory.</p>
 							</div>
 
-							<div class="feature-card delay-6" data-animate="fade-up">
+							<div class="feature-card delay-6" data-animation="fade-up">
 								<div class="feature-icon">&#10148;</div>
 								<h3>Zero Config</h3>
 								<p>No JavaScript setup needed. The data attributes handle everything &mdash; just define your rings and the component does the rest.</p>
@@ -196,7 +196,7 @@
 			<!-- ============================================ -->
 			<!-- CONFIGURATION SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Configuration &amp; Options</h2>
@@ -216,7 +216,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>data-progress-nested</code></td>
+										<td><code>data-nested-progress</code></td>
 										<td>-</td>
 										<td>required</td>
 										<td>Initialises the nested progress component on this element</td>
@@ -278,7 +278,7 @@
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -289,7 +289,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>The most common setup &mdash; three rings with labels and colours:</p>
-										<pre><code>&lt;div data-progress-nested
+										<pre><code>&lt;div data-nested-progress
   data-progress-circles='[
     {"label":"HTML","value":90,"color":"#e34c26"},
     {"label":"CSS","value":85,"color":"#264de4"},
@@ -306,7 +306,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Add <code>data-progress-legend="true"</code> to show what each ring means:</p>
-										<pre><code>&lt;div data-progress-nested
+										<pre><code>&lt;div data-nested-progress
   data-progress-circles='[
     {"label":"Design","value":100,"color":"#667eea"},
     {"label":"Development","value":72,"color":"#764ba2"},
@@ -324,7 +324,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Put a label in the middle of the chart with <code>data-progress-title</code>:</p>
-										<pre><code>&lt;div data-progress-nested
+										<pre><code>&lt;div data-nested-progress
   data-progress-circles='[
     {"label":"Frontend","value":88,"color":"#667eea"},
     {"label":"Backend","value":65,"color":"#764ba2"},
@@ -343,7 +343,7 @@
 									<div>
 										<p>Control how fast the rings fill up. The value is in milliseconds:</p>
 										<pre><code>&lt;!-- Slow and dramatic --&gt;
-&lt;div data-progress-nested
+&lt;div data-nested-progress
   data-progress-circles='[
     {"label":"Progress","value":78,"color":"#667eea"},
     {"label":"Quality","value":92,"color":"#4ecdc4"}
@@ -352,7 +352,7 @@
 &lt;/div&gt;
 
 &lt;!-- Quick and snappy --&gt;
-&lt;div data-progress-nested
+&lt;div data-nested-progress
   data-progress-circles='[
     {"label":"Progress","value":78,"color":"#667eea"},
     {"label":"Quality","value":92,"color":"#4ecdc4"}
@@ -388,7 +388,7 @@
 			<!-- ============================================ -->
 			<!-- BROWSER SUPPORT SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Browser Support</h2>
@@ -430,7 +430,7 @@
 
 
 			<!-- Page Navigation -->
-			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
 		</div>
 
@@ -438,7 +438,7 @@
 		<div id="demo-footer-placeholder"></div>
 
 		<!-- SmoothScroll Navigation -->
-		<div data-smoothscroll
+		<div data-smooth-scroll
 			data-smoothscroll-header-selector="#mainHeader"
 			data-smoothscroll-position="right"
 			data-smoothscroll-duration="800"
@@ -447,7 +447,7 @@
 		</div>
 
 		<!-- Back to Top -->
-		<div data-backtotop></div>
+		<div data-back-to-top></div>
 
 		<!-- Battersea Library JavaScript -->
 		<script src="../../src/js/battersea-utils.js"></script>

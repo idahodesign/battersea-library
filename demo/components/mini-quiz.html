@@ -53,12 +53,12 @@
 		<div class="content-outer">
 
 			<!-- Breadcrumb -->
-			<div data-breadcrumb></div>
+			<div data-breadcrumbs></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Mini Quiz Component</h1>
@@ -70,19 +70,19 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
 						<p class="section-subtitle">Try out the different quiz types and features</p>
 
 						<!-- Demo 1: True/False from HTML -->
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>True or False</h3>
 							<p>Simple two-choice questions defined in HTML markup. Answer all four and hit submit to see your results.</p>
 
 							<div class="demo-container">
-								<div data-quiz data-quiz-title="Quick True/False">
+								<div data-mini-quiz data-quiz-title="Quick True/False">
 
 									<div data-quiz-question
 										data-quiz-type="boolean"
@@ -125,12 +125,12 @@
 						</div>
 
 						<!-- Demo 2: Single Choice from Inline JSON -->
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>Multiple Choice (Single Answer)</h3>
 							<p>Questions loaded from inline JSON. This quiz uses inline-only results mode, without the summary panel.</p>
 
 							<div class="demo-container">
-								<div data-quiz
+								<div data-mini-quiz
 									data-quiz-results="inline"
 									data-quiz-data='[
 										{
@@ -179,12 +179,12 @@
 						</div>
 
 						<!-- Demo 3: Mixed Types with Timer (JSON file) -->
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>Mixed Types with Timer</h3>
 							<p>A mix of true/false, single-choice, and multi-select questions loaded from a JSON file. You have two minutes on the clock.</p>
 
 							<div class="demo-container">
-								<div data-quiz
+								<div data-mini-quiz
 									data-quiz-data="../data/quiz-mixed.json"
 									data-quiz-timer="120"
 									data-quiz-results="both">
@@ -193,12 +193,12 @@
 						</div>
 
 						<!-- Demo 4: Hidden Quiz with Timer (CSV file) -->
-						<div class="demo-subsection delay-3" data-animate="fade-up">
+						<div class="demo-subsection delay-3" data-animation="fade-up">
 							<h3>Hidden Quiz with Countdown</h3>
 							<p>This quiz is loaded from a CSV file and hidden until you click the button. The 90-second timer starts when the quiz appears. Answer options are shuffled into a random order on each load.</p>
 
 							<div class="demo-container">
-								<div data-quiz
+								<div data-mini-quiz
 									data-quiz-csv="../data/quiz-history.csv"
 									data-quiz-title="History Quiz"
 									data-quiz-description="Five questions on world history. You have 90 seconds."
@@ -211,12 +211,12 @@
 						</div>
 
 						<!-- Demo 5: Multi-Select with Shuffle -->
-						<div class="demo-subsection delay-4" data-animate="fade-up">
+						<div class="demo-subsection delay-4" data-animation="fade-up">
 							<h3>Multi-Select with Shuffle</h3>
 							<p>Every question has more than one correct answer. Both questions and options are shuffled on each page load.</p>
 
 							<div class="demo-container">
-								<div data-quiz
+								<div data-mini-quiz
 									data-quiz-title="Web Development"
 									data-quiz-shuffle="true"
 									data-quiz-shuffle-options="true">
@@ -279,19 +279,19 @@
 			<!-- ============================================ -->
 			<!-- DRAG & DROP DEMOS SECTION -->
 			<!-- ============================================ -->
-			<section id="drag-demos" class="showcase-section" data-scroll-section data-scroll-title="Drag & Drop" data-animate="fade-up">
+			<section id="drag-demos" class="showcase-section" data-scroll-section data-scroll-title="Drag & Drop" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Drag & Drop Questions</h2>
 						<p class="section-subtitle">Three new question types that use drag-and-drop interaction</p>
 
 						<!-- Demo 6: Order (HTML markup) -->
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>Drag to Order</h3>
 							<p>Drag the items into the correct sequence. The items are shuffled on each page load.</p>
 
 							<div class="demo-container">
-								<div data-quiz data-quiz-title="Solar System">
+								<div data-mini-quiz data-quiz-title="Solar System">
 									<div data-quiz-question data-quiz-type="order">
 										<p>Arrange these planets from closest to farthest from the Sun</p>
 										<div data-quiz-option>Mercury</div>
@@ -305,12 +305,12 @@
 						</div>
 
 						<!-- Demo 7: Match (inline JSON) -->
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>Match Pairs</h3>
 							<p>Drag each country from the left column to its matching capital on the right. On mobile, this falls back to select dropdowns.</p>
 
 							<div class="demo-container">
-								<div data-quiz
+								<div data-mini-quiz
 									data-quiz-title="Capitals of Europe"
 									data-quiz-results="inline"
 									data-quiz-data='[
@@ -329,12 +329,12 @@
 						</div>
 
 						<!-- Demo 8: Group (HTML markup) -->
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>Sort into Groups</h3>
 							<p>Drag each item from the pool at the top into the correct category below.</p>
 
 							<div class="demo-container">
-								<div data-quiz data-quiz-title="Animal Classification">
+								<div data-mini-quiz data-quiz-title="Animal Classification">
 									<div data-quiz-question data-quiz-type="group"
 										data-quiz-categories="Mammals|Birds|Reptiles"
 										data-quiz-answer="0|1|2|0|1|2"
@@ -352,12 +352,12 @@
 						</div>
 
 						<!-- Demo 9: Mixed (JSON file) -->
-						<div class="demo-subsection delay-3" data-animate="fade-up">
+						<div class="demo-subsection delay-3" data-animation="fade-up">
 							<h3>Mixed Drag & Standard</h3>
 							<p>Drag-and-drop questions can be combined with standard radio and checkbox questions in the same quiz. This one loads from a JSON file.</p>
 
 							<div class="demo-container">
-								<div data-quiz
+								<div data-mini-quiz
 									data-quiz-data="../data/quiz-drag.json"
 									data-quiz-results="both">
 								</div>
@@ -365,12 +365,12 @@
 						</div>
 
 						<!-- Demo 10: Navigation Prevention -->
-						<div class="demo-subsection delay-4" data-animate="fade-up">
+						<div class="demo-subsection delay-4" data-animation="fade-up">
 							<h3>Navigation Guard</h3>
 							<p>This quiz prevents you from leaving the page before submitting. Try clicking a link in the navigation while the quiz is incomplete -- you will see a warning. The guard is removed once you submit.</p>
 
 							<div class="demo-container">
-								<div data-quiz
+								<div data-mini-quiz
 									data-quiz-title="Quick Check"
 									data-quiz-require-attempt="true"
 									data-quiz-results="both">
@@ -405,56 +405,56 @@
 			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
-			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Features</h2>
 						<p class="section-subtitle">What the Mini Quiz component can do</p>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">?!</div>
 								<h3>Question Types</h3>
 								<p>True/false, single-choice, multi-select, drag-to-order, match pairs, and sort into groups.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">{}</div>
 								<h3>Data Sources</h3>
 								<p>Define questions in HTML, inline JSON, or load from JSON and CSV files.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">&#9201;</div>
 								<h3>Countdown Timer</h3>
 								<p>Optional timer that auto-submits when time runs out. Visual warning at 10 seconds.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">&#9650;</div>
 								<h3>Reveal Mode</h3>
 								<p>Hide the quiz behind a button. The timer starts when the quiz appears.</p>
 							</div>
 
-							<div class="feature-card delay-5" data-animate="fade-up">
+							<div class="feature-card delay-5" data-animation="fade-up">
 								<div class="feature-icon">&#9634;</div>
 								<h3>Results Display</h3>
 								<p>Inline answer indicators, a summary score panel, or both together.</p>
 							</div>
 
-							<div class="feature-card delay-6" data-animate="fade-up">
+							<div class="feature-card delay-6" data-animation="fade-up">
 								<div class="feature-icon">&#8645;</div>
 								<h3>Shuffle</h3>
 								<p>Randomise question order and option order independently on each load.</p>
 							</div>
 
-							<div class="feature-card delay-7" data-animate="fade-up">
+							<div class="feature-card delay-7" data-animation="fade-up">
 								<div class="feature-icon">&#9995;</div>
 								<h3>Drag & Drop</h3>
 								<p>Order items, match pairs, and sort into groups with touch-friendly drag interactions.</p>
 							</div>
 
-							<div class="feature-card delay-8" data-animate="fade-up">
+							<div class="feature-card delay-8" data-animation="fade-up">
 								<div class="feature-icon">&#128274;</div>
 								<h3>Navigation Guard</h3>
 								<p>Optionally prevent users from leaving the page before submitting their answers.</p>
@@ -467,7 +467,7 @@
 			<!-- ============================================ -->
 			<!-- CONFIGURATION SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Configuration</h2>
@@ -487,7 +487,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>data-quiz</code></td>
+										<td><code>data-mini-quiz</code></td>
 										<td>-</td>
 										<td>required</td>
 										<td>Initialises the Mini Quiz component</td>
@@ -647,7 +647,7 @@
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -658,7 +658,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Define questions directly in your markup:</p>
-										<pre><code>&lt;div data-quiz data-quiz-title="My Quiz"&gt;
+										<pre><code>&lt;div data-mini-quiz data-quiz-title="My Quiz"&gt;
   &lt;div data-quiz-question
        data-quiz-type="choice"
        data-quiz-answer="Canberra"&gt;
@@ -677,7 +677,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Point to a JSON file containing your questions:</p>
-										<pre><code>&lt;div data-quiz
+										<pre><code>&lt;div data-mini-quiz
      data-quiz-data="path/to/questions.json"
      data-quiz-timer="120"&gt;
 &lt;/div&gt;</code></pre>
@@ -703,7 +703,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Load questions from a CSV file:</p>
-										<pre><code>&lt;div data-quiz
+										<pre><code>&lt;div data-mini-quiz
      data-quiz-csv="path/to/questions.csv"
      data-quiz-hidden="true"
      data-quiz-timer="90"&gt;
@@ -744,32 +744,32 @@ q2,multi,"Select mammals:","Dog|Snake|Cat","Dog|Cat","Dogs and cats."</code></pr
 			<!-- ============================================ -->
 			<!-- ACCESSIBILITY SECTION -->
 			<!-- ============================================ -->
-			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animate="fade-up">
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Accessibility Features</h2>
 						<p class="section-subtitle">Built with inclusivity in mind</p>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">Tab</div>
 								<h3>Keyboard Navigation</h3>
 								<p>Tab through questions, use Space or Enter to select answers, and submit with Enter on the button.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">SR</div>
 								<h3>Live Announcements</h3>
 								<p>Score results, timer warnings, and validation messages are announced to screen readers via an aria-live region.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">&lt;fs&gt;</div>
 								<h3>Semantic Fieldsets</h3>
 								<p>Each question is wrapped in a fieldset with a legend, giving screen readers proper context for grouped inputs.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">[ ]</div>
 								<h3>Focus Indicators</h3>
 								<p>Clear focus outlines on all interactive elements for keyboard and switch-device users.</p>
@@ -782,7 +782,7 @@ q2,multi,"Select mammals:","Dog|Snake|Cat","Dog|Cat","Dogs and cats."</code></pr
 			<!-- ============================================ -->
 			<!-- BROWSER SUPPORT SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Browser Support</h2>
@@ -823,7 +823,7 @@ q2,multi,"Select mammals:","Dog|Snake|Cat","Dog|Cat","Dogs and cats."</code></pr
 
 
 			<!-- Page Navigation -->
-			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
 		</div>
 
@@ -831,7 +831,7 @@ q2,multi,"Select mammals:","Dog|Snake|Cat","Dog|Cat","Dogs and cats."</code></pr
 		<div id="demo-footer-placeholder"></div>
 
 		<!-- SmoothScroll Navigation -->
-		<div data-smoothscroll
+		<div data-smooth-scroll
 			data-smoothscroll-header-selector="#mainHeader"
 			data-smoothscroll-position="right"
 			data-smoothscroll-duration="800"
@@ -840,7 +840,7 @@ q2,multi,"Select mammals:","Dog|Snake|Cat","Dog|Cat","Dogs and cats."</code></pr
 		</div>
 
 		<!-- Back to Top -->
-		<div data-backtotop></div>
+		<div data-back-to-top></div>
 
 		<!-- Battersea Library JavaScript -->
 		<script src="../../src/js/battersea-utils.js"></script>

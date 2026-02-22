@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.29.0] - 2026-02-22
+
+### Changed
+- **Naming consistency standardisation** -- Comprehensive audit and fix of all 34 components for consistent naming conventions across three areas:
+  - **Registration names** -- 9 multi-word component names changed from flat lowercase to camelCase (e.g. `'backtotop'` → `'backToTop'`, `'smoothscroll'` → `'smoothScroll'`)
+  - **Event name separators** -- Standardised to camelCase after `battersea:` prefix (e.g. `'battersea:navdata-ready'` → `'battersea:navDataReady'`, `'battersea:pagination:change'` → `'battersea:paginationChange'`)
+  - **Data attribute selectors** -- 13 initialisation selectors changed to match component names in kebab-case (e.g. `data-animate` → `data-animation`, `data-backtotop` → `data-back-to-top`, `data-pagenav` → `data-page-nav`, `data-smoothscroll` → `data-smooth-scroll`). Config sub-attributes (e.g. `data-smoothscroll-offset`, `data-backtotop-threshold`) left unchanged
+  - Updated all 34 demo pages, 3 LESS files, and 17 JS files
+
+---
+
 ## [2.28.0] - 2026-02-22
 
 ### Added
@@ -659,6 +670,7 @@ Initial release of Battersea Library with 12 components:
 
 ## Version History Summary
 
+- **2.29.0** - Naming consistency standardisation: camelCase registration, camelCase events, kebab-case selectors
 - **2.23.0** - FormElements component with toggle, range slider, date picker, time picker, colour swatch
 - **2.22.0** - FormValidation file upload validation with styled drop zone
 - **2.21.1** - Graph fixes: clickable segments, constant-width gaps, smooth stacked animation

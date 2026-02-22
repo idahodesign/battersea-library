@@ -12,7 +12,7 @@
  * 4. CSV file via data-table-csv attribute — component fetches and builds the table
  *
  * Usage (HTML table):
- * <div data-table data-table-sortable="true">
+ * <div data-datatable data-table-sortable="true">
  *   <table>
  *     <thead><tr><th>Name</th><th data-column-type="number">Age</th></tr></thead>
  *     <tbody><tr><td>Alice</td><td>30</td></tr></tbody>
@@ -20,13 +20,13 @@
  * </div>
  *
  * Usage (inline JSON):
- * <div data-table data-table-data='[{"name":"Alice","age":30}]'></div>
+ * <div data-datatable data-table-data='[{"name":"Alice","age":30}]'></div>
  *
  * Usage (JSON file):
- * <div data-table data-table-data="data/inventory.json"></div>
+ * <div data-datatable data-table-data="data/inventory.json"></div>
  *
  * Usage (CSV file):
- * <div data-table data-table-csv="data/employees.csv"></div>
+ * <div data-datatable data-table-csv="data/employees.csv"></div>
  *
  * Dependencies: battersea-utils.js, battersea-core.js
  */
@@ -982,6 +982,6 @@
   }
 
   // Register component
-  window.Battersea.register('dataTable', DataTable, '[data-table]');
+  window.Battersea.register('dataTable', DataTable, '[data-datatable]');
 
 })(window, document);

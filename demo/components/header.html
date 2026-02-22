@@ -52,11 +52,14 @@
 			data-transparent="true"></header>
 
 		<div class="content-outer">
+			
+			<!-- Breadcrumb -->
+			<div data-breadcrumbs></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up" style="padding-top: 12rem;">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up" style="padding-top: 12rem;">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Header Component</h1>
@@ -68,14 +71,14 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
 						<p class="section-subtitle">You're already looking at it</p>
 
 						<!-- The Header IS the Demo -->
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>The Header on This Page</h3>
 							<p>Here's the thing &mdash; the header you see at the top of this page <em>is</em> the demo. It's running all the features right now. No need for a separate embedded example when the real thing is sitting right there.</p>
 
@@ -96,7 +99,7 @@
 						</div>
 
 						<!-- Shrink Behaviour -->
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>Shrink Behaviour</h3>
 							<p>The shrink effect is controlled entirely through data attributes. When you scroll past the offset threshold, the header smoothly transitions to its compact height. Scroll back to the top and it expands again. No JavaScript configuration needed &mdash; just set the attributes and you're done.</p>
 
@@ -116,7 +119,7 @@
 						</div>
 
 						<!-- Mobile Menu -->
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>Mobile Menu</h3>
 							<p>The mobile menu uses a full-screen overlay with drill-down panels for sub-navigation. It's not a basic hamburger toggle &mdash; it handles nested menus properly. Sub-items slide in from the right, and there's a back button to go up a level. Focus trapping keeps keyboard users inside the menu until they close it.</p>
 
@@ -134,7 +137,7 @@
 						</div>
 
 						<!-- Events -->
-						<div class="demo-subsection delay-3" data-animate="fade-up">
+						<div class="demo-subsection delay-3" data-animation="fade-up">
 							<h3>Custom Events</h3>
 							<p>The header fires events so you can hook into what it's doing. Want to run some code when the header shrinks? Or when the mobile menu opens? Just listen for the events.</p>
 
@@ -175,49 +178,49 @@ header.addEventListener('battersea:mobileMenuClose', (e) =&gt; {
 			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
-			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Key Features</h2>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">&#9671;</div>
 								<h3>Transparent Mode</h3>
 								<p>The header starts see-through, letting the hero content show through. Scroll down and the background smoothly fades in.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">&#8597;</div>
 								<h3>Shrink-on-Scroll</h3>
 								<p>The header smoothly transitions to a compact height as you scroll down, giving your content more room. Scroll back up and it expands again.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">&#9776;</div>
 								<h3>Mobile Menu</h3>
 								<p>Full-screen overlay with drill-down panels for nested navigation. Not just a basic toggle &mdash; it handles complex menu structures properly.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">&#8679;</div>
 								<h3>Sticky Positioning</h3>
 								<p>The header stays pinned to the top of the viewport as you scroll. Always accessible, never in the way.</p>
 							</div>
 
-							<div class="feature-card delay-5" data-animate="fade-up">
+							<div class="feature-card delay-5" data-animation="fade-up">
 								<div class="feature-icon">&#9881;</div>
 								<h3>Pre-header Bar</h3>
 								<p>An optional bar above the main header for accessibility tools, contact info, language selectors, or whatever else you need up there.</p>
 							</div>
 
-							<div class="feature-card delay-6" data-animate="fade-up">
+							<div class="feature-card delay-6" data-animation="fade-up">
 								<div class="feature-icon">A11y</div>
 								<h3>Focus Trapping</h3>
 								<p>When the mobile menu is open, keyboard focus is trapped inside it. Press Esc to close. Fully accessible for keyboard and screen reader users.</p>
 							</div>
 
-							<div class="feature-card delay-7" data-animate="fade-up">
+							<div class="feature-card delay-7" data-animation="fade-up">
 								<div class="feature-icon">&#8644;</div>
 								<h3>Logo Swapping</h3>
 								<p>Automatically swap to a different logo on mobile devices. Set a mobile logo URL and the header handles the switch at the right breakpoint.</p>
@@ -230,7 +233,7 @@ header.addEventListener('battersea:mobileMenuClose', (e) =&gt; {
 			<!-- ============================================ -->
 			<!-- CONFIGURATION SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Configuration &amp; Options</h2>
@@ -373,7 +376,7 @@ header.addEventListener('battersea:mobileMenuClose', (e) =&gt; {
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -520,7 +523,7 @@ header.addEventListener('battersea:mobileMenuClose', () =&gt; {
 			<!-- ============================================ -->
 			<!-- BROWSER SUPPORT SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Browser Support</h2>
@@ -562,7 +565,7 @@ header.addEventListener('battersea:mobileMenuClose', () =&gt; {
 
 
 			<!-- Page Navigation -->
-			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
 		</div>
 
@@ -570,7 +573,7 @@ header.addEventListener('battersea:mobileMenuClose', () =&gt; {
 		<div id="demo-footer-placeholder"></div>
 
 		<!-- SmoothScroll Navigation -->
-		<div data-smoothscroll
+		<div data-smooth-scroll
 			data-smoothscroll-header-selector="#mainHeader"
 			data-smoothscroll-position="right"
 			data-smoothscroll-duration="800"
@@ -579,7 +582,7 @@ header.addEventListener('battersea:mobileMenuClose', () =&gt; {
 		</div>
 
 		<!-- Back to Top -->
-		<div data-backtotop></div>
+		<div data-back-to-top></div>
 
 		<!-- Battersea Library JavaScript -->
 		<script src="../../src/js/battersea-utils.js"></script>

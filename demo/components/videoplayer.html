@@ -53,12 +53,12 @@
 		<div class="content-outer">
 
 			<!-- Breadcrumb -->
-			<div data-breadcrumb></div>
+			<div data-breadcrumbs></div>
 
 			<!-- ============================================ -->
 			<!-- HERO SECTION -->
 			<!-- ============================================ -->
-			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animate="fade-up">
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
 				<div class="section-box">
 					<div class="hero-content">
 						<h1>Video Player Component</h1>
@@ -70,33 +70,33 @@
 			<!-- ============================================ -->
 			<!-- LIVE DEMO SECTION -->
 			<!-- ============================================ -->
-			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animate="fade-up">
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Live Demonstrations</h2>
 						<p class="section-subtitle">See the video player in action with different configurations</p>
 
 						<!-- Basic Player -->
-						<div class="demo-subsection" data-animate="fade-up">
+						<div class="demo-subsection" data-animation="fade-up">
 							<h3>Basic Player</h3>
 							<p>The simplest setup &mdash; just point it at a video file and the player builds itself. Click the video or the play button to start. Controls auto-hide after 3 seconds during playback.</p>
 
 							<div class="demo-container" style="display: flex; justify-content: center; padding: 2rem;">
 								<div style="width: 100%; max-width: 720px;"
-									data-video
+									data-video-player
 									data-video-src="../../assets/video/video-sample.mp4">
 								</div>
 							</div>
 						</div>
 
 						<!-- Player with Poster and Title -->
-						<div class="demo-subsection delay-1" data-animate="fade-up">
+						<div class="demo-subsection delay-1" data-animation="fade-up">
 							<h3>Player with Poster and Title</h3>
 							<p>Add a poster image that displays before playback, a title overlay in the top-left corner, and a custom accent colour via <code>data-video-color</code>.</p>
 
 							<div class="demo-container" style="display: flex; justify-content: center; padding: 2rem;">
 								<div style="width: 100%; max-width: 720px;"
-									data-video
+									data-video-player
 									data-video-src="../../assets/video/video-sample.mp4"
 									data-video-poster="../../assets/img/parallax-01.jpg"
 									data-video-title="Sample Video"
@@ -106,13 +106,13 @@
 						</div>
 
 						<!-- Looping Muted Player -->
-						<div class="demo-subsection delay-2" data-animate="fade-up">
+						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>Looping Muted Player</h3>
 							<p>A looping, muted video with always-visible controls. Useful for background video or product demos where you want the controls to stay on screen.</p>
 
 							<div class="demo-container" style="display: flex; justify-content: center; padding: 2rem;">
 								<div style="width: 100%; max-width: 720px;"
-									data-video
+									data-video-player
 									data-video-src="../../assets/video/slow_motion_soft_cloudscape_01.mp4"
 									data-video-loop="true"
 									data-video-muted="true"
@@ -128,43 +128,43 @@
 			<!-- ============================================ -->
 			<!-- FEATURES SECTION -->
 			<!-- ============================================ -->
-			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animate="fade-up">
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Key Features</h2>
 
 						<div class="features-grid">
-							<div class="feature-card delay-1" data-animate="fade-up">
+							<div class="feature-card delay-1" data-animation="fade-up">
 								<div class="feature-icon">&#9654;</div>
 								<h3>Custom Controls</h3>
 								<p>Every control is a real HTML element you can style with CSS. The native video controls are hidden &mdash; you're in full control of the look.</p>
 							</div>
 
-							<div class="feature-card delay-2" data-animate="fade-up">
+							<div class="feature-card delay-2" data-animation="fade-up">
 								<div class="feature-icon">&#8596;</div>
 								<h3>Seek &amp; Scrub</h3>
 								<p>Click anywhere on the progress bar to jump to that point, or drag the handle to scrub through the video in real time.</p>
 							</div>
 
-							<div class="feature-card delay-3" data-animate="fade-up">
+							<div class="feature-card delay-3" data-animation="fade-up">
 								<div class="feature-icon">&#9835;</div>
 								<h3>Volume Control</h3>
 								<p>Adjustable volume slider with a mute toggle. Three volume icons reflect the current level &mdash; muted, low, and full.</p>
 							</div>
 
-							<div class="feature-card delay-4" data-animate="fade-up">
+							<div class="feature-card delay-4" data-animation="fade-up">
 								<div class="feature-icon">&#9974;</div>
 								<h3>Fullscreen</h3>
 								<p>Enter and exit fullscreen with a single click or press F. Uses the Fullscreen API with vendor prefixes for cross-browser support.</p>
 							</div>
 
-							<div class="feature-card delay-5" data-animate="fade-up">
+							<div class="feature-card delay-5" data-animation="fade-up">
 								<div class="feature-icon">A11y</div>
 								<h3>Accessible</h3>
 								<p>ARIA roles on all controls, full keyboard navigation (Space, arrows, F, M, Escape), and visible focus indicators throughout.</p>
 							</div>
 
-							<div class="feature-card delay-6" data-animate="fade-up">
+							<div class="feature-card delay-6" data-animation="fade-up">
 								<div class="feature-icon">&#123;&#125;</div>
 								<h3>Data Attributes</h3>
 								<p>Configure source, poster, title, volume, looping, controls behaviour and accent colour all from the HTML. No JavaScript setup needed.</p>
@@ -177,7 +177,7 @@
 			<!-- ============================================ -->
 			<!-- CONFIGURATION SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Configuration &amp; Options</h2>
@@ -197,7 +197,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>data-video</code></td>
+										<td><code>data-video-player</code></td>
 										<td>-</td>
 										<td>required</td>
 										<td>Initialises the video player on the container element</td>
@@ -274,7 +274,7 @@
 							<h3 style="margin-top: 2rem;">Basic Markup</h3>
 							<p>The minimum markup to get a video player running:</p>
 
-							<pre><code>&lt;div data-video data-video-src="path/to/clip.mp4"&gt;&lt;/div&gt;</code></pre>
+							<pre><code>&lt;div data-video-player data-video-src="path/to/clip.mp4"&gt;&lt;/div&gt;</code></pre>
 
 							<h3 style="margin-top: 2rem;">Custom Events</h3>
 							<p>Listen for these events to hook into playback:</p>
@@ -333,7 +333,7 @@
 			<!-- ============================================ -->
 			<!-- USAGE EXAMPLES SECTION -->
 			<!-- ============================================ -->
-			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animate="fade-up">
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Usage Examples</h2>
@@ -344,7 +344,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>The simplest possible setup &mdash; one element, one attribute:</p>
-										<pre><code>&lt;div data-video
+										<pre><code>&lt;div data-video-player
   data-video-src="path/to/clip.mp4"&gt;
 &lt;/div&gt;</code></pre>
 									</div>
@@ -356,7 +356,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Show a poster image before playback, with a title overlay and teal accent:</p>
-										<pre><code>&lt;div data-video
+										<pre><code>&lt;div data-video-player
   data-video-src="path/to/clip.mp4"
   data-video-poster="poster.jpg"
   data-video-title="My Video"
@@ -371,7 +371,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>A muted, looping video with always-visible controls:</p>
-										<pre><code>&lt;div data-video
+										<pre><code>&lt;div data-video-player
   data-video-src="background.mp4"
   data-video-loop="true"
   data-video-muted="true"
@@ -386,7 +386,7 @@
 								<div data-accordion-content>
 									<div>
 										<p>Hook into playback events for custom behaviour:</p>
-										<pre><code>const player = document.querySelector('[data-video]');
+										<pre><code>const player = document.querySelector('[data-video-player]');
 
 player.addEventListener('battersea:videoPlay', (e) =&gt; {
   console.log('Playing at:', e.detail.currentTime);
@@ -410,7 +410,7 @@ player.addEventListener('battersea:videoFullscreen', (e) =&gt; {
 			<!-- ============================================ -->
 			<!-- BROWSER SUPPORT SECTION -->
 			<!-- ============================================ -->
-			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animate="fade-up">
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
 				<div class="section-box">
 					<div class="container">
 						<h2 class="section-title">Browser Support</h2>
@@ -452,7 +452,7 @@ player.addEventListener('battersea:videoFullscreen', (e) =&gt; {
 
 
 			<!-- Page Navigation -->
-			<div data-pagenav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
 
 		</div>
 
@@ -460,7 +460,7 @@ player.addEventListener('battersea:videoFullscreen', (e) =&gt; {
 		<div id="demo-footer-placeholder"></div>
 
 		<!-- SmoothScroll Navigation -->
-		<div data-smoothscroll
+		<div data-smooth-scroll
 			data-smoothscroll-header-selector="#mainHeader"
 			data-smoothscroll-position="right"
 			data-smoothscroll-duration="800"
@@ -469,7 +469,7 @@ player.addEventListener('battersea:videoFullscreen', (e) =&gt; {
 		</div>
 
 		<!-- Back to Top -->
-		<div data-backtotop></div>
+		<div data-back-to-top></div>
 
 		<!-- Battersea Library JavaScript -->
 		<script src="../../src/js/battersea-utils.js"></script>
