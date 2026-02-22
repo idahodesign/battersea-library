@@ -184,6 +184,22 @@
 								</div>
 							</div>
 						</div>
+
+						<!-- Ticker Tape -->
+						<div class="demo-subsection delay-6" data-animate="fade-up">
+							<h3>Ticker Tape</h3>
+							<p>Text reveals one letter at a time, with a natural pause between words. Useful for headings and short phrases where you want the words to land with purpose.</p>
+
+							<div class="demo-container">
+								<h2 data-animate="ticker" style="margin: 0 0 1.5rem;">Welcome to Battersea Library</h2>
+								<p data-animate="ticker" class="delay-3" style="color: #666; font-size: 1.1rem; margin: 0;">A lightweight component library built with vanilla JavaScript</p>
+							</div>
+
+							<div class="demo-container" style="margin-top: 1.5rem;">
+								<p style="margin: 0 0 1rem; font-size: 0.85rem; color: #999;">With <code>data-ticker-speed="60"</code> for a slower reveal:</p>
+								<h3 data-animate="ticker" data-ticker-speed="60" style="margin: 0;">One letter at a time</h3>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -211,8 +227,8 @@
 
 							<div class="feature-card delay-3" data-animate="fade-up">
 								<div class="feature-icon">~</div>
-								<h3>Five Animations</h3>
-								<p>Fade in, fade up, fade down, fade left, and fade right. Simple, clean, and enough for most use cases.</p>
+								<h3>Six Animations</h3>
+								<p>Five directional fades plus a ticker tape text reveal. Simple, clean, and enough for most use cases.</p>
 							</div>
 
 							<div class="feature-card delay-4" data-animate="fade-up">
@@ -261,7 +277,7 @@
 								<tbody>
 									<tr>
 										<td><code>data-animate</code></td>
-										<td><code>fade-in</code>, <code>fade-up</code>, <code>fade-down</code>, <code>fade-left</code>, <code>fade-right</code></td>
+										<td><code>fade-in</code>, <code>fade-up</code>, <code>fade-down</code>, <code>fade-left</code>, <code>fade-right</code>, <code>ticker</code></td>
 										<td>required</td>
 										<td>The animation type to apply when the element enters the viewport</td>
 									</tr>
@@ -270,6 +286,12 @@
 										<td><code>true</code> / CSS selector</td>
 										<td>not set</td>
 										<td>Enable cascading child animations. Use <code>true</code> for all children or a selector like <code>.my-class</code> for specific ones</td>
+									</tr>
+									<tr>
+										<td><code>data-ticker-speed</code></td>
+										<td>number (milliseconds)</td>
+										<td><code>30</code></td>
+										<td>Per-character delay for the ticker animation. Spaces pause for three times this value</td>
 									</tr>
 								</tbody>
 							</table>
@@ -375,6 +397,20 @@
   &lt;p&gt;This appears immediately too&lt;/p&gt;
   &lt;div class="highlight"&gt;This cascades in after&lt;/div&gt;
 &lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Ticker Tape Text</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add <code>data-animate="ticker"</code> to reveal text one letter at a time:</p>
+										<pre><code>&lt;h1 data-animate="ticker"&gt;Hello World&lt;/h1&gt;
+
+&lt;!-- With custom speed (milliseconds per character) --&gt;
+&lt;h2 data-animate="ticker" data-ticker-speed="60"&gt;Slower text&lt;/h2&gt;</code></pre>
+										<p>Spaces between words pause for three times the character speed, creating a natural reading rhythm. The default speed is 30ms per character.</p>
 									</div>
 								</div>
 							</div>

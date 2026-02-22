@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.28.0] - 2026-02-22
+
+### Added
+- **Ticker tape animation** -- New `data-animate="ticker"` option that reveals text one character at a time with a smooth fade-in per letter. Spaces between words pause for three times the character delay, creating a natural reading rhythm. Configurable speed via `data-ticker-speed` attribute (default 30ms per character). Added demo section, config table entry, and usage example to the animation demo page
+
+---
+
 ## [2.27.0] - 2026-02-22
 
 ### Added

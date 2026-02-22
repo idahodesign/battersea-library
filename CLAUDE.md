@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.27.0
+- **Current Version:** 2.28.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -36,7 +36,7 @@ battersea-library/
 ### Components (34 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
-3. Animation - Scroll-triggered animations
+3. Animation - Scroll-triggered animations with ticker tape text reveal
 4. AudioPlayer - Custom audio player with stylable controls
 5. Breadcrumbs - Auto-generated breadcrumb trail from navigation menu via NavData
 6. Counter - Animated number counting
@@ -152,6 +152,7 @@ battersea-library/
 - **Transparent header fixes** (Feb 2026): Content slides under header correctly (margin-top on sibling), pre-header sticky with z-index 101, accessibility panel z-index fix
 - **MiniQuiz v2 v2.26.0** (Feb 2026): Drag-and-drop ordering, matching pairs, grouping into categories, mobile select fallback for match type, keyboard accessibility, navigation prevention with beforeunload and custom modal
 - **Pagination v2.27.0** (Feb 2026): Standalone pagination with client-side and server-side modes, go-to-page input, page size selector, smart ellipsis, ARIA live region
+- **Ticker tape animation v2.28.0** (Feb 2026): New `data-animate="ticker"` option reveals text one character at a time with configurable speed and natural word pauses
 
 ### In Progress
 - See `TODO.md` for current tasks

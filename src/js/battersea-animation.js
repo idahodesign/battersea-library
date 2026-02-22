@@ -1,44 +1,49 @@
 /**
  * Battersea Library - Animation Component (Enhanced)
- * Version: 2.2.0
- * 
+ * Version: 2.3.0
+ *
  * DEFAULT BEHAVIOR (CHANGED in v2.2.0):
  * - By default, children do NOT animate (they appear immediately)
  * - Use data-animate-children="true" to enable child cascade animation
- * 
+ *
  * FEATURES:
  * - data-animate-children="true" - Enable cascading child animations
  * - data-animate-children=".selector" - Only animate specific children
  * - Individual children can override with their own data-animate
- * 
+ * - data-animate="ticker" - Ticker tape text reveal (NEW in v2.3.0)
+ *
  * Usage:
- * 
+ *
  * Basic (children appear immediately):
  * <section data-animate="fade-up">
  *   <div>Appears immediately</div>
  * </section>
- * 
+ *
  * With child cascade:
  * <section data-animate="fade-up" data-animate-children="true">
  *   <div>Fades in after parent</div>
  *   <div>Fades in with stagger</div>
  * </section>
- * 
+ *
  * Animate specific children only:
  * <section data-animate="fade-up" data-animate-children=".animate-me">
  *   <div class="animate-me">Animated</div>
  *   <div>Not animated</div>
  * </section>
- * 
+ *
  * Individual child override:
  * <section data-animate="fade-up">
  *   <div>Appears immediately</div>
  *   <button data-animate="fade-up" class="delay-2">Animates independently!</button>
  * </section>
- * 
- * Available animations: fade-in, fade-up, fade-down, fade-left, fade-right
+ *
+ * Ticker tape (text reveals letter by letter):
+ * <h1 data-animate="ticker">Hello World</h1>
+ * <h2 data-animate="ticker" data-ticker-speed="60">Slower reveal</h2>
+ *
+ * Available animations: fade-in, fade-up, fade-down, fade-left, fade-right, ticker
  * Delay classes: delay-1 through delay-10 (delay-5 = 0.5 seconds)
- * 
+ *
  * Dependencies: battersea-utils.js, battersea-core.js
  */
 
@@ -60,10 +65,18 @@
       this.observer = null;
       this.isAnimating = false;
       this.hasAnimated = false;
+      this.isTicker = this.animation === 'ticker';
 
       if (!this.animation) {
         console.warn('Animation element missing data-animate attribute');
         return;
+      }
+
+      // Ticker tape: split text into character spans
+      if (this.isTicker) {
+        this.tickerSpeed = parseInt(Utils.getData(el, 'ticker-speed') || '30', 10);
+        this.tickerChars = [];
+        this.setupTicker();
       }
 
       // Only hide/animate children if explicitly set to "true"
@@ -71,7 +84,7 @@
       if (this.animateChildren === 'true') {
         this.hideChildren(this.el);
       }
-      
+
       this.init();
     }
 
@@ -112,6 +125,45 @@
           child.style.opacity = '0';
           child.style.visibility = 'hidden';
           this.hideChildrenRecursive(child);
+        }
+      });
+    }
+
+    setupTicker() {
+      const text = this.el.textContent.replace(/\s+/g, ' ').trim();
+      this.el.textContent = '';
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+
+        if (char === ' ') {
+          this.el.appendChild(document.createTextNode(' '));
+          this.tickerChars.push({ type: 'space' });
+        } else {
+          const span = document.createElement('span');
+          span.className = 'battersea-ticker-char';
+          span.textContent = char;
+          this.el.appendChild(span);
+          this.tickerChars.push({ type: 'char', span: span });
+        }
+      }
+    }
+
+    animateTicker() {
+      this.el.style.visibility = 'visible';
+      this.el.style.opacity = '1';
+      this.el.classList.add('battersea-animated');
+
+      let delay = 0;
+
+      this.tickerChars.forEach(entry => {
+        if (entry.type === 'space') {
+          delay += this.tickerSpeed * 3;
+        } else {
+          setTimeout(() => {
+            entry.span.classList.add('battersea-ticker-char--visible');
+          }, delay);
+          delay += this.tickerSpeed;
         }
       });
     }
@@ -160,7 +212,13 @@
       
       // Total delay: 500ms base + custom delay
       const totalDelay = 500 + customDelay;
-      
+
+      // Ticker tape: reveal characters sequentially
+      if (this.isTicker) {
+        setTimeout(() => this.animateTicker(), totalDelay);
+        return;
+      }
+
       setTimeout(() => {
         this.el.style.visibility = 'visible';
         this.el.style.opacity = '1';
