@@ -1,0 +1,39 @@
+{
+	"title": "Drag & Drop Quiz",
+	"description": "A mix of drag-and-drop and standard questions.",
+	"questions": [
+		{
+			"id": "d1",
+			"type": "order",
+			"question": "Arrange these historical events in chronological order",
+			"options": ["Invention of the printing press", "French Revolution", "First Moon landing", "World Wide Web invented"],
+			"explanation": "Printing press (~1440), French Revolution (1789), Moon landing (1969), WWW (1989)."
+		},
+		{
+			"id": "d2",
+			"type": "match",
+			"question": "Match each element to its chemical symbol",
+			"items": ["Gold", "Silver", "Iron", "Copper"],
+			"pairs": ["Au", "Ag", "Fe", "Cu"],
+			"answer": [0, 1, 2, 3],
+			"explanation": "Au (aurum), Ag (argentum), Fe (ferrum), Cu (cuprum) are the Latin-derived symbols."
+		},
+		{
+			"id": "d3",
+			"type": "group",
+			"question": "Sort these into renewable and non-renewable energy sources",
+			"items": ["Solar", "Coal", "Wind", "Natural Gas", "Hydroelectric", "Oil"],
+			"categories": ["Renewable", "Non-Renewable"],
+			"answer": [0, 1, 0, 1, 0, 1],
+			"explanation": "Solar, wind, and hydroelectric are renewable. Coal, natural gas, and oil are fossil fuels."
+		},
+		{
+			"id": "d4",
+			"type": "choice",
+			"question": "What is the chemical formula for water?",
+			"options": ["CO2", "H2O", "NaCl", "O2"],
+			"answer": "H2O",
+			"explanation": "Water consists of two hydrogen atoms and one oxygen atom."
+		}
+	]
+}

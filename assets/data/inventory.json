@@ -1,0 +1,16 @@
+[
+  {"product": "Wireless Keyboard", "category": "Peripherals", "sku": "WK-201", "price": 49.99, "stock": 142},
+  {"product": "Standing Desk", "category": "Furniture", "sku": "SD-105", "price": 399.00, "stock": 28},
+  {"product": "USB-C Hub", "category": "Peripherals", "sku": "UC-330", "price": 34.99, "stock": 87},
+  {"product": "Monitor Arm", "category": "Furniture", "sku": "MA-210", "price": 89.99, "stock": 65},
+  {"product": "Webcam HD", "category": "Peripherals", "sku": "WC-400", "price": 59.99, "stock": 91},
+  {"product": "Desk Lamp", "category": "Lighting", "sku": "DL-150", "price": 29.99, "stock": 203},
+  {"product": "Ergonomic Chair", "category": "Furniture", "sku": "EC-700", "price": 549.00, "stock": 12},
+  {"product": "Mechanical Keyboard", "category": "Peripherals", "sku": "MK-550", "price": 129.99, "stock": 47},
+  {"product": "Cable Tidy", "category": "Accessories", "sku": "CT-020", "price": 12.99, "stock": 310},
+  {"product": "Mouse Pad XL", "category": "Accessories", "sku": "MP-080", "price": 19.99, "stock": 188},
+  {"product": "Noise-Cancelling Headphones", "category": "Audio", "sku": "NC-900", "price": 199.99, "stock": 34},
+  {"product": "Footrest", "category": "Furniture", "sku": "FR-060", "price": 44.99, "stock": 56},
+  {"product": "Laptop Stand", "category": "Furniture", "sku": "LS-120", "price": 39.99, "stock": 73},
+  {"product": "Ring Light", "category": "Lighting", "sku": "RL-300", "price": 34.99, "stock": 41}
+]
