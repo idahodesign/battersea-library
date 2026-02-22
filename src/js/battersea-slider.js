@@ -109,36 +109,9 @@
     }
 
     setSliderHeight() {
-      if (this.slides.length === 0) return;
-      
-      // Find the tallest slide to prevent content jumping
-      let maxHeight = 0;
-      this.slides.forEach(slide => {
-        // Temporarily make visible to measure
-        const currentDisplay = slide.style.display;
-        const currentOpacity = slide.style.opacity;
-        const currentPosition = slide.style.position;
-        
-        slide.style.display = 'block';
-        slide.style.opacity = '1';
-        slide.style.position = 'relative';
-        
-        const height = slide.offsetHeight;
-        if (height > maxHeight) {
-          maxHeight = height;
-        }
-        
-        // Restore original state
-        slide.style.display = currentDisplay;
-        slide.style.opacity = currentOpacity;
-        slide.style.position = currentPosition;
-      });
-      
-      if (maxHeight > 0) {
-        this.el.style.height = `${maxHeight}px`;
-        this.el.style.position = 'relative';
-        this.el.style.overflow = 'hidden';
-      }
+      // Let the container size itself from the track/slides naturally.
+      // Just ensure overflow is hidden so off-screen slides don't expand the page.
+      this.el.style.overflow = 'hidden';
     }
 
     setupSlideTransition() {

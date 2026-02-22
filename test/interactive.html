@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Interactive Components - Base Style Test - Battersea Library</title>
+
+	<link rel="stylesheet/less" type="text/css" href="battersea-library-base.less">
+	<link rel="stylesheet/less" type="text/css" href="test-page.less">
+
+	<script>
+		less = { env: 'development', async: false, fileAsync: false, logLevel: 2 };
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+	<script src="../src/js/battersea-env-config.js"></script>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	</style>
+</head>
+<body>
+
+	<!-- Header Component -->
+	<header id="mainHeader" class="battersea-header" data-header data-sticky="true" data-layout="right-align">
+		<div class="battersea-header__container">
+			<div class="battersea-header__brand">
+				<a href="index.html">
+					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%2371abc2'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="Logo" class="battersea-header__logo"/>
+					<div class="logo-text">Battersea</div>
+				</a>
+			</div>
+			<button class="battersea-header__toggle" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="battersea-header__nav">
+				<ul class="battersea-hnav" data-horizontal-nav data-nav-hover-delay="200">
+					<li class="battersea-hnav__item"><a href="index.html" class="battersea-hnav__link">Home</a></li>
+					<li class="battersea-hnav__item"><a href="navigation.html" class="battersea-hnav__link">Navigation</a></li>
+					<li class="battersea-hnav__item"><a href="content.html" class="battersea-hnav__link">Content</a></li>
+					<li class="battersea-hnav__item"><a href="interactive.html" class="battersea-hnav__link">Interactive</a></li>
+					<li class="battersea-hnav__item"><a href="data-display.html" class="battersea-hnav__link">Data Display</a></li>
+					<li class="battersea-hnav__item"><a href="utilities.html" class="battersea-hnav__link">Utilities</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="test-container">
+
+		<div class="test-hero" data-scroll-section data-scroll-title="Overview">
+			<h1>Interactive Components</h1>
+			<p>Accordions, forms, quizzes and other interactive elements with default base styles.</p>
+		</div>
+
+		<!-- ============================================ -->
+		<!-- ACCORDION -->
+		<!-- ============================================ -->
+		<section id="accordion" class="test-section" data-scroll-section data-scroll-title="Accordion">
+			<h2>Accordion</h2>
+			<p class="section-desc">Collapsible content sections. Single-open mode by default.</p>
+
+			<div class="test-demo">
+				<div data-accordion data-accordion-multiple="false">
+					<div data-accordion-item class="active">
+						<div data-accordion-header>What does this component do?</div>
+						<div data-accordion-content>
+							<div><p>The accordion creates collapsible sections that expand and collapse with smooth transitions. Only one section stays open at a time in single mode.</p></div>
+						</div>
+					</div>
+					<div data-accordion-item>
+						<div data-accordion-header>How is it configured?</div>
+						<div data-accordion-content>
+							<div><p>Add <code>data-accordion</code> to the container. Use <code>data-accordion-multiple="true"</code> to allow multiple open sections. Add the <code>active</code> class to pre-open a section.</p></div>
+						</div>
+					</div>
+					<div data-accordion-item>
+						<div data-accordion-header>Does it support keyboard navigation?</div>
+						<div data-accordion-content>
+							<div><p>Yes. Use Tab to move between headers and Enter or Space to toggle sections open and closed.</p></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- TABS -->
+		<!-- ============================================ -->
+		<section id="tabs" class="test-section" data-scroll-section data-scroll-title="Tabs">
+			<h2>Tabs</h2>
+			<p class="section-desc">Tabbed content panels. Click a tab to switch the visible content.</p>
+
+			<div class="test-demo">
+				<div data-tabs>
+					<div data-tabs-nav>
+						<button data-tab="overview" class="active">Overview</button>
+						<button data-tab="features">Features</button>
+						<button data-tab="setup">Setup</button>
+					</div>
+					<div data-tabs-content>
+						<div data-tab-content="overview" class="active">
+							<p>Tabs organise content into separate panels so users can switch between sections without leaving the page. Each tab maps to a content panel by ID.</p>
+						</div>
+						<div data-tab-content="features">
+							<p>Keyboard accessible, auto-initialised via data attributes, and works with dynamically loaded content. The active tab is highlighted automatically.</p>
+						</div>
+						<div data-tab-content="setup">
+							<p>Add <code>data-tabs</code> to the container. Use <code>data-tabs-nav</code> for the tab buttons and <code>data-tabs-content</code> for the panels. Match <code>data-tab</code> and <code>data-tab-content</code> values.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- POPUP -->
+		<!-- ============================================ -->
+		<section id="popup" class="test-section" data-scroll-section data-scroll-title="Popup">
+			<h2>Popup</h2>
+			<p class="section-desc">Modal dialog triggered by a button. Click the overlay or close button to dismiss.</p>
+
+			<div class="test-demo">
+				<button data-popup-trigger="test-popup-1" style="padding: 10px 20px; cursor: pointer;">Open popup</button>
+
+				<div data-popup="test-popup-1" data-popup-close-overlay="true">
+					<div data-popup-close>&times;</div>
+					<h3>Popup Dialog</h3>
+					<p>This is a modal popup using only the base component styles. The overlay dims the background and clicking outside closes the dialog.</p>
+					<p>The popup centres itself vertically and horizontally. Content scrolls if it exceeds the viewport height.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- TOOLTIP -->
+		<!-- ============================================ -->
+		<section id="tooltip" class="test-section" data-scroll-section data-scroll-title="Tooltip">
+			<h2>Tooltip</h2>
+			<p class="section-desc">Hover or focus to reveal tooltip text. Positions automatically around the target element.</p>
+
+			<div class="test-demo">
+				<div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+					<span data-tooltip="Tooltip on top" data-tooltip-position="top" style="padding: 8px 16px; border: 1px solid #ddd; border-radius: 4px; cursor: help;">Top</span>
+					<span data-tooltip="Tooltip on the right side" data-tooltip-position="right" style="padding: 8px 16px; border: 1px solid #ddd; border-radius: 4px; cursor: help;">Right</span>
+					<span data-tooltip="Tooltip below" data-tooltip-position="bottom" style="padding: 8px 16px; border: 1px solid #ddd; border-radius: 4px; cursor: help;">Bottom</span>
+					<span data-tooltip="Tooltip on the left side" data-tooltip-position="left" style="padding: 8px 16px; border: 1px solid #ddd; border-radius: 4px; cursor: help;">Left</span>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- FLIPBOX -->
+		<!-- ============================================ -->
+		<section id="flipbox" class="test-section" data-scroll-section data-scroll-title="Flipbox">
+			<h2>Flipbox</h2>
+			<p class="section-desc">3D flip cards with front and back faces. Hover or click to flip.</p>
+
+			<div class="test-demo">
+				<div class="test-grid-3">
+					<div data-flipbox data-flipbox-direction="horizontal" data-flipbox-trigger="hover" style="height: 200px;">
+						<div data-flipbox-front style="display:flex; align-items:center; justify-content:center; background:#dbeafe; border-radius:8px; height:100%;">
+							<p style="font-weight:600;">Hover to flip</p>
+						</div>
+						<div data-flipbox-back style="display:flex; align-items:center; justify-content:center; background:#bfdbfe; border-radius:8px; height:100%;">
+							<p>Back face content</p>
+						</div>
+					</div>
+
+					<div data-flipbox data-flipbox-direction="vertical" data-flipbox-trigger="hover" style="height: 200px;">
+						<div data-flipbox-front style="display:flex; align-items:center; justify-content:center; background:#dcfce7; border-radius:8px; height:100%;">
+							<p style="font-weight:600;">Vertical flip</p>
+						</div>
+						<div data-flipbox-back style="display:flex; align-items:center; justify-content:center; background:#bbf7d0; border-radius:8px; height:100%;">
+							<p>Flipped vertically</p>
+						</div>
+					</div>
+
+					<div data-flipbox data-flipbox-direction="horizontal" data-flipbox-trigger="click" style="height: 200px;">
+						<div data-flipbox-front style="display:flex; align-items:center; justify-content:center; background:#fef3c7; border-radius:8px; height:100%;">
+							<p style="font-weight:600;">Click to flip</p>
+						</div>
+						<div data-flipbox-back style="display:flex; align-items:center; justify-content:center; background:#fde68a; border-radius:8px; height:100%;">
+							<p>Click again to flip back</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- COUNTER -->
+		<!-- ============================================ -->
+		<section id="counter" class="test-section" data-scroll-section data-scroll-title="Counter">
+			<h2>Counter</h2>
+			<p class="section-desc">Animated number counting that triggers when scrolled into view.</p>
+
+			<div class="test-demo">
+				<div class="test-grid-4" style="text-align: center;">
+					<div>
+						<div data-counter data-counter-end="1250" data-counter-duration="2000" style="font-size: 36px; font-weight: 700;">0</div>
+						<p style="font-size: 13px; color: #666; margin-top: 4px;">Users</p>
+					</div>
+					<div>
+						<div data-counter data-counter-end="98" data-counter-duration="1500" data-counter-suffix="%" style="font-size: 36px; font-weight: 700;">0</div>
+						<p style="font-size: 13px; color: #666; margin-top: 4px;">Uptime</p>
+					</div>
+					<div>
+						<div data-counter data-counter-end="34" data-counter-duration="1000" style="font-size: 36px; font-weight: 700;">0</div>
+						<p style="font-size: 13px; color: #666; margin-top: 4px;">Components</p>
+					</div>
+					<div>
+						<div data-counter data-counter-end="2.5" data-counter-duration="1500" data-counter-decimals="1" data-counter-suffix="k" style="font-size: 36px; font-weight: 700;">0</div>
+						<p style="font-size: 13px; color: #666; margin-top: 4px;">Downloads</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- DRAG DROP -->
+		<!-- ============================================ -->
+		<section id="dragdrop" class="test-section" data-scroll-section data-scroll-title="DragDrop">
+			<h2>Drag and Drop</h2>
+			<p class="section-desc">Reorderable list with drag handles. Drag items to change their order.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Reorder mode</p>
+				<div data-drag-drop data-drag-drop-mode="reorder" data-drag-drop-key="test-reorder" style="max-width: 400px;">
+					<div data-drag-item data-drag-id="task1">Review pull requests</div>
+					<div data-drag-item data-drag-id="task2">Write documentation</div>
+					<div data-drag-item data-drag-id="task3">Fix reported bugs</div>
+					<div data-drag-item data-drag-id="task4">Deploy to staging</div>
+					<div data-drag-item data-drag-id="task5">Run accessibility audit</div>
+				</div>
+			</div>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Sort mode (multi-container)</p>
+				<div data-drag-drop data-drag-drop-mode="sort" data-drag-drop-key="test-sort">
+					<div class="test-grid-2">
+						<div data-drag-container data-drag-container="todo" data-drag-container-label="To Do">
+							<div data-drag-item data-drag-id="s1">Design mockups</div>
+							<div data-drag-item data-drag-id="s2">Set up CI/CD</div>
+							<div data-drag-item data-drag-id="s3">Write unit tests</div>
+						</div>
+						<div data-drag-container data-drag-container="done" data-drag-container-label="Done">
+							<div data-drag-item data-drag-id="s4">Project setup</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- FORM VALIDATION -->
+		<!-- ============================================ -->
+		<section id="formvalidation" class="test-section" data-scroll-section data-scroll-title="Form Validation">
+			<h2>Form Validation</h2>
+			<p class="section-desc">Real-time validation with rules applied via data attributes. Try submitting with empty or invalid fields.</p>
+
+			<div class="test-demo">
+				<form data-form-validation style="max-width: 500px;">
+					<div style="margin-bottom: 16px;">
+						<div class="form-group">
+							<label style="display: block; margin-bottom: 4px; font-size: 14px; font-weight: 500;">Name</label>
+							<input type="text" name="name" data-validate="required" placeholder="Your name" style="width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+						</div>
+					</div>
+					<div style="margin-bottom: 16px;">
+						<div class="form-group">
+							<label style="display: block; margin-bottom: 4px; font-size: 14px; font-weight: 500;">Email</label>
+							<input type="email" name="email" data-validate="required|email" placeholder="you@example.com" style="width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+						</div>
+					</div>
+					<div style="margin-bottom: 16px;">
+						<div class="form-group">
+							<label style="display: block; margin-bottom: 4px; font-size: 14px; font-weight: 500;">Password</label>
+							<input type="password" name="password" data-validate="required|min:8|uppercase|lowercase|number" placeholder="Minimum 8 characters" style="width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+						</div>
+					</div>
+					<div style="margin-bottom: 16px;">
+						<div class="form-group">
+							<label for="file-single" style="display: block; margin-bottom: 4px; font-size: 14px; font-weight: 500;">Upload a document</label>
+							<input type="file" id="file-single" name="document"
+								data-validate="required|filetypes:pdf,doc,docx|maxsize:5"
+								data-validate-message-filetypes="Only PDF and Word documents, please."
+								data-validate-message-maxsize="Keep it under 5 MB.">
+						</div>
+						<div class="form-group">
+							<label for="file-multi" style="display: block; margin-bottom: 4px; font-size: 14px; font-weight: 500;">Upload multiple images</label>
+							<input type="file" id="file-multi" name="images" multiple
+								data-validate="required|filetypes:jpg,jpeg,png,gif,webp|maxsize:10">
+						</div>
+					</div>
+					<button type="submit" style="padding: 10px 24px; cursor: pointer; border: 1px solid #ddd; border-radius: 6px; background: #f5f5f5; font-size: 14px;">Submit</button>
+					<button type="reset" style="padding: 10px 24px; cursor: pointer; border: 1px solid #ddd; border-radius: 6px; background: #f5f5f5; font-size: 14px;">Clear</button>
+				</form>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- FORM ELEMENTS -->
+		<!-- ============================================ -->
+		<section id="formelements" class="test-section" data-scroll-section data-scroll-title="Form Elements">
+			<h2>Form Elements</h2>
+			<p class="section-desc">Advanced form inputs: toggle switch, range slider, date picker, time picker, and colour swatch.</p>
+
+			<div class="test-demo">
+				<div data-form-elements>
+					<div style="display: grid; gap: 24px; max-width: 500px;">
+
+						<div>
+							<label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Toggle Switch</label>
+							<input type="checkbox" name="notifications" data-toggle data-toggle-on="On" data-toggle-off="Off">
+						</div>
+
+						<div>
+							<label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Range Slider</label>
+							<input type="hidden" name="volume" data-slider-input data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="65" data-slider-label="Volume: {value}%">
+						</div>
+
+						<div>
+							<label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Date Picker</label>
+							<input type="text" name="date" data-datepicker data-datepicker-format="DD/MM/YYYY" data-datepicker-native="false" placeholder="Select date" style="padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; width: 100%;">
+						</div>
+						<div>
+							<label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Native date input</label>
+							<input type="text" name="native-date" data-datepicker data-datepicker-native="true">
+						</div>
+						<div>
+							<label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Time Picker</label>
+							<input type="text" name="time" data-timepicker data-timepicker-format="24" data-timepicker-step="15" placeholder="Select time" style="padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; width: 100%;">
+						</div>
+
+						<div>
+							<label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Colour Swatch</label>
+							<input type="hidden" name="colour" data-colourswatch data-colourswatch-colours="#e74c3c,#3498db,#2ecc71,#f39c12,#9b59b6,#1abc9c,#e67e22,#34495e" data-colourswatch-picker="true">
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- MINI QUIZ -->
+		<!-- ============================================ -->
+		<section id="miniquiz" class="test-section" data-scroll-section data-scroll-title="Mini Quiz">
+			<h2>Mini Quiz</h2>
+			<p class="section-desc">Interactive quiz with different question types.</p>
+
+			<div class="test-demo" style="margin-bottom: 16px;">
+				<h3>Single Choice</h3>
+				<div data-mini-quiz
+					data-quiz-title="Quick Knowledge Check"
+					data-quiz-results="both">
+					<div data-quiz-question
+						data-quiz-type="boolean"
+						data-quiz-answer="True"
+						data-quiz-explanation="The human body contains roughly 206 bones in adulthood.">
+							<p>An adult human has 206 bones.</p>
+							<div data-quiz-option>True</div>
+							<div data-quiz-option>False</div>
+					</div>
+					<h3>Multiple choice single answer</h3>
+					<div data-quiz-question 
+						data-quiz-type="choice" 
+						data-quiz-correct="css">
+						<p>Which language is used for styling web pages?</p>
+						<div data-quiz-option="html">HTML</div>
+						<div data-quiz-option="css">CSS</div>
+						<div data-quiz-option="python">Python</div>
+					</div>
+					<h3>Multiple choice multiple answer</h3>
+					<div data-quiz-question 
+						data-quiz-type="multi" d
+						data-quiz-correct="js,ts">
+						<p>Which of these are scripting languages? (Select all that apply)</p>
+						<div data-quiz-option="js">JavaScript</div>
+						<div data-quiz-option="css">CSS</div>
+						<div data-quiz-option="ts">TypeScript</div>
+						<div data-quiz-option="sql">SQL</div>
+					</div>
+				</div>
+				
+				<div class="test-demo" style="margin-bottom: 16px;">
+					<h3>Mixed Types with Timer (Imported questions</h3>
+					<div data-mini-quiz
+						data-quiz-data="../assets/data/quiz-mixed.json"
+						data-quiz-timer="120"
+						data-quiz-results="both">
+					</div>
+				</div>
+				<div class="test-demo" style="margin-bottom: 16px;">
+					<h3>Hidden Quiz with Countdown (CSV)</h3>
+					<div data-mini-quiz
+						data-quiz-csv="../assets/data/quiz-history.csv"
+						data-quiz-title="History Quiz"
+						data-quiz-description="Five questions on world history. You have 90 seconds."
+						data-quiz-timer="90"
+						data-quiz-hidden="true"
+						data-quiz-shuffle-options="true"
+						data-quiz-results="both">
+					</div>
+				</div>
+				<div class="test-demo" style="margin-bottom: 16px;">
+					<h3>Multi-Select with Shuffle</h3>
+					<div class="demo-container">
+						<div data-mini-quiz
+							data-quiz-title="Web Development"
+							data-quiz-shuffle="true"
+							data-quiz-shuffle-options="true">
+
+							<div data-quiz-question
+								data-quiz-type="multi"
+								data-quiz-answer="HTML|CSS|JavaScript"
+								data-quiz-explanation="HTML, CSS, and JavaScript are the core front-end technologies. Python and SQL run on the server side.">
+								<p>Which of these are front-end web technologies?</p>
+								<div data-quiz-option>HTML</div>
+								<div data-quiz-option>Python</div>
+								<div data-quiz-option>CSS</div>
+								<div data-quiz-option>JavaScript</div>
+								<div data-quiz-option>SQL</div>
+							</div>
+
+							<div data-quiz-question
+								data-quiz-type="multi"
+								data-quiz-answer="padding|margin|border"
+								data-quiz-explanation="The CSS box model consists of content, padding, border, and margin. Opacity and display are separate properties.">
+								<p>Which of these are parts of the CSS box model?</p>
+								<div data-quiz-option>padding</div>
+								<div data-quiz-option>margin</div>
+								<div data-quiz-option>opacity</div>
+								<div data-quiz-option>border</div>
+								<div data-quiz-option>display</div>
+							</div>
+
+							<div data-quiz-question
+								data-quiz-type="multi"
+								data-quiz-answer="let|const"
+								data-quiz-explanation="let and const were introduced in ES6 (2015). var has been available since the beginning. define and dim are not JavaScript keywords.">
+								<p>Which JavaScript keywords were introduced in ES6?</p>
+								<div data-quiz-option>var</div>
+								<div data-quiz-option>let</div>
+								<div data-quiz-option>const</div>
+								<div data-quiz-option>define</div>
+							</div>
+
+							<div data-quiz-question
+								data-quiz-type="multi"
+									data-quiz-answer="Chrome|Firefox|Safari|Edge"
+								data-quiz-explanation="Chrome, Firefox, Safari, and Edge are all web browsers. Node.js is a JavaScript runtime, not a browser.">
+								<p>Which of the following are web browsers?</p>
+								<div data-quiz-option>Chrome</div>
+								<div data-quiz-option>Firefox</div>
+								<div data-quiz-option>Node.js</div>
+								<div data-quiz-option>Safari</div>
+								<div data-quiz-option>Edge</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="test-demo" style="margin-bottom: 16px;">
+					<h3>Drag to order</h3>
+					<div data-mini-quiz data-quiz-title="Solar System">
+						<div data-quiz-question data-quiz-type="order">
+							<p>Arrange these planets from closest to farthest from the Sun</p>
+							<div data-quiz-option>Mercury</div>
+							<div data-quiz-option>Venus</div>
+							<div data-quiz-option>Earth</div>
+							<div data-quiz-option>Mars</div>
+							<div data-quiz-option>Jupiter</div>
+						</div>
+					</div>
+				</div>
+				<div class="test-demo" style="margin-bottom: 16px;">
+					<h3>Match Pairs</h3>
+					<div data-mini-quiz
+						data-quiz-title="Capitals of Europe"
+						data-quiz-results="inline"
+						data-quiz-data='[
+							{
+								"id": "m1",
+								"type": "match",
+								"question": "Match each country to its capital city",
+								"items": ["France", "Germany", "Italy", "Spain", "Poland"],
+								"pairs": ["Paris", "Berlin", "Rome", "Madrid", "Warsaw"],
+								"answer": [0, 1, 2, 3, 4],
+								"explanation": "These are the current capital cities of each country."
+							}
+						]'>
+					</div>
+				</div>
+				<div class="test-demo" style="margin-bottom: 16px;">
+					<h3>MSort into Groups</h3>
+					<div data-mini-quiz data-quiz-title="Animal Classification">
+						<div data-quiz-question data-quiz-type="group"
+							data-quiz-categories="Mammals|Birds|Reptiles"
+							data-quiz-answer="0|1|2|0|1|2"
+							data-quiz-explanation="Dogs and whales are mammals, eagles and penguins are birds, crocodiles and snakes are reptiles.">
+							<p>Sort these animals into the correct group</p>
+							<div data-quiz-item>Dog</div>
+							<div data-quiz-item>Eagle</div>
+							<div data-quiz-item>Crocodile</div>
+							<div data-quiz-item>Whale</div>
+							<div data-quiz-item>Penguin</div>
+							<div data-quiz-item>Snake</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="test-footer">
+			Battersea Library v2.29.0 &middot; <a href="https://github.com/idahodesign/battersea-library">GitHub</a>
+		</footer>
+	</main>
+
+	<!-- Back to Top -->
+	<div data-back-to-top></div>
+
+	<!-- SmoothScroll Navigation -->
+	<div data-smooth-scroll
+		data-smoothscroll-header-selector="#mainHeader"
+		data-smoothscroll-position="right"
+		data-smoothscroll-duration="800"
+		data-smoothscroll-easing="ease-out"
+		data-smoothscroll-hide-mobile="true">
+	</div>
+
+	<!-- Scripts -->
+	<script src="../src/js/battersea-utils.js"></script>
+	<script src="../src/js/battersea-core.js"></script>
+	<script src="../src/js/battersea-nav-data.js"></script>
+	<script src="../src/js/battersea-animation.js"></script>
+	<script src="../src/js/battersea-header.js"></script>
+	<script src="../src/js/battersea-horizontalnav.js"></script>
+	<script src="../src/js/battersea-accordion.js"></script>
+	<script src="../src/js/battersea-tabs.js"></script>
+	<script src="../src/js/battersea-popup.js"></script>
+	<script src="../src/js/battersea-tooltip.js"></script>
+	<script src="../src/js/battersea-flipbox.js"></script>
+	<script src="../src/js/battersea-counter.js"></script>
+	<script src="../src/js/battersea-dragdrop.js"></script>
+	<script src="../src/js/battersea-form-validation.js"></script>
+	<script src="../src/js/battersea-form-elements.js"></script>
+	<script src="../src/js/battersea-mini-quiz.js"></script>
+	<script src="../src/js/battersea-smoothscroll.js"></script>
+	<script src="../src/js/battersea-backtotop.js"></script>
+	<script src="../src/js/battersea-tooltip.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Navigation Components - Base Style Test - Battersea Library</title>
+
+	<link rel="stylesheet/less" type="text/css" href="battersea-library-base.less">
+	<link rel="stylesheet/less" type="text/css" href="test-page.less">
+
+	<script>
+		less = { env: 'development', async: false, fileAsync: false, logLevel: 2 };
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+	<script src="../src/js/battersea-env-config.js"></script>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	</style>
+</head>
+<body>
+
+	<!-- Header Component -->
+	<header id="mainHeader" class="battersea-header" data-header data-sticky="true" data-shrink="true" data-shrink-offset="100" data-shrink-height="60" data-layout="right-align">
+		<div class="battersea-header__container">
+			<div class="battersea-header__brand">
+				<a href="index.html">
+					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%2371abc2'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="Logo" class="battersea-header__logo"/>
+					<div class="logo-text">Battersea</div>
+				</a>
+			</div>
+			<button class="battersea-header__toggle" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="battersea-header__nav">
+				<ul class="battersea-hnav" data-horizontal-nav data-nav-hover-delay="200">
+					<li class="battersea-hnav__item"><a href="index.html" class="battersea-hnav__link">Home</a></li>
+					<li class="battersea-hnav__item"><a href="navigation.html" class="battersea-hnav__link">Navigation</a></li>
+					<li class="battersea-hnav__item"><a href="content.html" class="battersea-hnav__link">Content</a></li>
+					<li class="battersea-hnav__item"><a href="interactive.html" class="battersea-hnav__link">Interactive</a></li>
+					<li class="battersea-hnav__item"><a href="data-display.html" class="battersea-hnav__link">Data Display</a></li>
+					<li class="battersea-hnav__item"><a href="utilities.html" class="battersea-hnav__link">Utilities</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="test-container">
+
+		<div class="test-hero" data-scroll-section data-scroll-title="Overview">
+			<h1>Navigation Components</h1>
+			<p>Header, menus, breadcrumbs and page navigation -- all running with default base styles.</p>
+		</div>
+
+		<!-- Breadcrumbs -->
+		<div data-breadcrumbs></div>
+
+		<!-- ============================================ -->
+		<!-- HEADER -->
+		<!-- ============================================ -->
+		<section id="header" class="test-section" data-scroll-section data-scroll-title="Header">
+			<h2>Header</h2>
+			<p class="section-desc">The header above is using the Header component with <code>data-sticky</code> and <code>data-shrink</code> enabled. Scroll down to see it shrink. The mobile menu toggle appears at smaller screen widths.</p>
+			<div class="test-demo">
+				<p class="test-demo-label">Configuration used</p>
+				<pre><code>&lt;header data-header
+  data-sticky="true"
+  data-shrink="true"
+  data-shrink-offset="100"
+  data-shrink-height="60"
+  data-layout="right-align"&gt;</code></pre>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- HORIZONTAL NAV -->
+		<!-- ============================================ -->
+		<section id="horizontalnav" class="test-section" data-scroll-section data-scroll-title="Horizontal Nav">
+			<h2>Horizontal Navigation</h2>
+			<p class="section-desc">A standalone horizontal navigation menu with dropdown sub-menus. The header nav above also uses this component.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">With dropdowns</p>
+				<ul class="battersea-hnav" data-horizontal-nav data-nav-hover-delay="200" data-nav-edge-threshold="250">
+					<li class="battersea-hnav__item">
+						<a href="#" class="battersea-hnav__link">Products</a>
+						<ul class="battersea-hnav__dropdown">
+							<li class="battersea-hnav__dropdown-item"><a href="#" class="battersea-hnav__dropdown-link">Software</a></li>
+							<li class="battersea-hnav__dropdown-item"><a href="#" class="battersea-hnav__dropdown-link">Hardware</a></li>
+							<li class="battersea-hnav__dropdown-item"><a href="#" class="battersea-hnav__dropdown-link">Services</a></li>
+						</ul>
+					</li>
+					<li class="battersea-hnav__item">
+						<a href="#" class="battersea-hnav__link">Company</a>
+						<ul class="battersea-hnav__dropdown">
+							<li class="battersea-hnav__dropdown-item"><a href="#" class="battersea-hnav__dropdown-link">About Us</a></li>
+							<li class="battersea-hnav__dropdown-item"><a href="#" class="battersea-hnav__dropdown-link">Careers</a></li>
+							<li class="battersea-hnav__dropdown-item"><a href="#" class="battersea-hnav__dropdown-link">Contact</a></li>
+						</ul>
+					</li>
+					<li class="battersea-hnav__item"><a href="#" class="battersea-hnav__link">Pricing</a></li>
+					<li class="battersea-hnav__item"><a href="#" class="battersea-hnav__link">Blog</a></li>
+					<li class="battersea-hnav__item"><a href="#" class="battersea-hnav__link">Support</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- VERTICAL NAV -->
+		<!-- ============================================ -->
+		<section id="verticalnav" class="test-section" data-scroll-section data-scroll-title="Vertical Nav">
+			<h2>Vertical Navigation</h2>
+			<p class="section-desc">Sidebar navigation in different modes. Each one uses only the base component styles.</p>
+
+			<div class="test-grid-2">
+				<div class="test-demo">
+					<p class="test-demo-label">Simple mode</p>
+					<nav data-vertical-nav data-vertical-nav-mode="simple">
+						<ul class="battersea-vnav">
+							<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Dashboard</a></li>
+							<li class="battersea-vnav__item battersea-vnav__item--active"><a href="#" class="battersea-vnav__link">Projects</a></li>
+							<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Team Members</a></li>
+							<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Reports</a></li>
+							<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Settings</a></li>
+						</ul>
+					</nav>
+				</div>
+
+				<div class="test-demo">
+					<p class="test-demo-label">Collapsible mode</p>
+					<nav data-vertical-nav data-vertical-nav-mode="collapsible">
+						<ul class="battersea-vnav">
+							<li class="battersea-vnav__item">
+								<a href="#" class="battersea-vnav__link">Getting Started</a>
+								<ul class="battersea-vnav__group">
+									<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Installation</a></li>
+									<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Configuration</a></li>
+								</ul>
+							</li>
+							<li class="battersea-vnav__item">
+								<a href="#" class="battersea-vnav__link">Components</a>
+								<ul class="battersea-vnav__group">
+									<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Buttons</a></li>
+									<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Forms</a></li>
+									<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">Tables</a></li>
+								</ul>
+							</li>
+							<li class="battersea-vnav__item"><a href="#" class="battersea-vnav__link">API Reference</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+			<div class="test-demo" style="margin-top: 16px;">
+				<p class="test-demo-label">Flyout mode</p>
+				<div style="max-width: 280px;">
+					<nav data-vertical-nav data-vertical-nav-mode="flyout" aria-label="Flyout navigation demo">
+						<ul class="battersea-vnav">
+							<li class="battersea-vnav__item">
+								<a href="#" class="battersea-vnav__link">Home</a>
+							</li>
+							<li class="battersea-vnav__item">
+								<a href="#" class="battersea-vnav__link">Products</a>
+								<ul>
+									<li class="battersea-vnav__item">
+										<a href="#" class="battersea-vnav__link">Widgets</a>
+									</li>
+									<li class="battersea-vnav__item">
+										<a href="#" class="battersea-vnav__link">Gadgets</a>
+										<ul>
+											<li class="battersea-vnav__item">
+												<a href="#" class="battersea-vnav__link">Small Gadgets</a>
+											</li>
+											<li class="battersea-vnav__item">
+												<a href="#" class="battersea-vnav__link">Large Gadgets</a>
+											</li>
+										</ul>
+									</li>
+									<li class="battersea-vnav__item">	
+										<a href="#" class="battersea-vnav__link">Accessories</a>
+									</li>
+								</ul>
+							</li>
+							<li class="battersea-vnav__item">
+								<a href="#" class="battersea-vnav__link">Services</a>
+								<ul>
+									<li class="battersea-vnav__item">
+										<a href="#" class="battersea-vnav__link">Consulting</a>
+									</li>
+									<li class="battersea-vnav__item">
+										<a href="#" class="battersea-vnav__link">Support</a>
+									</li>
+								</ul>
+							</li>
+							<li class="battersea-vnav__item">
+								<a href="#" class="battersea-vnav__link">About</a>
+							</li>
+							<li class="battersea-vnav__item">
+								<a href="#" class="battersea-vnav__link">Contact</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="test-demo" style="margin-top: 16px;">
+				<p class="test-demo-label">Sidebar toggle</p>
+				<div style="max-width: 280px;">
+				</div>
+			</div>
+			<div class="test-demo" style="margin-top: 16px;">
+				<p class="test-demo-label">Mobile Overlay & External Toggle</p>
+				<div style="max-width: 280px;">
+				</div>
+			</div>
+			<div class="test-demo" style="margin-top: 16px;">
+				<p class="test-demo-label">Off-Canvas Panel</p>
+				<div style="max-width: 280px;">
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- BREADCRUMBS -->
+		<!-- ============================================ -->
+		<section id="breadcrumbs" class="test-section" data-scroll-section data-scroll-title="Breadcrumbs">
+			<h2>Breadcrumbs</h2>
+			<p class="section-desc">Auto-generated from the page navigation. The breadcrumb trail at the top of this page is the live component.</p>
+			<div data-breadcrumbs></div>
+			<div class="test-demo">
+				<p class="test-demo-label">Configuration</p>
+				<pre><code>&lt;div data-breadcrumbs&gt;&lt;/div&gt;</code></pre>
+				<p class="test-note">The breadcrumb component reads the navigation structure via NavData and generates the trail automatically.</p>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- PAGE NAV -->
+		<!-- ============================================ -->
+		<section id="pagenav" class="test-section" data-scroll-section data-scroll-title="Page Nav">
+			<h2>Page Navigation</h2>
+			<div class="test-demo" style="margin-top: 16px;">
+				<p class="test-demo-label">Top level navigation</p>
+				<p class="section-desc">Jumps between top-level sections. Useful when you want to give people a way to move across major areas of the site.</p>
+				<div style="max-width: 280px;">
+				</div>
+				<div data-page-nav data-pagenav-mode="category" data-pagenav-label="Top level pages"></div>
+			</div>
+			<div class="test-demo" style="margin-top: 16px;">
+				<p class="test-demo-label">Category page navigation</p>
+				<p class="section-desc">Stays within the current category. If you're in the Navigation section, it only moves between Navigation pages. Handy when you want people to explore related content.</p>
+				<div style="max-width: 280px;">
+				</div>
+				<div data-page-nav data-pagenav-mode="categories pages" data-pagenav-label="Category pages" data-pagenav-show-category="true"></div>
+			</div>
+			<div class="test-demo" style="margin-top: 16px;">
+				<p class="test-demo-label">All Pages</p>
+				<p class="section-desc">Prev/next navigation between pages. Shown below using sequential mode.</p>
+				<div style="max-width: 280px;">
+				</div>
+				<div data-page-nav data-pagenav-mode="pages" data-pagenav-label="Every page" data-pagenav-show-category="true"></div>
+			</div>
+		</section>
+
+		<footer class="test-footer">
+			Battersea Library v2.29.0 &middot; <a href="https://github.com/idahodesign/battersea-library">GitHub</a>
+		</footer>
+	</main>
+
+	<!-- Back to Top -->
+	<div data-back-to-top></div>
+
+	<!-- SmoothScroll Navigation -->
+	<div data-smooth-scroll
+		data-smoothscroll-header-selector="#mainHeader"
+		data-smoothscroll-position="right"
+		data-smoothscroll-duration="800"
+		data-smoothscroll-easing="ease-out"
+		data-smoothscroll-hide-mobile="true">
+	</div>
+
+	<!-- Scripts -->
+	<script src="../src/js/battersea-utils.js"></script>
+	<script src="../src/js/battersea-core.js"></script>
+	<script src="../src/js/battersea-nav-data.js"></script>
+	<script src="../src/js/battersea-animation.js"></script>
+	<script src="../src/js/battersea-header.js"></script>
+	<script src="../src/js/battersea-horizontalnav.js"></script>
+	<script src="../src/js/battersea-verticalnav.js"></script>
+	<script src="../src/js/battersea-breadcrumbs.js"></script>
+	<script src="../src/js/battersea-pagenav.js"></script>
+	<script src="../src/js/battersea-smoothscroll.js"></script>
+	<script src="../src/js/battersea-backtotop.js"></script>
+	<script src="../src/js/battersea-tooltip.js"></script>
+
+</body>
+</html>

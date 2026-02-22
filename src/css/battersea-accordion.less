@@ -4,12 +4,17 @@
 
 [data-accordion-item] {
 	margin-bottom: 10px;
+	border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+	border-bottom: 0 solid transparent;
+	transition: border-bottom 0.3s;
 	
 	[data-accordion-header] {
 		cursor: pointer;
 		user-select: none;
 		transition: background 0.3s;
 		position: relative;
+		padding: 1rem;
 		
 		&:hover {
 			background: rgba(0, 0, 0, 0.05);
@@ -31,12 +36,18 @@
 		overflow: hidden;
 		transition: max-height 0.4s ease;
 		max-height: 0;
+		& > div {
+			padding: 0.5rem 1rem;
+		}
 	}
 	
 	&.active {
-		[data-accordion-header]::after {
-			content: '+';
-			transform: translateY(-25%) rotate(45deg);
+		[data-accordion-header] {
+			border-bottom: 1px solid #e5e7eb;
+			&::after {
+				content: '+';
+				transform: translateY(-25%) rotate(45deg);
+			}
 		}
 	}
 }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Base Style Test - Battersea Library</title>
+
+	<!-- LESS Stylesheets - Base only, no demo styles -->
+	<link rel="stylesheet/less" type="text/css" href="battersea-library-base.less">
+	<link rel="stylesheet/less" type="text/css" href="test-page.less">
+
+	<!-- LESS.js Compiler -->
+	<script>
+		less = { env: 'development', async: false, fileAsync: false, logLevel: 2 };
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+	<!-- Environment Configuration -->
+	<script src="../src/js/battersea-env-config.js"></script>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	</style>
+</head>
+<body>
+
+	<!-- Header Component -->
+	<header class="battersea-header" data-header data-sticky="true" data-layout="right-align">
+		<div class="battersea-header__container">
+			<div class="battersea-header__brand">
+				<a href="index.html">
+					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%2371abc2'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="Logo" class="battersea-header__logo"/>
+					<div class="logo-text">Battersea</div>
+				</a>
+			</div>
+			<button class="battersea-header__toggle" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="battersea-header__nav">
+				<ul class="battersea-hnav" data-horizontal-nav data-nav-hover-delay="200">
+					<li class="battersea-hnav__item"><a href="index.html" class="battersea-hnav__link">Home</a></li>
+					<li class="battersea-hnav__item"><a href="navigation.html" class="battersea-hnav__link">Navigation</a></li>
+					<li class="battersea-hnav__item"><a href="content.html" class="battersea-hnav__link">Content</a></li>
+					<li class="battersea-hnav__item"><a href="interactive.html" class="battersea-hnav__link">Interactive</a></li>
+					<li class="battersea-hnav__item"><a href="data-display.html" class="battersea-hnav__link">Data Display</a></li>
+					<li class="battersea-hnav__item"><a href="utilities.html" class="battersea-hnav__link">Utilities</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="test-container">
+
+		<!-- Hero -->
+		<div class="test-hero" data-scroll-section data-scroll-title="Overview">
+			<h1>Base Style Test</h1>
+			<p>Every component running with default styling. No custom CSS, no theme overrides -- just the base variables and component styles straight out of the box.</p>
+		</div>
+
+		<!-- Category Cards -->
+		<section data-scroll-section data-scroll-title="Categories">
+			<h2 style="font-size: 22px; margin-bottom: 4px;">Browse by category</h2>
+			<p style="font-size: 14px; color: #666; margin-top: 0;">Pick a category to see the components in action.</p>
+
+			<div class="test-category-grid">
+
+				<a href="navigation.html" class="test-category-card">
+					<div class="card-icon" style="background: #dbeafe;">
+						<svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+					</div>
+					<h3>Navigation</h3>
+					<p>Header, horizontal and vertical menus, breadcrumbs and page navigation.</p>
+					<span class="card-count">5 components</span>
+				</a>
+
+				<a href="content.html" class="test-category-card">
+					<div class="card-icon" style="background: #fce7f3;">
+						<svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+					</div>
+					<h3>Content</h3>
+					<p>Media players, image galleries, sliders, parallax, video backgrounds and profile grids.</p>
+					<span class="card-count">8 components</span>
+				</a>
+
+				<a href="interactive.html" class="test-category-card">
+					<div class="card-icon" style="background: #dcfce7;">
+						<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M7 11l5-5 5 5M7 17l5-5 5 5"/></svg>
+					</div>
+					<h3>Interactive</h3>
+					<p>Accordions, tabs, popups, tooltips, forms, quizzes, drag and drop, and more.</p>
+					<span class="card-count">10 components</span>
+				</a>
+
+				<a href="data-display.html" class="test-category-card">
+					<div class="card-icon" style="background: #fef3c7;">
+						<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="6" width="4" height="15"/><rect x="17" y="3" width="4" height="18"/></svg>
+					</div>
+					<h3>Data Display</h3>
+					<p>Charts, tables, timelines, progress indicators and pagination.</p>
+					<span class="card-count">6 components</span>
+				</a>
+
+				<a href="utilities.html" class="test-category-card">
+					<div class="card-icon" style="background: #ede9fe;">
+						<svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+					</div>
+					<h3>Utilities</h3>
+					<p>Scroll animations, accessibility tools and page helpers.</p>
+					<span class="card-count">5 components</span>
+				</a>
+
+			</div>
+		</section>
+
+		<!-- Quick Reference Table -->
+		<section style="margin-top: 48px;" data-scroll-section data-scroll-title="Quick Reference">
+			<h2 style="font-size: 22px; margin-bottom: 4px;">Quick reference</h2>
+			<p style="font-size: 14px; color: #666; margin-top: 0;">All 34 components at a glance.</p>
+
+			<table class="test-reference-table">
+				<thead>
+					<tr>
+						<th>Component</th>
+						<th>Category</th>
+						<th>Description</th>
+						<th>Data Attribute</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td><a href="interactive.html#accordion">Accordion</a></td><td>Interactive</td><td>Collapsible content sections</td><td><code>data-accordion</code></td></tr>
+					<tr><td><a href="utilities.html#accessibility">Accessibility</a></td><td>Utilities</td><td>Font size adjustment tool</td><td><code>data-accessibility</code></td></tr>
+					<tr><td><a href="utilities.html#animation">Animation</a></td><td>Utilities</td><td>Scroll-triggered animations</td><td><code>data-animation</code></td></tr>
+					<tr><td><a href="content.html#audioplayer">Audio Player</a></td><td>Content</td><td>Custom audio player with stylable controls</td><td><code>data-audio-player</code></td></tr>
+					<tr><td><a href="utilities.html#backtotop">Back to Top</a></td><td>Utilities</td><td>Scroll-to-top button</td><td><code>data-back-to-top</code></td></tr>
+					<tr><td><a href="navigation.html#breadcrumbs">Breadcrumbs</a></td><td>Navigation</td><td>Auto-generated breadcrumb trail</td><td><code>data-breadcrumbs</code></td></tr>
+					<tr><td><a href="interactive.html#counter">Counter</a></td><td>Interactive</td><td>Animated number counting</td><td><code>data-counter</code></td></tr>
+					<tr><td><a href="data-display.html#datatable">DataTable</a></td><td>Data Display</td><td>Sortable, filterable tables</td><td><code>data-datatable</code></td></tr>
+					<tr><td><a href="interactive.html#dragdrop">DragDrop</a></td><td>Interactive</td><td>Reorderable lists and sorting</td><td><code>data-drag-drop</code></td></tr>
+					<tr><td><a href="interactive.html#flipbox">Flipbox</a></td><td>Interactive</td><td>3D flip cards</td><td><code>data-flipbox</code></td></tr>
+					<tr><td><a href="interactive.html#formelements">Form Elements</a></td><td>Interactive</td><td>Toggle, slider, date/time pickers, colour swatch</td><td><code>data-form-elements</code></td></tr>
+					<tr><td><a href="interactive.html#formvalidation">Form Validation</a></td><td>Interactive</td><td>Real-time form validation</td><td><code>data-form-validation</code></td></tr>
+					<tr><td><a href="data-display.html#graph">Graph</a></td><td>Data Display</td><td>SVG charts (line, column, pie, donut, bar, radial)</td><td><code>data-graph</code></td></tr>
+					<tr><td><a href="navigation.html#header">Header</a></td><td>Navigation</td><td>Sticky header with shrink-on-scroll</td><td><code>data-header</code></td></tr>
+					<tr><td><a href="navigation.html#horizontalnav">Horizontal Nav</a></td><td>Navigation</td><td>Multi-level dropdown menus</td><td><code>data-horizontal-nav</code></td></tr>
+					<tr><td><a href="content.html#imagegallery">Image Gallery</a></td><td>Content</td><td>Lightbox with masonry grid</td><td><code>data-image-gallery</code></td></tr>
+					<tr><td><a href="interactive.html#miniquiz">Mini Quiz</a></td><td>Interactive</td><td>Interactive quiz with multiple question types</td><td><code>data-mini-quiz</code></td></tr>
+					<tr><td><a href="content.html#multislider">MultiSlider</a></td><td>Content</td><td>Multi-item carousel</td><td><code>data-multi-slider</code></td></tr>
+					<tr><td><a href="data-display.html#nestedprogress">Nested Progress</a></td><td>Data Display</td><td>Multi-layer circular progress</td><td><code>data-nested-progress</code></td></tr>
+					<tr><td><a href="navigation.html#pagenav">Page Nav</a></td><td>Navigation</td><td>Prev/next page navigation</td><td><code>data-page-nav</code></td></tr>
+					<tr><td><a href="data-display.html#pagination">Pagination</a></td><td>Data Display</td><td>Page controls with go-to and size selector</td><td><code>data-pagination</code></td></tr>
+					<tr><td><a href="content.html#parallax">Parallax</a></td><td>Content</td><td>Parallax scrolling backgrounds</td><td><code>data-parallax</code></td></tr>
+					<tr><td><a href="interactive.html#popup">Popup</a></td><td>Interactive</td><td>Modal dialogs</td><td><code>data-popup</code></td></tr>
+					<tr><td><a href="content.html#profilegrid">Profile Grid</a></td><td>Content</td><td>Staff photo grid with hover overlays</td><td><code>data-profile-grid</code></td></tr>
+					<tr><td><a href="data-display.html#progressbar">Progress Bar</a></td><td>Data Display</td><td>Horizontal and circular progress</td><td><code>data-progress-bar</code></td></tr>
+					<tr><td><a href="content.html#slider">Slider</a></td><td>Content</td><td>Image/content carousel</td><td><code>data-slider</code></td></tr>
+					<tr><td><a href="utilities.html#smoothscroll">Smooth Scroll</a></td><td>Utilities</td><td>Scroll-to-section navigation dots</td><td><code>data-smooth-scroll</code></td></tr>
+					<tr><td><a href="interactive.html#tabs">Tabs</a></td><td>Interactive</td><td>Tabbed content panels</td><td><code>data-tabs</code></td></tr>
+					<tr><td><a href="data-display.html#timeline">Timeline</a></td><td>Data Display</td><td>Vertical/horizontal timelines</td><td><code>data-timeline</code></td></tr>
+					<tr><td><a href="interactive.html#tooltip">Tooltip</a></td><td>Interactive</td><td>Hover/focus tooltips</td><td><code>data-tooltip</code></td></tr>
+					<tr><td><a href="navigation.html#verticalnav">Vertical Nav</a></td><td>Navigation</td><td>Sidebar navigation with multiple modes</td><td><code>data-vertical-nav</code></td></tr>
+					<tr><td><a href="content.html#videobg">Video Background</a></td><td>Content</td><td>Looping background video with overlay</td><td><code>data-videobg</code></td></tr>
+					<tr><td><a href="content.html#videoplayer">Video Player</a></td><td>Content</td><td>Custom video player with overlay controls</td><td><code>data-video-player</code></td></tr>
+				</tbody>
+			</table>
+		</section>
+
+		<footer class="test-footer">
+			Battersea Library v2.29.0 &middot; <a href="https://github.com/idahodesign/battersea-library">GitHub</a>
+		</footer>
+	</main>
+
+	<!-- Back to Top -->
+	<div data-back-to-top></div>
+
+	<!-- SmoothScroll Navigation -->
+	<div data-smooth-scroll
+		data-smoothscroll-position="right"
+		data-smoothscroll-duration="800"
+		data-smoothscroll-easing="ease-out"
+		data-smoothscroll-hide-mobile="true">
+	</div>
+
+	<!-- Scripts -->
+	<script src="../src/js/battersea-utils.js"></script>
+	<script src="../src/js/battersea-core.js"></script>
+	<script src="../src/js/battersea-nav-data.js"></script>
+	<script src="../src/js/battersea-header.js"></script>
+	<script src="../src/js/battersea-horizontalnav.js"></script>
+	<script src="../src/js/battersea-smoothscroll.js"></script>
+	<script src="../src/js/battersea-backtotop.js"></script>
+	<script src="../src/js/battersea-animation.js"></script>
+	<script src="../src/js/battersea-tooltip.js"></script>
+
+</body>
+</html>

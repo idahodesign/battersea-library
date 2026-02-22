@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Utility Components - Base Style Test - Battersea Library</title>
+
+	<link rel="stylesheet/less" type="text/css" href="battersea-library-base.less">
+	<link rel="stylesheet/less" type="text/css" href="test-page.less">
+
+	<script>
+		less = { env: 'development', async: false, fileAsync: false, logLevel: 2 };
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+	<script src="../src/js/battersea-env-config.js"></script>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	</style>
+</head>
+<body>
+
+	<!-- Header Component -->
+	<header id="mainHeader" class="battersea-header" data-header data-sticky="true" data-layout="right-align">
+		<div class="battersea-header__container">
+			<div class="battersea-header__brand">
+				<a href="index.html">
+					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%2371abc2'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="Logo" class="battersea-header__logo"/>
+					<div class="logo-text">Battersea</div>
+				</a>
+			</div>
+			<button class="battersea-header__toggle" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="battersea-header__nav">
+				<ul class="battersea-hnav" data-horizontal-nav data-nav-hover-delay="200">
+					<li class="battersea-hnav__item"><a href="index.html" class="battersea-hnav__link">Home</a></li>
+					<li class="battersea-hnav__item"><a href="navigation.html" class="battersea-hnav__link">Navigation</a></li>
+					<li class="battersea-hnav__item"><a href="content.html" class="battersea-hnav__link">Content</a></li>
+					<li class="battersea-hnav__item"><a href="interactive.html" class="battersea-hnav__link">Interactive</a></li>
+					<li class="battersea-hnav__item"><a href="data-display.html" class="battersea-hnav__link">Data Display</a></li>
+					<li class="battersea-hnav__item"><a href="utilities.html" class="battersea-hnav__link">Utilities</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="test-container">
+
+		<div class="test-hero" data-scroll-section data-scroll-title="Overview">
+			<h1>Utility Components</h1>
+			<p>Animations, accessibility tools and page helpers with default base styles.</p>
+		</div>
+
+		<!-- ============================================ -->
+		<!-- ANIMATION -->
+		<!-- ============================================ -->
+		<section id="animation" class="test-section" data-scroll-section data-scroll-title="Animation">
+			<h2>Animation</h2>
+			<p class="section-desc">Scroll-triggered animations. Elements animate into view as you scroll down the page.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Fade up</p>
+				<div class="test-grid-3">
+					<div data-animation="fade-up" class="test-placeholder test-placeholder--1">fade-up</div>
+					<div data-animation="fade-up" class="test-placeholder test-placeholder--2" style="transition-delay: 0.1s;">fade-up (delayed)</div>
+					<div data-animation="fade-up" class="test-placeholder test-placeholder--3" style="transition-delay: 0.2s;">fade-up (delayed)</div>
+				</div>
+			</div>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Fade directions</p>
+				<div class="test-grid-4">
+					<div data-animation="fade-in" class="test-placeholder test-placeholder--1">fade-in</div>
+					<div data-animation="fade-down" class="test-placeholder test-placeholder--2">fade-down</div>
+					<div data-animation="fade-left" class="test-placeholder test-placeholder--3">fade-left</div>
+					<div data-animation="fade-right" class="test-placeholder test-placeholder--4">fade-right</div>
+				</div>
+			</div>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Ticker tape</p>
+				<p data-animation="ticker" data-ticker-speed="40" style="font-size: 22px; font-weight: 600;">Each letter appears one at a time with natural word pauses for a typewriter effect.</p>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- ACCESSIBILITY -->
+		<!-- ============================================ -->
+		<section id="accessibility" class="test-section" data-scroll-section data-scroll-title="Accessibility">
+			<h2>Accessibility</h2>
+			<p class="section-desc">Font size adjustment tool. Normally sits in the pre-header bar; shown here standalone to test its base styling.</p>
+
+			<div class="test-demo">
+				<div data-accessibility></div>
+				<p class="test-note">The accessibility component provides a dropdown slider for adjusting the page font size. It stores the preference in localStorage.</p>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- SMOOTH SCROLL -->
+		<!-- ============================================ -->
+		<section id="smoothscroll" class="test-section" data-scroll-section data-scroll-title="Smooth Scroll">
+			<h2>Smooth Scroll</h2>
+			<p class="section-desc">Navigation dots on the right side of the page. Each dot links to a section with <code>data-scroll-section</code>. The active section is highlighted as you scroll.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Configuration</p>
+				<pre><code>&lt;div data-smooth-scroll
+  data-smoothscroll-position="right"
+  data-smoothscroll-duration="800"
+  data-smoothscroll-easing="ease-out"
+  data-smoothscroll-hide-mobile="true"&gt;
+&lt;/div&gt;</code></pre>
+				<p class="test-note">The dot navigation on the right of this page is the live component. Each dot corresponds to a section heading.</p>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- BACK TO TOP -->
+		<!-- ============================================ -->
+		<section id="backtotop" class="test-section" data-scroll-section data-scroll-title="Back to Top">
+			<h2>Back to Top</h2>
+			<p class="section-desc">Circular button that fades in as you scroll down. Clicking it smoothly scrolls back to the top of the page.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Configuration</p>
+				<pre><code>&lt;div data-back-to-top&gt;&lt;/div&gt;</code></pre>
+				<p class="test-note">Scroll down the page to see the button appear in the bottom-right corner.</p>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- NAV DATA -->
+		<!-- ============================================ -->
+		<section id="navdata" class="test-section" data-scroll-section data-scroll-title="NavData">
+			<h2>NavData</h2>
+			<p class="section-desc">Core service that parses the navigation DOM into a JSON model. Used by Breadcrumbs and PageNav. Not a visible component -- it works behind the scenes.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Configuration</p>
+				<pre><code>&lt;!-- NavData auto-initialises when battersea-nav-data.js is loaded --&gt;
+&lt;!-- It fires battersea:navDataReady when the data model is built --&gt;</code></pre>
+				<p class="test-note">NavData provides sequential refs and breadcrumb paths for all pages in the navigation menu.</p>
+			</div>
+		</section>
+
+		<footer class="test-footer">
+			Battersea Library v2.29.0 &middot; <a href="https://github.com/idahodesign/battersea-library">GitHub</a>
+		</footer>
+	</main>
+
+	<!-- Back to Top -->
+	<div data-back-to-top></div>
+
+	<!-- SmoothScroll Navigation -->
+	<div data-smooth-scroll
+		data-smoothscroll-header-selector="#mainHeader"
+		data-smoothscroll-position="right"
+		data-smoothscroll-duration="800"
+		data-smoothscroll-easing="ease-out"
+		data-smoothscroll-hide-mobile="true">
+	</div>
+
+	<!-- Scripts -->
+	<script src="../src/js/battersea-utils.js"></script>
+	<script src="../src/js/battersea-core.js"></script>
+	<script src="../src/js/battersea-nav-data.js"></script>
+	<script src="../src/js/battersea-animation.js"></script>
+	<script src="../src/js/battersea-header.js"></script>
+	<script src="../src/js/battersea-horizontalnav.js"></script>
+	<script src="../src/js/battersea-accessibility.js"></script>
+	<script src="../src/js/battersea-smoothscroll.js"></script>
+	<script src="../src/js/battersea-backtotop.js"></script>
+	<script src="../src/js/battersea-tooltip.js"></script>
+
+</body>
+</html>

@@ -5,7 +5,9 @@
 :root {
   // Colors
   --battersea-primary: #4CAF50;
+  --battersea-primary-l: #4CAF50;
   --battersea-secondary: #2196F3;
+  --battersea-secondary-l: #2196F3;
   --battersea-text: #333;
   --battersea-border: #ddd;
   
@@ -18,7 +20,7 @@
   // Slider
   --battersea-slider-arrow-bg: rgba(0, 0, 0, 0.5);
   --battersea-slider-arrow-color: #fff;
-  --battersea-slider-dot-active: var(--battersea-primary);
+  --battersea-slider-dot-active: var(--battersea-primary, #3363AF);
   --battersea-slider-dot-inactive: #ccc;
   --battersea-slider-dot-size: 12px;
   --battersea-slider-dot-spacing: 8px;
@@ -26,7 +28,7 @@
   // Tabs
   --battersea-tab-padding: 12px 24px;
   --battersea-tab-border-width: 2px;
-  --battersea-tab-active-color: var(--battersea-primary);
+  --battersea-tab-active-color: var(--battersea-primary, #3363AF);
   
   // Popup
   --battersea-popup-overlay-bg: rgba(0, 0, 0, 0.5);
@@ -44,17 +46,17 @@
   --battersea-progress-bg: #e0e0e0;
   --battersea-progress-fill: var(--battersea-primary);
   --battersea-progress-circular-stroke: #e0e0e0;
-  --battersea-progress-circular-fill: var(--battersea-primary);
+  --battersea-progress-circular-fill: var(--battersea-primary, #3363AF);
   
   // SmoothScroll
   --battersea-scroll-dot-size: 12px;
   --battersea-scroll-dot-color: #ccc;
-  --battersea-scroll-dot-active: var(--battersea-primary);
+  --battersea-scroll-dot-active: var(--battersea-primary, #3363AF);
   --battersea-scroll-dot-hover: #999;
   --battersea-scroll-spacing: 15px;
   --battersea-scroll-offset: 50px;
   --battersea-progress-circular-stroke: #e0e0e0;
-  --battersea-progress-circular-fill: var(--battersea-primary);
+  --battersea-progress-circular-fill: var(--battersea-primary, #3363AF);
   
   // Animation
   --battersea-animation-duration: 0.6s;
@@ -134,4 +136,34 @@
   --battersea-breadcrumb-font-size: 0.875rem;
   --battersea-breadcrumb-spacing: 0.5rem;
   --battersea-breadcrumb-padding: 0.75rem 0;
+  
+  // VerticalNav
+  --battersea-vnav-width: 260px;
+  --battersea-vnav-collapsed-width: 48px;
+  --battersea-vnav-bg: #ffffff;
+  --battersea-vnav-text: var(--text-color, #333);
+  --battersea-vnav-hover-bg: #f5f5f5;
+  --battersea-vnav-hover-text: #000000;
+  --battersea-vnav-active-bg: var(--primary-color, #000000);
+  --battersea-vnav-active-text: #ffffff;
+  --battersea-vnav-border: var(--border-color, #dedddd);
+  --battersea-vnav-padding: 10px 16px;
+  --battersea-vnav-indent: 16px;
+  --battersea-vnav-flyout-width: 220px;
+  --battersea-vnav-flyout-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --battersea-vnav-animation-speed: 0.3s;
+  --battersea-vnav-icon-size: 5px;
+  --battersea-vnav-group-bg: rgba(0, 0, 0, 0.02);
+  --battersea-vnav-toggle-bg: #f0f0f0;
+
+  // VerticalNav Mobile Menu
+  --battersea-vnav-mobile-bg: #ffffff;
+  --battersea-vnav-mobile-text: #333333;
+  --battersea-vnav-mobile-border: #e0e0e0;
+  --battersea-vnav-mobile-chevron: #999999;
+  --battersea-vnav-mobile-back-bg: #f5f5f5;
+
+  // VerticalNav Off-Canvas
+  --battersea-vnav-offcanvas-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  --battersea-vnav-offcanvas-backdrop: rgba(0, 0, 0, 0.5);
 }

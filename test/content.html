@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Content Components - Base Style Test - Battersea Library</title>
+
+	<link rel="stylesheet/less" type="text/css" href="battersea-library-base.less">
+	<link rel="stylesheet/less" type="text/css" href="test-page.less">
+
+	<script>
+		less = { env: 'development', async: false, fileAsync: false, logLevel: 2 };
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+	<script src="../src/js/battersea-env-config.js"></script>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	</style>
+</head>
+<body>
+
+	<!-- Header Component -->
+	<header id="mainHeader" class="battersea-header" data-header data-sticky="true" data-layout="right-align">
+		<div class="battersea-header__container">
+			<div class="battersea-header__brand">
+				<a href="index.html">
+					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%2371abc2'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="Logo" class="battersea-header__logo"/>
+					<div class="logo-text">Battersea</div>
+				</a>
+			</div>
+			<button class="battersea-header__toggle" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="battersea-header__nav">
+				<ul class="battersea-hnav" data-horizontal-nav data-nav-hover-delay="200">
+					<li class="battersea-hnav__item"><a href="index.html" class="battersea-hnav__link">Home</a></li>
+					<li class="battersea-hnav__item"><a href="navigation.html" class="battersea-hnav__link">Navigation</a></li>
+					<li class="battersea-hnav__item"><a href="content.html" class="battersea-hnav__link">Content</a></li>
+					<li class="battersea-hnav__item"><a href="interactive.html" class="battersea-hnav__link">Interactive</a></li>
+					<li class="battersea-hnav__item"><a href="data-display.html" class="battersea-hnav__link">Data Display</a></li>
+					<li class="battersea-hnav__item"><a href="utilities.html" class="battersea-hnav__link">Utilities</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="test-container">
+
+		<div class="test-hero" data-scroll-section data-scroll-title="Overview">
+			<h1>Content Components</h1>
+			<p>Media players, galleries, sliders and grids running with default base styles.</p>
+		</div>
+
+		<!-- ============================================ -->
+		<!-- SLIDER -->
+		<!-- ============================================ -->
+		<section id="slider" class="test-section" data-scroll-section data-scroll-title="Slider">
+			<h2>Slider</h2>
+			<p class="section-desc">Image/content carousel with navigation arrows and dots.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Image slider</p>
+				<div data-slider data-slider-autoplay="false" data-slider-transition="slide">
+					<div data-slider-track>
+						<div data-slider-item><img src="../assets/img/slider-option-01.jpg" alt="Slide 1" style="height:100%; display:block;"></div>
+						<div data-slider-item><img src="../assets/img/slider-option-02.jpg" alt="Slide 2" style="height:100%; display:block;"></div>
+						<div data-slider-item><img src="../assets/img/slider-option-03.jpg" alt="Slide 3" style="height:100%; display:block;"></div>
+						<div data-slider-item><img src="../assets/img/slider-option-04.jpg" alt="Slide 4" style="height:100%; display:block;"></div>
+					</div>
+					<button data-slider-prev></button>
+					<button data-slider-next></button>
+					<div data-slider-dots></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- MULTI SLIDER -->
+		<!-- ============================================ -->
+		<section id="multislider" class="test-section" data-scroll-section data-scroll-title="MultiSlider">
+			<h2>MultiSlider</h2>
+			<p class="section-desc">Multi-item carousel showing several items at once.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">4 items visible</p>
+				<div data-multi-slider data-multislider-items="4" data-multislider-items-md="2" data-multislider-items-sm="1" data-multislider-gap="16">
+					<div data-multi-slider-track>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--1">Item 1</div></div>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--2">Item 2</div></div>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--3">Item 3</div></div>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--4">Item 4</div></div>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--5">Item 5</div></div>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--1">Item 6</div></div>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--2">Item 7</div></div>
+						<div data-multi-slider-item><div class="test-placeholder test-placeholder--3">Item 8</div></div>
+					</div>
+					<button data-multi-slider-prev></button>
+					<button data-multi-slider-next></button>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- IMAGE GALLERY -->
+		<!-- ============================================ -->
+		<section id="imagegallery" class="test-section" data-scroll-section data-scroll-title="Image Gallery">
+			<h2>Image Gallery</h2>
+			<p class="section-desc">Grid layout with lightbox. Click any image to open full-screen view.</p>
+
+			<div class="test-demo">
+				<div data-image-gallery data-image-gallery-columns="4" data-image-gallery-gap="10">
+					<div data-gallery-item data-gallery-title="Slide Option 1"><img src="../assets/img/slider-option-01.jpg" alt="Gallery image 1"></div>
+					<div data-gallery-item data-gallery-title="Slide Option 2"><img src="../assets/img/slider-option-02.jpg" alt="Gallery image 2"></div>
+					<div data-gallery-item data-gallery-title="Slide Option 3"><img src="../assets/img/slider-option-03.jpg" alt="Gallery image 3"></div>
+					<div data-gallery-item data-gallery-title="Slide Option 4"><img src="../assets/img/slider-option-04.jpg" alt="Gallery image 4"></div>
+					<div data-gallery-item data-gallery-title="Slide Option 5"><img src="../assets/img/slider-option-05.jpg" alt="Gallery image 5"></div>
+					<div data-gallery-item data-gallery-title="Slide Option 6"><img src="../assets/img/slider-option-06.jpg" alt="Gallery image 6"></div>
+					<div data-gallery-item data-gallery-title="Slide Option 7"><img src="../assets/img/slider-option-07.jpg" alt="Gallery image 7"></div>
+					<div data-gallery-item data-gallery-title="Portrait 1"><img src="../assets/img/portrait_01.jpg" alt="Gallery image 8"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- AUDIO PLAYER -->
+		<!-- ============================================ -->
+		<section id="audioplayer" class="test-section" data-scroll-section data-scroll-title="Audio Player">
+			<h2>Audio Player</h2>
+			<p class="section-desc">Custom audio player with seek bar, volume control and keyboard navigation.</p>
+
+			<div class="test-demo">
+				<div data-audio-player
+					data-audio-src="../assets/audio/Audio-sample.mp3"
+					data-audio-title="Sample Track"
+					data-audio-artist="Battersea Library"></div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- VIDEO PLAYER -->
+		<!-- ============================================ -->
+		<section id="videoplayer" class="test-section" data-scroll-section data-scroll-title="Video Player">
+			<h2>Video Player</h2>
+			<p class="section-desc">Custom video player with overlay controls, fullscreen and auto-hiding controls bar.</p>
+
+			<div class="test-demo">
+				<div data-video-player
+					data-video-src="../assets/video/video-sample.mp4"
+					data-video-title="Sample Video"
+					data-video-controls="auto"
+					data-video-fullscreen="true"></div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- VIDEO BACKGROUND -->
+		<!-- ============================================ -->
+		<section id="videobg" class="test-section" data-scroll-section data-scroll-title="Video Background">
+			<h2>Video Background</h2>
+			<p class="section-desc">Looping background video with an overlay. Falls back to a poster image on mobile.</p>
+
+			<div class="test-demo" style="padding: 0; overflow: hidden; border-radius: 8px;">
+				<div data-videobg
+					data-videobg-src="../assets/video/slow_motion_soft_cloudscape_01.mp4"
+					data-videobg-overlay="rgba(0,0,0,0.4)"
+					style="min-height: 300px; display: flex; align-items: center; justify-content: center;">
+					<p style="color: #fff; font-size: 24px; font-weight: 600; text-align: center; position: relative; z-index: 1;">Content overlaid on first video</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- PARALLAX -->
+		<!-- ============================================ -->
+		<section id="parallax" class="test-section" data-scroll-section data-scroll-title="Parallax">
+			<h2>Parallax</h2>
+			<p class="section-desc">Background image scrolls at a different speed to create a depth effect.</p>
+
+			<div class="test-demo" style="padding: 0; overflow: hidden; border-radius: 8px;">
+				<div data-parallax data-parallax-speed="0.4"
+					style="background-image: url('../assets/img/parallax-01.jpg'); background-size: cover; background-position: center; min-height: 350px; display: flex; align-items: center; justify-content: center;">
+					<p style="color: #fff; font-size: 22px; font-weight: 600; text-shadow: 0 2px 8px rgba(0,0,0,0.5); text-align: center;">Parallax scrolling background</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- PROFILE GRID -->
+		<!-- ============================================ -->
+		<section id="profilegrid" class="test-section" data-scroll-section data-scroll-title="Profile Grid">
+			<h2>Profile Grid</h2>
+			<p class="section-desc">Staff photo grid with hover overlays and filter pills. Click a profile for the lightbox detail panel.</p>
+
+			<div class="test-demo">
+				<div data-profile-grid data-profile-grid-columns="4" data-profile-grid-filter="position">
+					<div data-profile-item
+						data-profile-name="Alice Chen"
+						data-profile-title="Lead Developer"
+						data-profile-position="Engineering"
+						data-profile-email="alice@example.com">
+						<img src="../assets/img/portrait_01.jpg" alt="Alice Chen">
+						<div data-profile-bio><p>Full-stack developer specialising in front-end architecture and component libraries.</p></div>
+					</div>
+					<div data-profile-item
+						data-profile-name="James Wilson"
+						data-profile-title="UX Designer"
+						data-profile-position="Design"
+						data-profile-email="james@example.com">
+						<img src="../assets/img/portrait_02.jpg" alt="James Wilson">
+						<div data-profile-bio><p>Focused on accessibility-first design and responsive layouts.</p></div>
+					</div>
+					<div data-profile-item
+						data-profile-name="Sarah O'Brien"
+						data-profile-title="Project Manager"
+						data-profile-position="Management"
+						data-profile-email="sarah@example.com">
+						<img src="../assets/img/portrait_03.jpg" alt="Sarah O'Brien">
+						<div data-profile-bio><p>Keeps everything running. Experienced in agile delivery across distributed teams.</p></div>
+					</div>
+					<div data-profile-item
+						data-profile-name="Daniel Park"
+						data-profile-title="Backend Developer"
+						data-profile-position="Engineering"
+						data-profile-email="daniel@example.com">
+						<img src="../assets/img/portrait_04.jpg" alt="Daniel Park">
+						<div data-profile-bio><p>API architecture, database design and server-side performance.</p></div>
+					</div>
+					<div data-profile-item
+						data-profile-name="Emma Lawson"
+						data-profile-title="QA Engineer"
+						data-profile-position="Engineering"
+						data-profile-email="emma@example.com">
+						<img src="../assets/img/portrait_05.jpg" alt="Emma Lawson">
+						<div data-profile-bio><p>Automated testing, cross-browser validation and accessibility auditing.</p></div>
+					</div>
+					<div data-profile-item
+						data-profile-name="Oliver Hughes"
+						data-profile-title="Creative Director"
+						data-profile-position="Design"
+						data-profile-email="oliver@example.com">
+						<img src="../assets/img/portrait_06.jpg" alt="Oliver Hughes">
+						<div data-profile-bio><p>Visual identity, brand strategy and design systems.</p></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="test-footer">
+			Battersea Library v2.29.0 &middot; <a href="https://github.com/idahodesign/battersea-library">GitHub</a>
+		</footer>
+	</main>
+
+	<!-- Back to Top -->
+	<div data-back-to-top></div>
+
+	<!-- SmoothScroll Navigation -->
+	<div data-smooth-scroll
+		data-smoothscroll-header-selector="#mainHeader"
+		data-smoothscroll-position="right"
+		data-smoothscroll-duration="800"
+		data-smoothscroll-easing="ease-out"
+		data-smoothscroll-hide-mobile="true">
+	</div>
+
+	<!-- Scripts -->
+	<script src="../src/js/battersea-utils.js"></script>
+	<script src="../src/js/battersea-core.js"></script>
+	<script src="../src/js/battersea-nav-data.js"></script>
+	<script src="../src/js/battersea-animation.js"></script>
+	<script src="../src/js/battersea-header.js"></script>
+	<script src="../src/js/battersea-horizontalnav.js"></script>
+	<script src="../src/js/battersea-slider.js"></script>
+	<script src="../src/js/battersea-multislider.js"></script>
+	<script src="../src/js/battersea-imagegallery.js"></script>
+	<script src="../src/js/battersea-audioplayer.js"></script>
+	<script src="../src/js/battersea-videoplayer.js"></script>
+	<script src="../src/js/battersea-videobg.js"></script>
+	<script src="../src/js/battersea-parallax.js"></script>
+	<script src="../src/js/battersea-profilegrid.js"></script>
+	<script src="../src/js/battersea-smoothscroll.js"></script>
+	<script src="../src/js/battersea-backtotop.js"></script>
+	<script src="../src/js/battersea-tooltip.js"></script>
+
+</body>
+</html>

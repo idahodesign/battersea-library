@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Data Display Components - Base Style Test - Battersea Library</title>
+
+	<link rel="stylesheet/less" type="text/css" href="battersea-library-base.less">
+	<link rel="stylesheet/less" type="text/css" href="test-page.less">
+
+	<script>
+		less = { env: 'development', async: false, fileAsync: false, logLevel: 2 };
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+	<script src="../src/js/battersea-env-config.js"></script>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+	</style>
+</head>
+<body>
+
+	<!-- Header Component -->
+	<header id="mainHeader" class="battersea-header" data-header data-sticky="true" data-layout="right-align">
+		<div class="battersea-header__container">
+			<div class="battersea-header__brand">
+				<a href="index.html">
+					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%2371abc2'/%3E%3Cpath d='M15 20l5 5 10-10' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="Logo" class="battersea-header__logo"/>
+					<div class="logo-text">Battersea</div>
+				</a>
+			</div>
+			<button class="battersea-header__toggle" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="battersea-header__nav">
+				<ul class="battersea-hnav" data-horizontal-nav data-nav-hover-delay="200">
+					<li class="battersea-hnav__item"><a href="index.html" class="battersea-hnav__link">Home</a></li>
+					<li class="battersea-hnav__item"><a href="navigation.html" class="battersea-hnav__link">Navigation</a></li>
+					<li class="battersea-hnav__item"><a href="content.html" class="battersea-hnav__link">Content</a></li>
+					<li class="battersea-hnav__item"><a href="interactive.html" class="battersea-hnav__link">Interactive</a></li>
+					<li class="battersea-hnav__item"><a href="data-display.html" class="battersea-hnav__link">Data Display</a></li>
+					<li class="battersea-hnav__item"><a href="utilities.html" class="battersea-hnav__link">Utilities</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="test-container">
+
+		<div class="test-hero" data-scroll-section data-scroll-title="Overview">
+			<h1>Data Display Components</h1>
+			<p>Charts, tables, timelines and progress indicators with default base styles.</p>
+		</div>
+
+		<!-- ============================================ -->
+		<!-- PROGRESS BAR -->
+		<!-- ============================================ -->
+		<section id="progressbar" class="test-section" data-scroll-section data-scroll-title="Progress Bar">
+			<h2>Progress Bar</h2>
+			<p class="section-desc">Horizontal and circular progress indicators with animated fill.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Horizontal</p>
+				<div style="display: grid; gap: 16px; max-width: 500px;">
+					<div data-progress-bar data-progress-value="85" data-progress-label="HTML" data-progress-show-percent="true" data-progress-animated="true"></div>
+					<div data-progress-bar data-progress-value="70" data-progress-label="CSS" data-progress-show-percent="true" data-progress-animated="true"></div>
+					<div data-progress-bar data-progress-value="55" data-progress-label="JavaScript" data-progress-show-percent="true" data-progress-animated="true"></div>
+				</div>
+			</div>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Circular</p>
+				<div style="display: flex; gap: 32px; flex-wrap: wrap; align-items:flex-start;">
+					<div 
+						data-progress-bar 
+						data-progress-type="circular" 
+						data-progress-value="90" 
+						data-progress-size="250" 
+						data-progress-stroke="24" 
+						data-progress-show-percent="true" 
+						data-progress-animated="true"
+						data-progress-label="CSS">
+					</div>
+					<div data-progress-bar 
+						data-progress-type="circular" 
+						data-progress-value="65" 
+						data-progress-size="200" 
+						data-progress-stroke="12" 
+						data-progress-show-percent="true" 
+						data-progress-animated="true" >
+					</div>
+					<div data-progress-bar 
+						data-progress-type="circular" 
+						data-progress-value="40" 
+						data-progress-size="150" 
+						data-progress-stroke="8" 
+						data-progress-show-percent="true" 
+						data-progress-animated="true" >
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- NESTED PROGRESS -->
+		<!-- ============================================ -->
+		<section id="nestedprogress" class="test-section" data-scroll-section data-scroll-title="Nested Progress">
+			<h2>Nested Progress</h2>
+			<p class="section-desc">Multiple concentric progress rings in a single chart.</p>
+
+			<div class="test-demo">
+				<div style="display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+					<div data-nested-progress
+						data-progress-circles='[{"label":"HTML","value":92,"color":"#e34c26"},{"label":"CSS","value":85,"color":"#264de4"},{"label":"JS","value":70,"color":"#f0db4f"}]'
+						data-progress-title="Web Skills"
+						data-progress-legend="true">
+					</div>
+
+					<div data-nested-progress
+						data-progress-circles='[{"label":"Q1","value":78,"color":"#3498db"},{"label":"Q2","value":85,"color":"#2ecc71"},{"label":"Q3","value":62,"color":"#e67e22"},{"label":"Q4","value":91,"color":"#9b59b6"}]'
+						data-progress-title="Quarterly Targets"
+						data-progress-legend="true">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- TIMELINE -->
+		<!-- ============================================ -->
+		<section id="timeline" class="test-section" data-scroll-section data-scroll-title="Timeline">
+			<h2>Timeline</h2>
+			<p class="section-desc">Vertical timeline with alternating layout, date badges and scroll-reveal.</p>
+
+			<div class="test-demo">
+				<div data-timeline data-timeline-direction="vertical" data-timeline-alternate="true">
+					<div data-timeline-item data-timeline-date="Jan 2024">
+						<h3>Project Kickoff</h3>
+						<p>Initial planning and repository setup. Defined the component architecture and build process.</p>
+					</div>
+					<div data-timeline-item data-timeline-date="Mar 2024">
+						<h3>Core Components</h3>
+						<p>Built the first batch of components: Accordion, Tabs, Slider, Popup and Tooltip.</p>
+					</div>
+					<div data-timeline-item data-timeline-date="Jun 2024">
+						<h3>Navigation Suite</h3>
+						<p>Added Header, HorizontalNav, VerticalNav, Breadcrumbs and SmoothScroll.</p>
+					</div>
+					<div data-timeline-item data-timeline-date="Sep 2024">
+						<h3>Media Components</h3>
+						<p>Launched AudioPlayer, VideoPlayer, ImageGallery and ProfileGrid.</p>
+					</div>
+					<div data-timeline-item data-timeline-date="Dec 2024">
+						<h3>Data Visualisation</h3>
+						<p>Released Graph component with line, column, pie, donut, bar and radial chart types.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- DATATABLE -->
+		<!-- ============================================ -->
+		<section id="datatable" class="test-section" data-scroll-section data-scroll-title="DataTable">
+			<h2>DataTable</h2>
+			<p class="section-desc">Sortable, filterable table with pagination. Click column headers to sort.</p>
+
+			<div class="test-demo">
+				<div data-datatable data-table-sortable="true" data-table-filterable="true" data-table-page-size="5" data-table-striped="true">
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th data-column-type="number">Age</th>
+								<th>Department</th>
+								<th>Location</th>
+								<th data-column-type="number">Projects</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>Alice Chen</td><td>32</td><td>Engineering</td><td>London</td><td>12</td></tr>
+							<tr><td>James Wilson</td><td>28</td><td>Design</td><td>Manchester</td><td>8</td></tr>
+							<tr><td>Sarah O'Brien</td><td>35</td><td>Management</td><td>London</td><td>15</td></tr>
+							<tr><td>Daniel Park</td><td>29</td><td>Engineering</td><td>Edinburgh</td><td>10</td></tr>
+							<tr><td>Emma Lawson</td><td>31</td><td>QA</td><td>Bristol</td><td>9</td></tr>
+							<tr><td>Oliver Hughes</td><td>40</td><td>Design</td><td>London</td><td>22</td></tr>
+							<tr><td>Chloe Martin</td><td>26</td><td>Engineering</td><td>Leeds</td><td>5</td></tr>
+							<tr><td>Tom Baker</td><td>33</td><td>Management</td><td>Birmingham</td><td>18</td></tr>
+							<tr><td>Priya Sharma</td><td>27</td><td>Engineering</td><td>London</td><td>7</td></tr>
+							<tr><td>Liam Murphy</td><td>38</td><td>QA</td><td>Glasgow</td><td>14</td></tr>
+							<tr><td>Sophie Taylor</td><td>30</td><td>Design</td><td>Cardiff</td><td>11</td></tr>
+							<tr><td>Ben Cooper</td><td>34</td><td>Engineering</td><td>Manchester</td><td>16</td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- GRAPH -->
+		<!-- ============================================ -->
+		<section id="graph" class="test-section" data-scroll-section data-scroll-title="Graph">
+			<h2>Graph</h2>
+			<p class="section-desc">SVG charts with animation, tooltips and legends.</p>
+
+			<div class="test-demo">
+				<p class="test-demo-label">Line chart</p>
+				<div data-graph
+					data-graph-type="line"
+					data-graph-title="Monthly Revenue"
+					data-graph-animated="true"
+					data-graph-tooltips="true"
+					data-graph-legend="true"
+					data-graph-height="300"
+					data-graph-smooth="true"
+					data-graph-data='{"labels":["Jan","Feb","Mar","Apr","May","Jun"],"datasets":[{"label":"2024","values":[42,55,48,72,65,80],"color":"#3498db"},{"label":"2025","values":[50,62,58,78,71,92],"color":"#2ecc71"}]}'>
+				</div>
+			</div>
+
+			<div class="test-grid-2">
+				<div class="test-demo">
+					<p class="test-demo-label">Column chart</p>
+					<div data-graph
+						data-graph-type="column"
+						data-graph-title="Quarterly Sales"
+						data-graph-animated="true"
+						data-graph-tooltips="true"
+						data-graph-height="280"
+						data-graph-data='{"labels":["Q1","Q2","Q3","Q4"],"datasets":[{"label":"Sales","values":[320,440,380,520],"color":"#9b59b6"}]}'>
+					</div>
+				</div>
+
+				<div class="test-demo">
+					<p class="test-demo-label">Pie chart</p>
+					<div data-graph
+						data-graph-type="pie"
+						data-graph-title="Market Share"
+						data-graph-animated="true"
+						data-graph-tooltips="true"
+						data-graph-legend="true"
+						data-graph-height="280"
+						data-graph-data='{"labels":["Chrome","Safari","Firefox","Edge","Other"],"datasets":[{"values":[65,18,8,5,4],"colors":["#3498db","#e74c3c","#f39c12","#2ecc71","#95a5a6"]}]}'>
+					</div>
+				</div>
+			</div>
+			<div class="test-grid-2">
+				<div class="test-demo">
+					<p class="test-demo-label">Donut chart</p>
+					<div data-graph
+						data-graph-type="donut"
+						data-graph-title="Budget Allocation"
+						data-graph-animated="true"
+						data-graph-tooltips="true"
+						data-graph-legend="true"
+						data-graph-height="300"
+						data-graph-data='{"labels":["Development","Design","Marketing","Operations","Support"],"datasets":[{"values":[40,20,15,15,10],"colors":["#3498db","#e74c3c","#f39c12","#2ecc71","#9b59b6"]}]}'>
+					</div>
+				</div>
+				<div class="test-demo">
+					<p class="test-demo-label">Donut chart</p>
+					<div data-graph
+						data-graph-type="radial"
+						data-graph-tooltips="true"
+						data-graph-legend="true"
+						data-graph-animated="true"
+						data-graph-radial-grid="true"
+						data-graph-height="420"
+						data-graph-title="Skill Proficiency"
+						data-graph-data='{"labels":["JavaScript","CSS","Python","Design","DevOps","Testing","SQL"],"datasets":[{"label":"Score","values":[92,88,65,78,55,70,60]}]}'>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================ -->
+		<!-- PAGINATION -->
+		<!-- ============================================ -->
+		<section id="pagination" class="test-section" data-scroll-section data-scroll-title="Pagination">
+			<h2>Pagination</h2>
+			<p class="section-desc">Client-side pagination with page size selector and go-to-page input.</p>
+
+			<div class="test-demo">
+				<div id="paginated-items">
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 1 - Component architecture planning</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 2 - Core utility functions</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 3 - Auto-initialisation system</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 4 - Accordion component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 5 - Tabs component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 6 - Slider component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 7 - Popup component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 8 - Tooltip component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 9 - Progress bar component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 10 - Counter component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 11 - Flipbox component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 12 - Header component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 13 - Horizontal navigation</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 14 - Vertical navigation</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 15 - Image gallery</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 16 - Audio player</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 17 - Video player</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 18 - Profile grid</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 19 - Drag and drop</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 20 - Form validation</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 21 - Timeline component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 22 - DataTable component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 23 - Graph component</div>
+					<div class="item" style="padding: 12px; border-bottom: 1px solid #eee;">Item 24 - Breadcrumbs</div>
+				</div>
+				<div data-pagination data-pagination-target="#paginated-items" data-pagination-page-size="5" data-pagination-show-info="true" data-pagination-show-input="true" data-pagination-show-first-last="true"></div>
+			</div>
+		</section>
+
+		<footer class="test-footer">
+			Battersea Library v2.29.0 &middot; <a href="https://github.com/idahodesign/battersea-library">GitHub</a>
+		</footer>
+	</main>
+
+	<!-- Back to Top -->
+	<div data-back-to-top></div>
+
+	<!-- SmoothScroll Navigation -->
+	<div data-smooth-scroll
+		data-smoothscroll-header-selector="#mainHeader"
+		data-smoothscroll-position="right"
+		data-smoothscroll-duration="800"
+		data-smoothscroll-easing="ease-out"
+		data-smoothscroll-hide-mobile="true">
+	</div>
+
+	<!-- Scripts -->
+	<script src="../src/js/battersea-utils.js"></script>
+	<script src="../src/js/battersea-core.js"></script>
+	<script src="../src/js/battersea-nav-data.js"></script>
+	<script src="../src/js/battersea-animation.js"></script>
+	<script src="../src/js/battersea-header.js"></script>
+	<script src="../src/js/battersea-horizontalnav.js"></script>
+	<script src="../src/js/battersea-progressbar.js"></script>
+	<script src="../src/js/battersea-nestedprogress.js"></script>
+	<script src="../src/js/battersea-timeline.js"></script>
+	<script src="../src/js/battersea-datatable.js"></script>
+	<script src="../src/js/battersea-graph.js"></script>
+	<script src="../src/js/battersea-pagination.js"></script>
+	<script src="../src/js/battersea-smoothscroll.js"></script>
+	<script src="../src/js/battersea-backtotop.js"></script>
+	<script src="../src/js/battersea-tooltip.js"></script>
+
+</body>
+</html>
