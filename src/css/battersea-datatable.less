@@ -80,6 +80,20 @@
     border: 1px solid var(--datatable-border-color, #ddd);
     border-radius: 6px;
     -webkit-overflow-scrolling: touch;
+    transition: box-shadow 0.3s;
+
+    &--scroll-right {
+      box-shadow: inset -20px 0 12px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    &--scroll-left {
+      box-shadow: inset 20px 0 12px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    &--scroll-left&--scroll-right {
+      box-shadow: inset 20px 0 12px -12px rgba(0, 0, 0, 0.15),
+                  inset -20px 0 12px -12px rgba(0, 0, 0, 0.15);
+    }
   }
 
   // ─── Table ───────────────────────────────
@@ -317,6 +331,97 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+    }
+  }
+
+  // ─── Stacked Card Layout ────────────────
+  .battersea-datatable--responsive {
+    .battersea-datatable__table-wrapper {
+      border: none;
+      border-radius: 0;
+      overflow-x: visible;
+      box-shadow: none;
+    }
+
+    .battersea-datatable__table {
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: block;
+      }
+
+      &--striped tbody tr:nth-child(even) {
+        background: none;
+      }
+    }
+
+    .battersea-datatable__row {
+      display: block;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--datatable-border-color, #ddd);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+
+      &:nth-child(even) {
+        background: #fff;
+      }
+
+      &:hover {
+        background: #fff;
+      }
+
+      &--selected {
+        background: var(--datatable-row-selected-bg, #e3f2fd);
+
+        &:hover {
+          background: var(--datatable-row-selected-bg, #e3f2fd);
+        }
+      }
+    }
+
+    .battersea-datatable__td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      text-align: right;
+      font-size: 0.85rem;
+      border-bottom-color: #f0f0f0;
+
+      &::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--datatable-header-color, #333);
+        text-align: left;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &--select {
+        justify-content: flex-end;
+        padding: 0.4rem 0.75rem;
+        border-bottom-color: var(--datatable-border-color, #ddd);
+
+        &::before {
+          content: none;
+        }
+      }
+    }
+
+    .battersea-datatable__empty {
+      display: block;
+      text-align: center;
+
+      &::before {
+        content: none;
+      }
     }
   }
 }
