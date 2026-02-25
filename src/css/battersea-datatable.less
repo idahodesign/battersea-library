@@ -74,26 +74,50 @@
     }
   }
 
+  // ─── Scroll Container ──────────────────
+  // Wraps the table wrapper so gradient pseudo-elements
+  // can overlay the content edges via z-index.
+  &__scroll-container {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      bottom: 1px;
+      width: 30px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+
+    &::before {
+      left: 1px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+    }
+
+    &::after {
+      right: 1px;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent);
+    }
+
+    &--scroll-left::before {
+      opacity: 1;
+    }
+
+    &--scroll-right::after {
+      opacity: 1;
+    }
+  }
+
   // ─── Table Wrapper ───────────────────────
   &__table-wrapper {
     overflow-x: auto;
     border: 1px solid var(--datatable-border-color, #ddd);
     border-radius: 6px;
     -webkit-overflow-scrolling: touch;
-    transition: box-shadow 0.3s;
-
-    &--scroll-right {
-      box-shadow: inset -20px 0 12px -12px rgba(0, 0, 0, 0.15);
-    }
-
-    &--scroll-left {
-      box-shadow: inset 20px 0 12px -12px rgba(0, 0, 0, 0.15);
-    }
-
-    &--scroll-left&--scroll-right {
-      box-shadow: inset 20px 0 12px -12px rgba(0, 0, 0, 0.15),
-                  inset -20px 0 12px -12px rgba(0, 0, 0, 0.15);
-    }
   }
 
   // ─── Table ───────────────────────────────
@@ -336,11 +360,15 @@
 
   // ─── Stacked Card Layout ────────────────
   .battersea-datatable--responsive {
+    .battersea-datatable__scroll-container::before,
+    .battersea-datatable__scroll-container::after {
+      display: none;
+    }
+
     .battersea-datatable__table-wrapper {
       border: none;
       border-radius: 0;
       overflow-x: visible;
-      box-shadow: none;
     }
 
     .battersea-datatable__table {

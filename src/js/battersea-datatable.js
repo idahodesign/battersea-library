@@ -72,6 +72,7 @@
 
       // DOM references
       this.wrapper = null;
+      this.scrollContainer = null;
       this.tableWrapper = null;
       this.table = null;
       this.thead = null;
@@ -395,10 +396,15 @@
 
       this.buildTable();
       this.tableWrapper.appendChild(this.table);
-      this.wrapper.appendChild(this.tableWrapper);
 
       if (this.responsive) {
+        this.scrollContainer = document.createElement('div');
+        this.scrollContainer.className = 'battersea-datatable__scroll-container';
+        this.scrollContainer.appendChild(this.tableWrapper);
+        this.wrapper.appendChild(this.scrollContainer);
         this.setupScrollHints();
+      } else {
+        this.wrapper.appendChild(this.tableWrapper);
       }
 
       // Pagination
@@ -582,23 +588,23 @@
 
     setupScrollHints() {
       var wrapper = this.tableWrapper;
-      var self = this;
+      var container = this.scrollContainer;
 
       this._updateScrollHints = function() {
         var maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
 
         if (maxScroll <= 1) {
-          wrapper.classList.remove('battersea-datatable__table-wrapper--scroll-left');
-          wrapper.classList.remove('battersea-datatable__table-wrapper--scroll-right');
+          container.classList.remove('battersea-datatable__scroll-container--scroll-left');
+          container.classList.remove('battersea-datatable__scroll-container--scroll-right');
           return;
         }
 
-        wrapper.classList.toggle(
-          'battersea-datatable__table-wrapper--scroll-left',
+        container.classList.toggle(
+          'battersea-datatable__scroll-container--scroll-left',
           wrapper.scrollLeft > 0
         );
-        wrapper.classList.toggle(
-          'battersea-datatable__table-wrapper--scroll-right',
+        container.classList.toggle(
+          'battersea-datatable__scroll-container--scroll-right',
           wrapper.scrollLeft < maxScroll - 1
         );
       };
