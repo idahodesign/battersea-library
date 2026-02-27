@@ -2,27 +2,29 @@
 
 A lightweight, modular JavaScript component library. No dependencies. Fully accessible. Infinitely themeable.
 
-**[Live Demo](https://idahodesign.github.io/battersea-library/demo/)** | **[Changelog](CHANGELOG.md)**
+**[Live Demo](https://idahodesign.github.io/battersea-library/demo/)** | **[Changelog](CHANGELOG.md)** | **v2.30.0**
 
 ---
 
 ## What is it?
 
-Battersea Library is a collection of 18 production-ready UI components built with vanilla JavaScript and LESS/CSS. Everything is configured through data attributes in your HTML — no JavaScript setup needed. Drop the files in, add the markup, and it works.
+Battersea Library is a collection of 35 production-ready UI components built with vanilla JavaScript and LESS/CSS. Everything is configured through data attributes in your HTML — no JavaScript setup needed. Drop the files in, add the markup, and it works.
 
 ---
 
 ## Components
 
-**Navigation** — Header, Horizontal Navigation, Vertical Navigation
+**Navigation** — Header, Horizontal Nav, Vertical Nav, Breadcrumbs, Page Nav, Smooth Scroll
 
-**Content** — Image Gallery, Parallax, Slider, MultiSlider
+**Content** — Accordion, Flipbox, Horizontal Scroll, Image Gallery, Parallax, Profile Grid, Slider, MultiSlider, Tabs, Timeline
 
-**Interactive** — Accordion, Counter, Flipbox, Popup, Tabs, Tooltip
+**Interactive** — Counter, Drag & Drop, Form Elements, Form Validation, Mini Quiz, Popup, Tooltip
 
-**Data Display** — Progress Bar, Nested Progress
+**Data Display** — Data Table, Graph, Pagination, Progress Bar, Nested Progress
 
-**Utilities** — Accessibility, Animation, SmoothScroll
+**Media** — Audio Player, Video Player, Video Background
+
+**Utilities** — Accessibility, Animation, Back to Top
 
 ---
 
@@ -108,7 +110,7 @@ battersea-library/
 ├── src/
 │   ├── js/           # Component scripts + core utilities
 │   └── css/          # LESS source files
-├── demo/             # Demo site with all 18 component pages
+├── demo/             # Demo site with component pages
 ├── includes/         # Reusable HTML partials (header, nav, footer)
 ├── docs/             # Component documentation
 └── assets/           # Images and video
