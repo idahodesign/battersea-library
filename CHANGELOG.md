@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.30.0] - 2026-02-27
+
+### Added
+- **HorizontalScroll component** -- Scroll-driven horizontal panel navigation. Vertical scrolling translates a row of full-viewport panels sideways inside a sticky container. Features include configurable direction (right-to-left or left-to-right), clickable progress dots (optional, on by default), scroll speed multiplier, and responsive mobile fallback that stacks panels vertically below 768px. Multiple independent zones per page supported. Demo page with four variations added
+
+---
+
 ## [2.29.0] - 2026-02-22
 
 ### Changed

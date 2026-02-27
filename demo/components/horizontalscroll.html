@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Horizontal Scroll Component - Battersea Library</title>
+		<meta name="description" content="Scroll-driven horizontal panel navigation - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+			/* Demo panel styles */
+			.hscroll-demo-panel {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				color: #fff;
+				text-align: center;
+				padding: 2rem;
+			}
+			.hscroll-demo-panel h2 {
+				font-size: clamp(2rem, 5vw, 3.5rem);
+				font-weight: 700;
+				margin-bottom: 0.75rem;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+			}
+			.hscroll-demo-panel p {
+				font-size: 1.1rem;
+				max-width: 500px;
+				opacity: 0.9;
+				line-height: 1.6;
+			}
+			.hscroll-demo-panel .panel-number {
+				font-size: 0.8rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				opacity: 0.7;
+				margin-bottom: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumb -->
+			<div data-breadcrumbs></div>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Horizontal Scroll Component</h1>
+						<p class="hero-subtitle">Scroll-driven horizontal panel navigation with progress indicators and direction control</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Scroll down through each zone to see the panels move horizontally</p>
+					</div>
+				</div>
+			</section>
+
+		</div><!-- /content-outer -->
+
+		<!-- ============================================ -->
+		<!-- DEMO 1: Basic Right-to-Left (default) -->
+		<!-- ============================================ -->
+		<div style="border-top: 1px solid #ddd; padding: 2rem 2rem 1rem; max-width: 1100px; margin: 0 auto;">
+			<h3 style="margin: 0 0 0.25rem; font-size: 1.2rem;">Right-to-Left (Default)</h3>
+			<p style="margin: 0; color: #666; font-size: 0.95rem;">Three panels with default settings. Scroll down to explore.</p>
+		</div>
+
+		<div data-horizontal-scroll>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100%;">
+					<div class="panel-number">Panel 1 of 3</div>
+					<h2>First Panel</h2>
+					<p>This is the starting panel. Keep scrolling down and the panels will slide to the left, revealing the next one.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); height: 100%;">
+					<div class="panel-number">Panel 2 of 3</div>
+					<h2>Second Panel</h2>
+					<p>Each panel fills the full viewport. The progress dots at the bottom show where you are.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); height: 100%;">
+					<div class="panel-number">Panel 3 of 3</div>
+					<h2>Third Panel</h2>
+					<p>You can click the dots to jump between panels. On mobile, panels stack vertically instead.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- ============================================ -->
+		<!-- DEMO 2: Left-to-Right Direction -->
+		<!-- ============================================ -->
+		<div style="border-top: 1px solid #ddd; padding: 2rem 2rem 1rem; max-width: 1100px; margin: 0 auto;">
+			<h3 style="margin: 0 0 0.25rem; font-size: 1.2rem;">Left-to-Right Direction</h3>
+			<p style="margin: 0; color: #666; font-size: 0.95rem;">Same panels but scrolling in the opposite direction.</p>
+		</div>
+
+		<div data-horizontal-scroll data-horizontalscroll-direction="left">
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #0c3547 0%, #1a6b8a 100%); height: 100%;">
+					<div class="panel-number">Panel 1 of 3</div>
+					<h2>Reversed Start</h2>
+					<p>With direction set to "left", the last panel is visible first and panels slide to the right as you scroll.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #1a3a4a 0%, #2d8a6e 100%); height: 100%;">
+					<div class="panel-number">Panel 2 of 3</div>
+					<h2>Middle Ground</h2>
+					<p>The reversed direction works well for timelines that read right-to-left or creative layouts.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #2d4a3e 0%, #4a9e7a 100%); height: 100%;">
+					<div class="panel-number">Panel 3 of 3</div>
+					<h2>Final Destination</h2>
+					<p>This panel appears last when scrolling down through the zone.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- ============================================ -->
+		<!-- DEMO 3: Multi-panel with Custom Options -->
+		<!-- ============================================ -->
+		<div style="border-top: 1px solid #ddd; padding: 2rem 2rem 1rem; max-width: 1100px; margin: 0 auto;">
+			<h3 style="margin: 0 0 0.25rem; font-size: 1.2rem;">Five Panels with Custom Dot Position</h3>
+			<p style="margin: 0; color: #666; font-size: 0.95rem;">More panels with dots positioned higher. Speed set to 1.5 for faster scrolling.</p>
+		</div>
+
+		<div data-horizontal-scroll data-horizontalscroll-dot-position="40" data-horizontalscroll-speed="1.5">
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #232526 0%, #414345 100%); height: 100%;">
+					<div class="panel-number">Panel 1 of 5</div>
+					<h2>Charcoal</h2>
+					<p>Five panels demonstrating a portfolio-style layout with varied backgrounds.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #e53935 0%, #e35d5b 100%); height: 100%;">
+					<div class="panel-number">Panel 2 of 5</div>
+					<h2>Crimson</h2>
+					<p>Each panel can contain any HTML content you like. Images, forms, grids, cards -- whatever you need.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%); height: 100%;">
+					<div class="panel-number">Panel 3 of 5</div>
+					<h2>Cobalt</h2>
+					<p>The speed multiplier is set to 1.5, so you scroll through panels faster than the default.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%); height: 100%;">
+					<div class="panel-number">Panel 4 of 5</div>
+					<h2>Forest</h2>
+					<p>The dot position has been raised to 40px from the bottom to sit above any overlapping content.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%); height: 100%;">
+					<div class="panel-number">Panel 5 of 5</div>
+					<h2>Violet</h2>
+					<p>The final panel. Each zone manages its own progress dots independently.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- ============================================ -->
+		<!-- DEMO 4: Dots Disabled -->
+		<!-- ============================================ -->
+		<div style="border-top: 1px solid #ddd; padding: 2rem 2rem 1rem; max-width: 1100px; margin: 0 auto;">
+			<h3 style="margin: 0 0 0.25rem; font-size: 1.2rem;">Dots Disabled</h3>
+			<p style="margin: 0; color: #666; font-size: 0.95rem;">Progress dots turned off with <code>data-horizontalscroll-dots="false"</code>.</p>
+		</div>
+
+		<div data-horizontal-scroll data-horizontalscroll-dots="false">
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #37474f 0%, #546e7a 100%); height: 100%;">
+					<div class="panel-number">Panel 1 of 2</div>
+					<h2>No Dots</h2>
+					<p>The horizontal scroll still works perfectly, just without the progress indicator.</p>
+				</div>
+			</div>
+			<div data-horizontal-scroll-panel>
+				<div class="hscroll-demo-panel" style="background: linear-gradient(135deg, #455a64 0%, #78909c 100%); height: 100%;">
+					<div class="panel-number">Panel 2 of 2</div>
+					<h2>Clean Look</h2>
+					<p>Useful when you want the content to speak for itself or you have your own navigation.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Resume content-outer for remaining sections -->
+		<div class="content-outer">
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animation="fade-up">
+								<div class="feature-icon">&#9645;</div>
+								<h3>Content-Agnostic</h3>
+								<p>Put any HTML inside panels. The component handles the scroll mechanics, you handle the content.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animation="fade-up">
+								<div class="feature-icon">&#8226;&#8226;&#8226;</div>
+								<h3>Progress Dots</h3>
+								<p>Clickable dots show which panel is active. Enable or disable them per zone with a data attribute.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animation="fade-up">
+								<div class="feature-icon">&#8644;</div>
+								<h3>Direction Control</h3>
+								<p>Scroll right-to-left (default) or left-to-right. Set the direction per zone to suit your layout.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animation="fade-up">
+								<div class="feature-icon">&#9741;</div>
+								<h3>Responsive</h3>
+								<p>On mobile, panels stack vertically with normal page scroll. No horizontal mechanics below 768px.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animation="fade-up">
+								<div class="feature-icon">&#9889;</div>
+								<h3>Performance</h3>
+								<p>Throttled scroll handlers and GPU-composited transforms keep everything smooth at 60fps.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animation="fade-up">
+								<div class="feature-icon">&#215;</div>
+								<h3>Clean Destroy</h3>
+								<p>Full cleanup on removal. Event listeners, injected DOM, and inline styles are all tidied up.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the component using these data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-horizontal-scroll</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the horizontal scroll component</td>
+									</tr>
+									<tr>
+										<td><code>data-horizontalscroll-dots</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Show or hide progress indicator dots</td>
+									</tr>
+									<tr>
+										<td><code>data-horizontalscroll-dot-position</code></td>
+										<td>number (px)</td>
+										<td><code>20</code></td>
+										<td>Distance from the bottom of the viewport</td>
+									</tr>
+									<tr>
+										<td><code>data-horizontalscroll-speed</code></td>
+										<td>0.5 - 2</td>
+										<td><code>1</code></td>
+										<td>Scroll speed multiplier. Higher values scroll through panels faster.</td>
+									</tr>
+									<tr>
+										<td><code>data-horizontalscroll-direction</code></td>
+										<td><code>right</code> / <code>left</code></td>
+										<td><code>right</code></td>
+										<td>Scroll direction. "right" slides panels left (default). "left" reverses the direction.</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">HTML Structure</h3>
+							<p>Each panel is a direct child with the <code>data-horizontal-scroll-panel</code> attribute:</p>
+
+							<pre><code>&lt;div data-horizontal-scroll&gt;
+  &lt;div data-horizontal-scroll-panel&gt;
+    &lt;!-- Any content: images, text, cards, forms --&gt;
+  &lt;/div&gt;
+  &lt;div data-horizontal-scroll-panel&gt;
+    &lt;!-- Panel content --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+							<h3 style="margin-top: 2rem;">CSS Classes</h3>
+							<p>The component manages these classes automatically:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Class</th>
+										<th>Element</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>battersea-hscroll</code></td>
+										<td>Root element</td>
+										<td>Applied to the container on initialisation</td>
+									</tr>
+									<tr>
+										<td><code>battersea-hscroll--mobile</code></td>
+										<td>Root element</td>
+										<td>Applied below 768px to stack panels vertically</td>
+									</tr>
+									<tr>
+										<td><code>battersea-hscroll__panel</code></td>
+										<td>Each panel</td>
+										<td>Applied to panel children for sizing</td>
+									</tr>
+									<tr>
+										<td><code>battersea-hscroll__dot--active</code></td>
+										<td>Dot button</td>
+										<td>Marks the currently visible panel's dot</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Usage</div>
+								<div data-accordion-content>
+									<div>
+										<p>The simplest setup with default options:</p>
+										<pre><code>&lt;div data-horizontal-scroll&gt;
+  &lt;div data-horizontal-scroll-panel&gt;
+    &lt;h2&gt;Panel One&lt;/h2&gt;
+    &lt;p&gt;Your content here&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div data-horizontal-scroll-panel&gt;
+    &lt;h2&gt;Panel Two&lt;/h2&gt;
+    &lt;p&gt;More content&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div data-horizontal-scroll-panel&gt;
+    &lt;h2&gt;Panel Three&lt;/h2&gt;
+    &lt;p&gt;Even more content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Reversed Direction</div>
+								<div data-accordion-content>
+									<div>
+										<p>Scroll left-to-right instead of the default right-to-left:</p>
+										<pre><code>&lt;div data-horizontal-scroll
+     data-horizontalscroll-direction="left"&gt;
+  &lt;div data-horizontal-scroll-panel&gt;Panel 1&lt;/div&gt;
+  &lt;div data-horizontal-scroll-panel&gt;Panel 2&lt;/div&gt;
+  &lt;div data-horizontal-scroll-panel&gt;Panel 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Speed and Dot Position</div>
+								<div data-accordion-content>
+									<div>
+										<p>Adjust how fast panels scroll and where the dots sit:</p>
+										<pre><code>&lt;div data-horizontal-scroll
+     data-horizontalscroll-speed="1.5"
+     data-horizontalscroll-dot-position="50"&gt;
+  &lt;div data-horizontal-scroll-panel&gt;Fast panel 1&lt;/div&gt;
+  &lt;div data-horizontal-scroll-panel&gt;Fast panel 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Dots Disabled</div>
+								<div data-accordion-content>
+									<div>
+										<p>Hide the progress dots entirely:</p>
+										<pre><code>&lt;div data-horizontal-scroll
+     data-horizontalscroll-dots="false"&gt;
+  &lt;div data-horizontal-scroll-panel&gt;Panel 1&lt;/div&gt;
+  &lt;div data-horizontal-scroll-panel&gt;Panel 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening to Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>Listen for panel changes to integrate with other functionality:</p>
+										<pre><code>const zone = document.querySelector('[data-horizontal-scroll]');
+
+zone.addEventListener('battersea:horizontalScrollChange', (e) =&gt; {
+  console.log('Panel:', e.detail.panelIndex);
+  console.log('Total:', e.detail.panelCount);
+});</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses <code>position: sticky</code>, <code>getBoundingClientRect()</code>, and CSS transforms.
+							All widely supported in modern browsers.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Page Navigation -->
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smooth-scroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Back to Top -->
+		<div data-back-to-top></div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-horizontalscroll.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+		<script src="../../src/js/battersea-backtotop.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

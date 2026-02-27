@@ -1,0 +1,124 @@
+/**
+ * Battersea Library - HorizontalScroll Component
+ * Version: 1.0.0
+ */
+
+.battersea-hscroll {
+  position: relative;
+  width: 100%;
+
+  &__sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    will-change: transform;
+  }
+
+  &__panel {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  &__dots {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  &__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
+      transform: scale(1.2);
+    }
+
+    &--active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    &--active:hover {
+      transform: scale(1.3);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+
+  // Mobile: stack vertically
+  &--mobile {
+
+    .battersea-hscroll__sticky {
+      position: relative;
+      height: auto;
+      overflow: visible;
+    }
+
+    .battersea-hscroll__track {
+      display: block;
+      transform: none !important;
+    }
+
+    .battersea-hscroll__panel {
+      width: 100%;
+      height: auto;
+      min-height: 50vh;
+    }
+
+    .battersea-hscroll__dots {
+      display: none;
+    }
+  }
+}
+
+// Media query fallback before JS applies the mobile class
+@media (max-width: 767px) {
+  .battersea-hscroll__sticky {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  .battersea-hscroll__track {
+    display: block;
+    transform: none !important;
+  }
+
+  .battersea-hscroll__panel {
+    width: 100%;
+    height: auto;
+    min-height: 50vh;
+  }
+
+  .battersea-hscroll__dots {
+    display: none;
+  }
+}
