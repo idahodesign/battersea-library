@@ -92,7 +92,6 @@
 
 			this.video = document.createElement('video');
 			this.video.className = 'battersea-videobg__video';
-			this.video.src = this.src;
 			this.video.muted = true;
 			this.video.loop = true;
 			this.video.playsInline = true;
@@ -103,15 +102,27 @@
 				this.video.poster = this.poster;
 			}
 
-			// Insert video as first child (before overlay and content)
+			// Insert video into DOM before setting src so the browser
+			// associates loading with a visible element
 			this.el.insertBefore(this.video, this.el.firstChild);
 
-			// Autoplay with catch for browser blocking
-			const playPromise = this.video.play();
-			if (playPromise !== undefined) {
-				playPromise.catch(() => {
-					// Autoplay blocked — video stays paused, poster/first frame visible
-				});
+			// Set src after insertion and play when ready
+			this.video.src = this.src;
+
+			var video = this.video;
+			var tryPlay = function() {
+				var p = video.play();
+				if (p !== undefined) {
+					p.catch(function() {
+						// Autoplay blocked — video stays paused, poster/first frame visible
+					});
+				}
+			};
+
+			if (this.video.readyState >= 2) {
+				tryPlay();
+			} else {
+				this.video.addEventListener('loadeddata', tryPlay, { once: true });
 			}
 		}
 

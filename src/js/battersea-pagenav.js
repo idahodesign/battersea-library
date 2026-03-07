@@ -41,13 +41,14 @@
       }
 
       var self = this;
-      document.addEventListener('battersea:navDataReady', function handler() {
-        document.removeEventListener('battersea:navDataReady', handler);
+      document.addEventListener('battersea:navDataReady', function() {
         self.render();
-      });
+      }, { once: true });
     }
 
     render() {
+      if (this.nav) return; // Already rendered
+
       var navData = window.Battersea.navData;
       if (!navData) return;
 

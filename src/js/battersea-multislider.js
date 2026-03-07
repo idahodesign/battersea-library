@@ -70,16 +70,20 @@
 
     init() {
       this.createClones();
-      this.setupItems();
       this.attachEvents();
-      
-      // Start at first real item position (after clones)
-      this.current = this.currentItemsPerView;
-      this.goToSlide(this.current, false);
 
-      if (this.autoplay) {
-        this.startAutoplay();
-      }
+      // Defer layout until the element has been painted so offsetWidth is correct
+      requestAnimationFrame(() => {
+        this.setupItems();
+
+        // Start at first real item position (after clones)
+        this.current = this.currentItemsPerView;
+        this.goToSlide(this.current, false);
+
+        if (this.autoplay) {
+          this.startAutoplay();
+        }
+      });
 
       this.events.push(
         Utils.addEvent(window, 'resize', Utils.debounce(() => {

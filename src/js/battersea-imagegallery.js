@@ -47,6 +47,9 @@
       this.panStartX = 0;
       this.panStartY = 0;
 
+      // Drag detection (prevents close after panning)
+      this.wasDragging = false;
+
       // Touch swipe state
       this.touchStartX = 0;
       this.touchStartY = 0;
@@ -194,9 +197,13 @@
         Utils.addEvent(this.closeBtn, 'click', () => this.close())
       );
 
-      // Click overlay to close
+      // Click overlay to close (suppressed after panning)
       this.events.push(
         Utils.addEvent(this.overlay, 'click', (e) => {
+          if (this.wasDragging) {
+            this.wasDragging = false;
+            return;
+          }
           if (e.target === this.overlay || e.target === this.lightbox) {
             this.close();
           }
@@ -240,9 +247,14 @@
         })
       );
 
-      // Click media to toggle zoom
+      // Click media to toggle zoom (suppressed after panning)
       this.events.push(
         Utils.addEvent(this.mediaWrap, 'click', (e) => {
+          if (this.wasDragging) {
+            this.wasDragging = false;
+            e.stopPropagation();
+            return;
+          }
           if (this.mediaWrap.classList.contains('battersea-gallery-media-wrap--video')) {
             return;
           }
@@ -261,6 +273,9 @@
           if (this.zoomLevel <= this.minZoom) return;
           e.preventDefault();
           this.isPanning = true;
+          this.wasDragging = false;
+          this.dragStartX = e.clientX;
+          this.dragStartY = e.clientY;
           this.panStartX = e.clientX - this.panX;
           this.panStartY = e.clientY - this.panY;
           this.mediaWrap.classList.add('battersea-gallery-media-wrap--panning');
@@ -270,6 +285,12 @@
       this.events.push(
         Utils.addEvent(document, 'mousemove', (e) => {
           if (!this.isPanning) return;
+          // Mark as drag if mouse moved more than 5px from start
+          var dx = e.clientX - this.dragStartX;
+          var dy = e.clientY - this.dragStartY;
+          if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+            this.wasDragging = true;
+          }
           this.panX = e.clientX - this.panStartX;
           this.panY = e.clientY - this.panStartY;
           this.applyTransform();
