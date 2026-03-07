@@ -72,18 +72,19 @@
       this.createClones();
       this.attachEvents();
 
-      // Defer layout until the element has been painted so offsetWidth is correct
-      requestAnimationFrame(() => {
-        this.setupItems();
+      // Defer layout to ensure container has been painted and has a valid width.
+      // Scripts loaded via includes run after load, so rAF/load events may have
+      // already fired — use setTimeout as a reliable fallback.
+      var self = this;
+      setTimeout(function() {
+        self.setupItems();
+        self.current = self.currentItemsPerView;
+        self.goToSlide(self.current, false);
 
-        // Start at first real item position (after clones)
-        this.current = this.currentItemsPerView;
-        this.goToSlide(this.current, false);
-
-        if (this.autoplay) {
-          this.startAutoplay();
+        if (self.autoplay) {
+          self.startAutoplay();
         }
-      });
+      }, 0);
 
       this.events.push(
         Utils.addEvent(window, 'resize', Utils.debounce(() => {
