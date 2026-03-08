@@ -1,6 +1,6 @@
 # Battersea Library - TODO
 
-**Last Updated:** 22 February 2026
+**Last Updated:** 01 March 2026
 **Current Version:** 2.28.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
@@ -73,7 +73,8 @@
 - [x] MiniQuiz v2 - Drag-and-drop ordering, matching pairs, grouping into categories, and navigation prevention (v2.26.0)
 - [x] Pagination - Standalone pagination with client-side and server-side modes, go-to-page input, page size selector, smart page range with ellipsis (v2.27.0)
 - [x] Ticker tape animation for text -- each letter appears one after another with natural word pauses (v2.28.0)
-- [ ] Create a single or multiple test web pages that display the cmpoonents using only thier base styling and the base variables less file. I want to be able to confirm the comonents can be used out of the box without any additional styling. To ensure the test pages are orgnaised you can use a style sheet for the page structure. Please use this site https://uundi.david-haworth.com/shortcode-reference as a reference for the page design. 
+- [x] Create a single or multiple test web pages that display the cmpoonents using only thier base styling and the base variables less file. I want to be able to confirm the comonents can be used out of the box without any additional styling. To ensure the test pages are orgnaised you can use a separate style sheet for the page structure. Please use this site https://uundi.david-haworth.com/shortcode-reference as a reference for the page design.
+- [x] Social media 'share' this content component (v2.31.0)
 
 ---
 
@@ -87,23 +88,19 @@
 
 ---
 
-## 🎨 Enhancement Ideas
+## 🎨 Demo Enhancement Ideas
 
 ### Homepage
-- [ ] Add screenshots/GIFs of components in action
 - [ ] Create animated hero section
 - [ ] Add "Quick Start" section
-- [ ] Add social media meta tags for link previews
 
 ### Demo Pages
-- [ ] Add "Copy Code" buttons to code snippets
-- [ ] Add live code editors (optional)
-- [ ] Add component comparison table
-- [ ] Create unified demo page with all components
+- [x] Add "Copy Code" buttons to code snippets (v2.31.0)
+- [x] Add component comparison table (v2.31.0)
 
 ### Components
 - [x] Review all components for consistency and ensure all follow same naming conventions
-- [ ] Test all components on mobile
+- [x] Test all components on mobile
 - [ ] Add accessibility audit
 
 ---
@@ -111,7 +108,15 @@
 ## 🐛 Known Issues
 
 - [x] config.codekit3 keeps appearing in Git changes
-- [ ] (Add any bugs you discover here)
+- [ ] On the demo site when your browser is less than 1125px wide the component section doesn't diplay. It doesn't appear that the animation activates on the section. All of the other sections animate fine.
+- [x] Multi slider - the number of items is incorrect but if you change the width of the browser the number of items correct itself
+- [x] Video background doesn't work oddly if you add another video background the second one works.
+- [ ] Mini Quiz's are not working.
+- [ ] Multiple page navigation elements don't appear just the last one.
+- [ ] data-pagenav-show-category="true" doesn't work
+- [x] Can we alter the layout of the profile display on:
+	[x] **Phone** - Image on the top of the bio but square
+	[x] **Tablet** - Image on one the left and the bio on the right
 
 ---
 

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Component Comparison - Battersea Library</title>
+		<meta name="description" content="Feature comparison matrix for all Battersea Library components - responsive, accessible, event-driven.">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+			.comparison-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 0.875rem;
+				margin-top: 1.5rem;
+			}
+			.comparison-table th,
+			.comparison-table td {
+				padding: 10px 12px;
+				text-align: center;
+				border-bottom: 1px solid #e8e8e8;
+			}
+			.comparison-table th {
+				background: #f8f9fa;
+				font-weight: 600;
+				color: #333;
+				position: sticky;
+				top: 0;
+				z-index: 1;
+			}
+			.comparison-table th:first-child,
+			.comparison-table td:first-child {
+				text-align: left;
+				font-weight: 500;
+				white-space: nowrap;
+			}
+			.comparison-table td:first-child a {
+				color: #667eea;
+				text-decoration: none;
+			}
+			.comparison-table td:first-child a:hover {
+				text-decoration: underline;
+			}
+			.comparison-table tr:hover {
+				background: rgba(102, 126, 234, 0.04);
+			}
+			.comparison-table .tick {
+				color: #4CAF50;
+				font-weight: bold;
+			}
+			.comparison-table .cross {
+				color: #ccc;
+			}
+			.comparison-table td:nth-child(2) {
+				text-align: left;
+				font-size: 0.8rem;
+				color: #777;
+			}
+			.comparison-filter {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-bottom: 1.5rem;
+			}
+			.comparison-filter button {
+				padding: 6px 14px;
+				border: 1px solid #ddd;
+				border-radius: 20px;
+				background: #fff;
+				color: #555;
+				font-size: 0.8rem;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+			.comparison-filter button:hover {
+				border-color: #667eea;
+				color: #667eea;
+			}
+			.comparison-filter button.active {
+				background: #667eea;
+				color: #fff;
+				border-color: #667eea;
+			}
+			.table-scroll {
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			@media (max-width: 767px) {
+				.comparison-table {
+					font-size: 0.8rem;
+				}
+				.comparison-table th,
+				.comparison-table td {
+					padding: 8px 6px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumbs -->
+			<nav data-breadcrumbs data-breadcrumbs-home-label="Home"></nav>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Component Comparison</h1>
+						<p class="hero-subtitle">Every component at a glance. Filter by category, compare features, and find exactly what you need.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURE MATRIX -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Feature Matrix" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Feature Matrix</h2>
+						<p style="text-align:center; color:#666; margin-bottom:1.5rem;">36 components across five categories. Click a component name to view its demo.</p>
+
+						<div class="comparison-filter" id="categoryFilter">
+							<button class="active" data-filter="all">All</button>
+							<button data-filter="Navigation">Navigation</button>
+							<button data-filter="Content">Content</button>
+							<button data-filter="Interactive">Interactive</button>
+							<button data-filter="Data Display">Data Display</button>
+							<button data-filter="Utilities">Utilities</button>
+						</div>
+
+						<div class="table-scroll">
+							<table class="comparison-table" id="comparisonTable">
+								<thead>
+									<tr>
+										<th>Component</th>
+										<th>Category</th>
+										<th>Responsive</th>
+										<th>Touch</th>
+										<th>Keyboard</th>
+										<th>ARIA</th>
+										<th>Events</th>
+										<th>Data&nbsp;Loading</th>
+										<th>Animation</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- Navigation -->
+									<tr data-category="Navigation">
+										<td><a href="header.html">Header</a></td>
+										<td>Navigation</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Navigation">
+										<td><a href="horizontalnav.html">Horizontal Nav</a></td>
+										<td>Navigation</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Navigation">
+										<td><a href="verticalnav.html">Vertical Nav</a></td>
+										<td>Navigation</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Navigation">
+										<td><a href="breadcrumbs.html">Breadcrumbs</a></td>
+										<td>Navigation</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+									</tr>
+									<tr data-category="Navigation">
+										<td><a href="pagenav.html">Page Navigation</a></td>
+										<td>Navigation</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+									</tr>
+
+									<!-- Content -->
+									<tr data-category="Content">
+										<td><a href="audioplayer.html">Audio Player</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="videoplayer.html">Video Player</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="imagegallery.html">Image Gallery</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="parallax.html">Parallax</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="videobg.html">Video Background</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="slider.html">Slider</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="multislider.html">MultiSlider</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="profilegrid.html">Profile Grid</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Content">
+										<td><a href="horizontalscroll.html">Horizontal Scroll</a></td>
+										<td>Content</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+
+									<!-- Interactive -->
+									<tr data-category="Interactive">
+										<td><a href="accordion.html">Accordion</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="counter.html">Counter</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="flipbox.html">Flipbox</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="popup.html">Popup</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="tabs.html">Tabs</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="tooltip.html">Tooltip</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="dragdrop.html">DragDrop</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="formvalidation.html">Form Validation</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="formelements.html">Form Elements</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="mini-quiz.html">Mini Quiz</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">JSON/CSV</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Interactive">
+										<td><a href="share.html">Share</a></td>
+										<td>Interactive</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+									</tr>
+
+									<!-- Data Display -->
+									<tr data-category="Data Display">
+										<td><a href="progressbar.html">Progress Bar</a></td>
+										<td>Data Display</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Data Display">
+										<td><a href="nestedprogress.html">Nested Progress</a></td>
+										<td>Data Display</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Data Display">
+										<td><a href="timeline.html">Timeline</a></td>
+										<td>Data Display</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Data Display">
+										<td><a href="datatable.html">DataTable</a></td>
+										<td>Data Display</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">JSON/CSV</td>
+										<td class="cross">&#10007;</td>
+									</tr>
+									<tr data-category="Data Display">
+										<td><a href="graph.html">Graph</a></td>
+										<td>Data Display</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">JSON/CSV</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Data Display">
+										<td><a href="pagination.html">Pagination</a></td>
+										<td>Data Display</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+									</tr>
+
+									<!-- Utilities -->
+									<tr data-category="Utilities">
+										<td><a href="accessibility.html">Accessibility</a></td>
+										<td>Utilities</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Utilities">
+										<td><a href="animation.html">Animation</a></td>
+										<td>Utilities</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Utilities">
+										<td><a href="smoothscroll.html">SmoothScroll</a></td>
+										<td>Utilities</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Utilities">
+										<td>BackToTop</td>
+										<td>Utilities</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+									</tr>
+									<tr data-category="Utilities">
+										<td>NavData</td>
+										<td>Utilities</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- SUMMARY STATS -->
+			<!-- ============================================ -->
+			<section class="stats-section" data-scroll-section data-scroll-title="Summary" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<div class="stats-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; text-align:center;">
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#667eea;">36</div>
+								<div class="stat-label" style="color:#666;">Components</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#667eea;">5</div>
+								<div class="stat-label" style="color:#666;">Categories</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#667eea;">31</div>
+								<div class="stat-label" style="color:#666;">With Keyboard Nav</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#667eea;">33</div>
+								<div class="stat-label" style="color:#666;">Fully Responsive</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Page Navigation -->
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smooth-scroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Back to Top -->
+		<div data-back-to-top></div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+		<script src="../../src/js/battersea-backtotop.js"></script>
+		<script src="../../src/js/battersea-copycode.js"></script>
+
+		<!-- Category Filter Script -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				var filterBtns = document.querySelectorAll('#categoryFilter button');
+				var rows = document.querySelectorAll('#comparisonTable tbody tr');
+
+				filterBtns.forEach(function(btn) {
+					btn.addEventListener('click', function() {
+						var filter = this.getAttribute('data-filter');
+
+						filterBtns.forEach(function(b) { b.classList.remove('active'); });
+						this.classList.add('active');
+
+						rows.forEach(function(row) {
+							if (filter === 'all' || row.getAttribute('data-category') === filter) {
+								row.style.display = '';
+							} else {
+								row.style.display = 'none';
+							}
+						});
+					});
+				});
+			});
+		</script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

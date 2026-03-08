@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.30.0
+- **Current Version:** 2.31.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 37 JavaScript files (includes env-config, nav-data)
+│   ├── js/           # 39 JavaScript files (includes env-config, nav-data, copycode)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (35 total)
+### Components (36 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations with ticker tape text reveal
@@ -69,6 +69,7 @@ battersea-library/
 33. Graph - SVG charts: line, column, stacked column, bar, stacked bar, pie, donut, and radial with data loading, animation, tooltips, and legends
 34. BackToTop - Scroll-to-top button that fades in as you scroll down the page
 35. HorizontalScroll - Scroll-driven horizontal panel navigation with progress dots, direction control, and mobile stacking
+36. Share - Social media share buttons for X, Facebook, LinkedIn, Bluesky, WhatsApp and Email with icon and pill styles
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -159,6 +160,9 @@ battersea-library/
 - **Ticker tape animation v2.28.0** (Feb 2026): New `data-animation="ticker"` option reveals text one character at a time with configurable speed and natural word pauses
 - **Naming consistency v2.29.0** (Feb 2026): Standardised all registration names (camelCase), event names (camelCase after `battersea:` prefix), and initialisation selectors (kebab-case) across all 34 components
 - **HorizontalScroll v2.30.0** (Feb 2026): Scroll-driven horizontal panel navigation with progress dots, direction control (right-to-left or left-to-right), speed multiplier, and responsive mobile stacking
+- **Share v2.31.0** (Mar 2026): Social media share buttons for X, Facebook, LinkedIn, Bluesky, WhatsApp and Email with icon and pill display styles, horizontal/vertical layout, custom events
+- **Copy Code buttons v2.31.0** (Mar 2026): "Copy" button on all `<pre><code>` blocks across demo pages, Clipboard API with fallback
+- **Component comparison table v2.31.0** (Mar 2026): Feature matrix page with category filters, summary table on homepage
 
 ### In Progress
 - See `TODO.md` for current tasks
@@ -249,4 +253,4 @@ Old/deprecated files are in `/Battersea-library/Archive/` (outside git folder)
 
 ---
 
-*Last updated: 22 February 2026*
+*Last updated: 8 March 2026*

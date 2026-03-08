@@ -97,12 +97,42 @@ pre {
 	border-radius: 2px;
 	overflow-x: auto;
 	margin: 1rem 0;
+	position: relative;
 	& code {
 		background: none;
 		color: inherit;
 		font-family: 'Monaco', 'Courier New', monospace;
 		font-size: 0.9rem;
 		line-height: 1.5;
+	}
+	.battersea-copy-btn {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		background: rgba(255, 255, 255, 0.12);
+		color: rgba(255, 255, 255, 0.7);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+		padding: 4px 10px;
+		font-size: 0.75rem;
+		font-family: inherit;
+		cursor: pointer;
+		opacity: 0;
+		transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+		z-index: 1;
+		&:hover {
+			background: rgba(255, 255, 255, 0.25);
+			color: #fff;
+		}
+		&--copied {
+			background: rgba(78, 205, 196, 0.3);
+			color: #4ecdc4;
+			border-color: rgba(78, 205, 196, 0.4);
+			opacity: 1;
+		}
+	}
+	&:hover .battersea-copy-btn {
+		opacity: 1;
 	}
 }
 #demo-footer-placeholder, #demo-preheader-placeholder, #demo-header-placeholder, .content-outer {

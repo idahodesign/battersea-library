@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Share Component - Battersea Library</title>
+		<meta name="description" content="Social media share buttons with multiple platforms and styles - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumbs -->
+			<nav data-breadcrumbs data-breadcrumbs-home-label="Home"></nav>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Share</h1>
+						<p class="hero-subtitle">Social media share buttons that let visitors spread the word. Six platforms out of the box, two display styles, and zero dependencies.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMOS SECTION -->
+			<!-- ============================================ -->
+			<section class="demo-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demos</h2>
+
+						<!-- Demo 1: Icon Style (Default) -->
+						<div class="demo-subsection delay-1" data-animation="fade-up">
+							<h3>Icon Buttons</h3>
+							<p>The default style -- circular buttons with platform icons. Hover to see each platform's brand colour.</p>
+							<div class="demo-container">
+								<div data-share
+									data-share-title="Battersea Library - Vanilla JS Components"
+									data-share-text="A lightweight component library with zero dependencies.">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 2: Pill Style -->
+						<div class="demo-subsection delay-2" data-animation="fade-up">
+							<h3>Pill Buttons</h3>
+							<p>The pill style adds platform names alongside icons for clearer labelling.</p>
+							<div class="demo-container">
+								<div data-share
+									data-share-style="pills"
+									data-share-title="Battersea Library - Vanilla JS Components"
+									data-share-text="A lightweight component library with zero dependencies.">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 3: Vertical Layout -->
+						<div class="demo-subsection delay-3" data-animation="fade-up">
+							<h3>Vertical Layout</h3>
+							<p>Stack the buttons vertically -- useful for sidebars or floating share panels.</p>
+							<div class="demo-container">
+								<div data-share
+									data-share-direction="vertical"
+									data-share-title="Battersea Library"
+									data-share-text="Check out this component library.">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 4: Custom Platforms -->
+						<div class="demo-subsection delay-4" data-animation="fade-up">
+							<h3>Custom Platform Selection</h3>
+							<p>Show only the platforms you want. This example uses just X, LinkedIn and Email.</p>
+							<div class="demo-container">
+								<div data-share
+									data-share-platforms="x,linkedin,email"
+									data-share-style="pills"
+									data-share-title="Battersea Library"
+									data-share-text="A vanilla JS component library.">
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 5: Custom URL -->
+						<div class="demo-subsection delay-5" data-animation="fade-up">
+							<h3>Custom Share URL</h3>
+							<p>Share a specific URL rather than the current page.</p>
+							<div class="demo-container">
+								<div data-share
+									data-share-url="https://github.com/idahodesign/battersea-library"
+									data-share-title="Battersea Library on GitHub"
+									data-share-text="Star the repo on GitHub.">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Features</h2>
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animation="fade-up">
+								<div class="feature-icon">6</div>
+								<h3>Six Platforms</h3>
+								<p>X, Facebook, LinkedIn, Bluesky, WhatsApp and Email all built in and ready to go.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animation="fade-up">
+								<div class="feature-icon">&#9635;</div>
+								<h3>Two Display Styles</h3>
+								<p>Compact icon buttons or labelled pill buttons. Pick whichever suits the layout.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animation="fade-up">
+								<div class="feature-icon">&#8597;</div>
+								<h3>Flexible Direction</h3>
+								<p>Horizontal or vertical stacking with a single data attribute change.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animation="fade-up">
+								<div class="feature-icon">&#127912;</div>
+								<h3>Brand Colours</h3>
+								<p>Each platform button shifts to its official brand colour on hover.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animation="fade-up">
+								<div class="feature-icon">A11y</div>
+								<h3>Accessible</h3>
+								<p>ARIA labels, keyboard navigation and focus indicators on every button.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animation="fade-up">
+								<div class="feature-icon">{ }</div>
+								<h3>Custom Events</h3>
+								<p>Fires battersea:shareClick with platform and URL so you can track what gets shared.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the share component using these data attributes:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-share</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the share component on the container element</td>
+									</tr>
+									<tr>
+										<td><code>data-share-url</code></td>
+										<td>URL string</td>
+										<td>Current page URL</td>
+										<td>The URL to share</td>
+									</tr>
+									<tr>
+										<td><code>data-share-title</code></td>
+										<td>Text</td>
+										<td>Page title</td>
+										<td>Title text included in the share</td>
+									</tr>
+									<tr>
+										<td><code>data-share-text</code></td>
+										<td>Text</td>
+										<td>Same as title</td>
+										<td>Description text for platforms that support it</td>
+									</tr>
+									<tr>
+										<td><code>data-share-platforms</code></td>
+										<td>Comma-separated list</td>
+										<td>All platforms</td>
+										<td>Which platforms to show: x, facebook, linkedin, bluesky, whatsapp, email</td>
+									</tr>
+									<tr>
+										<td><code>data-share-style</code></td>
+										<td><code>icons</code> / <code>pills</code></td>
+										<td><code>icons</code></td>
+										<td>Display style -- circular icons or labelled pills</td>
+									</tr>
+									<tr>
+										<td><code>data-share-direction</code></td>
+										<td><code>horizontal</code> / <code>vertical</code></td>
+										<td><code>horizontal</code></td>
+										<td>Layout direction of the buttons</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Events</h3>
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Event</th>
+										<th>Detail</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>battersea:shareClick</code></td>
+										<td><code>{ platform, url }</code></td>
+										<td>Fired when a share button is clicked</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Basic Structure</h3>
+							<pre><code>&lt;div data-share
+    data-share-url="https://example.com"
+    data-share-title="Page Title"
+    data-share-text="Description text"
+    data-share-platforms="x,facebook,linkedin,bluesky,whatsapp,email"
+    data-share-style="icons"
+    data-share-direction="horizontal"&gt;
+&lt;/div&gt;</code></pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Share Buttons</div>
+								<div data-accordion-content>
+									<div>
+										<p>The simplest setup -- add a single data attribute and get all six platforms:</p>
+										<pre><code>&lt;div data-share&gt;&lt;/div&gt;</code></pre>
+										<p style="margin-top: 1rem;">The component picks up the current page URL and title automatically.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Pill Style with Custom Platforms</div>
+								<div data-accordion-content>
+									<div>
+										<p>Show labelled buttons for specific platforms:</p>
+										<pre><code>&lt;div data-share
+    data-share-style="pills"
+    data-share-platforms="x,linkedin,email"
+    data-share-title="My Article"
+    data-share-text="Worth reading."&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Vertical Sidebar</div>
+								<div data-accordion-content>
+									<div>
+										<p>Stack buttons vertically for a sidebar or floating panel:</p>
+										<pre><code>&lt;div data-share
+    data-share-direction="vertical"
+    data-share-platforms="x,facebook,linkedin"&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Listening for Share Events</div>
+								<div data-accordion-content>
+									<div>
+										<p>Track which platforms get clicked:</p>
+										<pre><code>document.querySelector('[data-share]')
+  .addEventListener('battersea:shareClick', function(e) {
+    console.log('Shared on:', e.detail.platform);
+    console.log('URL shared:', e.detail.url);
+  });</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Include Files</div>
+								<div data-accordion-content>
+									<div>
+										<p>Add these files to your page:</p>
+										<pre><code>&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="battersea-library-min.css"&gt;
+
+&lt;!-- Core JavaScript (Required) --&gt;
+&lt;script src="battersea-utils.js"&gt;&lt;/script&gt;
+&lt;script src="battersea-core.js"&gt;&lt;/script&gt;
+
+&lt;!-- Share Component --&gt;
+&lt;script src="battersea-share.js"&gt;&lt;/script&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility</h2>
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animation="fade-up">
+								<div class="feature-icon">&#9000;</div>
+								<h3>Keyboard Navigation</h3>
+								<p>Tab through buttons and press Enter or Space to trigger a share.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animation="fade-up">
+								<div class="feature-icon">&#9673;</div>
+								<h3>Focus Indicators</h3>
+								<p>Clear visible focus ring on each button when navigating with the keyboard.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animation="fade-up">
+								<div class="feature-icon">&#9776;</div>
+								<h3>Screen Reader Support</h3>
+								<p>Each button has an aria-label identifying the platform. The container uses role="group".</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animation="fade-up">
+								<div class="feature-icon">&#10003;</div>
+								<h3>Semantic HTML</h3>
+								<p>Uses native button elements for proper click handling and keyboard interaction.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="features-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<div class="browser-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; margin-top: 2rem;">
+							<div>
+								<div style="font-size: 2rem; font-weight: bold; color: #667eea;">Ch</div>
+								<h3>Chrome</h3>
+								<p>90+</p>
+							</div>
+							<div>
+								<div style="font-size: 2rem; font-weight: bold; color: #667eea;">Ff</div>
+								<h3>Firefox</h3>
+								<p>90+</p>
+							</div>
+							<div>
+								<div style="font-size: 2rem; font-weight: bold; color: #667eea;">Sa</div>
+								<h3>Safari</h3>
+								<p>14+</p>
+							</div>
+							<div>
+								<div style="font-size: 2rem; font-weight: bold; color: #667eea;">Ed</div>
+								<h3>Edge</h3>
+								<p>90+</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Page Navigation -->
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smooth-scroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Back to Top -->
+		<div data-back-to-top></div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-share.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+		<script src="../../src/js/battersea-backtotop.js"></script>
+		<script src="../../src/js/battersea-copycode.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

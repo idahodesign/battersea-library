@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.31.0] - 2026-03-08
+
+### Added
+- **Share component** -- Social media share buttons with six platforms: X, Facebook, LinkedIn, Bluesky, WhatsApp and Email. Two display styles (circular icons and labelled pills), horizontal or vertical layout, configurable platform selection, custom share URL and text. Opens platform share dialogs in popup windows. Fires `battersea:shareClick` event with platform and URL detail. ARIA labels and keyboard navigation on all buttons. Brand colours on hover
+- **Copy Code buttons** -- All `<pre><code>` blocks on demo pages now have a "Copy" button in the top-right corner. Uses the Clipboard API with a fallback for older browsers. Button shows "Copied!" confirmation on success. Appears on hover over the code block
+- **Component comparison table** -- Dedicated comparison page (`demo/components/comparison.html`) with a feature matrix for all 36 components across five categories. Columns cover responsive design, touch support, keyboard navigation, ARIA support, custom events, data loading and animation. Category filter pills for quick filtering. Summary table added to the homepage linking to the full comparison
+- Added Share to demo navigation (Interactive category) and homepage component showcase
+- Added Component Comparison to demo navigation (Utilities category)
+
+---
+
 ## [2.30.0] - 2026-02-27
 
 ### Added
