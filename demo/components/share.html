@@ -353,6 +353,72 @@
 							</div>
 
 							<div data-accordion-item>
+								<div data-accordion-header>Open Graph Tags for Social Previews</div>
+								<div data-accordion-content>
+									<div style="color: #333;">
+										<p>When someone clicks a share button, the platform fetches the shared URL and looks for Open Graph meta tags in the <code>&lt;head&gt;</code>. These control the preview image, title, and description that appear in the social media post. Without them, platforms guess from the page content -- and they usually guess badly.</p>
+										<p style="margin-top: 1rem;">Add these tags to any page you want to look good when shared:</p>
+										<pre><code>&lt;!-- Open Graph (Facebook, LinkedIn, WhatsApp, Bluesky) --&gt;
+&lt;meta property="og:title" content="Your Page Title"&gt;
+&lt;meta property="og:description" content="A short summary of the page."&gt;
+&lt;meta property="og:image" content="https://example.com/images/preview.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/page"&gt;
+&lt;meta property="og:type" content="website"&gt;
+
+&lt;!-- X (formerly Twitter) --&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Your Page Title"&gt;
+&lt;meta name="twitter:description" content="A short summary of the page."&gt;
+&lt;meta name="twitter:image" content="https://example.com/images/preview.jpg"&gt;</code></pre>
+										<h4 style="margin-top: 1.5rem;">Image Specifications</h4>
+										<table class="config-table" style="margin-top: 0.75rem;">
+											<thead>
+												<tr>
+													<th>Platform</th>
+													<th>Recommended Size</th>
+													<th>Aspect Ratio</th>
+													<th>Max File Size</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Facebook</td>
+													<td>1200 x 630 px</td>
+													<td>1.91 : 1</td>
+													<td>8 MB</td>
+												</tr>
+												<tr>
+													<td>X / Twitter</td>
+													<td>1200 x 675 px</td>
+													<td>16 : 9</td>
+													<td>5 MB</td>
+												</tr>
+												<tr>
+													<td>LinkedIn</td>
+													<td>1200 x 627 px</td>
+													<td>1.91 : 1</td>
+													<td>5 MB</td>
+												</tr>
+												<tr>
+													<td>WhatsApp</td>
+													<td>1200 x 630 px</td>
+													<td>1.91 : 1</td>
+													<td>5 MB</td>
+												</tr>
+												<tr>
+													<td>Bluesky</td>
+													<td>1200 x 630 px</td>
+													<td>1.91 : 1</td>
+													<td>1 MB</td>
+												</tr>
+											</tbody>
+										</table>
+										<p style="margin-top: 1rem;">An image of <strong>1200 x 630 pixels</strong> in JPEG or PNG format works well across all platforms. Keep the file under 1 MB and you're covered everywhere. The <code>og:image</code> URL must be absolute -- relative paths won't work.</p>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
 								<div data-accordion-header>Include Files</div>
 								<div data-accordion-content>
 									<div>

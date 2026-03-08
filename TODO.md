@@ -101,14 +101,14 @@
 ### Components
 - [x] Review all components for consistency and ensure all follow same naming conventions
 - [x] Test all components on mobile
-- [ ] Add accessibility audit
+- [x] Add accessibility audit
 
 ---
 
 ## 🐛 Known Issues
 
 - [x] config.codekit3 keeps appearing in Git changes
-- [ ] On the demo site when your browser is less than 1125px wide the component section doesn't diplay. It doesn't appear that the animation activates on the section. All of the other sections animate fine.
+- [x] On the demo site when your browser is less than 1125px wide the component section doesn't diplay. It doesn't appear that the animation activates on the section. All of the other sections animate fine.
 - [x] Multi slider - the number of items is incorrect but if you change the width of the browser the number of items correct itself
 - [x] Video background doesn't work oddly if you add another video background the second one works.
 - [ ] Mini Quiz's are not working.

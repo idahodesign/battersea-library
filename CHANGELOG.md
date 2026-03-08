@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Component comparison table** -- Dedicated comparison page (`demo/components/comparison.html`) with a feature matrix for all 36 components across five categories. Columns cover responsive design, touch support, keyboard navigation, ARIA support, custom events, data loading and animation. Category filter pills for quick filtering. Summary table added to the homepage linking to the full comparison
 - Added Share to demo navigation (Interactive category) and homepage component showcase
 - Added Component Comparison to demo navigation (Utilities category)
+- **Accessibility audit page** -- Comprehensive audit of all 36 components across keyboard navigation, ARIA attributes, focus management, and screen reader support. Rated as Pass (10), Partial (14), or Needs Work (12). Filter pills for quick filtering by rating. Priority fixes section with Critical, High and Medium categories
+- Added Accessibility Audit to demo navigation (Utilities category)
+
+### Fixed
+- **Animation threshold for tall elements** -- IntersectionObserver with `threshold: 0.1` could never fire for sections taller than the viewport (10% of an 8000px section exceeds any viewport). Now uses `threshold: 0` for elements taller than the viewport
 
 ---
 

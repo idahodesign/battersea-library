@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Accessibility Audit - Battersea Library</title>
+		<meta name="description" content="WCAG accessibility audit of all Battersea Library components - keyboard navigation, ARIA attributes, focus management, and screen reader support.">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+			.audit-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 0.875rem;
+				margin-top: 1.5rem;
+			}
+			.audit-table th,
+			.audit-table td {
+				padding: 10px 12px;
+				text-align: center;
+				border-bottom: 1px solid #e8e8e8;
+			}
+			.audit-table th {
+				background: #f8f9fa;
+				font-weight: 600;
+				color: #333;
+				position: sticky;
+				top: 0;
+				z-index: 1;
+			}
+			.audit-table th:first-child,
+			.audit-table td:first-child {
+				text-align: left;
+				font-weight: 500;
+				white-space: nowrap;
+			}
+			.audit-table td:first-child a {
+				color: #667eea;
+				text-decoration: none;
+			}
+			.audit-table td:first-child a:hover {
+				text-decoration: underline;
+			}
+			.audit-table tr:hover {
+				background: rgba(102, 126, 234, 0.04);
+			}
+			.audit-table .pass {
+				color: #4CAF50;
+				font-weight: 600;
+			}
+			.audit-table .partial {
+				color: #FF9800;
+				font-weight: 600;
+			}
+			.audit-table .needs-work {
+				color: #f44336;
+				font-weight: 600;
+			}
+			.audit-table .na {
+				color: #ccc;
+			}
+			.audit-table .tick {
+				color: #4CAF50;
+				font-weight: bold;
+			}
+			.audit-table .warn {
+				color: #FF9800;
+				font-weight: bold;
+			}
+			.audit-table .cross {
+				color: #ccc;
+			}
+			.audit-filter {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-bottom: 1.5rem;
+			}
+			.audit-filter button {
+				padding: 6px 14px;
+				border: 1px solid #ddd;
+				border-radius: 20px;
+				background: #fff;
+				color: #555;
+				font-size: 0.8rem;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+			.audit-filter button:hover {
+				border-color: #667eea;
+				color: #667eea;
+			}
+			.audit-filter button.active {
+				background: #667eea;
+				color: #fff;
+				border-color: #667eea;
+			}
+			.table-scroll {
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			.priority-list {
+				list-style: none;
+				padding: 0;
+				margin: 1.5rem 0;
+			}
+			.priority-list li {
+				padding: 12px 16px;
+				border-left: 4px solid #f44336;
+				margin-bottom: 8px;
+				background: #fafafa;
+				border-radius: 0 4px 4px 0;
+			}
+			.priority-list li.high {
+				border-left-color: #FF9800;
+			}
+			.priority-list li.medium {
+				border-left-color: #2196F3;
+			}
+			.priority-list li strong {
+				color: #333;
+			}
+			.priority-list li span {
+				color: #666;
+				font-size: 0.875rem;
+			}
+			@media (max-width: 767px) {
+				.audit-table {
+					font-size: 0.8rem;
+				}
+				.audit-table th,
+				.audit-table td {
+					padding: 8px 6px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumbs -->
+			<nav data-breadcrumbs data-breadcrumbs-home-label="Home"></nav>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>Accessibility Audit</h1>
+						<p class="hero-subtitle">A component-by-component review of keyboard navigation, ARIA attributes, focus management, and screen reader support.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- AUDIT MATRIX -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Audit Results" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Audit Results</h2>
+						<p style="text-align:center; color:#666; margin-bottom:1.5rem;">Each component rated against four criteria. Click a component name to view its demo.</p>
+
+						<div class="audit-filter" id="ratingFilter">
+							<button class="active" data-filter="all">All (36)</button>
+							<button data-filter="Pass" style="border-color:#4CAF50; color:#4CAF50;">Pass (10)</button>
+							<button data-filter="Partial" style="border-color:#FF9800; color:#FF9800;">Partial (14)</button>
+							<button data-filter="Needs Work" style="border-color:#f44336; color:#f44336;">Needs Work (12)</button>
+						</div>
+
+						<div class="table-scroll">
+							<table class="audit-table" id="auditTable">
+								<thead>
+									<tr>
+										<th>Component</th>
+										<th>Keyboard</th>
+										<th>ARIA</th>
+										<th>Focus</th>
+										<th>Screen&nbsp;Reader</th>
+										<th>Rating</th>
+										<th>Notes</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-rating="Pass">
+										<td><a href="audioplayer.html">AudioPlayer</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Arrow keys for seek/volume, role="slider" with live values</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="breadcrumbs.html">Breadcrumbs</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">nav + ol + aria-current="page"</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="datatable.html">DataTable</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">aria-sort, aria-live announcements, full keyboard sort</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="formvalidation.html">FormValidation</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">role="alert" on errors, aria-invalid, focus on first error</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="imagegallery.html">ImageGallery</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">role="dialog", aria-modal, focus return on close</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="pagination.html">Pagination</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">aria-current="page", aria-live region, go-to input</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="smoothscroll.html">SmoothScroll</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Arrow key nav between dots, aria-current="true"</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="videoplayer.html">VideoPlayer</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Full keyboard shortcuts (Space, F, M, arrows), role="slider"</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="accessibility.html">Accessibility</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Escape to close, focus management, aria-valuetext</td>
+									</tr>
+									<tr data-rating="Pass">
+										<td><a href="share.html">Share</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="pass">Pass</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">role="group", aria-label on each button</td>
+									</tr>
+
+									<!-- Partial -->
+									<tr data-rating="Partial">
+										<td>BackToTop</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Focusable when hidden; needs aria-hidden when invisible</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="formelements.html">FormElements</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="warn">~</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Date/time picker cells may lack aria-selected</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="header.html">Header</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Mobile menu excellent; desktop dropdowns lack keyboard nav</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="horizontalnav.html">HorizontalNav</a></td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="cross">&#10007;</td>
+										<td class="warn">~</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Enter/Space toggles submenus; no arrow nav or menu roles</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="horizontalscroll.html">HorizontalScroll</a></td>
+										<td class="warn">~</td>
+										<td class="tick">&#10003;</td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Dot nav accessible; no keyboard scroll between panels</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="mini-quiz.html">MiniQuiz</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="warn">~</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Good keyboard drag; timer/score need aria-live</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="multislider.html">MultiSlider</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="cross">&#10007;</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Arrow keys work; missing carousel ARIA pattern</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="slider.html">Slider</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="cross">&#10007;</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Arrow keys work; missing carousel ARIA pattern</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="timeline.html">Timeline</a></td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Container needs tabindex for keyboard events to work</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="verticalnav.html">VerticalNav</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Off-canvas excellent; hover-to-expand has no keyboard fallback</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="profilegrid.html">ProfileGrid</a></td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="cross">&#10007;</td>
+										<td class="warn">~</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Lightbox lacks role="dialog", focus trap, focus return</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="pagenav.html">PageNav</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="tick">&#10003;</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Native links with aria-label; no current page indicator</td>
+									</tr>
+									<tr data-rating="Partial">
+										<td><a href="animation.html">Animation</a></td>
+										<td class="na">N/A</td>
+										<td class="warn">~</td>
+										<td class="na">N/A</td>
+										<td class="warn">~</td>
+										<td class="partial">Partial</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Ticker mode should preserve accessible text via aria-label</td>
+									</tr>
+
+									<!-- Needs Work -->
+									<tr data-rating="Needs Work">
+										<td><a href="accordion.html">Accordion</a></td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Headers are divs with no tabindex, role, or key handling</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="counter.html">Counter</a></td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Needs aria-live="polite" to announce final value</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="dragdrop.html">DragDrop</a></td>
+										<td class="cross">&#10007;</td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="warn">~</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">No keyboard in base mode; only MiniQuiz integration adds it</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="flipbox.html">Flipbox</a></td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">No keyboard, no ARIA, no focus -- completely inaccessible</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="graph.html">Graph</a></td>
+										<td class="cross">&#10007;</td>
+										<td class="warn">~</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Chart title only; no keyboard nav or data table alternative</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="nestedprogress.html">NestedProgress</a></td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Missing role="progressbar" and aria-value attributes</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="popup.html">Popup</a></td>
+										<td class="warn">~</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">No role="dialog", no focus trap, no focus management</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="progressbar.html">ProgressBar</a></td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Missing role="progressbar" and all aria-value attributes</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="tabs.html">Tabs</a></td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">No tablist/tab/tabpanel roles, no keyboard nav between tabs</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="tooltip.html">Tooltip</a></td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="tick">&#10003;</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Shows on focus; missing role="tooltip" and aria-describedby</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="videobg.html">VideoBg</a></td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Decorative video needs aria-hidden="true"</td>
+									</tr>
+									<tr data-rating="Needs Work">
+										<td><a href="parallax.html">Parallax</a></td>
+										<td class="na">N/A</td>
+										<td class="cross">&#10007;</td>
+										<td class="na">N/A</td>
+										<td class="na">N/A</td>
+										<td class="needs-work">Needs Work</td>
+										<td style="text-align:left; font-size:0.8rem; color:#666;">Decorative; needs alt text if background conveys meaning</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- PRIORITY FIXES -->
+			<!-- ============================================ -->
+			<section class="features-section" data-scroll-section data-scroll-title="Priority Fixes" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Priority Fixes</h2>
+						<p style="text-align:center; color:#666; margin-bottom:1.5rem;">Components where keyboard users are blocked or screen readers get no useful information.</p>
+
+						<h3 style="color:#f44336; margin-bottom:0.75rem;">Critical</h3>
+						<ul class="priority-list">
+							<li><strong>Accordion</strong> <span>-- Headers are divs with no tabindex, role, or keydown handler. Completely inaccessible to keyboard users.</span></li>
+							<li><strong>Tabs</strong> <span>-- No ARIA tabs pattern. No keyboard navigation between tabs. Needs role="tablist", role="tab", role="tabpanel".</span></li>
+							<li><strong>Popup</strong> <span>-- No role="dialog", no focus trap, no focus management. Modal is invisible to screen readers.</span></li>
+							<li><strong>Tooltip</strong> <span>-- No aria-describedby or role="tooltip". Screen readers cannot access tooltip content despite focus-triggered display.</span></li>
+							<li><strong>Flipbox</strong> <span>-- No keyboard access, no ARIA, no focus. Completely inaccessible.</span></li>
+						</ul>
+
+						<h3 style="color:#FF9800; margin-bottom:0.75rem;">High</h3>
+						<ul class="priority-list">
+							<li class="high"><strong>ProgressBar / NestedProgress</strong> <span>-- Missing role="progressbar" and all associated ARIA value attributes.</span></li>
+							<li class="high"><strong>Graph</strong> <span>-- No keyboard navigation, no data accessible to screen readers beyond chart title. Needs a hidden data table alternative.</span></li>
+							<li class="high"><strong>DragDrop</strong> <span>-- Base component has no keyboard support. Only the MiniQuiz integration adds it.</span></li>
+							<li class="high"><strong>ProfileGrid</strong> <span>-- Lightbox lacks dialog semantics, focus trap, and focus management.</span></li>
+						</ul>
+
+						<h3 style="color:#2196F3; margin-bottom:0.75rem;">Medium</h3>
+						<ul class="priority-list">
+							<li class="medium"><strong>Header / HorizontalNav</strong> <span>-- Desktop dropdowns lack arrow key navigation and ARIA menu roles.</span></li>
+							<li class="medium"><strong>Slider / MultiSlider</strong> <span>-- Missing carousel ARIA pattern (aria-roledescription, aria-live for slide changes).</span></li>
+							<li class="medium"><strong>ImageGallery</strong> <span>-- Lightbox lacks focus trap (otherwise excellent).</span></li>
+							<li class="medium"><strong>Timeline</strong> <span>-- Container needs tabindex="0" for keyboard events to work.</span></li>
+							<li class="medium"><strong>VideoBg</strong> <span>-- Decorative video needs aria-hidden="true".</span></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- SUMMARY STATS -->
+			<!-- ============================================ -->
+			<section class="stats-section" data-scroll-section data-scroll-title="Summary" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<div class="stats-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; text-align:center;">
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#4CAF50;">10</div>
+								<div class="stat-label" style="color:#666;">Pass</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#FF9800;">14</div>
+								<div class="stat-label" style="color:#666;">Partial</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#f44336;">12</div>
+								<div class="stat-label" style="color:#666;">Needs Work</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-number" style="font-size:2.5rem; font-weight:700; color:#667eea;">36</div>
+								<div class="stat-label" style="color:#666;">Components Audited</div>
+							</div>
+						</div>
+						<p style="text-align:center; color:#666; margin-top:2rem;">Audit conducted 8 March 2026 against WCAG 2.1 Level AA criteria.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Page Navigation -->
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smooth-scroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Back to Top -->
+		<div data-back-to-top></div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+		<script src="../../src/js/battersea-backtotop.js"></script>
+		<script src="../../src/js/battersea-copycode.js"></script>
+
+		<!-- Rating Filter Script -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				var filterBtns = document.querySelectorAll('#ratingFilter button');
+				var rows = document.querySelectorAll('#auditTable tbody tr');
+
+				filterBtns.forEach(function(btn) {
+					btn.addEventListener('click', function() {
+						var filter = this.getAttribute('data-filter');
+
+						filterBtns.forEach(function(b) {
+							b.classList.remove('active');
+							b.style.background = '';
+							b.style.color = '';
+						});
+						this.classList.add('active');
+
+						rows.forEach(function(row) {
+							if (filter === 'all' || row.getAttribute('data-rating') === filter) {
+								row.style.display = '';
+							} else {
+								row.style.display = 'none';
+							}
+						});
+					});
+				});
+			});
+		</script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

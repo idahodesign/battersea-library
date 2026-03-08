@@ -178,22 +178,29 @@
         return;
       }
 
+      // Use threshold 0 for elements taller than the viewport,
+      // otherwise 10% of a very tall section can exceed the viewport height
+      // and the observer never fires
+      var elHeight = this.el.offsetHeight;
+      var viewportHeight = window.innerHeight;
+      var threshold = elHeight > viewportHeight ? 0 : 0.1;
+
       this.observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting && !this.hasAnimated && !this.isAnimating) {
             // Mark as animating (hasAnimated will be set in animate())
             this.isAnimating = true;
-            
+
             // Disconnect observer immediately
             this.observer.disconnect();
             this.observer = null;
-            
+
             // Start animation
             this.animate();
           }
         });
       }, {
-        threshold: 0.1,
+        threshold: threshold,
         rootMargin: '0px'
       });
 
