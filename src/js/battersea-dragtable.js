@@ -113,9 +113,13 @@
         return {
           key: 'col' + i,
           label: th.textContent.trim(),
-          originalIndex: i
+          originalIndex: i,
+          filterable: Utils.parseBoolean(Utils.getData(th, 'column-filter') || 'false')
         };
       });
+
+      // If any column has data-column-filter, use per-column mode
+      this.hasPerColumnFilters = this.columns.some(function(col) { return col.filterable; });
 
       var bodyRows = Utils.qsa('tbody tr', this.sourceTable);
       this.rows = bodyRows.map(function(tr, rowIndex) {
@@ -334,8 +338,8 @@
 
       this.thead.appendChild(headerRow);
 
-      // Column filter row
-      if (this.columnFilters) {
+      // Column filter row — show if global column-filters is on, or any column has data-column-filter
+      if (this.columnFilters || this.hasPerColumnFilters) {
         this.buildColumnFilterRow();
       }
 
@@ -353,34 +357,46 @@
         this.columnFilterRow.appendChild(emptyTd);
       }
 
-      this.columns.forEach(function(col, colIndex) {
+      this.columns.forEach(function(col) {
         var th = document.createElement('th');
         th.className = 'battersea-dragtable__th battersea-dragtable__th--filter';
 
-        var select = document.createElement('select');
-        select.className = 'battersea-dragtable__column-filter';
-        select.setAttribute('aria-label', 'Filter ' + col.label);
+        // Show filter if global column-filters is on, or this column has data-column-filter
+        var showFilter = this.columnFilters || col.filterable;
 
-        var allOption = document.createElement('option');
-        allOption.value = '';
-        allOption.textContent = 'All';
-        select.appendChild(allOption);
+        if (showFilter) {
+          var select = document.createElement('select');
+          select.className = 'battersea-dragtable__column-filter';
+          select.setAttribute('aria-label', 'Filter ' + col.label);
 
-        // Get unique values for this column
-        var values = this.getUniqueColumnValues(col.originalIndex);
-        values.forEach(function(val) {
-          var option = document.createElement('option');
-          option.value = val;
-          option.textContent = val;
-          select.appendChild(option);
-        });
+          var allOption = document.createElement('option');
+          allOption.value = '';
+          allOption.textContent = 'All';
+          select.appendChild(allOption);
 
-        this.events.push(Utils.addEvent(select, 'change', function(ci, e) {
-          this.columnFilterValues[ci] = e.target.value;
-          this.applyFilters();
-        }.bind(this, colIndex)));
+          // Get unique values for this column
+          var values = this.getUniqueColumnValues(col.originalIndex);
+          values.forEach(function(val) {
+            var option = document.createElement('option');
+            option.value = val;
+            option.textContent = val;
+            select.appendChild(option);
+          });
 
-        th.appendChild(select);
+          // Restore previous filter value if one was set
+          var currentFilter = this.columnFilterValues[col.key] || '';
+          if (currentFilter) {
+            select.value = currentFilter;
+          }
+
+          this.events.push(Utils.addEvent(select, 'change', function(colKey, e) {
+            this.columnFilterValues[colKey] = e.target.value;
+            this.applyFilters();
+          }.bind(this, col.key)));
+
+          th.appendChild(select);
+        }
+
         this.columnFilterRow.appendChild(th);
       }.bind(this));
 
@@ -514,14 +530,14 @@
           if (!match) return false;
         }
 
-        // Column filters
+        // Column filters (keyed by column key)
         var colFilterKeys = Object.keys(self.columnFilterValues);
         for (var i = 0; i < colFilterKeys.length; i++) {
-          var ci = parseInt(colFilterKeys[i], 10);
-          var filterVal = self.columnFilterValues[ci];
+          var colKey = colFilterKeys[i];
+          var filterVal = self.columnFilterValues[colKey];
           if (!filterVal) continue;
 
-          var col = self.columns[ci];
+          var col = self.columns.find(function(c) { return c.key === colKey; });
           if (!col) continue;
 
           var cellText = self.stripHTML(row.cells[col.originalIndex] || '');
@@ -892,9 +908,6 @@
       var movedCol = this.columns.splice(fromIndex, 1)[0];
       if (toIndex > fromIndex) toIndex--;
       this.columns.splice(toIndex, 0, movedCol);
-
-      // Reset column filter values since indices changed
-      this.columnFilterValues = {};
 
       this.rebuildHead();
       this.applyFilters();

@@ -144,13 +144,12 @@
 						<!-- Demo 3: Both + Filters -->
 						<div class="demo-subsection delay-2" data-animation="fade-up">
 							<h3>Full-Featured: Rows, Columns, and Filters</h3>
-							<p>Everything at once. Drag rows or columns, type in the search box to filter across all cells, or use the per-column dropdowns to filter by specific values.</p>
+							<p>Everything at once. Drag rows or columns, type in the search box to filter across all cells, and use the per-column dropdowns on Type, Status and Lead to narrow things down. Filters persist when you reorder.</p>
 
 							<div class="demo-container">
 								<div data-drag-table
 									data-dragtable-reorder="both"
 									data-dragtable-filterable="true"
-									data-dragtable-column-filters="true"
 									data-dragtable-striped="true"
 									data-dragtable-storage-key="demo-full">
 									<table>
@@ -158,9 +157,9 @@
 											<tr>
 												<th>Project</th>
 												<th>Client</th>
-												<th>Type</th>
-												<th>Status</th>
-												<th>Lead</th>
+												<th data-column-filter="true">Type</th>
+												<th data-column-filter="true">Status</th>
+												<th data-column-filter="true">Lead</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -339,7 +338,7 @@
 										<td><code>data-dragtable-column-filters</code></td>
 										<td><code>true</code> / <code>false</code></td>
 										<td><code>false</code></td>
-										<td>Show per-column dropdown filters</td>
+										<td>Show dropdown filters on every column</td>
 									</tr>
 									<tr>
 										<td><code>data-dragtable-striped</code></td>
@@ -358,6 +357,28 @@
 										<td>String</td>
 										<td>-</td>
 										<td>SessionStorage key for persisting the order. Omit to disable persistence</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Column Attributes</h3>
+							<p>These attributes go on individual <code>&lt;th&gt;</code> elements in your table:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-column-filter</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show a dropdown filter for this specific column. Use this instead of <code>data-dragtable-column-filters</code> when you only want filters on certain columns</td>
 									</tr>
 								</tbody>
 							</table>
@@ -472,16 +493,41 @@
 							</div>
 
 							<div data-accordion-item>
-								<div data-accordion-header>Full-Featured with Filters</div>
+								<div data-accordion-header>Filters on Specific Columns</div>
 								<div data-accordion-content>
 									<div>
-										<p>Enable everything: row and column dragging, text search, and per-column filters:</p>
+										<p>Add <code>data-column-filter="true"</code> to individual <code>&lt;th&gt;</code> elements to show dropdown filters only on certain columns:</p>
 										<pre><code>&lt;div data-drag-table
   data-dragtable-reorder="both"
   data-dragtable-filterable="true"
-  data-dragtable-column-filters="true"
-  data-dragtable-striped="true"
   data-dragtable-storage-key="my-table"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Project&lt;/th&gt;
+        &lt;th&gt;Client&lt;/th&gt;
+        &lt;th data-column-filter="true"&gt;Type&lt;/th&gt;
+        &lt;th data-column-filter="true"&gt;Status&lt;/th&gt;
+        &lt;th&gt;Lead&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Filters on All Columns</div>
+								<div data-accordion-content>
+									<div>
+										<p>Use <code>data-dragtable-column-filters="true"</code> on the container to add dropdown filters to every column at once:</p>
+										<pre><code>&lt;div data-drag-table
+  data-dragtable-reorder="rows"
+  data-dragtable-filterable="true"
+  data-dragtable-column-filters="true"
+  data-dragtable-striped="true"&gt;
   &lt;table&gt;
     &lt;thead&gt;...&lt;/thead&gt;
     &lt;tbody&gt;...&lt;/tbody&gt;
