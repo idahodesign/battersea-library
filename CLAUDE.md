@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.31.0
+- **Current Version:** 2.32.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -21,7 +21,7 @@
 ```
 battersea-library/
 ├── src/
-│   ├── js/           # 39 JavaScript files (includes env-config, nav-data, copycode)
+│   ├── js/           # 40 JavaScript files (includes env-config, nav-data, copycode)
 │   └── css/          # LESS source (compiled CSS is gitignored)
 ├── demo/             # Demo folder
 ├── includes/         # Reusable HTML partials (header, nav, footer)
@@ -33,7 +33,7 @@ battersea-library/
 └── config.codekit3   # CodeKit build config (gitignored)
 ```
 
-### Components (36 total)
+### Components (37 total)
 1. Accessibility - Font size adjustment tool with dropdown slider
 2. Accordion - Collapsible sections
 3. Animation - Scroll-triggered animations with ticker tape text reveal
@@ -70,6 +70,7 @@ battersea-library/
 34. BackToTop - Scroll-to-top button that fades in as you scroll down the page
 35. HorizontalScroll - Scroll-driven horizontal panel navigation with progress dots, direction control, and mobile stacking
 36. Share - Social media share buttons for X, Facebook, LinkedIn, Bluesky, WhatsApp and Email with icon and pill styles
+37. DragTable - Drag-and-drop reorderable table for rows and/or columns with text filter, column filters, and sessionStorage persistence
 
 ### Core Files (required for all components)
 - `battersea-utils.js` - Shared utilities
@@ -163,6 +164,7 @@ battersea-library/
 - **Share v2.31.0** (Mar 2026): Social media share buttons for X, Facebook, LinkedIn, Bluesky, WhatsApp and Email with icon and pill display styles, horizontal/vertical layout, custom events
 - **Copy Code buttons v2.31.0** (Mar 2026): "Copy" button on all `<pre><code>` blocks across demo pages, Clipboard API with fallback
 - **Component comparison table v2.31.0** (Mar 2026): Feature matrix page with category filters, summary table on homepage
+- **DragTable v2.32.0** (Mar 2026): Drag-and-drop reorderable table for rows and/or columns with grip handles, text filter, per-column dropdown filters, sessionStorage persistence, reorder events for database saving, keyboard support, responsive card layout on mobile
 
 ### In Progress
 - See `TODO.md` for current tasks

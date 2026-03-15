@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.32.0] - 2026-03-15
+
+### Added
+- **DragTable component** -- Drag-and-drop reorderable table for rows and/or columns. Enhances a standard HTML table with grip handles for mouse and touch dragging. Configurable via `data-dragtable-reorder` attribute (`rows`, `columns`, or `both`). Includes global text filter, per-column dropdown filters, sessionStorage persistence, and a `battersea:dragTableReorder` event with full order data for database saving. Public `getOrderData()` method for on-demand data access. Keyboard support (arrow keys to move rows) and ARIA live announcements. Responsive layout matches DataTable: horizontal scroll on tablet, stacked card layout on mobile. Shares DataTable CSS variables for consistent styling. Demo page with four variations added
+- Added DragTable to demo navigation (Data Display category)
+
+---
+
 ## [2.31.0] - 2026-03-08
 
 ### Added

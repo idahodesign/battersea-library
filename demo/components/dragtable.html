@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>DragTable Component - Battersea Library</title>
+		<meta name="description" content="Drag-and-drop reorderable table with column and row dragging, text filter and per-column filters - Battersea Library Component">
+
+		<!-- LESS Stylesheets -->
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-library.less">
+		<link rel="stylesheet/less" type="text/css" href="../../src/css/battersea-demo-site.less">
+
+		<!-- LESS.js Configuration & Compiler -->
+		<script>
+			less = {
+				env: 'development',
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				logLevel: 2,
+				globalVars: {
+					'primary-color': '#667eea',
+					'secondary-color': '#764ba2',
+					'accent-color': '#4ecdc4'
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/less@4.2.0"></script>
+
+		<!-- Environment Configuration (must load before includes) -->
+		<script src="../../src/js/battersea-env-config.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+		</style>
+	</head>
+	<body>
+		<div id="site-background" class="site-background-image"></div>
+
+		<!-- PreHeader Include (GTM, etc) -->
+		<div id="demo-preheader-placeholder" class="battersea-header-pre"></div>
+
+		<!-- Header Component with Navigation -->
+		<header id="mainHeader" class="battersea-header"
+			data-header
+			data-sticky="true"
+			data-shrink="true"
+			data-shrink-offset="100"
+			data-shrink-height="60"
+			data-layout="right-align"
+			data-transition-speed="0.3"></header>
+
+		<div class="content-outer">
+
+			<!-- Breadcrumb -->
+			<div data-breadcrumbs></div>
+
+			<!-- ============================================ -->
+			<!-- HERO SECTION -->
+			<!-- ============================================ -->
+			<section class="hero-section" data-scroll-section data-scroll-title="Introduction" data-animation="fade-up">
+				<div class="section-box">
+					<div class="hero-content">
+						<h1>DragTable Component</h1>
+						<p class="hero-subtitle">Reorder table rows and columns by dragging them into place, with text search and per-column filters</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- LIVE DEMO SECTION -->
+			<!-- ============================================ -->
+			<section id="demos" class="showcase-section" data-scroll-section data-scroll-title="Live Demos" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Live Demonstrations</h2>
+						<p class="section-subtitle">Grab the grip handles and drag rows or columns into a new position</p>
+
+						<!-- Demo 1: Row Reordering -->
+						<div class="demo-subsection" data-animation="fade-up">
+							<h3>Row Reordering</h3>
+							<p>Grab the grip icon on the left of each row and drag it up or down. The order is saved to sessionStorage so it persists if you refresh the page.</p>
+
+							<div class="demo-container">
+								<div data-drag-table
+									data-dragtable-reorder="rows"
+									data-dragtable-striped="true"
+									data-dragtable-storage-key="demo-rows">
+									<table>
+										<thead>
+											<tr>
+												<th>Priority</th>
+												<th>Task</th>
+												<th>Assigned To</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td>1</td><td>Homepage redesign</td><td>Alice Chen</td><td>In Progress</td></tr>
+											<tr><td>2</td><td>Fix checkout bug</td><td>Marcus Johnson</td><td>Complete</td></tr>
+											<tr><td>3</td><td>Write API documentation</td><td>David Park</td><td>Not Started</td></tr>
+											<tr><td>4</td><td>Database migration</td><td>Sarah Williams</td><td>In Progress</td></tr>
+											<tr><td>5</td><td>Mobile navigation overhaul</td><td>Emma Thompson</td><td>Not Started</td></tr>
+											<tr><td>6</td><td>Performance audit</td><td>William Taylor</td><td>Complete</td></tr>
+											<tr><td>7</td><td>User testing round 3</td><td>James Wilson</td><td>Not Started</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 2: Column Reordering -->
+						<div class="demo-subsection delay-1" data-animation="fade-up">
+							<h3>Column Reordering</h3>
+							<p>Drag the column headers left or right to rearrange the table columns. On mobile this switches to horizontal scroll since column dragging needs a wider viewport.</p>
+
+							<div class="demo-container">
+								<div data-drag-table
+									data-dragtable-reorder="columns"
+									data-dragtable-striped="true"
+									data-dragtable-storage-key="demo-columns">
+									<table>
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Department</th>
+												<th>Role</th>
+												<th>Location</th>
+												<th>Started</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td>Alice Chen</td><td>Engineering</td><td>Lead Developer</td><td>London</td><td>2019</td></tr>
+											<tr><td>Marcus Johnson</td><td>Design</td><td>UX Designer</td><td>Manchester</td><td>2021</td></tr>
+											<tr><td>Sarah Williams</td><td>Engineering</td><td>Backend Developer</td><td>Bristol</td><td>2023</td></tr>
+											<tr><td>David Park</td><td>Marketing</td><td>Content Manager</td><td>London</td><td>2020</td></tr>
+											<tr><td>Emma Thompson</td><td>Engineering</td><td>Frontend Developer</td><td>Edinburgh</td><td>2022</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 3: Both + Filters -->
+						<div class="demo-subsection delay-2" data-animation="fade-up">
+							<h3>Full-Featured: Rows, Columns, and Filters</h3>
+							<p>Everything at once. Drag rows or columns, type in the search box to filter across all cells, or use the per-column dropdowns to filter by specific values.</p>
+
+							<div class="demo-container">
+								<div data-drag-table
+									data-dragtable-reorder="both"
+									data-dragtable-filterable="true"
+									data-dragtable-column-filters="true"
+									data-dragtable-striped="true"
+									data-dragtable-storage-key="demo-full">
+									<table>
+										<thead>
+											<tr>
+												<th>Project</th>
+												<th>Client</th>
+												<th>Type</th>
+												<th>Status</th>
+												<th>Lead</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td>Website Redesign</td><td>Riverside Studios</td><td>Web</td><td>Active</td><td>Alice Chen</td></tr>
+											<tr><td>Booking System</td><td>Northern Rail</td><td>App</td><td>Active</td><td>Sarah Williams</td></tr>
+											<tr><td>Event Platform</td><td>Camden Arts</td><td>Web</td><td>Complete</td><td>Marcus Johnson</td></tr>
+											<tr><td>E-commerce Store</td><td>Brixton Market</td><td>Web</td><td>Active</td><td>Emma Thompson</td></tr>
+											<tr><td>Analytics Dashboard</td><td>Thames Water</td><td>App</td><td>On Hold</td><td>William Taylor</td></tr>
+											<tr><td>Council Portal</td><td>Hackney Council</td><td>Web</td><td>Active</td><td>David Park</td></tr>
+											<tr><td>Ticketing System</td><td>Soho Theatre</td><td>App</td><td>Complete</td><td>James Wilson</td></tr>
+											<tr><td>Mobile App</td><td>Greenwich Park</td><td>App</td><td>Active</td><td>Alice Chen</td></tr>
+											<tr><td>Virtual Tours</td><td>Kew Gardens</td><td>Web</td><td>Active</td><td>Marcus Johnson</td></tr>
+											<tr><td>Tenant Portal</td><td>Battersea Power</td><td>Web</td><td>Active</td><td>Sarah Williams</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<!-- Demo 4: Saving to a Database -->
+						<div class="demo-subsection delay-3" data-animation="fade-up">
+							<h3>Saving Order to a Database</h3>
+							<p>The component fires a <code>battersea:dragTableReorder</code> event every time the order changes. Listen for it and send the data wherever you need it. The event log below shows what gets fired.</p>
+
+							<div class="demo-container">
+								<div id="db-demo" data-drag-table
+									data-dragtable-reorder="rows"
+									data-dragtable-striped="true">
+									<table>
+										<thead>
+											<tr>
+												<th>Position</th>
+												<th>Team</th>
+												<th>Points</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td>1</td><td>Arsenal</td><td>78</td></tr>
+											<tr><td>2</td><td>Liverpool</td><td>74</td></tr>
+											<tr><td>3</td><td>Man City</td><td>71</td></tr>
+											<tr><td>4</td><td>Newcastle</td><td>65</td></tr>
+											<tr><td>5</td><td>Chelsea</td><td>58</td></tr>
+										</tbody>
+									</table>
+								</div>
+
+								<div id="event-log" style="margin-top: 1rem; padding: 1rem; background: #1a1a2e; color: #a0ffa0; border-radius: 6px; font-family: monospace; font-size: 0.8rem; max-height: 200px; overflow-y: auto;">
+									<div style="color: #888;">Drag a row to see the event data here...</div>
+								</div>
+							</div>
+
+							<script>
+								document.addEventListener('DOMContentLoaded', function() {
+									var dbDemo = document.getElementById('db-demo');
+									var log = document.getElementById('event-log');
+
+									if (dbDemo && log) {
+										dbDemo.addEventListener('battersea:dragTableReorder', function(e) {
+											var entry = document.createElement('div');
+											entry.style.marginBottom = '0.5rem';
+											entry.style.borderBottom = '1px solid #333';
+											entry.style.paddingBottom = '0.5rem';
+
+											var rows = e.detail.rows.map(function(r, i) {
+												return '  ' + i + ': ' + r.cells.join(' | ');
+											}).join('\n');
+
+											entry.textContent = 'Reorder event fired:\n' + rows;
+											entry.style.whiteSpace = 'pre-wrap';
+
+											// Clear placeholder text
+											if (log.querySelector('[style*="color: #888"]')) {
+												log.innerHTML = '';
+											}
+
+											log.insertBefore(entry, log.firstChild);
+										});
+									}
+								});
+							</script>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- FEATURES SECTION -->
+			<!-- ============================================ -->
+			<section id="features" class="features-section" data-scroll-section data-scroll-title="Features" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Key Features</h2>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animation="fade-up">
+								<div class="feature-icon">&#8693;</div>
+								<h3>Row Reordering</h3>
+								<p>Grab the drag handle and move rows up or down. Works with both mouse and touch input.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animation="fade-up">
+								<div class="feature-icon">&#8646;</div>
+								<h3>Column Reordering</h3>
+								<p>Drag column headers left or right to rearrange them. Disabled on mobile where tables stack into cards.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animation="fade-up">
+								<div class="feature-icon">&#9906;</div>
+								<h3>Text Filter</h3>
+								<p>Type to search across every cell in the table. Results update as you type with debounced input.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animation="fade-up">
+								<div class="feature-icon">&#9660;</div>
+								<h3>Column Filters</h3>
+								<p>Per-column dropdown filters showing unique values. Select a value to show only matching rows.</p>
+							</div>
+
+							<div class="feature-card delay-5" data-animation="fade-up">
+								<div class="feature-icon">&#128190;</div>
+								<h3>Persistence</h3>
+								<p>Order is saved to sessionStorage and restored on page load. Events fire for database saving too.</p>
+							</div>
+
+							<div class="feature-card delay-6" data-animation="fade-up">
+								<div class="feature-icon">&#9000;</div>
+								<h3>Keyboard Support</h3>
+								<p>Focus a row grip and use arrow keys to move it up or down. Screen reader announcements included.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- CONFIGURATION SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Configuration" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Configuration &amp; Options</h2>
+
+						<div class="config-content">
+							<h3>Data Attributes</h3>
+							<p>Configure the DragTable component using these data attributes on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Attribute</th>
+										<th>Values</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>data-drag-table</code></td>
+										<td>-</td>
+										<td>required</td>
+										<td>Initialises the DragTable component</td>
+									</tr>
+									<tr>
+										<td><code>data-dragtable-reorder</code></td>
+										<td><code>rows</code> / <code>columns</code> / <code>both</code></td>
+										<td><code>rows</code></td>
+										<td>Which axis can be reordered by dragging</td>
+									</tr>
+									<tr>
+										<td><code>data-dragtable-filterable</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show the global text search input</td>
+									</tr>
+									<tr>
+										<td><code>data-dragtable-column-filters</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>false</code></td>
+										<td>Show per-column dropdown filters</td>
+									</tr>
+									<tr>
+										<td><code>data-dragtable-striped</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Alternating row background colours</td>
+									</tr>
+									<tr>
+										<td><code>data-dragtable-responsive</code></td>
+										<td><code>true</code> / <code>false</code></td>
+										<td><code>true</code></td>
+										<td>Stacked card layout on mobile, scroll hints on wider screens</td>
+									</tr>
+									<tr>
+										<td><code>data-dragtable-storage-key</code></td>
+										<td>String</td>
+										<td>-</td>
+										<td>SessionStorage key for persisting the order. Omit to disable persistence</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Custom Events</h3>
+							<p>The component fires these events on the container element:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Event</th>
+										<th>Detail</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>battersea:dragTableReorder</code></td>
+										<td><code>{ columnOrder, rowOrder, columns, rows }</code></td>
+										<td>Fired when rows or columns are reordered. Contains the full order data for saving to a database</td>
+									</tr>
+									<tr>
+										<td><code>battersea:dragTableFilter</code></td>
+										<td><code>{ query, results }</code></td>
+										<td>Fired when the text filter changes</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h3 style="margin-top: 2rem;">Public Methods</h3>
+							<p>Access the component instance via <code>Battersea.getInstance(element)</code>:</p>
+
+							<table class="config-table">
+								<thead>
+									<tr>
+										<th>Method</th>
+										<th>Returns</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>getOrderData()</code></td>
+										<td>Object</td>
+										<td>Returns the current column and row order as a plain object, ready for sending to an API</td>
+									</tr>
+									<tr>
+										<td><code>destroy()</code></td>
+										<td>-</td>
+										<td>Removes all event listeners and DOM elements</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- USAGE EXAMPLES SECTION -->
+			<!-- ============================================ -->
+			<section class="faq-section" data-scroll-section data-scroll-title="Usage Examples" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Usage Examples</h2>
+
+						<div data-accordion data-accordion-multiple="true">
+							<div data-accordion-item class="active">
+								<div data-accordion-header>Basic Row Reordering</div>
+								<div data-accordion-content>
+									<div>
+										<p>Write a standard HTML table and the component adds drag handles automatically:</p>
+										<pre><code>&lt;div data-drag-table data-dragtable-reorder="rows"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Role&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;Developer&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Bob&lt;/td&gt;&lt;td&gt;Designer&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Column Reordering</div>
+								<div data-accordion-content>
+									<div>
+										<p>Set <code>data-dragtable-reorder="columns"</code> and drag the headers to rearrange:</p>
+										<pre><code>&lt;div data-drag-table data-dragtable-reorder="columns"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Department&lt;/th&gt;
+        &lt;th&gt;Location&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;Engineering&lt;/td&gt;&lt;td&gt;London&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Full-Featured with Filters</div>
+								<div data-accordion-content>
+									<div>
+										<p>Enable everything: row and column dragging, text search, and per-column filters:</p>
+										<pre><code>&lt;div data-drag-table
+  data-dragtable-reorder="both"
+  data-dragtable-filterable="true"
+  data-dragtable-column-filters="true"
+  data-dragtable-striped="true"
+  data-dragtable-storage-key="my-table"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;...&lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Saving to a Database</div>
+								<div data-accordion-content>
+									<div>
+										<p>Listen for the reorder event and post the data to your API:</p>
+										<pre><code>var table = document.querySelector('[data-drag-table]');
+
+table.addEventListener('battersea:dragTableReorder', function(e) {
+  // e.detail contains the full order data
+  console.log('Row order:', e.detail.rowOrder);
+  console.log('Column order:', e.detail.columnOrder);
+
+  // Send to your API
+  fetch('/api/save-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(e.detail)
+  });
+});
+
+// Or call getOrderData() at any time
+var instance = Battersea.getInstance(table);
+var orderData = instance.getOrderData();</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div data-accordion-item>
+								<div data-accordion-header>Custom Styling with CSS Variables</div>
+								<div data-accordion-content>
+									<div>
+										<p>DragTable shares CSS variables with DataTable for consistent styling:</p>
+										<pre><code>:root {
+  --datatable-border-color: #e0e0e0;
+  --datatable-header-bg: #1a1a2e;
+  --datatable-header-color: #ffffff;
+  --datatable-row-hover-bg: #f8f9fa;
+  --datatable-stripe-bg: #f5f5f5;
+  --datatable-accent-color: #e94560;
+}</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- ACCESSIBILITY SECTION -->
+			<!-- ============================================ -->
+			<section id="accessibility" class="features-section" data-scroll-section data-scroll-title="Accessibility" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Accessibility Features</h2>
+						<p class="section-subtitle">Built with inclusivity in mind</p>
+
+						<div class="features-grid">
+							<div class="feature-card delay-1" data-animation="fade-up">
+								<div class="feature-icon">&#8597;</div>
+								<h3>Keyboard Reordering</h3>
+								<p>Focus a row's drag grip and press arrow up or down to move it. No mouse needed.</p>
+							</div>
+
+							<div class="feature-card delay-2" data-animation="fade-up">
+								<div class="feature-icon">SR</div>
+								<h3>Live Announcements</h3>
+								<p>Row moves, column changes and filter results are announced to screen readers via an aria-live region.</p>
+							</div>
+
+							<div class="feature-card delay-3" data-animation="fade-up">
+								<div class="feature-icon">Tab</div>
+								<h3>Focus Management</h3>
+								<p>All interactive elements are focusable with clear outlines. Tab through grips, filters and controls.</p>
+							</div>
+
+							<div class="feature-card delay-4" data-animation="fade-up">
+								<div class="feature-icon">aria</div>
+								<h3>ARIA Labels</h3>
+								<p>Drag grips, filters and controls all have descriptive ARIA labels for assistive technology.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ -->
+			<!-- BROWSER SUPPORT SECTION -->
+			<!-- ============================================ -->
+			<section class="getting-started-section" data-scroll-section data-scroll-title="Browser Support" data-animation="fade-up">
+				<div class="section-box">
+					<div class="container">
+						<h2 class="section-title">Browser Support</h2>
+						<p class="section-subtitle">Works in all modern browsers</p>
+
+						<div class="browser-grid">
+							<div class="browser-item">
+								<div class="browser-icon">Ch</div>
+								<h4>Chrome</h4>
+								<p>90+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ff</div>
+								<h4>Firefox</h4>
+								<p>88+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Sa</div>
+								<h4>Safari</h4>
+								<p>14+</p>
+							</div>
+
+							<div class="browser-item">
+								<div class="browser-icon">Ed</div>
+								<h4>Edge</h4>
+								<p>90+</p>
+							</div>
+						</div>
+
+						<p style="margin-top: 2rem; text-align: center; color: #666;">
+							Uses sessionStorage for persistence and CSS custom properties for theming.
+							Table scrolls horizontally on smaller screens and stacks into cards on mobile.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Page Navigation -->
+			<div data-page-nav data-pagenav-mode="pages" data-pagenav-show-category="true"></div>
+
+		</div>
+
+		<!-- Footer Include -->
+		<div id="demo-footer-placeholder"></div>
+
+		<!-- SmoothScroll Navigation -->
+		<div data-smooth-scroll
+			data-smoothscroll-header-selector="#mainHeader"
+			data-smoothscroll-position="right"
+			data-smoothscroll-duration="800"
+			data-smoothscroll-easing="ease-out"
+			data-smoothscroll-hide-mobile="true">
+		</div>
+
+		<!-- Back to Top -->
+		<div data-back-to-top></div>
+
+		<!-- Battersea Library JavaScript -->
+		<script src="../../src/js/battersea-utils.js"></script>
+		<script src="../../src/js/battersea-core.js"></script>
+		<script src="../../src/js/battersea-nav-data.js"></script>
+		<script src="../../src/js/battersea-animation.js"></script>
+		<script src="../../src/js/battersea-accordion.js"></script>
+		<script src="../../src/js/battersea-dragtable.js"></script>
+		<script src="../../src/js/battersea-header.js"></script>
+		<script src="../../src/js/battersea-horizontalnav.js"></script>
+		<script src="../../src/js/battersea-tooltip.js"></script>
+		<script src="../../src/js/battersea-smoothscroll.js"></script>
+		<script src="../../src/js/battersea-accessibility.js"></script>
+		<script src="../../src/js/battersea-breadcrumbs.js"></script>
+		<script src="../../src/js/battersea-pagenav.js"></script>
+		<script src="../../src/js/battersea-backtotop.js"></script>
+		<script src="../../src/js/battersea-copycode.js"></script>
+
+		<!-- Include Loader Script -->
+		<script>
+			function loadInclude(url, placeholderId) {
+				return fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(html => {
+					const placeholder = document.getElementById(placeholderId);
+					if (placeholder) {
+						placeholder.innerHTML = html;
+					}
+				})
+				.catch(err => {
+					console.error(`Error loading ${url}:`, err);
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', loadIncludes);
+			} else {
+				loadIncludes();
+			}
+			function loadIncludes() {
+				Promise.all([
+					loadInclude('../../includes/preHeader.html', 'demo-preheader-placeholder'),
+					loadInclude('../../includes/demo-header-component.html', 'mainHeader'),
+					loadInclude('../../includes/demo-footer.html', 'demo-footer-placeholder')
+				]).then(() => {
+					return loadInclude('../../includes/demo-nav.html', 'demo-nav-nested');
+				}).then(() => {
+					console.log('All includes loaded successfully');
+				});
+			}
+		</script>
+	</body>
+</html>

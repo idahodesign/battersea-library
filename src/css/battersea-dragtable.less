@@ -1,0 +1,419 @@
+/**
+ * Battersea Library - DragTable Styles
+ * Version: 2.32.0
+ *
+ * Reuses DataTable CSS variables for consistent table styling.
+ */
+
+.battersea-dragtable {
+  width: 100%;
+  font-size: 0.95rem;
+  color: var(--datatable-text-color, #444);
+
+  // ─── Toolbar ─────────────────────────────
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__filter {
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+
+    input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--datatable-border-color, #ddd);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: #fff;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: var(--datatable-accent-color, #667eea);
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.15);
+      }
+    }
+  }
+
+  // ─── Scroll Container ──────────────────
+  &__scroll-container {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      bottom: 1px;
+      width: 30px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+
+    &::before {
+      left: 1px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+    }
+
+    &::after {
+      right: 1px;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent);
+    }
+
+    &--scroll-left::before {
+      opacity: 1;
+    }
+
+    &--scroll-right::after {
+      opacity: 1;
+    }
+  }
+
+  // ─── Table Wrapper ───────────────────────
+  &__table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--datatable-border-color, #ddd);
+    border-radius: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // ─── Table ───────────────────────────────
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+
+    &--striped tbody tr:nth-child(even) {
+      background: var(--datatable-stripe-bg, #fafafa);
+    }
+  }
+
+  // ─── Header Cells ────────────────────────
+  &__th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    background: var(--datatable-header-bg, #f5f5f5);
+    color: var(--datatable-header-color, #333);
+    border-bottom: 2px solid var(--datatable-border-color, #ddd);
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    &--handle {
+      width: 36px;
+      text-align: center;
+      padding: 0.75rem 0.25rem;
+    }
+
+    &--draggable {
+      cursor: grab;
+      user-select: none;
+      padding-left: 0.5rem;
+
+      &:hover {
+        background: #eaeaea;
+      }
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+
+    &--dragging {
+      opacity: 0.3;
+      background: var(--datatable-accent-color, #667eea);
+    }
+
+    &--drop-left {
+      box-shadow: inset 3px 0 0 var(--datatable-accent-color, #667eea);
+    }
+
+    &--drop-right {
+      box-shadow: inset -3px 0 0 var(--datatable-accent-color, #667eea);
+    }
+
+    &--filter {
+      padding: 0.4rem 0.5rem;
+      border-bottom: 1px solid var(--datatable-border-color, #ddd);
+      background: var(--datatable-header-bg, #f5f5f5);
+    }
+
+    &--filter-empty {
+      padding: 0.4rem 0.25rem;
+      border-bottom: 1px solid var(--datatable-border-color, #ddd);
+      background: var(--datatable-header-bg, #f5f5f5);
+    }
+  }
+
+  // ─── Column Filter ────────────────────────
+  &__column-filter {
+    width: 100%;
+    padding: 0.3rem 0.4rem;
+    border: 1px solid var(--datatable-border-color, #ddd);
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    background: #fff;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: var(--datatable-accent-color, #667eea);
+    }
+  }
+
+  // ─── Grip Icons ────────────────────────────
+  &__column-grip {
+    display: inline-block;
+    margin-right: 0.4rem;
+    font-size: 0.75rem;
+    letter-spacing: -2px;
+    color: #aaa;
+    vertical-align: middle;
+    transition: color 0.2s;
+  }
+
+  &__th--draggable:hover &__column-grip {
+    color: var(--datatable-accent-color, #667eea);
+  }
+
+  &__row-grip {
+    display: inline-block;
+    cursor: grab;
+    font-size: 0.85rem;
+    letter-spacing: -2px;
+    color: #aaa;
+    padding: 0.2rem 0.3rem;
+    border-radius: 3px;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: var(--datatable-accent-color, #667eea);
+      background: rgba(102, 126, 234, 0.08);
+    }
+
+    &:focus {
+      outline: 2px solid var(--datatable-accent-color, #667eea);
+      outline-offset: 1px;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  // ─── Body Cells ──────────────────────────
+  &__td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--datatable-border-color, #ddd);
+    vertical-align: middle;
+
+    &--handle {
+      text-align: center;
+      padding: 0.65rem 0.25rem;
+      width: 36px;
+    }
+  }
+
+  // ─── Rows ────────────────────────────────
+  &__row {
+    transition: background 0.15s;
+
+    &:hover {
+      background: var(--datatable-row-hover-bg, #f0f4ff);
+    }
+
+    &--dragging {
+      opacity: 0.3;
+      background: var(--datatable-row-selected-bg, #e3f2fd);
+    }
+
+    &--drop-above {
+      box-shadow: inset 0 3px 0 var(--datatable-accent-color, #667eea);
+    }
+
+    &--drop-below {
+      box-shadow: inset 0 -3px 0 var(--datatable-accent-color, #667eea);
+    }
+  }
+
+  // ─── Ghost Elements ───────────────────────
+  &__ghost-row {
+    display: table-row;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+
+    td {
+      padding: 0.65rem 1rem;
+      border-bottom: none;
+      background: #fff;
+    }
+  }
+
+  &__ghost-column {
+    background: var(--datatable-accent-color, #667eea);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+  }
+
+  // ─── Empty State ─────────────────────────
+  &__empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--datatable-empty-color, #999);
+    font-style: italic;
+  }
+}
+
+// ─── Responsive ──────────────────────────
+@media (max-width: 767px) {
+  .battersea-dragtable {
+    &__toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__filter {
+      max-width: none;
+    }
+
+    &__th,
+    &__td {
+      padding: 0.5rem 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    // Hide column grips on mobile
+    &__column-grip {
+      display: none;
+    }
+
+    &__th--draggable {
+      cursor: default;
+      padding-left: 1rem;
+    }
+  }
+
+  // ─── Stacked Card Layout ────────────────
+  .battersea-dragtable--responsive {
+    .battersea-dragtable__scroll-container::before,
+    .battersea-dragtable__scroll-container::after {
+      display: none;
+    }
+
+    .battersea-dragtable__table-wrapper {
+      border: none;
+      border-radius: 0;
+      overflow-x: visible;
+    }
+
+    .battersea-dragtable__table {
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: block;
+      }
+
+      &--striped tbody tr:nth-child(even) {
+        background: none;
+      }
+    }
+
+    .battersea-dragtable__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--datatable-border-color, #ddd);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+
+      &:nth-child(even) {
+        background: #fff;
+      }
+
+      &:hover {
+        background: #fff;
+      }
+
+      &--dragging {
+        opacity: 0.3;
+      }
+
+      &--drop-above {
+        box-shadow: 0 -3px 0 var(--datatable-accent-color, #667eea);
+      }
+
+      &--drop-below {
+        box-shadow: 0 3px 0 var(--datatable-accent-color, #667eea);
+      }
+    }
+
+    .battersea-dragtable__td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      text-align: right;
+      font-size: 0.85rem;
+      border-bottom-color: #f0f0f0;
+      width: 100%;
+
+      &::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--datatable-header-color, #333);
+        text-align: left;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &--handle {
+        width: auto;
+        flex: 0 0 auto;
+        justify-content: center;
+        padding: 0.5rem 0.75rem;
+        border-bottom-color: var(--datatable-border-color, #ddd);
+        background: var(--datatable-header-bg, #f5f5f5);
+
+        &::before {
+          content: none;
+        }
+      }
+    }
+
+    .battersea-dragtable__empty {
+      display: block;
+      text-align: center;
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+}
