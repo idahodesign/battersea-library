@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.33.0] - 2026-03-20
+
+### Changed
+- **Colour palette overhaul** -- New centralised colour palette (`battersea-palette.less`) with semantic design tokens for brand, neutrals, surfaces, borders, text, semantic and interactive colours. Light theme as default with dark theme via `prefers-color-scheme`. All component variables in `battersea-variables.less` now reference `var(--colour-*)` palette tokens instead of hardcoded hex values. Enhanced variables updated to match new palette (teal/blue/orange-red replaces old purple-grey/blue/pink). Variables files bumped to v3.0.0
+
+### Added
+- `src/css/battersea-palette.less` -- Single source of truth for all colour design tokens with light and dark themes
+
+---
+
 ## [2.32.0] - 2026-03-15
 
 ### Added

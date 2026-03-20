@@ -1,33 +1,33 @@
 /**
  * Battersea Library - Enhanced Variables
- * Version: 2.3.0 | 05/03/2026
- * 
- * This file contains all themeable LESS variables for dynamic branding.
- * Variables can be modified at runtime using less.modifyVars()
+ * Version: 3.0.0 | 20/03/2026
+ *
+ * LESS variables for dynamic branding via less.modifyVars().
+ * Colours aligned to the core palette (battersea-palette.less).
  */
 
 // ============================================
 // BRAND COLOURS (Primary Theming Variables)
 // ============================================
 
-@primary-color: #9599ab;
-@primary-color-d: #656a81;
-@primary-color-l: #b5b9c5;
-@secondary-color: #87b9cb;
-@secondary-color-d: #71abc2;
-@secondary-color-l: #91cce3;
-@third-color: #a2bfa6;
-@third-color-d: #67a29e;
-@third-color-l: #eee2b4;
-@accent-color: #b65389;
-@accent-color-d: #893b6f;
-@accent-color-l: #bee4ee;
-@text-color: #8C8693;
+@primary-color: #0a3b49;
+@primary-color-d: #063846;
+@primary-color-l: #247c95;
+@secondary-color: #0db0f3;
+@secondary-color-d: #006d9a;
+@secondary-color-l: #7ccaea;
+@third-color: #24a85b;
+@third-color-d: #166939;
+@third-color-l: #e0f5e9;
+@accent-color: #e04a1f;
+@accent-color-d: #8c290d;
+@accent-color-l: #e19984;
+@text-color: #161818;
 @text-light: rgba(@text-color, 0.7);
-@bg-light: #f5f5f5;
+@bg-light: #f7f8f8;
 @bg-white: #ffffff;
-@border-color: #dddddd;
-@button-color: #CBD5DC;
+@border-color: #d9dcdd;
+@button-color: #8d979a;
 
 @base-font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
 @base-font-weight: 200;
@@ -38,14 +38,14 @@
 @back-overlay-opacity: 0;
 
 // Mono colours
-@black: #000000;
+@black: #161818;
 @white: #ffffff;
 
 // Gradient backgrounds
 @gradient-primary: linear-gradient(45deg, @primary-color 0%, @secondary-color 100%);
 @gradient-accent: linear-gradient(135deg, @accent-color 0%, @primary-color 100%);
 @section-box-gradient: linear-gradient(135deg, rgba(239,241,244,0.16) 0%,rgba(229,231,234,0.15) 18%,rgba(219,221,224,0.14) 47%,rgba(229,231,234,0.13) 78%,rgba(239,241,244,0.13) 100%);
-@box-gradient: linear-gradient(135deg, #e7eff4 0%,#e3edf3 20%,#e1ecf1 52%,#e1e9f0 76%,#cdd5df 100%);
+@box-gradient: linear-gradient(135deg, #e9eced 0%, #e9eced 20%, #e9eced 52%, #e9eced 76%, #d9dcdd 100%);
 @primary-gradient:linear-gradient(45deg, @primary-color-l 0%,@primary-color 50%,@primary-color-d 100%);
 @secondary-gradient:linear-gradient(45deg, @secondary-color-l 0%,@secondary-color 50%,@secondary-color-d 100%);
 @accent-gradient:linear-gradient(45deg, @accent-color-l 0%,@accent-color 50%,@accent-color-d 100%);
@@ -66,62 +66,62 @@
   --battersea-border: @border-color;
   --battersea-bg-light: @bg-light;
   --battersea-bg-white: @bg-white;
-  
+
   // Tooltip
   --battersea-tooltip-bg: rgba(@black, 0.9);
-  --battersea-tooltip-text: #fff;
+  --battersea-tooltip-text: @white;
   --battersea-tooltip-padding: 8px 12px;
   --battersea-tooltip-radius: 4px;
-  
+
   // Slider
   --battersea-slider-arrow-bg: rgba(@black, 0.5);
-  --battersea-slider-arrow-color: #fff;
+  --battersea-slider-arrow-color: @white;
   --battersea-slider-dot-active: @primary-color;
-  --battersea-slider-dot-inactive: #ccc;
+  --battersea-slider-dot-inactive: #8d979a;
   --battersea-slider-dot-size: 12px;
   --battersea-slider-dot-spacing: 8px;
-  
+
   // Tabs
   --battersea-tab-padding: 12px 24px;
   --battersea-tab-border-width: 2px;
   --battersea-tab-active-color: @primary-color;
-  
+
   // Popup
   --battersea-popup-overlay-bg: rgba(@black, 0.5);
   --battersea-popup-padding: 24px;
   --battersea-popup-max-width: 600px;
   --battersea-popup-radius: 8px;
-  
+
   // Accordion
   --battersea-accordion-padding: 16px;
   --battersea-accordion-border-width: 1px;
-  
+
   // Progress
   --battersea-progress-height: 20px;
   --battersea-progress-radius: 10px;
-  --battersea-progress-bg: #e0e0e0;
+  --battersea-progress-bg: @border-color;
   --battersea-progress-fill: @primary-color;
-  --battersea-progress-circular-stroke: #e0e0e0;
+  --battersea-progress-circular-stroke: @border-color;
   --battersea-progress-circular-fill: @primary-color;
-  
+
   // SmoothScroll
   --battersea-scroll-dot-size: 12px;
-  --battersea-scroll-dot-color: #fff;
+  --battersea-scroll-dot-color: @white;
   --battersea-scroll-dot-active: @primary-color;
-  --battersea-scroll-dot-hover: #999;
+  --battersea-scroll-dot-hover: #6b7679;
   --battersea-scroll-spacing: 15px;
   --battersea-scroll-offset: 20px;
-  
+
   // Animation
   --battersea-animation-duration: 0.6s;
   --battersea-animation-timing: ease-out;
-  
+
   // Header
   --battersea-header-bg: @bg-white;
   --battersea-header-text: @text-color;
   --battersea-header-shadow: 0 2px 4px rgba(@black, 0.1);
   --battersea-header-transition: 0.3s ease;
-  
+
   // Buttons
   --battersea-button-primary-bg: @primary-color;
   --battersea-button-primary-text: @bg-white;
@@ -135,19 +135,19 @@
   --battersea-gallery-radius: 6px;
   --battersea-gallery-overlay-bg: rgba(0, 0, 0, 0.92);
   --battersea-gallery-arrow-bg: rgba(255, 255, 255, 0.15);
-  --battersea-gallery-arrow-color: #fff;
+  --battersea-gallery-arrow-color: @white;
   --battersea-gallery-info-bg: rgba(0, 0, 0, 0.6);
-  --battersea-gallery-info-color: #fff;
+  --battersea-gallery-info-color: @white;
 
   // VerticalNav
   --battersea-vnav-width: 260px;
   --battersea-vnav-collapsed-width: 48px;
-  --battersea-vnav-bg: #ffffff;
+  --battersea-vnav-bg: @bg-white;
   --battersea-vnav-text: @text-color;
-  --battersea-vnav-hover-bg: #f5f5f5;
-  --battersea-vnav-hover-text: #000000;
+  --battersea-vnav-hover-bg: #f4f5f6;
+  --battersea-vnav-hover-text: @black;
   --battersea-vnav-active-bg: @primary-color;
-  --battersea-vnav-active-text: #ffffff;
+  --battersea-vnav-active-text: @white;
   --battersea-vnav-border: @border-color;
   --battersea-vnav-padding: 10px 16px;
   --battersea-vnav-indent: 16px;
@@ -156,32 +156,32 @@
   --battersea-vnav-animation-speed: 0.3s;
   --battersea-vnav-icon-size: 5px;
   --battersea-vnav-group-bg: rgba(0, 0, 0, 0.02);
-  --battersea-vnav-toggle-bg: #f0f0f0;
+  --battersea-vnav-toggle-bg: @bg-light;
 
   // VerticalNav Mobile Menu
-  --battersea-vnav-mobile-bg: #ffffff;
-  --battersea-vnav-mobile-text: #333333;
-  --battersea-vnav-mobile-border: #e0e0e0;
-  --battersea-vnav-mobile-chevron: #999999;
-  --battersea-vnav-mobile-back-bg: #f5f5f5;
+  --battersea-vnav-mobile-bg: @bg-white;
+  --battersea-vnav-mobile-text: @text-color;
+  --battersea-vnav-mobile-border: @border-color;
+  --battersea-vnav-mobile-chevron: #6b7679;
+  --battersea-vnav-mobile-back-bg: #f4f5f6;
 
   // VerticalNav Off-Canvas
   --battersea-vnav-offcanvas-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
-  --battersea-vnav-offcanvas-backdrop: rgba(0, 0, 0, 0.5);
+  --battersea-vnav-offcanvas-backdrop: rgba(@black, 0.5);
 
   // Profile Grid
   --battersea-profile-gap: 20px;
   --battersea-profile-radius: 8px;
   --battersea-profile-overlay-bg: rgba(0, 0, 0, 0.6);
-  --battersea-profile-overlay-text: #fff;
-  --battersea-profile-lightbox-bg: #fff;
+  --battersea-profile-overlay-text: @white;
+  --battersea-profile-lightbox-bg: @bg-white;
   --battersea-profile-lightbox-max-width: 900px;
   --battersea-profile-lightbox-overlay: rgba(0, 0, 0, 0.7);
   --battersea-profile-lightbox-radius: 12px;
-  --battersea-profile-filter-bg: #f0f0f0;
-  --battersea-profile-filter-active: @primary-color;
+  --battersea-profile-filter-bg: @bg-light;
+  --battersea-profile-filter-active: @secondary-color;
   --battersea-profile-filter-text: @text-color;
-  --battersea-profile-filter-active-text: #fff;
+  --battersea-profile-filter-active-text: @white;
 
   // Timeline
   --battersea-timeline-line-color: @border-color;
@@ -189,21 +189,21 @@
   --battersea-timeline-gap: 40px;
   --battersea-timeline-gap-h: 30px;
   --battersea-timeline-marker-bg: @primary-color;
-  --battersea-timeline-marker-border: #fff;
+  --battersea-timeline-marker-border: @white;
   --battersea-timeline-marker-size: 20px;
   --battersea-timeline-marker-icon-size: 36px;
-  --battersea-timeline-card-bg: #fff;
+  --battersea-timeline-card-bg: @bg-white;
   --battersea-timeline-card-radius: 8px;
   --battersea-timeline-card-padding: 20px 24px;
   --battersea-timeline-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   --battersea-timeline-card-max-width: 420px;
   --battersea-timeline-card-width: 300px;
   --battersea-timeline-date-bg: @primary-color;
-  --battersea-timeline-date-text: #fff;
-  --battersea-timeline-title-color: #222;
-  --battersea-timeline-text-color: #555;
+  --battersea-timeline-date-text: @white;
+  --battersea-timeline-title-color: #262a2b;
+  --battersea-timeline-text-color: #515a5c;
   --battersea-timeline-nav-bg: rgba(0, 0, 0, 0.5);
-  --battersea-timeline-nav-color: #fff;
-  --battersea-timeline-panel-bg: #fff;
+  --battersea-timeline-nav-color: @white;
+  --battersea-timeline-panel-bg: @bg-white;
   --battersea-timeline-panel-padding: 24px 30px;
 }

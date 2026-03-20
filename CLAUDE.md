@@ -6,7 +6,7 @@
 
 **Battersea Library** is a lightweight, modular JavaScript component library built with vanilla JavaScript (no dependencies).
 
-- **Current Version:** 2.32.0
+- **Current Version:** 2.33.0
 - **Repository:** https://github.com/idahodesign/battersea-library
 - **Live Demos:**
   - GitHub Pages: https://idahodesign.github.io/battersea-library/demo/
@@ -77,6 +77,9 @@ battersea-library/
 - `battersea-core.js` - Auto-initialization system
 - `battersea-env-config.js` - Environment detection for multi-host deployment
 - `battersea-nav-data.js` - Navigation data service (JSON model, sequential refs, breadcrumbs)
+- `battersea-palette.less` - Core colour design tokens (light + dark themes)
+- `battersea-variables.less` - Component-level CSS variables referencing palette tokens
+- `battersea-variables-enhanced.less` - LESS variables for dynamic theming via `less.modifyVars()`
 
 ---
 
@@ -165,14 +168,17 @@ battersea-library/
 - **Copy Code buttons v2.31.0** (Mar 2026): "Copy" button on all `<pre><code>` blocks across demo pages, Clipboard API with fallback
 - **Component comparison table v2.31.0** (Mar 2026): Feature matrix page with category filters, summary table on homepage
 - **DragTable v2.32.0** (Mar 2026): Drag-and-drop reorderable table for rows and/or columns with grip handles, text filter, per-column dropdown filters, sessionStorage persistence, reorder events for database saving, keyboard support, responsive card layout on mobile
+- **Colour palette v2.33.0** (Mar 2026): Centralised colour palette with semantic design tokens (`battersea-palette.less`), light and dark themes via `prefers-color-scheme`, all component variables now reference palette tokens
 
 ### In Progress
-- See `TODO.md` for current tasks
+- **Colour consolidation** -- ~10 component LESS files still have hardcoded colour values that need migrating to palette variables. Priority files: mini-quiz (116), form-elements (58), form-validation (57), datatable (56), dragtable (46), profilegrid (25), dragdrop (24), timeline (16), videoplayer (15), share (15)
 
 ### Next Priorities
-1. Component documentation for each component
-2. Accessibility audit
-3. Mobile testing
+1. Colour consolidation of remaining component LESS files
+2. Light/auto/dark theme toggle component
+3. Component documentation for each component
+4. Accessibility audit
+5. Mobile testing
 
 ---
 

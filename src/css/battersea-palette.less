@@ -1,0 +1,147 @@
+/**
+ * Battersea Library - Colour Palette
+ * Version: 1.0.0
+ *
+ * Core design tokens. All component variables should reference these.
+ * Light theme (default) with dark theme via prefers-color-scheme.
+ */
+
+// ============================================
+// LIGHT THEME (default)
+// ============================================
+
+:root {
+  // Brand
+  --colour-primary1: #0a3b49;
+  --colour-primary1-light: #247c95;
+  --colour-primary1-dark: #063846;
+  --colour-primary2: #0db0f3;
+  --colour-primary2-light: #7ccaea;
+  --colour-primary2-dark: #006d9a;
+  --colour-accent: #e04a1f;
+  --colour-accent-light: #e19984;
+  --colour-accent-dark: #8c290d;
+
+  // Neutrals
+  --colour-neutral-50: #f7f8f8;
+  --colour-neutral-200: #d9dcdd;
+  --colour-neutral-400: #8d979a;
+  --colour-neutral-600: #515a5c;
+  --colour-neutral-800: #262a2b;
+  --colour-neutral-900: #161818;
+
+  // Surfaces
+  --colour-surface-page: #ffffff;
+  --colour-surface-card: #ffffff;
+  --colour-surface-panel: #f7f8f8;
+  --colour-surface-elevated: #ffffff;
+  --colour-surface-sunken: #f7f8f8;
+  --colour-surface-overlay: rgba(22, 24, 24, 0.5);
+
+  // Borders
+  --colour-border-default: #8b9497;
+  --colour-border-subtle: #f7f8f8;
+  --colour-border-strong: #8a9598;
+
+  // Text
+  --colour-text-primary: #161818;
+  --colour-text-secondary: #515a5c;
+  --colour-text-muted: #6b7679;
+  --colour-text-inverse: #ffffff;
+  --colour-text-link: #0c80a2;
+  --colour-text-link-hover: #0b718e;
+
+  // Semantic
+  --colour-success: #24a85b;
+  --colour-success-dark: #166939;
+  --colour-success-light: #e0f5e9;
+  --colour-warning: #c68910;
+  --colour-warning-dark: #76520a;
+  --colour-warning-light: #f5eee0;
+  --colour-error: #c52020;
+  --colour-error-dark: #6e1212;
+  --colour-error-light: #f5e0e0;
+  --colour-info: #224bc3;
+  --colour-info-dark: #13296c;
+  --colour-info-light: #e0e6f5;
+
+  // Interactive
+  --colour-interactive-focus-ring: #e04a1f;
+  --colour-interactive-hover: #f4f5f6;
+  --colour-interactive-active: #e9eced;
+  --colour-interactive-disabled: #f7f8f8;
+  --colour-interactive-disabled-text: #8d979a;
+  --colour-interactive-selected: #e8f0f3;
+  --colour-interactive-highlighted: #f4e9e6;
+}
+
+// ============================================
+// DARK THEME
+// ============================================
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Brand
+    --colour-primary1: #2dadd2;
+    --colour-primary1-light: #8bc8da;
+    --colour-primary1-dark: #166b83;
+    --colour-primary2: #62c3eb;
+    --colour-primary2-light: #c2e3f1;
+    --colour-primary2-dark: #119cd6;
+    --colour-accent: #df866c;
+    --colour-accent-light: #eccec5;
+    --colour-accent-dark: #c34622;
+
+    // Neutrals
+    --colour-neutral-50: #f7f8f8;
+    --colour-neutral-200: #d9dcdd;
+    --colour-neutral-400: #8d979a;
+    --colour-neutral-600: #515a5c;
+    --colour-neutral-800: #262a2b;
+    --colour-neutral-900: #161818;
+
+    // Surfaces
+    --colour-surface-page: #161818;
+    --colour-surface-card: #262a2b;
+    --colour-surface-panel: #262a2b;
+    --colour-surface-elevated: #515a5c;
+    --colour-surface-sunken: #161818;
+    --colour-surface-overlay: rgba(38, 42, 43, 0.9);
+
+    // Borders
+    --colour-border-default: #5d676a;
+    --colour-border-subtle: #262a2b;
+    --colour-border-strong: #8d979a;
+
+    // Text
+    --colour-text-primary: #f7f8f8;
+    --colour-text-secondary: #d9dcdd;
+    --colour-text-muted: #8d979a;
+    --colour-text-inverse: #161818;
+    --colour-text-link: #59d0f2;
+    --colour-text-link-hover: #88def6;
+
+    // Semantic
+    --colour-success: #42d780;
+    --colour-success-dark: #166939;
+    --colour-success-light: #96e9b8;
+    --colour-warning: #eead2b;
+    --colour-warning-dark: #7a550a;
+    --colour-warning-light: #f5d189;
+    --colour-error: #df3a3a;
+    --colour-error-dark: #7b1414;
+    --colour-error-light: #ed9191;
+    --colour-info: #3c64dd;
+    --colour-info-dark: #19378f;
+    --colour-info-light: #93a9ec;
+
+    // Interactive
+    --colour-interactive-focus-ring: #e35c35;
+    --colour-interactive-hover: #323b3e;
+    --colour-interactive-active: #293032;
+    --colour-interactive-disabled: #262a2b;
+    --colour-interactive-disabled-text: #515a5c;
+    --colour-interactive-selected: #263a40;
+    --colour-interactive-highlighted: #3c2620;
+  }
+}

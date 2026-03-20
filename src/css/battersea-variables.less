@@ -1,77 +1,78 @@
 /**
- * Battersea Library - Variables Version: 2.0.4
-*/
+ * Battersea Library - Variables Version: 3.0.0
+ *
+ * Component tokens referencing the core palette (battersea-palette.less).
+ * Ensure battersea-palette.less is loaded before this file.
+ */
 
 :root {
   // Colors
-  --battersea-primary: #4CAF50;
-  --battersea-primary-l: #4CAF50;
-  --battersea-secondary: #2196F3;
-  --battersea-secondary-l: #2196F3;
-  --battersea-text: #333;
-  --battersea-border: #ddd;
-  
+  --battersea-primary: var(--colour-primary1);
+  --battersea-primary-l: var(--colour-primary1-light);
+  --battersea-secondary: var(--colour-primary2);
+  --battersea-secondary-l: var(--colour-primary2-light);
+  --battersea-text: var(--colour-text-primary);
+  --battersea-border: var(--colour-neutral-200);
+
   // Tooltip
-  --battersea-tooltip-bg: rgba(0, 0, 0, 0.9);
-  --battersea-tooltip-text: #fff;
+  --battersea-tooltip-bg: var(--colour-neutral-900);
+  --battersea-tooltip-text: var(--colour-text-inverse);
   --battersea-tooltip-padding: 8px 12px;
   --battersea-tooltip-radius: 4px;
-  
+
   // Slider
-  --battersea-slider-arrow-bg: rgba(0, 0, 0, 0.5);
-  --battersea-slider-arrow-color: #fff;
-  --battersea-slider-dot-active: var(--battersea-primary, #3363AF);
-  --battersea-slider-dot-inactive: #ccc;
+  --battersea-slider-arrow-bg: var(--colour-surface-overlay);
+  --battersea-slider-arrow-color: var(--colour-text-inverse);
+  --battersea-slider-dot-active: var(--colour-primary1);
+  --battersea-slider-dot-inactive: var(--colour-neutral-400);
   --battersea-slider-dot-size: 12px;
   --battersea-slider-dot-spacing: 8px;
-  
+
   // Tabs
   --battersea-tab-padding: 12px 24px;
   --battersea-tab-border-width: 2px;
-  --battersea-tab-active-color: var(--battersea-primary, #3363AF);
-  
+  --battersea-tab-active-color: var(--colour-primary1);
+
   // Popup
-  --battersea-popup-overlay-bg: rgba(0, 0, 0, 0.5);
+  --battersea-popup-overlay-bg: var(--colour-surface-overlay);
   --battersea-popup-padding: 24px;
   --battersea-popup-max-width: 600px;
   --battersea-popup-radius: 8px;
-  
+
   // Accordion
   --battersea-accordion-padding: 16px;
   --battersea-accordion-border-width: 1px;
-  
+
   // Progress
   --battersea-progress-height: 20px;
   --battersea-progress-radius: 10px;
-  --battersea-progress-bg: #e0e0e0;
-  --battersea-progress-fill: var(--battersea-primary);
-  --battersea-progress-circular-stroke: #e0e0e0;
-  --battersea-progress-circular-fill: var(--battersea-primary, #3363AF);
-  
+  --battersea-progress-bg: var(--colour-neutral-200);
+  --battersea-progress-fill: var(--colour-primary1);
+  --battersea-progress-circular-stroke: var(--colour-neutral-200);
+  --battersea-progress-circular-fill: var(--colour-primary1);
+
   // SmoothScroll
   --battersea-scroll-dot-size: 12px;
-  --battersea-scroll-dot-color: #ccc;
-  --battersea-scroll-dot-active: var(--battersea-primary, #3363AF);
-  --battersea-scroll-dot-hover: #999;
+  --battersea-scroll-dot-color: var(--colour-neutral-400);
+  --battersea-scroll-dot-active: var(--colour-primary1);
+  --battersea-scroll-dot-hover: var(--colour-text-muted);
   --battersea-scroll-spacing: 15px;
   --battersea-scroll-offset: 50px;
-  --battersea-progress-circular-stroke: #e0e0e0;
-  --battersea-progress-circular-fill: var(--battersea-primary, #3363AF);
-  
+
   // Animation
   --battersea-animation-duration: 0.6s;
   --battersea-animation-timing: ease-out;
-  
+
   // Header
-  --battersea-header-bg: #fff;
-  --battersea-header-text: #333;
+  --battersea-header-bg: var(--colour-surface-page);
+  --battersea-header-text: var(--colour-text-primary);
   --battersea-header-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --battersea-header-transition: 0.3s ease;
 
   // Audio Player
-  --battersea-audio-bg: #1a1a2e;
-  --battersea-audio-text: #e0e0e0;
-  --battersea-audio-accent: #667eea;
+  --battersea-audio-bg: var(--colour-neutral-900);
+  --battersea-audio-text: var(--colour-neutral-200);
+  --battersea-audio-accent: var(--colour-primary2);
   --battersea-audio-track-bg: rgba(255, 255, 255, 0.15);
   --battersea-audio-track-height: 4px;
   --battersea-audio-handle-size: 14px;
@@ -79,10 +80,10 @@
   --battersea-audio-padding: 16px 20px;
 
   // Video Player
-  --battersea-video-bg: #000;
+  --battersea-video-bg: var(--colour-neutral-900);
   --battersea-video-controls-bg: rgba(0, 0, 0, 0.7);
-  --battersea-video-text: #e0e0e0;
-  --battersea-video-accent: #667eea;
+  --battersea-video-text: var(--colour-neutral-200);
+  --battersea-video-accent: var(--colour-primary2);
   --battersea-video-track-bg: rgba(255, 255, 255, 0.2);
   --battersea-video-track-height: 4px;
   --battersea-video-handle-size: 14px;
@@ -90,87 +91,87 @@
   --battersea-video-controls-padding: 10px 16px;
 
   // DragDrop
-  --battersea-dragdrop-item-bg: #f8f9fa;
-  --battersea-dragdrop-item-text: #333;
-  --battersea-dragdrop-item-hover: #e9ecef;
+  --battersea-dragdrop-item-bg: var(--colour-surface-panel);
+  --battersea-dragdrop-item-text: var(--colour-text-primary);
+  --battersea-dragdrop-item-hover: var(--colour-interactive-active);
   --battersea-dragdrop-item-padding: 16px;
   --battersea-dragdrop-item-radius: 8px;
-  --battersea-dragdrop-item-border: #ddd;
-  --battersea-dragdrop-placeholder-bg: rgba(102, 126, 234, 0.08);
-  --battersea-dragdrop-placeholder-border: #667eea;
-  --battersea-dragdrop-container-bg: #fff;
-  --battersea-dragdrop-container-border: #ddd;
+  --battersea-dragdrop-item-border: var(--colour-neutral-200);
+  --battersea-dragdrop-placeholder-bg: var(--colour-interactive-selected);
+  --battersea-dragdrop-placeholder-border: var(--colour-primary2);
+  --battersea-dragdrop-container-bg: var(--colour-surface-page);
+  --battersea-dragdrop-container-border: var(--colour-neutral-200);
   --battersea-dragdrop-container-padding: 16px;
-  --battersea-dragdrop-hint-text: #999;
-  --battersea-dragdrop-label-text: #333;
+  --battersea-dragdrop-hint-text: var(--colour-text-muted);
+  --battersea-dragdrop-label-text: var(--colour-text-primary);
 
   // Profile Grid
   --battersea-profile-gap: 20px;
   --battersea-profile-radius: 8px;
   --battersea-profile-overlay-bg: rgba(0, 0, 0, 0.6);
-  --battersea-profile-overlay-text: #fff;
-  --battersea-profile-lightbox-bg: #fff;
+  --battersea-profile-overlay-text: var(--colour-text-inverse);
+  --battersea-profile-lightbox-bg: var(--colour-surface-page);
   --battersea-profile-lightbox-max-width: 900px;
-  --battersea-profile-lightbox-overlay: rgba(0, 0, 0, 0.7);
+  --battersea-profile-lightbox-overlay: var(--colour-surface-overlay);
   --battersea-profile-lightbox-radius: 12px;
-  --battersea-profile-filter-bg: #f0f0f0;
-  --battersea-profile-filter-active: #667eea;
-  --battersea-profile-filter-text: #333;
-  --battersea-profile-filter-active-text: #fff;
+  --battersea-profile-filter-bg: var(--colour-surface-panel);
+  --battersea-profile-filter-active: var(--colour-primary2);
+  --battersea-profile-filter-text: var(--colour-text-primary);
+  --battersea-profile-filter-active-text: var(--colour-text-inverse);
 
   // Graph
-  --battersea-graph-grid: #e8e8e8;
-  --battersea-graph-axis: #ccc;
-  --battersea-graph-tick: #666;
-  --battersea-graph-tooltip-bg: rgba(0, 0, 0, 0.85);
-  --battersea-graph-tooltip-text: #fff;
-  --battersea-graph-title-color: #333;
-  --battersea-graph-legend-text: #555;
+  --battersea-graph-grid: var(--colour-neutral-200);
+  --battersea-graph-axis: var(--colour-neutral-400);
+  --battersea-graph-tick: var(--colour-text-secondary);
+  --battersea-graph-tooltip-bg: var(--colour-neutral-900);
+  --battersea-graph-tooltip-text: var(--colour-text-inverse);
+  --battersea-graph-title-color: var(--colour-text-primary);
+  --battersea-graph-legend-text: var(--colour-text-secondary);
   --battersea-graph-animation-duration: 1s;
 
   // Breadcrumbs
-  --battersea-breadcrumb-text: #666;
-  --battersea-breadcrumb-link: #667eea;
-  --battersea-breadcrumb-link-hover: #4c5fd5;
-  --battersea-breadcrumb-separator-color: #999;
+  --battersea-breadcrumb-text: var(--colour-text-secondary);
+  --battersea-breadcrumb-link: var(--colour-text-link);
+  --battersea-breadcrumb-link-hover: var(--colour-text-link-hover);
+  --battersea-breadcrumb-separator-color: var(--colour-text-muted);
   --battersea-breadcrumb-font-size: 0.875rem;
   --battersea-breadcrumb-spacing: 0.5rem;
   --battersea-breadcrumb-padding: 0.75rem 0;
-  
+
   // VerticalNav
   --battersea-vnav-width: 260px;
   --battersea-vnav-collapsed-width: 48px;
-  --battersea-vnav-bg: #ffffff;
-  --battersea-vnav-text: var(--text-color, #333);
-  --battersea-vnav-hover-bg: #f5f5f5;
-  --battersea-vnav-hover-text: #000000;
-  --battersea-vnav-active-bg: var(--primary-color, #000000);
-  --battersea-vnav-active-text: #ffffff;
-  --battersea-vnav-border: var(--border-color, #dedddd);
+  --battersea-vnav-bg: var(--colour-surface-page);
+  --battersea-vnav-text: var(--colour-text-primary);
+  --battersea-vnav-hover-bg: var(--colour-interactive-hover);
+  --battersea-vnav-hover-text: var(--colour-neutral-900);
+  --battersea-vnav-active-bg: var(--colour-primary1);
+  --battersea-vnav-active-text: var(--colour-text-inverse);
+  --battersea-vnav-border: var(--colour-neutral-200);
   --battersea-vnav-padding: 10px 16px;
   --battersea-vnav-indent: 16px;
   --battersea-vnav-flyout-width: 220px;
   --battersea-vnav-flyout-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   --battersea-vnav-animation-speed: 0.3s;
   --battersea-vnav-icon-size: 5px;
-  --battersea-vnav-group-bg: rgba(0, 0, 0, 0.02);
-  --battersea-vnav-toggle-bg: #f0f0f0;
+  --battersea-vnav-group-bg: var(--colour-surface-sunken);
+  --battersea-vnav-toggle-bg: var(--colour-surface-panel);
 
   // VerticalNav Mobile Menu
-  --battersea-vnav-mobile-bg: #ffffff;
-  --battersea-vnav-mobile-text: #333333;
-  --battersea-vnav-mobile-border: #e0e0e0;
-  --battersea-vnav-mobile-chevron: #999999;
-  --battersea-vnav-mobile-back-bg: #f5f5f5;
+  --battersea-vnav-mobile-bg: var(--colour-surface-page);
+  --battersea-vnav-mobile-text: var(--colour-text-primary);
+  --battersea-vnav-mobile-border: var(--colour-neutral-200);
+  --battersea-vnav-mobile-chevron: var(--colour-text-muted);
+  --battersea-vnav-mobile-back-bg: var(--colour-interactive-hover);
 
   // VerticalNav Off-Canvas
   --battersea-vnav-offcanvas-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
-  --battersea-vnav-offcanvas-backdrop: rgba(0, 0, 0, 0.5);
+  --battersea-vnav-offcanvas-backdrop: var(--colour-surface-overlay);
 
   // HorizontalScroll
   --battersea-hscroll-dot-size: 12px;
   --battersea-hscroll-dot-bg: rgba(255, 255, 255, 0.5);
-  --battersea-hscroll-dot-active: #fff;
+  --battersea-hscroll-dot-active: var(--colour-text-inverse);
   --battersea-hscroll-dot-hover: rgba(255, 255, 255, 0.8);
   --battersea-hscroll-dots-bg: rgba(0, 0, 0, 0.3);
   --battersea-hscroll-dots-gap: 10px;
@@ -178,8 +179,8 @@
 
   // Share
   --battersea-share-button-size: 44px;
-  --battersea-share-button-bg: #f0f0f0;
-  --battersea-share-button-text: #555;
+  --battersea-share-button-bg: var(--colour-surface-panel);
+  --battersea-share-button-text: var(--colour-text-secondary);
   --battersea-share-button-radius: 50%;
   --battersea-share-gap: 10px;
   --battersea-share-icon-size: 20px;

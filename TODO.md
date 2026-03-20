@@ -1,8 +1,8 @@
 
 # Battersea Library - TODO
 
-**Last Updated:** 01 March 2026
-**Current Version:** 2.28.0
+**Last Updated:** 20 March 2026
+**Current Version:** 2.33.0
 **Status:** Multi-host deployment configured, live on GitHub Pages and Uundi
 
 ---
@@ -65,8 +65,10 @@
 - [x] Graph fixes - Clickable segment links, constant-width pie/donut gaps, smooth stacked animation, segment gap attribute (v2.21.1)
 
 ### 🔨 In Progress
+- [ ] **Colour consolidation** -- Migrate hardcoded colours in component LESS files to use `var(--colour-*)` palette tokens. Files to update: mini-quiz (116 hardcoded values), form-elements (58), form-validation (57), datatable (56), dragtable (46), profilegrid (25), dragdrop (24), timeline (16), videoplayer (15), share (15)
 
 ### 📋 Next Up
+- [ ] **Light/auto/dark theme toggle component** -- A UI toggle (three-way: light, auto, dark) that switches the colour scheme. Auto follows `prefers-color-scheme`, light/dark force the theme. Stores preference in localStorage. Works with the palette's light/dark CSS custom properties
 - [x] Update form element validation to include for file select element (allowed file types and maximum file size) (v2.22.0)
 - [x] New advanced form elements - toggle switch, range slider, date picker (custom calendar + native), time picker (24h/12h), colour swatch (preset grid + full picker) (v2.23.0)
 - [x] Transparent header - Setting that makes the header background transparent until the user scrolls, when the background fades in. Transparency returns when user scrolls back to the top. Content floats up behind the header. Works with sticky and shrink. (v2.24.0)
@@ -124,7 +126,7 @@
 ## 🚀 Future Features (v2.3+)
 
 ### Planned Components
-
+- [ ] **ThemeToggle** -- Light/auto/dark toggle switch component
 
 ### Infrastructure
 - [ ] Set up automated LESS compilation
